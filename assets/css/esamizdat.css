@@ -1,0 +1,132 @@
+body {	min-width: 768px; background-color: #ffffff; font-family: "freight-sans-pro"; }
+
+/* Other typography */
+#shelfs, .thumbnail, .publication-header, .hint, .static-page *, p.single-lyrics, #loadmore { font-family: "kepler-std-semicondensed"; }
+a {color: #215295; }
+a:hover i {text-decoration: none;}
+
+/* Reset bootstrap transitions */
+.thumbnail {-webkit-transition: none; -moz-transition: none; transition: none;}
+
+/* Top header */
+#top-header {background-color: #1f6499; background-image: none; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 7px 0px; border: none; min-width: 768px;}
+#top-header ul.nav li a {color: #ffffff; font-size: 1.15em; padding: 14px 7px 12px 7px; } 
+#top-header ul.nav li a:hover {text-decoration: underline;}
+#top-header .brand {background: url('../img/sprite-icons.png') left top no-repeat; width: 225px; height: 49px; text-indent: 100%; white-space: nowrap; overflow: hidden; padding: 0; display: block; float: left; margin: 0 5px 0 0;}
+
+div.single-cover { 	margin: 0 0 20px 20px; 	float: left; cursor: pointer; }
+div.single-download { margin: 0 0 0 3px; float: left; cursor: auto; }
+
+/* Shelfs and shelfs-and-covers  */
+#shelfs {padding: 0 0 0 20px; max-width: 350px;}
+#shelfs h2 { font-size: 1.4em; padding-left: 10px; margin-bottom: 0; margin-top: 0;}
+#shelfs ul, #shelfs ul li {list-style-type: none; margin: 0 0 5px 0; padding: 0;}
+#shelfs ul li a { display:block; padding: 7px 12px; font-size: 1.2em;}
+#shelfs ul li.active a { background-color: #ffffff; border: none; box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;  }
+
+.shelfs-and-covers { background-color: #f0f0f0; }
+
+/* Cover view Control */
+#covers-controls { 	padding-left: 26%; 	border-bottom: 1px solid #b5b5b5; font-size: 1.1em; width: 95%; margin: 30px 15px 4px 15px; height: 30px;}
+#covers-controls a {padding: 3px 6px 4px 6px; margin: 0 0 0 10px}
+#covers-controls a.active {color: #ffffff; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; background-color: #909cae;}
+#covers-controls a.active:hover {text-decoration: none;}
+
+#covers  { margin: 40px 0 40px 0;}
+
+button.btn, button.btn:hover, button.btn:focus, button.btn:active { -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; padding: 9px; color: #ffffff; border: none; background-color: #16486e; background-image: none; text-shadow: none; font-family: "freight-sans-pro"; font-size: 1.2em;}
+
+/* Display as "Table" */
+div.list-table * { 	float: left; }
+div.list-table h3, div.list-table span, div.list-table a { font-size: 1.3em; padding: 0 1em 0 0.4em; line-height: 1.3em; margin: 0; }
+div.list-table h3.title {width: 30%; color: #215295;}
+div.list-table span.author  {width: 14%;}
+div.list-table .thumbnail {box-shadow: none; border: none; width: 85%; margin-bottom: 4px;}
+div.list-table .caption {width: 100%; padding: 0;}
+div.list-table img, div.list-table .music-icon, div.list-table .epub-icon {display:  none;}
+div.list-table i {position: relative; top: 3px; right: 5px; color: #215295;}
+div.list-table a {font-family: "freight-sans-pro";  }
+
+/* Display as "Covers" */
+#covers-controls p { float: left; }
+div.list-cover .caption {width: 147px; position: absolute; bottom: 0px;}
+div.list-cover div.single-cover { text-align: center; }
+div.list-cover div.single-cover h3.title { margin: 0 0 4px 0; line-height: normal; font-size: 1.2em; max-height: 58px; overflow: hidden;}
+div.list-cover div.single-cover span { display: block; font-size: 1.1em;}
+div.list-cover div.single-cover .table-view-only, div.list-cover div.single-cover .single-cover-share { display: none; }
+div.list-cover .thumbnail { width: 161px; padding-top: 10px; height: 220px; background-color: #ffffff; border: none; box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; position: relative;}
+div.list-cover i {display: none; }
+.music-icon, .epub-icon {background: url('../img/sprite-icons.png') 0 -52px; width: 90px; height: 90px; text-indent: 100%; white-space: nowrap; overflow: hidden; margin: 15px 0 0 36px;}
+.epub-icon {background-position: -4px -395px;}
+
+/* The hint */
+.hint {color: #e7e7e7; text-align: center; font-size: 1.2em; line-height: 2em; background: rgb(76,76,76); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(76,76,76,1) 0%, rgba(17,17,17,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(76,76,76,1)), color-stop(100%,rgba(17,17,17,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(76,76,76,1) 0%,rgba(17,17,17,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(76,76,76,1) 0%,rgba(17,17,17,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(76,76,76,1) 0%,rgba(17,17,17,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(76,76,76,1) 0%,rgba(17,17,17,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#111111',GradientType=0 ); /* IE6-9 */
+}
+
+/* Header for rendered pages */
+div.publication-header { border-left: 1xp solid #CCC; padding-top: 30px; }
+div.publication-header span { margin-left: 22px; float: left; font-size: 1.5em;}
+div.publication-header h1.title {margin-left: 22px; color: #323232; }
+p.single-epub {font-size: 1.2em; text-align: left; margin: 10px 20px;}
+
+
+/* Scroll to top */
+.sticky-wrapper { float:right; z-index: 1050; position: relative; }
+#scroll-to-top { float:right; z-index: 1050; margin-right: 6px;	margin-top: 6px; }
+div.stuck#scroll-to-top { z-index: 1050; position: fixed; top: 0px;	right: 0px; }
+
+/* Rendered pages */
+#rendered-pages { position: relative;}
+div.rendered-page { text-align: center; }
+div.page-share { -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; position: absolute;right: 10px; margin: 3em 0 0 0; padding: 0;	background:#FFF; text-align: left; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 0px; }
+#loadmore {background-color: #919daf; margin: 20px; text-align: center; padding: 15px; color: #ffffff; cursor: pointer; } 
+p.single-lyrics {margin: 20px; text-align: left; font-size: 1.3em; line-height: 1.6em; }
+
+/* Page number and share-popup */
+span.pagenumber { float: right; padding: 0.7em;	cursor: pointer; font-size: 1.3em; width: 18px;	height: 18px; text-align: center; color: #215295; line-height: 14px; }
+.single-page { margin-top: 2em; }
+img.rendered-page-single { box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px; }
+.share-part {margin: 0 15px 15px 15px;}
+	.share-part a.download-pdf, .share-part a.download-epub { font-size: 1.2em; margin-right: 15px;} 
+	.share-part a.social i {font-size: 1.5em;}
+	.share-part h5 {display: inline;}
+		.share-part h5.url {display: block;}
+p.direct-url {padding: 6px; background-color: #f0f0f0; font-size: 1.2em;}
+
+/* Static page */
+.static-page h1 {margin-bottom: 30px;}
+.static-page {font-size: 1.3em; line-height: 1.45em;}
+.static-page .span7 {padding-top: 40px;}
+
+/* Footer */
+.footer {border-top: 2px solid #bdbdbd; padding: 15px; margin: 60px 17px 50px 17px;}
+.footer li {float: left;}
+.footer li a {font-size: 1.1em; padding: 8px; color: #4e4e4e;}
+.footer li a:hover {background: none; text-decoration: underline;}
+#footer-to-top { background: url('../img/sprite-icons.png') 0 -165px no-repeat; width: 172px; height: 40px; text-indent: 100%; white-space: nowrap; overflow: hidden; padding: 0; display: block; float: left; }
+
+/* admin */
+.admin#the-container {padding: 20px 0 40px 30px; font-size: 1.3em; line-height: 1.8em;}
+.label {font-size: 18px; background-color: transparent; color: #000000; display: block; float: left; width: 140px; font-weight: normal; text-shadow: none; padding: 0;}
+
+/* AudioJS */
+/* http://kolber.github.io/audiojs/ */
+.audiojs {height: auto; width: 750px; margin: 0 0 30px 20px; background: none; background-color: #f0f0f0; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; box-shadow: none; -moz-box-shadow: none; -o-box-shadow: none; -webkit-box-shadow: none; padding: 20px;}
+.audiojs .play-pause {width: 100px; height: 100px; border: none;}
+.audiojs .play {background: url('../img/sprite-icons.png') 0 -211px; width: 95px; height: 95px; }
+.audiojs .pause {background: url('../img/sprite-icons.png') 0 -302px; width: 95px; height: 95px; }
+.audiojs .scrubber {width: 400px; background: none; background-color: #ffffff; border: 2px solid #9f9f9f; box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 10px 0px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; margin-top: 46px; height: 18px;}
+.audiojs .loaded { background: none; background-color: #ffffff; }
+.audiojs .time { border: none; margin-top: 37px; text-shadow: none;}
+.audiojs .time em, strong.duration {color: #9f9f9f;}
+.audiojs .progress {background: transparent url('../img/sprite-icons.png') -5px -143px no-repeat; border-radius: 0; margin: 2px;}
+
+/* Other */
+#the-container { margin-top: 45px; padding: 0; }
