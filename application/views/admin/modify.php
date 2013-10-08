@@ -18,7 +18,10 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`=$id");
 	<p><span class="label">Item name:</span> <?php echo form_input('book_name', $data->book_name);?></p>
 	<p><span class="label">Author:</span> <?php echo form_input('book_author', $data->book_author);?></p>
 	<p><span class="label">Timestamp:</span> <?php echo form_input('book_timestamp', $data->book_timestamp);?></p>
-	<p><span class="label">eOrder URL: </span><?php echo form_input('eorder_url', $data->eorder_url);?></p>
+	<p><span class="label">Follow author URL: </span><?php echo form_input('follow_author_url', $data->follow_author_url);?></p>
+	<p><span class="label">Memory piece URL: </span><?php echo form_input('memory_piece_url', $data->memory_piece_url);?></p>
+	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url', $data->eorder_url);?></p>
+	<p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url', $data->share_poster_url);?></p>-->
 	<p><span class="label">Shelf:</span>
 		<?php 
 		$items = array();

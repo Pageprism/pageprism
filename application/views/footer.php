@@ -152,6 +152,7 @@
         $(".publication-header .title").html($(this).attr("title"));
         $(".publication-header .author").html($("#"+id+" .author").html());
         $(".publication-header .timestamp").html($("#"+id+" .timestamp").html());
+        $(".publication-header .book-id-hidden").html(id);
 
         $('html, body').animate({
                 scrollTop: $(".hint").offset().top-50
@@ -214,19 +215,72 @@
             event.preventDefault ? event.preventDefault() : event.returnValue = false;
             url = $(this).attr("href");
             title = $(this).attr("rel");
+            image = window.location.protocol+'//'+window.location.host+"/"+$("#page_1 .rendered-page-single").attr("src");
+            id = $(".publication-header .book-id-hidden").html();
 
             FB.ui(
                 {
                     method: 'feed',
                     name: title,
                     link: url,
-                    picture: '',
+                    picture: image,
                     caption: "eSamiszat-Shelf",
                     description: "Read more...",
                     message: ''
-                });
+                },
+                function(response) {
+                    if (response && response.post_id) {
+                    var form_data = {
+                        id : id
+                    }
 
+                    $.ajax({
+                        url: "/index.php/book/counter",
+                        type: 'POST',
+                        async: true,
+                        data: form_data,
+                        success: function(data) {
+                        }
+                    });
+                    }
+              });
         });   
+
+        // Google+
+        $(document).on('click','.share-google', function(){
+            event.preventDefault ? event.preventDefault() : event.returnValue = false;
+            window.open(this.href,'share_window', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+            id = $(".publication-header .book-id-hidden").html();
+            var form_data = {
+                id : id
+            }
+
+            $.ajax({
+                url: "/index.php/book/counter",
+                type: 'POST',
+                async: true,
+                data: form_data,
+                success: function(data) {
+                }
+            });
+        });
+
+        // Twitter
+        $(document).on('click','.share-twitter', function(){
+            id = $(".publication-header .book-id-hidden").html();
+            var form_data = {
+                id : id
+            }
+
+            $.ajax({
+                url: "/index.php/book/counter",
+                type: 'POST',
+                async: true,
+                data: form_data,
+                success: function(data) {
+                }
+            });
+        });
 
 		// Click "Show Covers"
 		$('.control-covers').click( function() {

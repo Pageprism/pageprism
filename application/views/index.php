@@ -55,17 +55,18 @@
                                 <h3 class="title"><?=$book['book_name']?></h3>
                                 <span class="author"><?=$book['book_author']?></span>
                                 <span class="timestamp"><?=$book['book_timestamp']?></span>
+                                <span class="share-counter">Shared <? echo ($book['counter'] == 1) ? " once" : $book['counter']." times";?></span>
 
                                 <!-- Additional "Downloads" -stuff  -->
                                 <?php 
                                 if(!empty($book['file_url_pdf'])) {?>
-                                <a href="<?=$book['file_url_pdf']?>" class="download-pdf table-view-only"><i class="icon-book"></i> PDF</a>
+                                <a href="<?=$book['file_url_pdf']?>" class="download-pdf table-view-only" onClick="_gaq.push(['_trackEvent', 'eSamiszat-Shelf', '<?=$book['book_name'];?>', 'download pdf']);"><i class="icon-book"></i> PDF</a>
                                 <?php }
                                 if (!empty($book['file_url_epub'])) {?>
-                                <a href="<?=$book['file_url_epub']?>" class="download-epub table-view-only"><i class="icon-epub"></i> ePub</a>
+                                <a href="<?=$book['file_url_epub']?>" class="download-epub table-view-only" onClick="_gaq.push(['_trackEvent', 'eSamiszat-Shelf', '<?=$book['book_name'];?>', 'download epub']);"><i class="icon-epub"></i> ePub</a>
                                 <?php }
                                 if (!empty($book['file_url_music'])) {?>
-                                <a href="<?=$book['file_url_music']?>" class="download-music table-view-only"><i class="icon-play-sign"></i> MP3</a>
+                                <a href="<?=$book['file_url_music']?>" class="download-music table-view-only" onClick="_gaq.push(['_trackEvent', 'eSamiszat-Shelf', '<?=$book['book_name'];?>', 'download mp3']);"><i class="icon-play-sign"></i> MP3</a>
                                 <?php }?>
                             </div>
                        </div>
@@ -89,6 +90,7 @@
             <h1 class="title"><? if (isset($title)) echo $title?></h1>
             <span class="author"><? if (isset($book_author)) echo $book_author?></span>
             <span class="timestamp"><? if (isset($book_timestamp)) echo $book_timestamp?></span>
+            <span class="book-id-hidden"><? if (isset($id)) echo $id?></span>
         </div>
     </div>
     

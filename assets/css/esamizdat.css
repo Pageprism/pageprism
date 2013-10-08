@@ -74,6 +74,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
 div.publication-header { border-left: 1xp solid #CCC; padding-top: 30px; }
 div.publication-header span { margin-left: 22px; float: left; font-size: 1.5em;}
 div.publication-header h1.title {margin-left: 22px; color: #323232; }
+div.publication-header .book-id-hidden {display: none;}
 p.single-epub {font-size: 1.2em; text-align: left; margin: 10px 20px;}
 
 
@@ -95,10 +96,11 @@ span.pagenumber { float: right; padding: 0.7em;	cursor: pointer; font-size: 1.3e
 img.rendered-page-single { box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px; }
 .share-part {margin: 0 15px 15px 15px;}
 	.share-part a.download-pdf, .share-part a.download-epub { font-size: 1.2em; margin-right: 15px;} 
-	.share-part a.social i {font-size: 1.5em;}
-	.share-part h5 {display: inline;}
+	.share-part a.social i {font-size: 2em;}
 		.share-part h5.url {display: block;}
+	.share-part h5 {margin:10px 0 1px 0;}
 p.direct-url {padding: 6px; background-color: #f0f0f0; font-size: 1.2em;}
+i.icon-book {font-size:1.3em;}
 
 /* Static page */
 .static-page h1 {margin-bottom: 30px;}
@@ -114,7 +116,7 @@ p.direct-url {padding: 6px; background-color: #f0f0f0; font-size: 1.2em;}
 
 /* admin */
 .admin#the-container {padding: 20px 0 40px 30px; font-size: 1.3em; line-height: 1.8em;}
-.label {font-size: 18px; background-color: transparent; color: #000000; display: block; float: left; width: 140px; font-weight: normal; text-shadow: none; padding: 0;}
+.label {font-size: 18px; background-color: transparent; color: #000000; display: block; float: left; width: 250px; font-weight: normal; text-shadow: none; padding: 0;}
 
 /* AudioJS */
 /* http://kolber.github.io/audiojs/ */

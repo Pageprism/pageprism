@@ -38,6 +38,8 @@ class Document extends MY_Controller {
 		$book_author = $this->input->post('book_author');
 		$book_timestamp = $this->input->post('book_timestamp');
 		$eorder_url = $this->input->post('eorder_url');
+		$follow_author_url = $this->input->post('follow_author_url');
+		$memory_piece_url = $this->input->post('memory_piece_url');
 
 		$update_data = array(
 			'author_id' => $author_id,
@@ -49,6 +51,8 @@ class Document extends MY_Controller {
 			'language' => $language,
 			'shelf_id' => $shelf_id,
 			'eorder_url' => $eorder_url,
+			'follow_author_url' => $follow_author_url,
+			'memory_piece_url' => $memory_piece_url,
 			'public' => '1'
 		);
 
@@ -76,9 +80,9 @@ class Document extends MY_Controller {
 					$pdfquery = $this->db->query("SELECT * FROM pdf WHERE `book_id`=$data->id");
 					foreach ($pdfquery->result_array() as $pdfrun) {
 						unlink($_SERVER['DOCUMENT_ROOT']."/".$pdfrun['page_image_url']);
-						echo $pdfrun['page_image_url']. "deleted<br>";
+						//echo $pdfrun['page_image_url']. "deleted<br>";
 						$this->db->delete('pdf', array('id' => $pdfrun['id']));
-						echo $pdfrun['id']." id poistettu";
+						//echo $pdfrun['id']." id poistettu";
 					}
 				}
 				
@@ -103,6 +107,7 @@ class Document extends MY_Controller {
 		$config['upload_path'] = $path;
 		$config['allowed_types'] = 'gif|jpg|png|pdf|mp3|epub';
 		$config['xss_clean'] = FALSE;
+		$config['remove_spaces'] = TRUE;
 
 		// Create dir /yyyy/mm/dd
 		if (!file_exists($path)) {
@@ -121,7 +126,8 @@ class Document extends MY_Controller {
 		$book_author = $this->input->post('book_author');
 		$book_timestamp = $this->input->post('book_timestamp');
 		$eorder_url = $this->input->post('eorder_url');
-
+		$follow_author_url = $this->input->post('follow_author_url');
+		$memory_piece_url = $this->input->post('memory_piece_url');
 
 		$sql_data = array(
 			'author_id' => $author_id,
@@ -135,6 +141,8 @@ class Document extends MY_Controller {
 			'price' => '',
 			'shelf_id' => $shelf_id,
 			'eorder_url' => $eorder_url,
+			'follow_author_url' => $follow_author_url,
+			'memory_piece_url' => $memory_piece_url,
 			'public' => '1');
 		$this->db->insert('book', $sql_data);
 		$insert_id = $this->db->insert_id();
@@ -149,7 +157,7 @@ class Document extends MY_Controller {
             	// Load upload.cfg
                 $this->upload->initialize($config);
                 // Something wrong? Yes...
-				if ( ! $this->upload->do_upload())
+				if ( ! $this->upload->do_upload($key))
 				{
 					$error = array('error' => $this->upload->display_errors());
 					//print_r($error);
@@ -159,11 +167,13 @@ class Document extends MY_Controller {
                 else
                 {
 
-				//$data = $this->upload->data();
+				$data = $this->upload->data();
 				$get_fileinfo = pathinfo($value['name']);
-				$original_filename  = $get_fileinfo['basename'];
+				//$original_filename  = $get_fileinfo['basename'];
+				$original_filename = $data['file_name'];
 				//$type = $get_fileinfo['extension'];
-				$rawname = $get_fileinfo['filename'];
+				//$rawname = $get_fileinfo['filename'];
+				$rawname = $data['raw_name'];
 				$type = substr(strrchr($value['name'], '.'), 1);
 
 				// Unique timestamp for filename
@@ -173,9 +183,18 @@ class Document extends MY_Controller {
 				if ($type == 'pdf')
 				{
 					$original_file = $path.$original_filename;
-					$save_to = $path.$rawname.'-'.$time.'.png';
-					//exec("/usr/bin/convert -density 120 $original_file $save_to", $output, $return_var);
-					exec("/opt/ImageMagick/bin/convert -density 120 $original_file $save_to", $output, $return_var);
+					$save_to = $path.str_replace(' ', '_', $rawname).'-'.$time.'.png';
+
+					if (strpos($_SERVER['HTTP_HOST'], 'kirjahylly.evermade.fi') !== false)
+					{
+						exec("/opt/ImageMagick/bin/convert -density 120 '$original_file' '$save_to'", $output, $return_var);
+					} 
+					else if (strpos($_SERVER['HTTP_HOST'], 'esamizdat-shelf.cc') !== false) 
+					{
+						exec("/usr/bin/convert -density 120 '$original_file' '$save_to'", $output, $return_var);
+					} 
+					
+					
 					echo 'Converting to .png...';
 					if ($return_var == 0) echo 'Done.';
 
@@ -187,10 +206,11 @@ class Document extends MY_Controller {
 					}
 
 					// Fix filename for single page documents
-					if ($filecount == "1") {
+					if (count(glob($path . $rawname.'-'.$time.'.png')) == "1") {
 						$oldname = $path.$rawname.'-'.$time.'.png';
 						$newname = $path.$rawname.'-'.$time.'-0.png';
 						rename($oldname, $newname);
+						$filecount = 1;
 					}
 
 
@@ -245,6 +265,7 @@ class Document extends MY_Controller {
 				}
 
 				if ($type == "epub") {
+					$rawname = str_replace(' ', '_', $rawname);
 					$file_url_epub = UPLOADS.$timestamp.$rawname.'.epub';
 
 					$update_data = array(
@@ -262,36 +283,6 @@ class Document extends MY_Controller {
         }
        	$this->layout->show('admin/upload_ready');
 
-	}
-
-	function do_database()
-	{
-		$foldername = '/Library/Server/Web/Data/Sites/kirjahylly.evermade.fi/application/uploads/';
-		$folder = opendir($foldername);
-		$pic_types = array('jpg', 'jpeg', 'gif', 'png');
-
-		while ($filename = readdir ($folder)) {
-
-		  if(in_array(substr(strtolower($filename), strrpos($filename,'.') + 1),$pic_types))
-			{
-
-			$sql_data = array(
-				'lupaus_id' => $lupaus_arvo,
-				'lupaus_txt' => $lupaus_txt,
-				'jokeri' => $jokeri,
-				'ip' => $ip,
-				'facebook_id' => $comment_id,
-				'status' => $status);
-			$this->db->insert('responses', $sql_data);
-
-
-				if (round(filesize($foldername.$filename)/1024, 0) > 50)
-				{
-					echo '<p>File size over 50KB: $filename, '.round(filesize($foldername.$filename)/1024, 0).' KB<br>';
-					echo '<code>/opt/ImageMagick/bin/convert -quality 85 '.$foldername.$filename.' '.$foldername.substr($filename, 0, -3).'jpg </code></p>';
-				} 				
-			}
-		}
 	}
 
 	function create_new_user() 
