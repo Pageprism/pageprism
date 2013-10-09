@@ -5,9 +5,6 @@
 # http://www.sequelpro.com/
 # http://code.google.com/p/sequel-pro/
 #
-# Host: 127.0.0.1 (MySQL 5.5.31-0ubuntu0.12.04.1)
-# Database: kirjahylly
-# Generation Time: 2013-06-18 10:24:29 +0000
 # ************************************************************
 
 
@@ -45,6 +42,10 @@ CREATE TABLE `book` (
   `book_timestamp` int(11) DEFAULT NULL,
   `pages` int(11) DEFAULT NULL,
   `eorder_url` varchar(1000) DEFAULT NULL,
+  `follow_author_url` varchar(1000) DEFAULT NULL,
+  `memory_piece_url` varchar(1000) DEFAULT NULL,
+  `share_poster_url` varchar(1000) DEFAULT NULL,
+  `counter` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
