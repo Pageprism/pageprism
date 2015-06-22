@@ -185,15 +185,14 @@ class Document extends MY_Controller {
 					$original_file = $path.$original_filename;
 					$save_to = $path.str_replace(' ', '_', $rawname).'-'.$time.'.png';
 
-					if (strpos($_SERVER['HTTP_HOST'], 'kirjahylly.evermade.fi') !== false)
+					$bin = 'convert';
+
+					if (strpos($_SERVER['HTTP_HOST'], 'esamizdat-shelf.cc') !== false) 
 					{
-						exec("/opt/ImageMagick/bin/convert -density 120 '$original_file' '$save_to'", $output, $return_var);
-					} 
-					else if (strpos($_SERVER['HTTP_HOST'], 'esamizdat-shelf.cc') !== false) 
-					{
-						exec("/usr/bin/convert -density 120 '$original_file' '$save_to'", $output, $return_var);
-					} 
-					
+						$bin = "/usr/bin/convert";
+					}
+					exec("$bin -density 120 '$original_file' '$save_to'", $output, $return_var);
+
 					
 					echo 'Converting to .png...';
 					if ($return_var == 0) echo 'Done.';
