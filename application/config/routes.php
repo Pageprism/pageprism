@@ -42,6 +42,7 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['book/load_pages'] = 'book/load_pages';
 $route['book/load_pages_js'] = 'book/load_pages_js';
+$route['book/counter'] = 'book/counter';
 $route['music/(:any)'] = 'book/song/$1';
 $route['epub/(:any)'] = 'book/download_file/$1';
 $route['book/(:any)'] = 'book/view/$1/p1';

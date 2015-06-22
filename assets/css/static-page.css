@@ -73,7 +73,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', end
 div.publication-header { border-left: 1xp solid #CCC; padding-top: 30px; }
 div.publication-header span { margin-left: 22px; float: left; font-size: 1.5em;}
 div.publication-header h1.title {margin-left: 22px; color: #323232; }
-p.single-epub {font-size: 1.2em; text-align: left;}
 
 /* Scroll to top */
 .sticky-wrapper { float:right; z-index: 1050; position: relative; }
