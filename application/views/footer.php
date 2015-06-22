@@ -80,7 +80,7 @@
             loadmore();
         });
 
-        <? if (isset($page)) {?>
+        <?php if (isset($page)) {?>
         function loadmore() {
             $("#loadmore").remove();
             if (<? if(isset($page)) echo $page?> > 1) {
