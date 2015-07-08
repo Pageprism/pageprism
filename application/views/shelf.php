@@ -100,7 +100,7 @@
                 <a class="social" href="#"><i class="icon-twitter-sign"></i></a>
                 <a class="social" href="#"><i class="icon-google-plus-sign"></i></a>
                 <h5>Direct URL</h5>
-                <p class="direct-url">www.esamizdat-shelf.cc/document/the-unknown-soldier</p> 
+                <p class="direct-url">www.pageshare.fi/document/the-unknown-soldier</p> 
             </div> -->
         </div>
     </div>

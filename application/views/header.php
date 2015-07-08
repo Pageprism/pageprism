@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <base href="<?php echo base_url()?>">
-    <title>eSamizdat Shelf</title>
+    <title>PageShare</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bootstrap -->
@@ -55,7 +55,7 @@ _gaq.push(['_trackPageview']);
 	<div class="navbar-inner" id="top-header">
     	<div class="container-fluid">
 
-            <a class="brand" href="/">eSamizdat Shelf</a>
+            <a class="brand" href="/">PageShare</a>
             <ul class="nav">
                 <?php
                 $query = $this->db->query("SELECT id,title,url_title FROM pages");

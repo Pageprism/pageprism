@@ -1,6 +1,6 @@
     <!-- Footer -->
     <div class="footer">
-        <a href="#" id="footer-to-top">eSamiszat-Shelf.cc - To top</a>
+        <a href="#" id="footer-to-top">PageShare</a>
             <ul class="nav">
                 <?php
                 $query = $this->db->query("SELECT id,title,url_title FROM pages");
