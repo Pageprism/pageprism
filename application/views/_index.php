@@ -1,13 +1,6 @@
 <!-- Container -->
 <div class="container-fluid" id="the-container">
 
-    <!-- Covers -->
-    <div class="row-fluid shelfs-and-covers">
-        <div class="span12 " id="covers-controls">
-            View: <a class="control-covers active" href="#">Covers</a> <a class="control-table" href="#">Downloads</a>
-        </div>
-    </div>
-
     <!-- Shelfs and covers -->
     <div class="row-fluid shelfs-and-covers">
 

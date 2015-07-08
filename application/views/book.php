@@ -24,14 +24,6 @@
             </ul>
         </div>
         
-        <!-- Covers -->
-        <div class="span10 well well-small" id="covers-controls">
-            View: <a class="control-covers active" href="#">Covers</a> <a class="control-table" href="#">Downloads</a>
-
-            <!--
-            | Sort by: <a class="control-name active" href="#">Name</a> <a class="control-author" href="#">Author</a> <a class="control-date" href="#">Date</a> -->
-        </div>
-        
         <!-- Show Covers / Show Table -->
         <div class="span10 list-cover" id="covers"> 
 <!--        <div class="span10 list-table" id="covers"> -->
