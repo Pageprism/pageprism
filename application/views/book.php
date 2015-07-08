@@ -4,7 +4,6 @@
 
         <!-- Shelfs -->
         <div class="span2" id="shelfs">
-            <h2 class="">The Shelves</h2>
             <ul class="">
                 <li><a href="#">Some shelf</a></li>
                 <li><a href="#">Another shelf</a></li>

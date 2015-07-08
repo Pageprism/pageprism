@@ -6,7 +6,6 @@
 
         <!-- Shelfs -->
         <div class="span3" id="shelfs">
-            <h2 class="">The Shelves</h2>
             <ul class="">
                 <?php
                 $query = $this->db->query("SELECT id,name FROM shelf");

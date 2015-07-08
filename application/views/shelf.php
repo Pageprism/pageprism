@@ -4,7 +4,6 @@
 
         <!-- Shelfs -->
         <div class="span2" id="shelfs">
-            <h2 class="">The Shelves</h2>
             <ul class="">
                 <?php
                 if (isset($shelf_id)) echo $shelf_id;
