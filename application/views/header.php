@@ -4,17 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <base href="<?php echo base_url()?>">
     <title>PageShare</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.46" />
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/esamizdat.css" rel="stylesheet" media="screen" />
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
-
-    <!-- Typekit -->
-    <script type="text/javascript" src="//use.typekit.net/clu1gex.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 <script type="text/javascript">
 var _gaq = _gaq || [];

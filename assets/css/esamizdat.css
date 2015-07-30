@@ -1,13 +1,13 @@
 body {
   min-width: 768px;
   background-color: #ffffff;
-  font-family: "freight-sans-pro";
+  /*font-family: "freight-sans-pro"; */
 }
 
 
 /* Other typography */
 #shelfs, .thumbnail, .publication-header, .hint, .static-page *, p.single-lyrics, #loadmore {
-  font-family: "kepler-std-semicondensed";
+  /* font-family: "kepler-std-semicondensed"; */
 }
 
 a {
@@ -166,7 +166,7 @@ button.btn, button.btn:hover, button.btn:focus, button.btn:active {
   background-color: #16486e;
   background-image: none;
   text-shadow: none;
-  font-family: "freight-sans-pro";
+  /* font-family: "freight-sans-pro"; */
   font-size: 1.2em;
 }
 
@@ -216,7 +216,7 @@ div.list-table i {
 }
 
 div.list-table a {
-  font-family: "freight-sans-pro";
+  /* font-family: "freight-sans-pro"; */
 }
 
 
