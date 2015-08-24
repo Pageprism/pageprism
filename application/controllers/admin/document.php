@@ -223,12 +223,9 @@ class Document extends MY_Controller {
 						$this->db->insert('pdf', $sql_data_pdf);					
 					}
 
-
-
-
 					// PDF specific values
 					$file_url_pdf = UPLOADS.$timestamp.$rawname.'.pdf';
-					$file_url_cover = UPLOADS.$timestamp.$rawname.'-'.$time.'-0_thumb.png';
+					$file_url_cover = UPLOADS.$timestamp.$rawname.'-'.$time.'-0_thumb.jpg';
 
 					$update_data = array(
 	                	'pages' => $filecount,
@@ -245,8 +242,14 @@ class Document extends MY_Controller {
 					$thumb_config['maintain_ratio'] = TRUE;
 					$thumb_config['width'] = 200;
 					$thumb_config['height'] = 293;
+					$thumb_config['height'] = 293;
 					$this->load->library('image_lib', $thumb_config); 
-					$this->image_lib->resize();
+          $this->image_lib->resize();
+
+          $file_url_cover_src = UPLOADS.$timestamp.$rawname.'-'.$time.'-0_thumb.png';
+					exec("$bin '$file_url_cover_src' '$file_url_cover'");
+					error_log("$bin '$file_url_cover_src' '$file_url_cover'");
+
 					echo 'Done';
 
 				}
