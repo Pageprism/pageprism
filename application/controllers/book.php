@@ -75,21 +75,21 @@ class Book extends CI_Controller {
 			$page_n = $post_data['page_n'];
 			$music = $post_data['music'];
 			$download = $post_data['download'];
-			$printable_content = $this->load_pages($id,$page_n,$music,$download);
-			if ($music == "1" || $download == "1") {
-				echo $printable_content;
-			} else {
-				echo $printable_content[0];
-			}
+			echo $this->load_pages($id,$page_n,$music,$download);
 		}
 		
-	}
+  }
+
+  public function get_page_count($id) {
+    $query = $this->db->query("SELECT count(*) as pagecount FROM pdf,book WHERE pdf.book_id='$id' and pdf.book_id = book.id");
+    return $query->row()->pagecount;
+  }
 
 	public function load_pages($id, $page_n, $music, $download) {
 		if ($music == "1" || $download == "1") {
 			$query = $this->db->query("SELECT * FROM book WHERE id='$id'");
-		} elseif ($page_n == "all") {
-			$query = $this->db->query("SELECT pdf.*,book.* FROM pdf,book WHERE pdf.book_id='$id' and pdf.book_id = book.id");
+    } elseif ($page_n == "all") {
+      return $this->get_page_count($id);
 		} else {
 			$query = $this->db->query("SELECT pdf.*,book.* FROM pdf,book WHERE pdf.book_id='$id' and pdf.book_id = book.id and pdf.page_n='$page_n'");
 		}
@@ -97,7 +97,7 @@ class Book extends CI_Controller {
 		if ($query->num_rows() > 0)
 		{
 
-			if ($music == 1 || $page_n == "all" || $download == 1) {	
+			if ($music == 1 || $download == 1) {	
 				if ($music == "1") {
 					$musicdata = $query->row();
 					$player = '
@@ -125,10 +125,6 @@ class Book extends CI_Controller {
 				        </div>';
 				        return $player;
 				        goto end;
-				}
-				if ($page_n == "all" && $download == "0") {
-					echo $query->num_rows();
-					goto end;
 				}
 				if ($download == "1") {
 					$downloaddata = $query->row();
@@ -215,7 +211,7 @@ class Book extends CI_Controller {
 			            </div>
 			        </div>';
 				}
-				return $pages;				
+				return implode("\n", $pages);
 			}
 			end:
 			
