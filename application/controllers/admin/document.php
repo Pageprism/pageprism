@@ -243,8 +243,8 @@ class Document extends MY_Controller {
 					$thumb_config['source_image'] = UPLOADS.$timestamp.$rawname.'-'.$time.'-0.png';
 					$thumb_config['create_thumb'] = TRUE;
 					$thumb_config['maintain_ratio'] = TRUE;
-					$thumb_config['width'] = 75;
-					$thumb_config['height'] = 110;
+					$thumb_config['width'] = 200;
+					$thumb_config['height'] = 293;
 					$this->load->library('image_lib', $thumb_config); 
 					$this->image_lib->resize();
 					echo 'Done';

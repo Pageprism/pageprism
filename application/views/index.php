@@ -44,11 +44,13 @@
                             <div class="epub-icon">ePub</div>
                             <?php } ?>
                             <div class="caption">
+<!--
                                 <h3 class="title"><?=$book['book_name']?></h3>
                                 <span class="author"><?=$book['book_author']?></span>
                                 <span class="timestamp"><?=$book['book_timestamp']?></span>
-                                <span class="share-counter">Shared <?php ($book['counter'] == 1) ? " once" : $book['counter']." times";?></span>
+                                <span class="share-counter">Shared <?php echo ($book['counter'] == 1) ? " once" : $book['counter']." times";?></span>
 
+-->
                                 <!-- Additional "Downloads" -stuff  -->
                                 <?php 
                                 if(!empty($book['file_url_pdf'])) {?>

@@ -40,7 +40,7 @@ a:hover i {
 #top-header ul.nav {
   float: none;
   margin: 0 auto;
-  width: 500px;
+  width: 600px;
 }
 #top-header ul.nav li {
   float: none;
@@ -255,7 +255,7 @@ div.list-cover div.single-cover .table-view-only, div.list-cover div.single-cove
 div.list-cover .thumbnail {
   width: 161px;
   padding-top: 10px;
-  height: 220px;
+  height: 225px;
   background-color: #ffffff;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px;
