@@ -33,7 +33,7 @@
                 {
                     foreach ($query->result_array() as $book)
                     {?>
-                        <div onClick="_gaq.push(['_trackEvent', 'Covers', 'Click-to-open', '<?=$book['book_name']?>']);" class="single-cover thumbnail" id="<?=$book['id']?>" title="<?=$book['book_name']?>">
+                    <div onClick="_gaq.push(['_trackEvent', 'Covers', 'Click-to-open', '<?=$book['book_name']?>']);" class="single-cover thumbnail<?php if (isset($book_id) && $book_id == $book['id']) echo ' selected'; ?>" id="<?=$book['id']?>" title="<?=$book['book_name']?>">
 
                             <!-- The "Cover" -->
                             <?php if ($book['type'] == "" || ($book['type'] == "pdf")) {?>
@@ -51,17 +51,6 @@
                                 <span class="share-counter">Shared <?php echo ($book['counter'] == 1) ? " once" : $book['counter']." times";?></span>
 
 -->
-                                <!-- Additional "Downloads" -stuff  -->
-                                <?php 
-                                if(!empty($book['file_url_pdf'])) {?>
-                                <a href="<?=$book['file_url_pdf']?>" class="download-pdf table-view-only" onClick="_gaq.push(['_trackEvent', 'eSamiszat-Shelf', '<?=$book['book_name'];?>', 'download pdf']);"><i class="icon-book"></i> PDF</a>
-                                <?php }
-                                if (!empty($book['file_url_epub'])) {?>
-                                <a href="<?=$book['file_url_epub']?>" class="download-epub table-view-only" onClick="_gaq.push(['_trackEvent', 'eSamiszat-Shelf', '<?=$book['book_name'];?>', 'download epub']);"><i class="icon-epub"></i> ePub</a>
-                                <?php }
-                                if (!empty($book['file_url_music'])) {?>
-                                <a href="<?=$book['file_url_music']?>" class="download-music table-view-only" onClick="_gaq.push(['_trackEvent', 'eSamiszat-Shelf', '<?=$book['book_name'];?>', 'download mp3']);"><i class="icon-play-sign"></i> MP3</a>
-                                <?php }?>
                             </div>
                        </div>
                     <?php
@@ -70,24 +59,9 @@
             ?>
         </div>  
     </div>
+    <hr class="book-content-separator" style="display:none" />
+    <input type="hidden" id="book-id-hidden" value="<?php if (isset($id)) echo $id?>" />
 
-    <!-- The hint text -->
-    <div class="row-fluid hint" style="display:none">
-        <div class="span12">To share a single page or download the book, press the page number at the right top corner of the page.</div>
-    </div>
-
-
-    <!-- The header for single publication -->
-    <div class="row-fluid publication-header">
-        <div class="span12">
-            <div id="scroll-to-top" style="display:none"><button class="btn">Back to shelves</button></div>
-            <h1 class="title"><?php if (isset($title)) echo $title?></h1>
-            <span class="author"><?php if (isset($book_author)) echo $book_author?></span>
-            <span class="timestamp"><?php if (isset($book_timestamp)) echo $book_timestamp?></span>
-            <span class="book-id-hidden"><?php if (isset($id)) echo $id?></span>
-        </div>
-    </div>
-    
   
     <!-- The page(s) of single publication -->
     <div id="rendered-pages">

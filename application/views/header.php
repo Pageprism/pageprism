@@ -69,6 +69,7 @@ _gaq.push(['_trackPageview']);
                 ?>
             </ul>
 
+            <div id="scroll-to-top" style="display:none"><button class="btn">Back to shelves</button></div>
 		</div>
     </div>
 </div>

@@ -23,10 +23,6 @@
    	<script src="<?php echo base_url();?>assets/js/waypoints-sticky.min.js"></script>    
     <script src="<?php echo base_url();?>assets/audiojs/audio.min.js"></script>
     <script>
-	$( document ).ready(function() {
-
-
-
         function load_page_content(id,page_n,div_id,direction,clicked) {
             if (direction == "up") {
                 $("#page_"+div_id).before('<div class="row-fluid single-page" id="page_'+page_n+'">LOADING '+page_n+'</div>')
@@ -66,10 +62,11 @@
                 }
             });
         }
+	$( document ).ready(function() {
+
         $(document).on('click','span.pagenumber', function(){
             $(this).parent().children('.share-part').toggle();
         });   
-
         $(document).on('click','#loadmore', function(){
             loadmore();
         });
@@ -112,8 +109,7 @@
                     $('.share-part').hide();
                 }
             }
-                $(".hint").show();
-                $("#scroll-to-top").show();
+                $(".book-content-separator").show();
 	    }
         <?php } ?>
 
@@ -124,83 +120,15 @@
                       });
                     // Click Pagenumber
                     $('.share-part').hide();
-                    $(".hint").show();
-                    $("#scroll-to-top").show();
+                    $(".book-content-separator").show();
         }
         <?php } ?>
 
          if(window.location.href.indexOf("epub") > -1) {
              // Click Pagenumber
              $('.share-part').hide();
-             $(".hint").show();
-             $("#scroll-to-top").show();
+             $(".book-content-separator").show();
         }
-
-
-
-    $(".single-cover").click(function(){
-        $(".hint").show();
-        $("#scroll-to-top").show();
-        $("#rendered-pages").empty();
-        id = $(this).attr("id");
-        $(".publication-header .title").html($(this).attr("title"));
-        $(".publication-header .author").html($("#"+id+" .author").html());
-        $(".publication-header .timestamp").html($("#"+id+" .timestamp").html());
-        $(".publication-header .book-id-hidden").html(id);
-
-        $('html, body').animate({
-                scrollTop: $(".hint").offset().top-50
-        }, "fast");
-
-        if ($("#"+id+" .music-icon").length) {
-            music = "1";
-        } else {
-            music = "0";
-        }
-
-        if ($("#"+id+" .epub-icon").length) {
-            download = "1";
-        } else {
-            download = "0";
-        }        
-
-        var form_data = {
-            id : id,
-            page_n : "all",
-            music : music,
-            download : download
-        };
-
-        $.ajax({
-            url: "/index.php/book/load_pages_js",
-            type: 'POST',
-            async: true,
-            data: form_data,
-            success: function(data) {
-
-                if (download == "1") {
-                    $("#rendered-pages").append(data);
-                    // Click Pagenumber
-                    $('.share-part').hide();
-                }
-                else if (music == "1") {
-                    $("#rendered-pages").append(data);
-                      audiojs.events.ready(function() {
-                        var as = audiojs.createAll();
-                      });
-                    // Click Pagenumber
-                    $('.share-part').hide();
-                } else {
-                    for (var i=1;i<=data;i++) {
-                        $("#rendered-pages").append('<div class="row-fluid single-page" id="page_'+i+'">LOADING #'+i+'</div>');
-                        load_page_content(id,i,i,'down','clicked');
-                    }                    
-                }
-
-            }
-        });
-
-    });
 
     });
 	</script>
