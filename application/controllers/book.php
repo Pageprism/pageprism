@@ -169,11 +169,11 @@ class Book extends CI_Controller {
                 	} else { $eorder_url = ""; }
                 	if (!empty($row['memory_piece_url'])) {
                 		$url = (strlen($row['memory_piece_url']) > 40) ? substr($row['memory_piece_url'],0,40).'...' : $row['memory_piece_url'];
-                		$memory_piece_url = '<h5>Memory piece: </h5> <a href="'.$row['memory_piece_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Memory piece\']);">'.$url.'</a>';
+                		$memory_piece_url = '<h5>Print: </h5> <a href="'.$row['memory_piece_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Memory piece\']);">'.$url.'</a>';
                 	} else { $memory_piece_url = ""; }
                 	if (!empty($row['follow_author_url'])) {
                 		$url = (strlen($row['follow_author_url']) > 40) ? substr($row['follow_author_url'],0,40).'...' : $row['follow_author_url'];
-                		$follow_author_url = '<h5>Follow author: </h5> <a href="'.$row['follow_author_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Follow author\']);">'.$url.'</a>';
+                		$follow_author_url = '<h5>Meme: </h5> <a href="'.$row['follow_author_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Follow author\']);">'.$url.'</a>';
                 	} else { $follow_author_url = ""; }
                 	if (!empty($row['share_poster_url'])) {
                 		$url = (strlen($row['share_poster_url']) > 40) ? substr($row['share_poster_url'],0,40).'...' : $row['share_poster_url'];
@@ -188,11 +188,11 @@ class Book extends CI_Controller {
 			                        <span class="pagenumber">'.$row['page_n'].'</span>
 			                        <div class="share-part">
 			                        	<div share-part-separator>
-				                            <h5 class="url">URL to this page: </h5>
+				                            <h5 class="url">Page URL: </h5>
 				                            <p class="direct-url">'.base_url().'book/'.$row['book_name_clean'].'/p'.$row['page_n'].'</p>
 				                        </div>
 			                        	<div share-part-separator>
-				                            <h5>Gift piece: </h5>
+				                            <h5>Mobile File: </h5>
 				                            '.$url_pdf.' '.$url_epub.'
 				                        </div>
 				                        <div share-part-separator>
