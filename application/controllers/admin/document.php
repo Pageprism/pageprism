@@ -131,7 +131,7 @@ class Document extends MY_Controller {
 
 		$sql_data = array(
 			'author_id' => $author_id,
-			'type' => '',
+			'type' => 'pdf',
 			'book_name' => $book_name,
 			'book_name_clean' => $book_name_clean,
 			'book_author' => $book_author,
@@ -145,7 +145,9 @@ class Document extends MY_Controller {
 			'memory_piece_url' => $memory_piece_url,
 			'public' => '1');
 		$this->db->insert('book', $sql_data);
-		$insert_id = $this->db->insert_id();
+    $insert_id = $this->db->insert_id();
+
+    $types = array();
 
 
 		// For each uploaded file
@@ -174,7 +176,8 @@ class Document extends MY_Controller {
 				//$type = $get_fileinfo['extension'];
 				//$rawname = $get_fileinfo['filename'];
 				$rawname = $data['raw_name'];
-				$type = substr(strrchr($value['name'], '.'), 1);
+        $type = substr(strrchr($value['name'], '.'), 1);
+        $types[$type] = true;
 
 				// Unique timestamp for filename
 				$time = strtotime("now");
@@ -283,6 +286,21 @@ class Document extends MY_Controller {
 	        	}
         	}
         }
+
+        //Fix the type according to what's been uploaded
+        $bookType = '';
+        foreach(array('pdf', 'epub', 'mp3') as $tryType) {
+          if (isset($types[$tryType])) {
+            $bookType = $tryType;
+            break;
+          }
+        }
+        $update_data = array(
+          'type' => $bookType 
+        );
+        $this->db->where('id', $insert_id);
+        $this->db->update('book', $update_data); 
+
        	$this->layout->show('admin/upload_ready');
 
 	}
