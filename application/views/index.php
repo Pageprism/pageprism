@@ -27,16 +27,19 @@
         <!-- Show Covers / Show Table -->
         <div class="span9 list-cover" id="covers"> 
             <?php
-            //if (isset($shelf_id)) {  } else { $shelf_id = "9";}
             $query = $this->db->query("SELECT * FROM book WHERE `shelf_id`='$shelf_id'");
                 if ($query->num_rows() > 0)
                 {
                     foreach ($query->result_array() as $book)
                     {?>
-                    <div onClick="_gaq.push(['_trackEvent', 'Covers', 'Click-to-open', '<?=$book['book_name']?>']);" class="single-cover thumbnail<?php if (isset($book_id) && $book_id == $book['id']) echo ' selected'; ?>" id="<?=$book['id']?>" title="<?=$book['book_name']?>">
+                    <div
+                      class="single-cover thumbnail<?php if (isset($book_id) && $book_id == $book['id']) echo ' selected'; ?>" 
+                      data-book-type="<?= $book['type'] ?>"
+                      data-book-name="<?= $book['book_name'] ?>"
+                      id="<?=$book['id']?>" title="<?=$book['book_name']?>">
 
                             <!-- The "Cover" -->
-                            <?php if ($book['type'] == "" || ($book['type'] == "pdf")) {?>
+                            <?php if ($book['type'] == "pdf") {?>
                             <img src="<?=$book['file_url_cover']?>" alt="" />
                             <?php } if ($book['type'] == "mp3") {?>
                             <div class="music-icon">Music</div>

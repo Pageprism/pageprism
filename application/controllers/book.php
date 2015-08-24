@@ -73,8 +73,9 @@ class Book extends CI_Controller {
 		if ($post_data) {
 			$id = $post_data['id'];
 			$page_n = $post_data['page_n'];
-			$music = $post_data['music'];
-			$download = $post_data['download'];
+			$type = $post_data['type'];
+			$music = $type == 'mp3';
+			$download = $type == 'epub';
 			echo $this->load_pages($id,$page_n,$music,$download);
 		}
 		

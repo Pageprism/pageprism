@@ -42,6 +42,8 @@ $(function() {
   }
   var href = location.pathname;
   $(".single-cover").click(function(){
+    _gaq.push(['_trackEvent', 'Covers', 'Click-to-open', $(this).data('book-name')]);
+
     $(".book-content-separator").show();
     $("#rendered-pages").empty();
     id = $(this).attr("id");
@@ -49,27 +51,17 @@ $(function() {
     $("#covers .single-cover").removeClass("selected");
     $(this).addClass("selected");
 
+
     $('html, body').animate({
       scrollTop: $(".book-content-separator").offset().top-50
     }, "fast");
 
-    if ($("#"+id+" .music-icon").length) {
-      music = "1";
-    } else {
-      music = "0";
-    }
-
-    if ($("#"+id+" .epub-icon").length) {
-      download = "1";
-    } else {
-      download = "0";
-    }        
+    var bookType = $(this).data('book-type'); 
 
     var form_data = {
       id : id,
+      type: bookType,
       page_n : "all",
-      music : music,
-      download : download
     };
 
     $.ajax({
@@ -79,12 +71,12 @@ $(function() {
       data: form_data,
       success: function(data) {
 
-        if (download == "1") {
+        if (bookType == "epub") {
           $("#rendered-pages").append(data);
           // Click Pagenumber
           $('.share-part').hide();
         }
-        else if (music == "1") {
+        else if (bookType == "mp3") {
           $("#rendered-pages").append(data);
           audiojs.events.ready(function() {
             var as = audiojs.createAll();

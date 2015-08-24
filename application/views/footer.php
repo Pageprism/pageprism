@@ -30,8 +30,7 @@
             var form_data = {
                 id : id,
                 page_n : page_n,
-                music : "0",
-                download : "0"
+                type: "page",
             };
             $.ajax({
                 url: "/index.php/book/load_pages_js",
@@ -66,7 +65,7 @@
 
         $(document).on('click','span.pagenumber', function(){
             $(this).parent().children('.share-part').toggle();
-        });   
+        });
         $(document).on('click','#loadmore', function(){
             loadmore();
         });
