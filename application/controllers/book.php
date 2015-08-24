@@ -169,11 +169,15 @@ class Book extends CI_Controller {
                 	} else { $eorder_url = ""; }
                 	if (!empty($row['memory_piece_url'])) {
                 		$url = (strlen($row['memory_piece_url']) > 40) ? substr($row['memory_piece_url'],0,40).'...' : $row['memory_piece_url'];
-                		$memory_piece_url = '<h5>Print: </h5> <a href="'.$row['memory_piece_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Memory piece\']);">'.$url.'</a>';
+                		$memory_piece_url = '<h5>Print: </h5> <a href="'.$row['memory_piece_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Print\']);">'.$url.'</a>';
                 	} else { $memory_piece_url = ""; }
+                	if (!empty($row['misc_file_url'])) {
+                		$url = (strlen($row['misc_file_url']) > 40) ? substr($row['misc_file_url'],0,40).'...' : $row['misc_file_url'];
+                		$misc_file_url = '<h5>Layouts/Licences: </h5> <a href="'.$row['misc_file_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Layouts/Licences\']);">'.$url.'</a>';
+                	} else { $misc_file_url = ""; }
                 	if (!empty($row['follow_author_url'])) {
                 		$url = (strlen($row['follow_author_url']) > 40) ? substr($row['follow_author_url'],0,40).'...' : $row['follow_author_url'];
-                		$follow_author_url = '<h5>Meme: </h5> <a href="'.$row['follow_author_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Follow author\']);">'.$url.'</a>';
+                		$follow_author_url = '<h5>Meme: </h5> <a href="'.$row['follow_author_url'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Meme\']);">'.$url.'</a>';
                 	} else { $follow_author_url = ""; }
                 	if (!empty($row['share_poster_url'])) {
                 		$url = (strlen($row['share_poster_url']) > 40) ? substr($row['share_poster_url'],0,40).'...' : $row['share_poster_url'];
@@ -198,13 +202,15 @@ class Book extends CI_Controller {
 				                        <div share-part-separator>
 	 										'.$follow_author_url.'
 	 										'.$memory_piece_url.'
-	 									</div>
+	 										'.$misc_file_url.'
+                    </div>
+                    <!--
 			                        	<div share-part-separator>
 				                            <h5>Share this page: </h5>
 				                            <a class="social share-fb" href="'.base_url().'book/'.$row['book_name_clean'].'/p'.$row['page_n'].'" rel="'.$row['book_name'].'" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Share Facebook\']);"><i class="icon-facebook-sign"></i></a>
 				                            <a class="social share-google" href="https://plus.google.com/share?url='.base_url().'book/'.$row['book_name_clean'].'/p'.$row['page_n'].'" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Share Google+\']);"><i class="icon-google-plus-sign"></i></a>
 				                            <a class="social share-twitter" href="https://twitter.com/share?url='.base_url().'book/'.$row['book_name_clean'].'/p'.$row['page_n'].'" target="_blank" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \''.$row['book_name'].'\', \'Share Twitter\']);"><i class="icon-twitter-sign"></i></a><br />
-			                        	</div>
+                                  </div> -->
 			                        </div>
 			                    </div>
 			                    <img class="rendered-page-single" src="'.$row['page_image_url'].'" />

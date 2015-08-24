@@ -40,6 +40,7 @@ class Document extends MY_Controller {
     $eorder_url = $this->input->post('eorder_url');
     $follow_author_url = $this->input->post('follow_author_url');
     $memory_piece_url = $this->input->post('memory_piece_url');
+    $misc_file_url = $this->input->post('misc_file_url');
 
     $update_data = array(
       'author_id' => $author_id,
@@ -53,6 +54,7 @@ class Document extends MY_Controller {
       'eorder_url' => $eorder_url,
       'follow_author_url' => $follow_author_url,
       'memory_piece_url' => $memory_piece_url,
+      'misc_file_url' => $misc_file_url,
       'public' => '1'
     );
 
@@ -128,6 +130,7 @@ class Document extends MY_Controller {
     $eorder_url = $this->input->post('eorder_url');
     $follow_author_url = $this->input->post('follow_author_url');
     $memory_piece_url = $this->input->post('memory_piece_url');
+    $misc_file_url = $this->input->post('misc_file_url');
 
     $sql_data = array(
       'author_id' => $author_id,
@@ -143,6 +146,7 @@ class Document extends MY_Controller {
       'eorder_url' => $eorder_url,
       'follow_author_url' => $follow_author_url,
       'memory_piece_url' => $memory_piece_url,
+      'misc_file_url' => $misc_file_url,
       'public' => '1');
     $this->db->insert('book', $sql_data);
     $insert_id = $this->db->insert_id();
