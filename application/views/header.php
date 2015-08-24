@@ -52,22 +52,22 @@ _gaq.push(['_trackPageview']);
     	<div class="container-fluid">
 
             <a class="brand" href="/">PageShare</a>
-            <ul class="nav">
+            <div class="nav">
                 <?php
                 $query = $this->db->query("SELECT id,title,url_title FROM pages");
                     if ($query->num_rows() > 0)
                     {
                         foreach ($query->result_array() as $pages_top)
                         {?>
-                            <li><a href="/page/<?=$pages_top['url_title']?>"><?=$pages_top['title']?></a></li>
+                            <a href="/page/<?=$pages_top['url_title']?>"><?=$pages_top['title']?></a>
                         <?php
                         }
                     }
 
 
-                    if ($this->session->userdata('user_name') != "") { echo "<li><a href='admin/'>Admin mainpage</a></li>"; }
+                    if ($this->session->userdata('user_name') != "") { echo "<a href='admin/'>Admin mainpage</a>"; }
                 ?>
-            </ul>
+            </div>
 
             <div id="scroll-to-top" style="display:none"><button class="btn">Back to shelves</button></div>
 		</div>
