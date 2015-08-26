@@ -45,7 +45,7 @@ class Book extends CI_Controller {
 		{
 			foreach ($query->result_array() as $row)
 			{
-				$this->layout->show('index', array('rendered_content' => array("array" => $this->load_pages($row['id'],"1","1","0")), 'shelf_id' => $row['shelf_id'], 'page' => "1", 'book_id' => $row['id'], 'title' => $row['book_name'], 'format_music' => "yes", 'book_author' => $row['book_author'], 'book_timestamp' => $row['book_timestamp'], 'id' => $row['id']));
+				$this->layout->show('index', array('rendered_content' => $this->load_pages($row['id'],"1","1","0"), 'shelf_id' => $row['shelf_id'], 'page' => "1", 'book_id' => $row['id'], 'title' => $row['book_name'], 'format_music' => "yes", 'book_author' => $row['book_author'], 'book_timestamp' => $row['book_timestamp'], 'id' => $row['id']));
 			}
 		} else {
 			redirect("/");
@@ -60,7 +60,7 @@ class Book extends CI_Controller {
 		{
 			foreach ($query->result_array() as $row)
 			{
-				$this->layout->show('index', array('rendered_content' => array("array" => $this->load_pages($row['id'],"1","0","1")), 'shelf_id' => $row['shelf_id'], 'page' => "1", 'book_id' => $row['id'], 'title' => $row['book_name'], 'book_author' => $row['book_author'], 'book_timestamp' => $row['book_timestamp'], 'id' => $row['id']));
+				$this->layout->show('index', array('rendered_content' => $this->load_pages($row['id'],"1","0","1"), 'shelf_id' => $row['shelf_id'], 'page' => "1", 'book_id' => $row['id'], 'title' => $row['book_name'], 'book_author' => $row['book_author'], 'book_timestamp' => $row['book_timestamp'], 'id' => $row['id']));
 			}
 		} else {
 			//echo 'no results (view) "SELECT * FROM book WHERE book.book_name_clean = "'.$name.'"';

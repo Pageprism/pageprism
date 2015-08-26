@@ -69,7 +69,7 @@
     <!-- The page(s) of single publication -->
     <div id="rendered-pages">
 
-    <?php if(isset($rendered_content)) foreach($rendered_content as $rendered_single) echo $rendered_single;?>
+    <?php if(isset($rendered_content)) echo $rendered_content; ?>
 
     </div><!-- /rendered-pages -->
 </div>
