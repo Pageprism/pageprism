@@ -9,7 +9,7 @@
     <!-- Bootstrap -->
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/esamizdat.css" rel="stylesheet" media="screen" />
+    <link href="<?php echo base_url();?>assets/css/esamizdat.css?v=2" rel="stylesheet" media="screen" />
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
 
 <script type="text/javascript">
