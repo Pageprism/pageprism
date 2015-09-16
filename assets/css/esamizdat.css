@@ -313,7 +313,14 @@ p.single-epub {
 }
 
 div.rendered-page {
-  text-align: center;
+  position: relative;
+  width: 992px;
+  margin: 0 auto;
+}
+@media (max-width: 992px) {
+  div.rendered-page {
+    width: 100%;
+  }
 }
 
 div.page-share {
@@ -321,8 +328,8 @@ div.page-share {
   -moz-border-radius: 25px;
   border-radius: 25px;
   position: absolute;
-  right: 10px;
-  margin: 3em 0 0 0;
+  top: 15px;
+  right: 15px;
   padding: 0;
   background:#FFF;
   text-align: left;
