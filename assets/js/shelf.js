@@ -1,4 +1,24 @@
 $(function() {
+  
+  $('#shelfs ul, .shelfs-and-covers').perfectScrollbar();
+  window.addEventListener('resize', function() {
+    $('#shelfs ul, .shelfs-and-covers').perfectScrollbar('update');
+  });
+  /* .jScrollPane().each(function() {
+    var api = $(this).data('jsp');
+    var throttleTimeout;
+    $(window).bind('resize',function() {
+      // IE fires multiple resize events while you are dragging the browser window which
+      // causes it to crash if you try to update the scrollpane on every one. So we need
+      // to throttle it to fire a maximum of once every 50 milliseconds...
+      if (!throttleTimeout) {
+        throttleTimeout = setTimeout(function() {
+          api.reinitialise();
+          throttleTimeout = null;
+        }, 50);
+      }
+    });
+  }); */
 
   var navHeight = $('.navbar-fake').height();
   var navBarContent = $('.navbar-fixed-top > div > div');
@@ -12,6 +32,9 @@ $(function() {
   function fixMenuScale(e) {
     var scale = window.innerWidth/document.documentElement.clientWidth;
     scale = Math.min(scale, 1);
+    if (window.innerWidth <= 1024 && window.innerWidth > window.innerHeight) {
+      scale *= 0.8;
+    }
 
     navBarContent.css({
       'transform': "scale(" + scale  + ")",
@@ -24,7 +47,7 @@ $(function() {
     $('.navbar-fake').height(navHeight*scale + "px");
   }
   window.addEventListener('scroll', fixMenuScale);
-  window.addEventListener('scroll', fixMenuScale);
+  window.addEventListener('resize', fixMenuScale);
   fixMenuScale();
 
   // "Back to shelves"

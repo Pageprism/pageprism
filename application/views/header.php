@@ -4,11 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <base href="<?php echo base_url()?>">
     <title>PageShare</title>
-    <meta name="viewport" content="width=550" />
+    <meta name="viewport" content="width=device-width" />
 
     <!-- Bootstrap -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link href="<?php echo base_url();?>assets/css/perfect-scrollbar.css" rel="stylesheet" media="screen" />
 	<link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/esamizdat.css?v=3" rel="stylesheet" media="screen" />
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
