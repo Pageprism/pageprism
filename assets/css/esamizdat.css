@@ -1,7 +1,12 @@
 body {
-  min-width: 768px;
+  min-width: 550px;
   background-color: #ffffff;
-  /*font-family: "freight-sans-pro"; */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+
+@media (max-width: 550px) {
+
 }
 
 a {
@@ -27,8 +32,8 @@ a:hover i {
   background-image: none;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 7px 0px;
   border: none;
-  min-width: 768px;
-  padding: 5px 0;
+  min-width: 550px;
+  min-height: 0px !important;
 }
 
 #top-header .nav {
@@ -49,7 +54,7 @@ a:hover i {
 
 #top-header .container-fluid {
   position: relative;
-  padding: 0 220px;
+  padding: 5px 220px;
 }
 #top-header .brand {
   background: url('../img/sprite-icons.png') left top no-repeat;
@@ -65,14 +70,14 @@ a:hover i {
   text-shadow: none;
   float: none;
   position: absolute;
-  top: 0px;
+  top: 5px;
   left: 20px;
   z-index: 1050;
 }
 
-@media (max-width: 970px) {
+@media (max-width: 990px) {
   #top-header .container-fluid {
-    padding: 0 150px;
+    padding: 5px 160px;
   }
   #top-header .brand {
     left: 5px;
@@ -90,12 +95,22 @@ a:hover i {
 @media (max-width: 800px) {
   #top-header .nav a {
     font-size: 0.9em;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+@media (max-width: 768px) {
+  #top-header .nav {
+    text-align: left;
+  }
+  #top-header .container-fluid {
+    padding: 5px 0 5px 160px;
   }
 }
 
 #scroll-to-top {
   position: absolute;
-  top: 2px;
+  top: 7px;
   right: 20px;
   z-index: 1050;
 }
@@ -408,12 +423,18 @@ i.icon-book {
 
 .footer li {
   float: left;
+  line-height: 40px;
 }
 
 .footer li a {
   font-size: 1.1em;
-  padding: 8px;
+  padding: 0 8px;
   color: #4e4e4e;
+}
+@media (max-width: 768px) {
+  .footer li a {
+    font-size: 0.85em;
+  }
 }
 
 .footer li a:hover {
@@ -524,8 +545,10 @@ i.icon-book {
 
 
 /* Other */
+.navbar-fake {
+  height: 60px;
+}
 #the-container {
-  margin-top: 60px;
   padding: 0;
 }
 

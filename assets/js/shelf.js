@@ -1,5 +1,32 @@
 $(function() {
 
+  var navHeight = $('.navbar-fake').height();
+  var navBarContent = $('.navbar-fixed-top > div > div');
+  var navMinWidth= navBarContent.outerWidth();
+  var navHeight = navBarContent.outerHeight();
+  var navPadding = navBarContent.css('padding-top');
+  //var userAgent = window.navigator.userAgent;
+  //var usesDevilInc = (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i));
+
+  //Top menu zoom hack
+  function fixMenuScale(e) {
+    var scale = window.innerWidth/document.documentElement.clientWidth;
+    scale = Math.min(scale, 1);
+
+    navBarContent.css({
+      'transform': "scale(" + scale  + ")",
+      //'width': navMinWidth / (usesDevilInc ? scale : 1) + "px",
+      'transform-origin': "left top"
+    });
+    $('.navbar-fixed-top > div').css({
+      height: navHeight*scale + "px"
+    });
+    $('.navbar-fake').height(navHeight*scale + "px");
+  }
+  window.addEventListener('scroll', fixMenuScale);
+  window.addEventListener('scroll', fixMenuScale);
+  fixMenuScale();
+
   // "Back to shelves"
   $('#scroll-to-top').click(function() {
     $("html, body").animate({ scrollTop: 0 }, "fast")	
@@ -14,11 +41,17 @@ $(function() {
     var ot = $('.book-content-separator').offset().top;  //* top of object (i.e. advertising div)
     var nh = $('.navbar').height();
 
+    var winWidth = window.innerWidth;
+
     var showScroll = wt > ot - nh;
     if (showScroll) {
       $('#scroll-to-top').fadeIn();
+      if (winWidth < 768) {
+        $('#top-header .nav').fadeOut();
+      }
     } else {
       $('#scroll-to-top').fadeOut();
+      $('#top-header .nav').fadeIn();
     }
                   
   });

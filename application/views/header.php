@@ -4,12 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <base href="<?php echo base_url()?>">
     <title>PageShare</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.46" />
+    <meta name="viewport" content="width=550" />
 
     <!-- Bootstrap -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/esamizdat.css" rel="stylesheet" media="screen" />
+    <link href="<?php echo base_url();?>assets/css/esamizdat.css?v=3" rel="stylesheet" media="screen" />
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
 
 <script type="text/javascript">
@@ -47,6 +48,7 @@ _gaq.push(['_trackPageview']);
     </script>
 
 <!-- Top Header -->
+<div class="navbar-fake"></div>
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner" id="top-header">
     	<div class="container-fluid">
