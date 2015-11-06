@@ -1,9 +1,21 @@
 $(function() {
 
   // "Back to shelves"
-  $('#scroll-to-top').click(function() {
-    $("html, body").animate({ scrollTop: 0 }, "fast")	
+  $('#mainlogo, #scroll-to-top').click(function(e) {
+    if ($('.book-content-separator:visible').length == 0) {
+      return;
+    }
+    var wt = $(window).scrollTop();    //* top of the window
+    var ot = $('.book-content-separator').offset().top;  //* top of book
+    var nh = $('.navbar').height();
+
+    var scroll = wt > ot - nh;
+    if (scroll) {
+      $("html, body").animate({ scrollTop: 0 }, "fast");
+      e.preventDefault();
+    }
   });
+  /*
   $(window).scroll(function() {
     if ($('.book-content-separator:visible').length == 0) {
       $('#scroll-to-top').fadeOut();
@@ -11,7 +23,7 @@ $(function() {
     }
 
     var wt = $(window).scrollTop();    //* top of the window
-    var ot = $('.book-content-separator').offset().top;  //* top of object (i.e. advertising div)
+    var ot = $('.book-content-separator').offset().top;  //* top of book
     var nh = $('.navbar').height();
 
     var showScroll = wt > ot - nh;
@@ -22,6 +34,7 @@ $(function() {
     }
                   
   });
+  */
 
   $(window).scroll(lazyload);
   lazyload();

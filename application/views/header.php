@@ -51,7 +51,7 @@ _gaq.push(['_trackPageview']);
 	<div class="navbar-inner" id="top-header">
     	<div class="container-fluid">
 
-            <a class="brand" href="/">PageShare</a>
+            <a id="mainlogo" class="brand" href="/">PageShare</a>
             <div class="nav">
                 <?php
                 $query = $this->db->query("SELECT id,title,url_title FROM pages");
