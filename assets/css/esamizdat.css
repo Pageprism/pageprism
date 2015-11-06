@@ -32,6 +32,9 @@ a:hover i {
 }
 
 
+.navbar-fake {
+  height: 60px;
+}
 /* Top header */
 #top-header {
   background-color: #fff;
@@ -59,27 +62,27 @@ a:hover i {
 
 #top-header .container-fluid {
   position: relative;
-  padding: 5px 220px;
+  padding: 5px 5px 5px 215px;
 }
 #top-header .brand {
-  background: url('../img/sprite-icons.png') left top no-repeat;
+  background: url('../img/sprite-icons.png') 20px 5px no-repeat;
   height: 49px;
   white-space: nowrap;
   padding: 0;
   display: block;
   line-height: 49px;
-  padding: 0 0 0 62px;
+  padding: 5px 0 0 82px;
   font-size: 25px;
   color: black;
   margin: 0 5px 0 0;
   text-shadow: none;
   float: none;
   position: absolute;
-  top: 5px;
-  left: 20px;
+  top: 0px;
+  left: 0px;
   z-index: 1050;
 }
-
+/*
 @media (max-width: 990px) {
   #top-header .container-fluid {
     padding: 5px 160px;
@@ -97,22 +100,15 @@ a:hover i {
     font-size: 1em;
   }
 }
-@media (max-width: 800px) {
+*/
+@media (max-width: 720px) {
   #top-header .nav a {
     font-size: 0.9em;
     padding-left: 3px;
     padding-right: 3px;
   }
 }
-@media (max-width: 768px) {
-  #top-header .nav {
-    text-align: left;
-  }
-  #top-header .container-fluid {
-    padding: 5px 0 5px 160px;
-  }
-}
-@media (max-width: 550px) {
+@media (max-width: 580px) {
   #top-header .brand, #scroll-to-top {
     transform: scale(0.55);
     -moz-transform: scale(0.55);
@@ -132,7 +128,7 @@ a:hover i {
     -ms-transform-origin: right top;
   }
   #top-header .container-fluid {
-    padding: 5px 0 5px 96px;
+    padding: 5px 0 5px 116px;
   }
   #top-header .nav {
     line-height: 25px;
@@ -141,8 +137,11 @@ a:hover i {
     font-size: 0.85em;
     padding: 4px 0px 2px 4px;
   }
+  .navbar-fake {
+    height: 35px;
+  }
 }
-@media (max-width: 360px) {
+@media (max-width: 420px) {
   #top-header .nav a {
     font-size: 0.6em;
   }
@@ -292,7 +291,7 @@ button.btn, button.btn:hover, button.btn:focus, button.btn:active {
 
 div.single-cover {
   text-align: center;
-  margin: 0 0 0 20px;
+  margin: 0 0 10px 20px;
   float: left;
   cursor: pointer;
 }
@@ -661,9 +660,6 @@ p.single-lyrics {
 
 
 /* Other */
-.navbar-fake {
-  height: 60px;
-}
 #the-container {
   padding: 0;
 }

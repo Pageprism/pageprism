@@ -30,6 +30,7 @@ $(function() {
 
   //Top menu zoom hack
   function fixMenuScale(e) {
+    return;
     var scale = window.innerWidth/document.documentElement.clientWidth;
     scale = Math.min(scale, 1);
     if (window.innerWidth <= 1024 && window.innerWidth > window.innerHeight) {
