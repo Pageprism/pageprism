@@ -18,7 +18,8 @@
 </div>	
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
-	<script src="<?php echo base_url();?>assets/js/shelf.js?v=2"></script>
+    <script src="<?php echo base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/shelf.js?v=2"></script>
    	<script src="<?php echo base_url();?>assets/js/waypoints.min.js"></script>
    	<script src="<?php echo base_url();?>assets/js/waypoints-sticky.min.js"></script>    
     <script src="<?php echo base_url();?>assets/audiojs/audio.min.js"></script>
