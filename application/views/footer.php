@@ -39,10 +39,21 @@
                 async: true,
                 data: form_data,
                 success: function(data) {
+                    var page;
                     if (direction == "down") {
-                        $("#page_"+div_id).replaceWith(data);
+                        page = $("#page_"+div_id);
                     } else {
-                        $("#page_"+(div_id-1)).replaceWith(data);
+                        page = $("#page_"+(div_id-1));
+                    }
+                    page.replaceWith(data);
+
+                    if ($('.share-part:visible').length == 0) {
+                      var img = $('span.pagenumber:first').parents('.single-page').find('img');
+                      img.one("load", function() {
+                        $('span.pagenumber:first').click();
+                      }).each(function() {
+                        if(this.complete) $('span.pagenumber:first').click();
+                      });
                     }
                     
                     <?php if (isset($page)) {?>
@@ -54,24 +65,16 @@
                         }
                      
                     <?php }?>                
-
-
-                    // Click Pagenumber
-                    $('.share-part').hide();
-
                 }
             });
         }
 	$( document ).ready(function() {
+        <?php if (isset($page)) {?>
 
-        $(document).on('click','span.pagenumber', function(){
-            $(this).parent().children('.share-part').toggle();
-        });
         $(document).on('click','#loadmore', function(){
             loadmore();
         });
 
-        <?php if (isset($page)) {?>
         function loadmore() {
             $("#loadmore").remove();
             if (<?php if(isset($page)) echo $page?> > 1) {
@@ -80,10 +83,8 @@
                     if (firstrun) {
                         load_page_content(<?php if(isset($book_id)) echo $book_id?>,i,<?php if(isset($page)) echo $page?>,'up'); 
                         firstrun = false;
-                       // $('html, body').scrollTop( $("#page_<?=$page?>").offset().top );
                     } else {
                         load_page_content(<?php if(isset($book_id)) echo $book_id?>,i,(i+1),'up');
-                        //$('html, body').scrollTop( $("#page_<?=$page?>").offset().top );
                     }
                 }
             }                    
@@ -105,10 +106,6 @@
                     load_page_content(<?php if(isset($book_id)) echo $book_id?>,i,i,'down');
                 }
 
-                if (<?php if (isset($page)) echo $page;?> == <?php if(isset($totalpages)) echo $totalpages;?>) {
-                    $('.share-part').hide();
-                }
-            }
                 $(".book-content-separator").show();
 	    }
         <?php } ?>
@@ -118,15 +115,11 @@
                       audiojs.events.ready(function() {
                         var as = audiojs.createAll();
                       });
-                    // Click Pagenumber
-                    $('.share-part').hide();
                     $(".book-content-separator").show();
         }
         <?php } ?>
 
          if(window.location.href.indexOf("epub") > -1) {
-             // Click Pagenumber
-             $('.share-part').hide();
              $(".book-content-separator").show();
         }
 

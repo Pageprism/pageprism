@@ -420,6 +420,9 @@ span.pagenumber {
   color: #215295;
   line-height: 14px;
 }
+.share-part {
+  display: none;
+}
 
 @media (max-width: 550px) {
   div.page-share {

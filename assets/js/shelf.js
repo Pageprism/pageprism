@@ -4,6 +4,15 @@ $(function() {
   window.addEventListener('resize', function() {
     $('#shelfs ul, .shelfs-and-covers').perfectScrollbar('update');
   });
+  $(document).on('click','span.pagenumber', function(){
+    if ($(this).text() == 'X') {
+      $(this).text($(this).data('pagenumber'));
+    } else {
+      $(this).data('pagenumber', $(this).text());
+      $(this).text('X');
+    }
+    $(this).parent().children('.share-part').toggle();
+  });
 
   var navHeight = $('.navbar-fake').height();
   var navBarContent = $('.navbar-fixed-top > div > div');
@@ -124,16 +133,12 @@ $(function() {
 
         if (bookType == "epub") {
           $("#rendered-pages").append(data);
-          // Click Pagenumber
-          $('.share-part').hide();
         }
         else if (bookType == "mp3") {
           $("#rendered-pages").append(data);
           audiojs.events.ready(function() {
             var as = audiojs.createAll();
           });
-          // Click Pagenumber
-          $('.share-part').hide();
         } else {
           for (var i=1;i<=data;i++) {
             $("#rendered-pages").append('<div class="row-fluid single-page" id="page_'+i+'">LOADING #'+i+'</div>');
