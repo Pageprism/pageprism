@@ -4,29 +4,12 @@ $(function() {
   window.addEventListener('resize', function() {
     $('#shelfs ul, .shelfs-and-covers').perfectScrollbar('update');
   });
-  /* .jScrollPane().each(function() {
-    var api = $(this).data('jsp');
-    var throttleTimeout;
-    $(window).bind('resize',function() {
-      // IE fires multiple resize events while you are dragging the browser window which
-      // causes it to crash if you try to update the scrollpane on every one. So we need
-      // to throttle it to fire a maximum of once every 50 milliseconds...
-      if (!throttleTimeout) {
-        throttleTimeout = setTimeout(function() {
-          api.reinitialise();
-          throttleTimeout = null;
-        }, 50);
-      }
-    });
-  }); */
 
   var navHeight = $('.navbar-fake').height();
   var navBarContent = $('.navbar-fixed-top > div > div');
   var navMinWidth= navBarContent.outerWidth();
   var navHeight = navBarContent.outerHeight();
   var navPadding = navBarContent.css('padding-top');
-  //var userAgent = window.navigator.userAgent;
-  //var usesDevilInc = (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i));
 
   //Top menu zoom hack
   function fixMenuScale(e) {
@@ -110,23 +93,21 @@ $(function() {
       }
     });
   }
-  var href = location.pathname;
-  $(".single-cover").click(function(){
-    _gaq.push(['_trackEvent', 'Covers', 'Click-to-open', $(this).data('book-name')]);
-
+  function openBookLink(linkElem, scrollToBook) {
     $(".book-content-separator").show();
     $("#rendered-pages").empty();
-    id = $(this).attr("id");
+    id = linkElem.attr("id");
     $("#book-id-hidden").val(id);
     $("#covers .single-cover").removeClass("selected");
-    $(this).addClass("selected");
+    linkElem.addClass("selected");
+  
+    if (scrollToBook) {
+      $('html, body').animate({
+        scrollTop: $(".book-content-separator").offset().top-50
+      }, "fast");
+    }
 
-
-    $('html, body').animate({
-      scrollTop: $(".book-content-separator").offset().top-50
-    }, "fast");
-
-    var bookType = $(this).data('book-type'); 
+    var bookType = linkElem.data('book-type'); 
 
     var form_data = {
       id : id,
@@ -162,8 +143,19 @@ $(function() {
 
       }
     });
+  }
+
+  var href = location.pathname;
+  $(".single-cover").click(function(){
+    _gaq.push(['_trackEvent', 'Covers', 'Click-to-open', $(this).data('book-name')]);
+    openBookLink($(this), true);
 
   });
+
+  //Auto open a book if one's not open yet
+  if ($('.single-cover.selected').length == 0) {
+    openBookLink($('.single-cover:first'), false);
+  }
 
   // Page share elements
   // Facebook
@@ -186,18 +178,7 @@ $(function() {
     },
     function(response) {
       if (response && response.post_id) {
-        var form_data = {
-          id : id
-        }
-
-        $.ajax({
-          url: "/index.php/book/counter",
-          type: 'POST',
-          async: true,
-          data: form_data,
-          success: function(data) {
-          }
-        });
+        tickCounter();
       }
     });
   });   
@@ -206,23 +187,13 @@ $(function() {
   $(document).on('click','.share-google', function(){
     event.preventDefault ? event.preventDefault() : event.returnValue = false;
     window.open(this.href,'share_window', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
-    id = $("#book-id-hidden").val();
-    var form_data = {
-      id : id
-    }
-
-    $.ajax({
-      url: "/index.php/book/counter",
-      type: 'POST',
-      async: true,
-      data: form_data,
-      success: function(data) {
-      }
-    });
+    tickCounter();
   });
 
   // Twitter
-  $(document).on('click','.share-twitter', function(){
+  $(document).on('click','.share-twitter', tickCounter);
+
+  function tickCounter() {
     id = $("#book-id-hidden").val();
     var form_data = {
       id : id
@@ -236,6 +207,6 @@ $(function() {
       success: function(data) {
       }
     });
-  });
+  }
 
 });
