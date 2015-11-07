@@ -95,9 +95,7 @@
 	    if(window.location.href.indexOf("book") > -1) {
             $('html, body').scrollTop( $("#page_<?php if(isset($page)) echo $page?>").offset().top );
             if (<?php if(isset($totalpages)) echo $totalpages?> > 1) {
-                //alert("ping1");
                 if (<?php if(isset($page)) echo $page?> > 1) {
-                    //alert("ping2");
                     $("#page_<?php if(isset($page)) echo $page?>").before('<div id="loadmore" >Load previous pages</div>');    
                 }
                 
@@ -107,6 +105,7 @@
                 }
 
                 $(".book-content-separator").show();
+        }
 	    }
         <?php } ?>
 
