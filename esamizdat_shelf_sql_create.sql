@@ -16,6 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `audio_file`
+--
+
+DROP TABLE IF EXISTS `audio_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `audio_file` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `book_id` int(11) NOT NULL,
+  `audio_file_url` varchar(1000) NOT NULL,
+  `track_number` int(11) unsigned NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `album` varchar(255) DEFAULT NULL,
+  `length` int(11) unsigned NOT NULL,
+  `page_number_start` int(11) unsigned NOT NULL,
+  `page_number_end` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `book`
 --
 
@@ -24,7 +45,7 @@ DROP TABLE IF EXISTS `book`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `author_id` int(11) DEFAULT NULL,
+  `author_id` int(11) NOT NULL,
   `type` varchar(1000) DEFAULT NULL,
   `file_url_pdf` varchar(1000) DEFAULT NULL,
   `file_url_epub` varchar(1000) DEFAULT NULL,
@@ -32,12 +53,12 @@ CREATE TABLE `book` (
   `meta` text,
   `language` varchar(1000) DEFAULT NULL,
   `price` varchar(1000) DEFAULT NULL,
-  `shelf_id` int(11) DEFAULT NULL,
+  `shelf_id` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `public` int(11) DEFAULT NULL,
-  `book_name` varchar(1000) DEFAULT NULL,
-  `book_name_clean` varchar(1000) DEFAULT NULL,
-  `book_author` varchar(1000) DEFAULT NULL,
+  `public` tinyint(4) NOT NULL,
+  `book_name` varchar(1000) NOT NULL,
+  `book_name_clean` varchar(1000) NOT NULL,
+  `book_author` varchar(1000) NOT NULL,
   `book_timestamp` int(11) DEFAULT NULL,
   `pages` int(11) DEFAULT NULL,
   `eorder_url` varchar(1000) DEFAULT NULL,
@@ -59,9 +80,9 @@ DROP TABLE IF EXISTS `pages`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pages` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(1000) DEFAULT NULL,
+  `title` varchar(1000) NOT NULL,
   `content` text,
-  `url_title` varchar(1000) DEFAULT NULL,
+  `url_title` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -75,9 +96,9 @@ DROP TABLE IF EXISTS `pdf`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pdf` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `book_id` int(11) DEFAULT NULL,
+  `book_id` int(11) NOT NULL,
   `page_image_url` varchar(1000) DEFAULT NULL,
-  `page_n` int(11) DEFAULT NULL,
+  `page_n` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2268 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -91,7 +112,7 @@ DROP TABLE IF EXISTS `shelf`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shelf` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
+  `name` varchar(1000) CHARACTER SET utf8 NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
@@ -126,4 +147,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-27 17:34:35
+-- Dump completed on 2015-11-27 18:01:38
