@@ -34,27 +34,20 @@
                     {?>
                     <div
                       class="single-cover thumbnail<?php if (isset($book_id) && $book_id == $book['id']) echo ' selected'; ?>" 
-                      data-book-type="<?= $book['type'] ?>"
+                      data-book-pages="<?= $book['pages'] ?: '0' ?>"
                       data-book-name="<?= $book['book_name'] ?>"
                       id="<?=$book['id']?>" title="<?=$book['book_name']?>">
 
                             <!-- The "Cover" -->
-                            <?php if ($book['type'] == "pdf") {?>
+                            <?php if (isset($book['file_url_cover'])) {?>
                             <img src="<?=$book['file_url_cover']?>" alt="" />
-                            <?php } if ($book['type'] == "mp3") {?>
-                            <div class="music-icon">Music</div>
-                            <?php } if ($book['type'] == "epub") {?>
-                            <div class="epub-icon">ePub</div>
-                            <?php } ?>
+                            <?php } else {?>
                             <div class="caption">
-<!--
-                                <h3 class="title"><?=$book['book_name']?></h3>
-                                <span class="author"><?=$book['book_author']?></span>
-                                <span class="timestamp"><?=$book['book_timestamp']?></span>
-                                <span class="share-counter">Shared <?php echo ($book['counter'] == 1) ? " once" : $book['counter']." times";?></span>
-
--->
+                              <h3 class="title"><?=$book['book_name']?></h3>
+                              <span class="author"><?=$book['book_author']?></span>
+                              <span class="timestamp"><?=$book['book_timestamp']?></span>
                             </div>
+                            <?php } ?>
                        </div>
                     <?php
                     }

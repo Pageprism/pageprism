@@ -29,91 +29,59 @@ class Book extends CI_Controller {
 		{
 			foreach ($query->result_array() as $row)
 			{
-				$this->layout->show('index', array('rendered_content' => $this->load_pages($row['id'],$page_n,"0","0"), 'shelf_id' => $row['shelf_id'], 'page' => $page_n, 'book_id' => $row['id'], 'totalpages' => $row['pages'], 'title' => $row['book_name'], 'book_author' => $row['book_author'], 'book_timestamp' => $row['book_timestamp'], 'id' => $row['id']));
-			}
-		} else {
-			//echo 'no results (view) "SELECT * FROM book WHERE book.book_name_clean = "'.$name.'"';
-			redirect("/");
-		}
-	}
-
-	public function song() {
-		$name = $this->uri->segment(2);
-
-		$query = $this->db->query("SELECT * FROM book WHERE book_name_clean = '$name' AND type='mp3'");
-		if ($query->num_rows() > 0)
-		{
-			foreach ($query->result_array() as $row)
-			{
-				$this->layout->show('index', array('rendered_content' => $this->load_pages($row['id'],"1","1","0"), 'shelf_id' => $row['shelf_id'], 'page' => "1", 'book_id' => $row['id'], 'title' => $row['book_name'], 'format_music' => "yes", 'book_author' => $row['book_author'], 'book_timestamp' => $row['book_timestamp'], 'id' => $row['id']));
+        $this->layout->show('index', array(
+          'rendered_content' => $this->load_pages($row['id'],$page_n),
+          'shelf_id' => $row['shelf_id'],
+          'page' => $page_n,
+          'book_id' => $row['id'],
+          'totalpages' => $row['pages'],
+          'title' => $row['book_name'],
+          'book_author' => $row['book_author'],
+          'book_timestamp' => $row['book_timestamp'],
+          'id' => $row['id']
+        ));
 			}
 		} else {
 			redirect("/");
 		}
 	}
-
-	public function download_file() {
-		$name = $this->uri->segment(2);
-
-		$query = $this->db->query("SELECT * FROM book WHERE book_name_clean = '$name' AND type='epub'");
-		if ($query->num_rows() > 0)
-		{
-			foreach ($query->result_array() as $row)
-			{
-				$this->layout->show('index', array('rendered_content' => $this->load_pages($row['id'],"1","0","1"), 'shelf_id' => $row['shelf_id'], 'page' => "1", 'book_id' => $row['id'], 'title' => $row['book_name'], 'book_author' => $row['book_author'], 'book_timestamp' => $row['book_timestamp'], 'id' => $row['id']));
-			}
-		} else {
-			redirect("/");
-		}
-	}
-
+  
 	public function load_pages_js() {
 		$post_data = $this->input->post();
 		if ($post_data) {
 			$id = $post_data['id'];
 			$page_n = $post_data['page_n'];
-			$type = $post_data['type'];
-			$music = $type == 'mp3';
-			$download = $type == 'epub';
-			echo $this->load_pages($id,$page_n,$music,$download);
+			echo $this->load_pages($id,$page_n);
 		}
-		
   }
 
-  public function get_page_count($id) {
-    $query = $this->db->query("SELECT count(*) as pagecount FROM pdf,book WHERE pdf.book_id='$id' and pdf.book_id = book.id");
-    return $query->row()->pagecount;
-  }
-
-	public function load_pages($id, $page_n, $music, $download) {
-		if ($music == "1" || $download == "1") {
-			$query = $this->db->query("SELECT * FROM book WHERE id='$id'");
-    } elseif ($page_n == "all") {
-      return $this->get_page_count($id);
-		} else {
-			$query = $this->db->query("SELECT pdf.*,book.* FROM pdf,book WHERE pdf.book_id='$id' and pdf.book_id = book.id and pdf.page_n='$page_n'");
-		}
+	public function load_pages($id, $page_n) {
+    $query = $this->db->query("SELECT book.*, pdf.page_image_url, pdf.page_n 
+      FROM book LEFT JOIN pdf ON pdf.book_id=book.id
+      WHERE book.id = ? and (pdf.page_n = ? OR page_n IS NULL)", array($id, $page_n));
 		
-		if ($query->num_rows() > 0)
+		if ($query->num_rows() == 0)
 		{
+      echo 'No results';
+      return;
+    }
+    
+    $pages = $query->result();
+    $audio_files = $this->db->query("SELECT * FROM audio_file 
+      WHERE book_id = ? and ? BETWEEN page_number_start AND page_number_end", array($id, $page_n))->result();
 
-      if ($music == 1 || $download == 1) {	
-        $type = $music ? 'audio' : 'epub';
-        return $this->load->view ('content', array('row' => $query->row(), 'type' => 'audio'), true);
-			} else {
-				foreach ($query->result_array() as $row)
-				{
-          $pages[] = $this->load->view ('content', array('row' => (object)$row, 'type' => 'page'), true);
-        }
-				return implode("\n", $pages);
-			}
-			
-		} else {
-			echo 'no results (load_pages)';
-		}
+    // audio_file_url, track_number, title, album, length, page_number_start, page_number_end
+    
+    $pageContent = array();
+    foreach ($pages as $row)
+    {
+      $row->audio_tracks = $audio_files;
+      $pageContent[] = $this->load->view('content', array('page' => $row), true);
+    }
+    return implode("\n", $pageContent);
 	}
 
 }
 
-/* End of file welcome.php */
+/* End of file book.php */
 /* Location: ./application/controllers/book.php */
