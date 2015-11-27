@@ -5,11 +5,12 @@
 	if (isset($error)) echo "<h3>$error</h3>";
 	?>
 
-	<h1>Upload file:</h1>
+	<h1>Upload document:</h1>
 	<p>Uploader id: <?php echo $this->session->userdata('user_id');?> (<?php echo $this->session->userdata('user_name');?>)</p>
-	<?php echo form_open_multipart('admin/document/do_upload');?>
-	<p><span class="label">PDF File: </span><?php echo form_upload('userfile');?></p>
-	<p><span class="label">ePub File: </span><?php echo form_upload('userfile2');?></p>
+	<?php echo form_open_multipart('admin/document/create_document');?>
+	<p><span class="label">PDF File: </span><?php echo form_upload('pdffile');?></p>
+	<p><span class="label">ePub File: </span><?php echo form_upload('epubfile');?></p>
+	<p><span class="label">MP3 Zip File: </span><?php echo form_upload('audiozipfile');?></p>
 	<p><span class="label">Meta: </span><?php echo form_textarea('meta');?></p>
 	<p><span class="label">Language: </span><?php echo form_input('language');?></p>
 	<p><span class="label">Item name: </span><?php echo form_input('book_name');?></p>
@@ -36,8 +37,6 @@
 			}
 			echo form_dropdown('shelf_id', $items);
 		?></p>
-	<?php echo form_hidden('author_id', $this->session->userdata('user_id'));?>
-
 	<?php if(isset($disable_form) == true)
 	{
 		echo form_submit('upload', 'Upload file', 'disabled=disabled');
