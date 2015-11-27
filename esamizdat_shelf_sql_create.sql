@@ -26,7 +26,6 @@ CREATE TABLE `book` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `author_id` int(11) DEFAULT NULL,
   `type` varchar(1000) DEFAULT NULL,
-  `file_url_music` varchar(1000) DEFAULT NULL,
   `file_url_pdf` varchar(1000) DEFAULT NULL,
   `file_url_epub` varchar(1000) DEFAULT NULL,
   `file_url_cover` varchar(1000) DEFAULT NULL,
@@ -49,21 +48,6 @@ CREATE TABLE `book` (
   `misc_file_url` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `epub`
---
-
-DROP TABLE IF EXISTS `epub`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `epub` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `epub_url` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
-  `pdf_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +77,6 @@ CREATE TABLE `pdf` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `book_id` int(11) DEFAULT NULL,
   `page_image_url` varchar(1000) DEFAULT NULL,
-  `page_pdf_url` varchar(1000) DEFAULT NULL,
   `page_n` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2268 DEFAULT CHARSET=utf8;
@@ -143,4 +126,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-27 16:43:00
+-- Dump completed on 2015-11-27 17:34:35
