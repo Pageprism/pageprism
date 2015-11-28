@@ -475,9 +475,13 @@ span.pagenumber {
   margin: 15px 15px 15px 15px;
 }
 
-.share-part a.download-pdf, .share-part a.download-epub {
+.share-part a.download-pdf, .share-part a.download-epub, .share-part a.download-music {
   font-size: 1.2em;
   margin-right: 15px;
+}
+.share-part a.download-music {
+  float: right;
+  line-height: 35px;
 }
 
 .share-part a.social i {
@@ -600,7 +604,7 @@ p.single-lyrics {
   left: -1px;
 } 
 .audiojs {
-  width: 460px;
+  width: 410px;
   height: 36px;
   overflow: hidden;
   font-family: monospace;
@@ -658,7 +662,7 @@ p.single-lyrics {
   height: 36px;
   line-height: 36px;
   margin: 0px 0px 0px 6px;
-  padding: 0px 6px 0px 12px;
+  padding: 0px 3px 0px 6px;
 } 
 .audiojs .time em {
   padding: 0px 2px 0px 0px;

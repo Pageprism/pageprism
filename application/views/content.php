@@ -2,10 +2,12 @@
 namespace pageshare;
 
 //Adds ellipsis to too long urls, namespaced to prevent conflicts
-function shorten($str, $limit = 40) {
-  if (strlen($str) <= $limit) return $str;
+if (!function_exists('pageshare\shorten')) {
+  function shorten($str, $limit = 40) {
+    if (strlen($str) <= $limit) return $str;
 
-  return substr($str,0,$limit).'...';
+    return substr($str,0,$limit).'...';
+  }
 }
 
 if (empty($page->page_n)) $page->page_n = 1;
@@ -24,18 +26,21 @@ if (empty($page->page_n)) $page->page_n = 1;
           <div share-part-separator>
             <h5>Mobile File: </h5>
             <?php if (!empty($page->file_url_pdf)): ?>
-            <a href="<?= $page->file_url_pdf ?>" class="download-pdf table-view-only" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download pdf\);"><i class="icon-book"></i> PDF</a>
+            <a href="<?= $page->file_url_pdf ?>" class="download-pdf " onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download pdf\);"><i class="icon-book"></i> PDF</a>
             <?php endif; ?>
             <?php if (!empty($page->file_url_epub)): ?>
-            <a href="<?= $page->file_url_epub ?>" class="download-epub table-view-only" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download epub\);"><i class="icon-book"></i> ePub</a>
+            <a href="<?= $page->file_url_epub ?>" class="download-epub " onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download epub\);"><i class="icon-book"></i> ePub</a>
             <?php endif; ?>
             <?php if (!empty($page->file_url_music)): ?>
-            <a href="<?= $page->file_url_music ?>" class="download-music table-view-only" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download music\);"><i class="icon-play-sign"></i> MP3</a>
+            <a href="<?= $page->file_url_music ?>" class="download-music " onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download music\);"><i class="icon-play-sign"></i> MP3</a>
             <?php endif; ?>
           </div>
           <?php foreach($page->audio_tracks as $audio_file): ?>
-          <div class="audiotrack">
-            <h5><?php if ($audio_file->track_number) echo $audio_file->track_number, '.' ?> <?= $audio_file->title ?></h5>
+          <div share-part-separator class="audiotrack">
+            <h5>
+              <?php if ($audio_file->track_number) echo $audio_file->track_number, '.' ?> <?= $audio_file->title ?>
+            </h5>
+            <a href="<?= $audio_file->audio_file_url ?>" class="download-music" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download music\);"><i class="icon-music"></i> MP3</a>
             <audio preload="auto" src="<?= $audio_file->audio_file_url ?>" />
           </div>
           <?php endforeach; ?>
