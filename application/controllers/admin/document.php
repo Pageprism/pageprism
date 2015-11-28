@@ -102,9 +102,13 @@ class Document extends MY_Controller {
         if (!empty($pageRecords)) continue;
         $pageRecords = $this->uploadPdf($data, $url_path, $book_data);
         break;
+      case 'zip':
+        if (!empty($audioRecords)) continue;
+        $audioRecords = $this->uploadAudioArchive($data, $url_path);
+        break;
       case 'mp3':
         if (!empty($audioRecords)) continue;
-        $audioRecords[] = $this->uploadAudio($data, $url_path, $book_data);
+        $audioRecords[] = $this->uploadAudio($data, $url_path);
         break;
       case 'epub':
         $this->uploadEpub($data, $url_path, $book_data);
@@ -274,12 +278,50 @@ class Document extends MY_Controller {
     $book_data['file_url_epub'] = $file_url_epub;
     echo "ePub file uploaded";
   }
-  private function uploadAudioArchive() {
-    $original_filename = $data['file_name'];
-    $rawname = $data['raw_name'];
+  private function uploadAudioArchive($data, $url_path) {
+    $zip_path = $data['full_path'];
+    $dest_path = $data['file_path'];
 
+    $audio_extensions = array('mp3');
+
+    $zip = new ZipArchive;
+    $audioData = array();
+    if ($zip->open($zip_path) === true) {
+      for($i = 0; $i < $zip->numFiles; $i++) {
+        $zipfilename = $zip->getNameIndex($i);
+        $fileinfo = pathinfo($zipfilename);
+
+        if (!isset($fileinfo['extension'])) {
+          continue;
+        }
+        if (!in_array(strtolower($fileinfo['extension']), $audio_extensions)) {
+          continue;
+        }
+        
+        $filename = $fileinfo['filename'];
+        $dest_file = $dest_path.$filename.'.'.$fileinfo['extension'];
+        $nr = 1;
+        while(file_exists($dest_file)) {
+          $nr++;
+          $filename = $fileinfo['filename'].'_'.$nr;
+          $dest_file = $dest_path.$filename.'.'.$fileinfo['extension'];
+        }
+        
+        copy("zip://".$zip_path."#".$zipfilename, $dest_file);
+        $audioData[] = $this->uploadAudio(array(
+          'raw_name' => $filename,
+          'full_path' => $dest_file,
+        ), $url_path);
+      }                   
+      $zip->close();                   
+    }
+    unlink($zip_path);
+
+    return $audioData;
   }
   private function uploadAudio($data, $url_path) {
+    require_once APPPATH.'libraries/getID3/getid3/getid3.php';
+
     $file_url = $url_path.$data['raw_name'].'.mp3';
 
     $audioData = array(
@@ -291,6 +333,28 @@ class Document extends MY_Controller {
       'page_number_start' => 1,
       'page_number_end' => 1,
     );
+    
+    try {
+      $getID3 = new getID3;
+      $fileInfo = $getID3->analyze($data['full_path']);
+      getid3_lib::CopyTagsToComments($fileInfo);
+
+      if (isset($fileInfo['playtime_seconds'])) {
+        $audioData['length'] = round($fileInfo['playtime_seconds']);
+      }
+      if (!empty($fileInfo['comments_html']['title'])) {
+        $audioData['title'] = implode(', ',$fileInfo['comments_html']['title']);
+      }
+      if (!empty($fileInfo['comments_html']['album'])) {
+        $audioData['album'] = implode(', ',$fileInfo['comments_html']['album']);
+      }
+      if (isset($fileInfo['comments_html']['track'][0])) {
+        $audioData['track_number'] = (int)$fileInfo['comments_html']['track'][0];
+      }
+      //implode(', ', $fileInfo['comments_html']['artist']);
+    } catch(Exception $e) {
+      echo 'Some error happened...';
+    }
 
     echo "Music file uploaded";
     return $audioData;

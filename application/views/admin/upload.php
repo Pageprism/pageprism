@@ -10,7 +10,7 @@
 	<?php echo form_open_multipart('admin/document/create_document');?>
 	<p><span class="label">PDF File: </span><?php echo form_upload('pdffile');?></p>
 	<p><span class="label">ePub File: </span><?php echo form_upload('epubfile');?></p>
-	<p><span class="label">MP3 Zip File: </span><?php echo form_upload('audiozipfile');?></p>
+	<p><span class="label">MP3 File or MP3 Zip File: </span><?php echo form_upload('audiozipfile');?></p>
 	<p><span class="label">Meta: </span><?php echo form_textarea('meta');?></p>
 	<p><span class="label">Language: </span><?php echo form_input('language');?></p>
 	<p><span class="label">Item name: </span><?php echo form_input('book_name');?></p>
