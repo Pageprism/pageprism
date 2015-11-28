@@ -2,12 +2,15 @@
 <div class="container-fluid admin" id="the-container">
 
 <?php
-$query = $this->db->query("SELECT * FROM book WHERE `id`=$id");
+$query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
 
 	if ($query->num_rows() > 0)
 	{
 		$data = $query->row();
-	}
+  }
+
+  $query = $this->db->query("SELECT * FROM audio_file WHERE `book_id`= ?", array($id));
+  $audio_files = $query->result();
 ?>
 	<h1>Modify file:</h1>
 	<?php echo form_open_multipart('admin/document/update_info');?>
@@ -38,7 +41,34 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`=$id");
 				$disable_form = true;
 			}
 			echo form_dropdown('shelf_id', $items, $data->shelf_id);
-		?></p>
+  ?></p>
+  <?php if (!empty($audio_files)): ?>
+  <h2>MP3 audio files</h2>
+  <table>
+    <tr>
+      <th>Track</th>
+      <th>Appears on page number(s)</th>
+    </tr>
+    <?php foreach ($audio_files as $file): ?>
+    <?php
+      $title = $file->title;
+      if ($file->track_number) $title = "$file->track_number. $title";
+      
+      $page =  $file->page_number_start;
+      if ($file->page_number_end > $page) {
+        $page = "$page-$file->page_number_end";
+      }
+
+    ?>
+    <tr>
+      <td><?= $title ?></td>
+      <td>
+        <?php echo form_input('audio_file_pages_'.$file->id, $page);?>
+      </td>
+    </tr>
+    <?php endforeach; ?>
+  </table>
+  <?php endif; ?>
 	<?php echo form_hidden('author_id', $data->author_id);?>
 	<?php echo form_hidden('id', $id);?>
 

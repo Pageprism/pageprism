@@ -31,7 +31,23 @@ class Document extends MY_Controller {
     $update_data = $this->getFormData();
 
     $this->db->where('id', $id);
-    $this->db->update('book', $update_data); 
+    $this->db->update('book', $update_data);
+
+    $query = $this->db->query("SELECT id FROM audio_file WHERE `book_id`= ?", array($id));
+    foreach($query->result() as $audio_file) {
+      $val = $this->input->post('audio_file_pages_'.$audio_file->id);
+      if (strpos($val, '-') !== false) {
+        list($start, $end) = explode('-', $val);
+      } else {
+        $start = $end = (int)$val;
+      }
+
+      $this->db->where('id', $audio_file->id);
+      $this->db->update('audio_file', array(
+        'page_number_start' => $start, 
+        'page_number_end' => $end, 
+      ));
+    }
 
     redirect("admin/document/documentlist");
   }
