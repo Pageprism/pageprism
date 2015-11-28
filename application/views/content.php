@@ -41,7 +41,7 @@ if (empty($page->page_n)) $page->page_n = 1;
               <?php if ($audio_file->track_number) echo $audio_file->track_number, '.' ?> <?= $audio_file->title ?>
             </h5>
             <a href="<?= $audio_file->audio_file_url ?>" class="download-music" onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'download music\);"><i class="icon-music"></i> MP3</a>
-            <audio preload="auto" src="<?= $audio_file->audio_file_url ?>" />
+            <audio preload="metadata" src="<?= $audio_file->audio_file_url ?>" />
           </div>
           <?php endforeach; ?>
           <div share-part-separator>
