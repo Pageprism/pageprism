@@ -124,7 +124,10 @@ class Document extends MY_Controller {
         break;
       case 'mp3':
         if (!empty($audioRecords)) continue;
-        $audioRecords[] = $this->uploadAudio($data, $url_path);
+        $track = $this->uploadAudio($data, $url_path);
+        if ($track) {
+          $audioRecords[] = $track;
+        }
         break;
       case 'epub':
         $this->uploadEpub($data, $url_path, $book_data);
@@ -324,10 +327,13 @@ class Document extends MY_Controller {
         }
         
         copy("zip://".$zip_path."#".$zipfilename, $dest_file);
-        $audioData[] = $this->uploadAudio(array(
+        $track = $this->uploadAudio(array(
           'raw_name' => $filename,
           'full_path' => $dest_file,
         ), $url_path);
+        if ($track) {
+          $audioData[] = $track;
+        }
       }                   
       $zip->close();                   
     }
@@ -373,7 +379,7 @@ class Document extends MY_Controller {
     }
 
     echo "Music file uploaded";
-    return $audioData;
+    return isset($audioData['length']) ? $audioData : null;
   }
 
 }
