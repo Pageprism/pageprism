@@ -60,20 +60,43 @@ class Document extends MY_Controller {
       if ($query->num_rows() > 0)
       {
         $data = $query->row();
-        if(strlen($data->file_url_pdf) >0) unlink($_SERVER['DOCUMENT_ROOT']."/".$data->file_url_pdf);
-        if(strlen($data->file_url_epub) >0) unlink($_SERVER['DOCUMENT_ROOT']."/".$data->file_url_epub);
-        if(strlen($data->file_url_cover) >0) unlink($_SERVER['DOCUMENT_ROOT']."/".$data->file_url_cover);
+        $files_to_remove = array();
+
+        if(strlen($data->file_url_pdf) >0) {
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$data->file_url_pdf;
+        }
+        if(strlen($data->file_url_epub) >0) {
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$data->file_url_epub;
+        }
+        if(strlen($data->file_url_cover) >0) {
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$data->file_url_cover;
+        }
 
         $pdfquery = $this->db->query("SELECT * FROM pdf WHERE `book_id`=$data->id");
         foreach ($pdfquery->result_array() as $pdfrun) {
-          unlink($_SERVER['DOCUMENT_ROOT']."/".$pdfrun['page_image_url']);
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$pdfrun['page_image_url'];
           $this->db->delete('pdf', array('id' => $pdfrun['id']));
         }
 
         $audioquery = $this->db->query("SELECT * FROM audio_file WHERE `book_id`=$data->id");
         foreach ($audioquery->result_array() as $audiofile) {
-          unlink($_SERVER['DOCUMENT_ROOT']."/".$audiofile['audio_file_url']);
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$audiofile['audio_file_url'];
           $this->db->delete('audio_file', array('id' => $audiofile['id']));
+        }
+
+        $dirs_to_remove = array();
+        foreach($files_to_remove as $file_to_remove) {
+          $dir = dirname($file_to_remove);
+          unlink($file_to_remove);
+          $dirs_to_remove[$dir] = true;
+        }
+        $dirs_to_remove = array_keys($dirs_to_remove);
+        sort($dirs_to_remove);
+        while($dir = array_pop($dirs_to_remove)) {
+          $isDirEmpty = !(new \FilesystemIterator($dir))->valid();
+          if ($isDirEmpty) {
+            rmdir($dir);
+          }
         }
 
         if ($this->db->delete('book', array('id' => $id)) == true)
@@ -92,8 +115,17 @@ class Document extends MY_Controller {
 
   function create_document()
   {
+    $book_data = $this->getFormData();
+    $this->load->library('ThumbnailGenerator');
+
     //Upload files!
-    $url_path = UPLOADS.date("Y/m/d/");
+    $title = str_replace('/', '-', $book_data['book_name']);
+    $url_path = UPLOADS.date("Y/m/d")."/$title/";
+    $nr = 1;
+    while(file_exists($url_path)) {
+      $url_path = UPLOADS.date("Y/m/d")."/$title-$nr/";
+      $nr++;
+    }
     $path = getcwd()."/".$url_path;
     $uploadData = $this->upload_files($path);
     
@@ -105,9 +137,7 @@ class Document extends MY_Controller {
     }
     
     //If no errors, save and generate book data
-    $book_data = $this->getFormData();
     $audioRecords = $pageRecords = array();
-
     foreach($uploadData['files'] as $data) {
       //TODO: actually check type!
       $type = strtolower(substr(strrchr($data['file_name'], '.'), 1));
@@ -225,66 +255,44 @@ class Document extends MY_Controller {
   }
 
   private function uploadPdf($data, $url_path, &$book_data) {
-    $path = $data['file_path'];
-    $original_filename = $data['file_name'];
+    $save_dir = $data['file_path'];
+    $pdf_file = $data['full_path'];
     $rawname = $data['raw_name'];
-    // Unique timestamp for filename
-    $time = strtotime("now");
-
-    $original_file = $data['full_path'];
-    $save_to = $path.$rawname.'-'.$time.'.png';
-  
-    $output = $return_var = false;
-    exec("convert -density 120 '$original_file' '$save_to'", $output, $return_var);
 
     echo 'Converting to .png...';
-    if ($return_var == 0) echo 'Done.';
 
-    $filecount = 0;
-    $files = glob($path . $rawname.'-'.$time.'-*.png');
-    if ($files)
-    {
-      $filecount = count($files);
-    }
-
-    // Fix filename for single page documents
-    if (count(glob($path . $rawname.'-'.$time.'.png')) == "1") {
-      $oldname = $path.$rawname.'-'.$time.'.png';
-      $newname = $path.$rawname.'-'.$time.'-0.png';
-      rename($oldname, $newname);
-      $filecount = 1;
+    $resolutions = array(300, 120);
+    $pngFiles = $this->thumbnailgenerator->makePdfPages($pdf_file, $save_dir, $resolutions);
+    if ($pngFiles === false) {
+      echo "Error in conversion!";
+      return;
     }
     
-    $fileRecords  = array();
-    for($i=0;$i<$filecount;$i++)
-    {
+    $fileRecords = array();
+    foreach($pngFiles[120] as $page_nr => $filepath) {
+      $filepath = substr($filepath, strlen($save_dir));
       $fileRecords[] = array(
-        'page_image_url' => $url_path.$rawname."-$time-$i.png",
-        'page_n' => $i+1
+        'page_image_url' => $url_path.$filepath,
+        'page_n' => $page_nr
       );
     }
 
     echo '<br />Creating thumbnail...';
-    $thumb_config['image_library'] = 'gd2';
-    $thumb_config['source_image'] = $url_path.$rawname.'-'.$time.'-0.png';
-    $thumb_config['create_thumb'] = TRUE;
-    $thumb_config['maintain_ratio'] = TRUE;
-    $thumb_config['width'] = 200;
-    $thumb_config['height'] = 293;
-    $this->load->library('image_lib', $thumb_config); 
-    $this->image_lib->resize();
+    $this->thumbnailgenerator->makeThumbnail($pngFiles[300][1], $url_path.'cover.jpg', '200x293');
+    echo 'Done';
+    
+    /* Remove full resolution PNG's for now */
+    foreach($pngFiles[300] as $filepath) {
+      unlink($filepath);
+    }
+    rmdir($save_dir.'/pages-300');
 
     // PDF specific values
     $file_url_pdf = $url_path.$rawname.'.pdf';
-    $file_url_cover = $url_path.$rawname.'-'.$time.'-0_thumb.jpg';
+    $file_url_cover = $url_path.'cover.jpg';
     
-    //Convert cover image to JPG for lower file size
-    $file_url_cover_src = $url_path.$rawname.'-'.$time.'-0_thumb.png';
-    exec("convert '$file_url_cover_src' '$file_url_cover'");
-    unlink($file_url_cover_src);
-    echo 'Done';
 
-    $book_data['pages'] = $filecount;
+    $book_data['pages'] = count($fileRecords);
     $book_data['file_url_pdf'] = $file_url_pdf;
     $book_data['file_url_cover'] = $file_url_cover;
 
