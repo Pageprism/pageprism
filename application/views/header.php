@@ -58,7 +58,7 @@ _gaq.push(['_trackPageview']);
 
 <!-- Top Header -->
 <div class="navbar-fake"></div>
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse">
 	<div class="navbar-inner" id="top-header">
     	<div class="container-fluid">
 

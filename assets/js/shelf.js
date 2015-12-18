@@ -1,3 +1,11 @@
+function isScrolledToBook() {
+  var wt = $(window).scrollTop();    //* top of the window
+  var ot = $('.book-content-separator').offset().top;  //* top of book
+  var nh = $('.navbar').height();
+
+  return wt > ot - nh;
+}
+
 $(function() {
   $('#shelfs ul, .shelfs-and-covers').perfectScrollbar();
   window.addEventListener('resize', function() {
@@ -18,16 +26,12 @@ $(function() {
     if ($('.book-content-separator:visible').length == 0) {
       return;
     }
-    var wt = $(window).scrollTop();    //* top of the window
-    var ot = $('.book-content-separator').offset().top;  //* top of book
-    var nh = $('.navbar').height();
-
-    var scroll = wt > ot - nh;
-    if (scroll) {
+    if (isScrolledToBook()) {
       $("html, body").animate({ scrollTop: 0 }, "fast");
       e.preventDefault();
     }
   });
+
 
   $(window).scroll(lazyload);
   lazyload();

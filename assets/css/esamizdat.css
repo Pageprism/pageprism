@@ -35,6 +35,16 @@ a:hover i {
 .navbar-fake {
   height: 60px;
 }
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+.navbar-fixed {
+  position: fixed;
+}
 /* Top header */
 #top-header {
   background-color: #fff;
