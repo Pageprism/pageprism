@@ -92,10 +92,17 @@ class Document extends MY_Controller {
 
   function create_document()
   {
+    $book_data = $this->getFormData();
     $this->load->library('ThumbnailGenerator');
 
     //Upload files!
-    $url_path = UPLOADS.date("Y/m/d/");
+    $title = str_replace('/', '-', $book_data['book_name']);
+    $url_path = UPLOADS.date("Y/m/d")."/$title/";
+    $nr = 1;
+    while(file_exists($url_path)) {
+      $url_path = UPLOADS.date("Y/m/d")."/$title-$nr/";
+      $nr++;
+    }
     $path = getcwd()."/".$url_path;
     $uploadData = $this->upload_files($path);
     
@@ -107,9 +114,7 @@ class Document extends MY_Controller {
     }
     
     //If no errors, save and generate book data
-    $book_data = $this->getFormData();
     $audioRecords = $pageRecords = array();
-
     foreach($uploadData['files'] as $data) {
       //TODO: actually check type!
       $type = strtolower(substr(strrchr($data['file_name'], '.'), 1));
@@ -227,19 +232,14 @@ class Document extends MY_Controller {
   }
 
   private function uploadPdf($data, $url_path, &$book_data) {
-    $path = $data['file_path'];
-    $original_filename = $data['file_name'];
+    $save_dir = $data['file_path'];
+    $pdf_file = $data['full_path'];
     $rawname = $data['raw_name'];
-    // Unique timestamp for filename
-    $time = strtotime("now");
 
-    $original_file = $data['full_path'];
-    $save_to = $path.$rawname.'-'.$time;
-  
     echo 'Converting to .png...';
 
     $resolutions = array(300, 120);
-    $pngFiles = $this->thumbnailgenerator->makePdfPages($original_file, $save_to, $resolutions);
+    $pngFiles = $this->thumbnailgenerator->makePdfPages($pdf_file, $save_dir, $resolutions);
     if ($pngFiles === false) {
       echo "Error in conversion!";
       return;
@@ -247,26 +247,26 @@ class Document extends MY_Controller {
     
     $fileRecords = array();
     foreach($pngFiles[120] as $page_nr => $filepath) {
-      $filepath = substr($filepath, strlen($save_to));
+      $filepath = substr($filepath, strlen($save_dir));
       $fileRecords[] = array(
-        'page_image_url' => $url_path.$rawname.'-'.$time.$filepath,
+        'page_image_url' => $url_path.$filepath,
         'page_n' => $page_nr
       );
     }
 
     echo '<br />Creating thumbnail...';
-    $this->thumbnailgenerator->makeThumbnail($pngFiles[300][1], $url_path.$rawname.'-'.$time.'-0_thumb.jpg', '200x293');
+    $this->thumbnailgenerator->makeThumbnail($pngFiles[300][1], $url_path.'cover.jpg', '200x293');
     echo 'Done';
     
     /* Remove full resolution PNG's for now */
     foreach($pngFiles[300] as $filepath) {
       unlink($filepath);
     }
-    rmdir($save_to.'/pages-300');
+    rmdir($save_dir.'/pages-300');
 
     // PDF specific values
     $file_url_pdf = $url_path.$rawname.'.pdf';
-    $file_url_cover = $url_path.$rawname.'-'.$time.'-0_thumb.jpg';
+    $file_url_cover = $url_path.'cover.jpg';
     
 
     $book_data['pages'] = count($fileRecords);
