@@ -14,7 +14,6 @@ class ThumbnailGenerator {
       (int)$maxRes,
       escapeshellarg($pdfFile)
     );
-    echo $commandLine;
     $output = $return_var = false;
     exec($commandLine, $output, $return_var);
 
