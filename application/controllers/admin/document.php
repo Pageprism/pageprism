@@ -92,6 +92,8 @@ class Document extends MY_Controller {
 
   function create_document()
   {
+    $this->load->library('ThumbnailGenerator');
+
     //Upload files!
     $url_path = UPLOADS.date("Y/m/d/");
     $path = getcwd()."/".$url_path;
@@ -232,59 +234,42 @@ class Document extends MY_Controller {
     $time = strtotime("now");
 
     $original_file = $data['full_path'];
-    $save_to = $path.$rawname.'-'.$time.'.png';
+    $save_to = $path.$rawname.'-'.$time;
   
-    $output = $return_var = false;
-    exec("convert -density 120 '$original_file' '$save_to'", $output, $return_var);
-
     echo 'Converting to .png...';
-    if ($return_var == 0) echo 'Done.';
 
-    $filecount = 0;
-    $files = glob($path . $rawname.'-'.$time.'-*.png');
-    if ($files)
-    {
-      $filecount = count($files);
-    }
-
-    // Fix filename for single page documents
-    if (count(glob($path . $rawname.'-'.$time.'.png')) == "1") {
-      $oldname = $path.$rawname.'-'.$time.'.png';
-      $newname = $path.$rawname.'-'.$time.'-0.png';
-      rename($oldname, $newname);
-      $filecount = 1;
+    $resolutions = array(300, 120);
+    $pngFiles = $this->thumbnailgenerator->makePdfPages($original_file, $save_to, $resolutions);
+    if ($pngFiles === false) {
+      echo "Error in conversion!";
+      return;
     }
     
-    $fileRecords  = array();
-    for($i=0;$i<$filecount;$i++)
-    {
+    $fileRecords = array();
+    foreach($pngFiles[120] as $page_nr => $filepath) {
+      $filepath = substr($filepath, strlen($save_to));
       $fileRecords[] = array(
-        'page_image_url' => $url_path.$rawname."-$time-$i.png",
-        'page_n' => $i+1
+        'page_image_url' => $url_path.$rawname.'-'.$time.$filepath,
+        'page_n' => $page_nr
       );
     }
 
     echo '<br />Creating thumbnail...';
-    $thumb_config['image_library'] = 'gd2';
-    $thumb_config['source_image'] = $url_path.$rawname.'-'.$time.'-0.png';
-    $thumb_config['create_thumb'] = TRUE;
-    $thumb_config['maintain_ratio'] = TRUE;
-    $thumb_config['width'] = 200;
-    $thumb_config['height'] = 293;
-    $this->load->library('image_lib', $thumb_config); 
-    $this->image_lib->resize();
+    $this->thumbnailgenerator->makeThumbnail($pngFiles[300][1], $url_path.$rawname.'-'.$time.'-0_thumb.jpg', '200x293');
+    echo 'Done';
+    
+    /* Remove full resolution PNG's for now */
+    foreach($pngFiles[300] as $filepath) {
+      unlink($filepath);
+    }
+    rmdir($save_to.'/pages-300');
 
     // PDF specific values
     $file_url_pdf = $url_path.$rawname.'.pdf';
     $file_url_cover = $url_path.$rawname.'-'.$time.'-0_thumb.jpg';
     
-    //Convert cover image to JPG for lower file size
-    $file_url_cover_src = $url_path.$rawname.'-'.$time.'-0_thumb.png';
-    exec("convert '$file_url_cover_src' '$file_url_cover'");
-    unlink($file_url_cover_src);
-    echo 'Done';
 
-    $book_data['pages'] = $filecount;
+    $book_data['pages'] = count($fileRecords);
     $book_data['file_url_pdf'] = $file_url_pdf;
     $book_data['file_url_cover'] = $file_url_cover;
 
