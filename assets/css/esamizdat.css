@@ -404,14 +404,17 @@ div.page-share {
   position: absolute;
   top: 15px;
   right: 15px;
-  padding: 0;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 15px;
   background:#FFF;
   text-align: left;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 0px;
 }
 span.pagenumber {
-  float: right;
-  padding: 17px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
   cursor: pointer;
   font-size: 1.3em;
   width: 18px;
@@ -471,10 +474,6 @@ span.pagenumber {
   padding-top: 141%;  /* initial ratio of 1:1*/
 }
 
-.share-part {
-  margin: 15px 15px 15px 15px;
-}
-
 .share-part a.download-pdf, .share-part a.download-epub, .share-part a.download-music {
   font-size: 1.2em;
   margin-right: 15px;
@@ -507,11 +506,10 @@ i.icon-book {
 }
 
 #loadmore {
-  background-color: #919daf;
   margin: 20px;
   text-align: center;
   padding: 15px;
-  color: #ffffff;
+  color: #005580;
   cursor: pointer;
 }
 
@@ -735,6 +733,18 @@ p.single-lyrics {
 } 
 .error .error-message {
   display: block;
+}
+@media (max-width: 500px) {
+  .audiojs {
+    width: 230px;
+  }
+  .audiojs .scrubber {
+    width: 115px;
+  }
+  .audiojs .time {
+    font-size: 80%;
+  }
+
 }
 
 /* Other */
