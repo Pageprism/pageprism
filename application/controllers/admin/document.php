@@ -60,20 +60,43 @@ class Document extends MY_Controller {
       if ($query->num_rows() > 0)
       {
         $data = $query->row();
-        if(strlen($data->file_url_pdf) >0) unlink($_SERVER['DOCUMENT_ROOT']."/".$data->file_url_pdf);
-        if(strlen($data->file_url_epub) >0) unlink($_SERVER['DOCUMENT_ROOT']."/".$data->file_url_epub);
-        if(strlen($data->file_url_cover) >0) unlink($_SERVER['DOCUMENT_ROOT']."/".$data->file_url_cover);
+        $files_to_remove = array();
+
+        if(strlen($data->file_url_pdf) >0) {
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$data->file_url_pdf;
+        }
+        if(strlen($data->file_url_epub) >0) {
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$data->file_url_epub;
+        }
+        if(strlen($data->file_url_cover) >0) {
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$data->file_url_cover;
+        }
 
         $pdfquery = $this->db->query("SELECT * FROM pdf WHERE `book_id`=$data->id");
         foreach ($pdfquery->result_array() as $pdfrun) {
-          unlink($_SERVER['DOCUMENT_ROOT']."/".$pdfrun['page_image_url']);
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$pdfrun['page_image_url'];
           $this->db->delete('pdf', array('id' => $pdfrun['id']));
         }
 
         $audioquery = $this->db->query("SELECT * FROM audio_file WHERE `book_id`=$data->id");
         foreach ($audioquery->result_array() as $audiofile) {
-          unlink($_SERVER['DOCUMENT_ROOT']."/".$audiofile['audio_file_url']);
+          $files_to_remove[] = $_SERVER['DOCUMENT_ROOT']."/".$audiofile['audio_file_url'];
           $this->db->delete('audio_file', array('id' => $audiofile['id']));
+        }
+
+        $dirs_to_remove = array();
+        foreach($files_to_remove as $file_to_remove) {
+          $dir = dirname($file_to_remove);
+          unlink($file_to_remove);
+          $dirs_to_remove[$dir] = true;
+        }
+        $dirs_to_remove = array_keys($dirs_to_remove);
+        sort($dirs_to_remove);
+        while($dir = array_pop($dirs_to_remove)) {
+          $isDirEmpty = !(new \FilesystemIterator($dir))->valid();
+          if ($isDirEmpty) {
+            rmdir($dir);
+          }
         }
 
         if ($this->db->delete('book', array('id' => $id)) == true)
