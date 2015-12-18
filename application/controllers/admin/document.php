@@ -309,7 +309,10 @@ class Document extends MY_Controller {
       for($i = 0; $i < $zip->numFiles; $i++) {
         $zipfilename = $zip->getNameIndex($i);
         $fileinfo = pathinfo($zipfilename);
-
+        
+        if (strpos($zipfilename, '__MACOSX') === 0) {
+          continue;
+        }
         if (!isset($fileinfo['extension'])) {
           continue;
         }
