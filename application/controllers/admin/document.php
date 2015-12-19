@@ -260,8 +260,15 @@ class Document extends MY_Controller {
     $rawname = $data['raw_name'];
 
     echo 'Converting to .png...';
+    
+    $dpi = (int)$this->input->post('pdf_resolution_dpi');
+    $dpi = max(120, min($dpi,900));
+    if ($dpi == 120) {
+      $resolutions = array(120);
+    } else {
+      $resolutions = array($dpi, 120);
+    }
 
-    $resolutions = array(300, 120);
     $pngFiles = $this->thumbnailgenerator->makePdfPages($pdf_file, $save_dir, $resolutions);
     if ($pngFiles === false) {
       echo "Error in conversion!";
@@ -278,14 +285,17 @@ class Document extends MY_Controller {
     }
 
     echo '<br />Creating thumbnail...';
-    $this->thumbnailgenerator->makeThumbnail($pngFiles[300][1], $url_path.'cover.jpg', '200x293');
+    $this->thumbnailgenerator->makeThumbnail($pngFiles[$resolutions[0]][1], $url_path.'cover.jpg', '200x293');
     echo 'Done';
     
-    /* Remove full resolution PNG's for now */
-    foreach($pngFiles[300] as $filepath) {
-      unlink($filepath);
+    /* Remove other resolution PNG's for now */
+    foreach($resolutions as $dpi) {
+      if ($dpi == 120) continue;
+      foreach($pngFiles[$dpi] as $filepath) {
+        unlink($filepath);
+      }
+      rmdir($save_dir.'/pages-'.$dpi);
     }
-    rmdir($save_dir.'/pages-300');
 
     // PDF specific values
     $file_url_pdf = $url_path.$rawname.'.pdf';
