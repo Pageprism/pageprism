@@ -13,6 +13,9 @@
 	<link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/esamizdat.css?v=4c" rel="stylesheet" media="screen" />
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
+    <?php if (isset($cover_image)): ?>
+    <meta property="og:image" content="<?= base_url(), $cover_image; ?>" />
+    <?php endif; ?>
 
 <script type="text/javascript">
 var _gaq = _gaq || [];

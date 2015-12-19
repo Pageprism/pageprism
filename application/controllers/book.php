@@ -28,11 +28,12 @@ class Book extends CI_Controller {
 		if ($query->num_rows() > 0)
 		{
 			foreach ($query->result_array() as $row)
-			{
+      {
         $this->layout->show('index', array(
           'rendered_content' => $this->load_pages($row['id'],$page_n),
           'shelf_id' => $row['shelf_id'],
           'page' => $page_n,
+          'cover_image' => $row['file_url_cover'],
           'book_id' => $row['id'],
           'totalpages' => $row['pages'],
           'title' => $row['book_name'],
