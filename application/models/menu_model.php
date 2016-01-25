@@ -14,11 +14,11 @@ class Menu_model extends CI_Model {
   }
 
   function addPages(&$menu) {
-    $pages = array();
-    $pages[] = array(
-      'title' => 'Free software',
+    $menu[] = array(
+      'title' => 'Free software (github.com)',
       'url' => "https://github.com/Pageprism/pageprism",
     );
+    $pages = array();
     $pages[] = array(
       'title' => 'PageShare plans and ideas',
       'url' => "/shelf/13",
