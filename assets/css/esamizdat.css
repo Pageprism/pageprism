@@ -451,13 +451,11 @@ span.pagenumber {
     border-radius: 15px;
     top: 12px;
     right: 12px;
+    padding: 5px;
   }
   span.pagenumber {
-    padding: 7px;
-    font-size: 1.3em;
-    width: 18px;
-    height: 18px;
-    line-height: 14px;
+    top: 6px;
+    right: 6px;
   }
 }
 @media (max-width: 350px) {
@@ -467,13 +465,12 @@ span.pagenumber {
     border-radius: 10px;
     top: 12px;
     right: 12px;
+    padding: 0px;
   }
   span.pagenumber {
-    padding: 2px;
-    font-size: 1.3em;
-    width: 18px;
-    height: 18px;
-    line-height: 14px;
+    top: 2px;
+    right: 1px;
+    font-size: 0.9em;
   }
 }
 
