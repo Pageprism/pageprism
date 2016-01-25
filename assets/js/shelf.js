@@ -38,17 +38,24 @@ $(function() {
     e.preventDefault();
   });
   var swipeTreshold = 60;
-  $("body").swipe({
+  $(".navbar, .shelfs-and-covers, #mainmenu").swipe({
+    allowPageScroll: "vertical",
+    excludedElements: "button, input, select, textarea, a, .noSwipe, .page-share",
     swipeStatus:function(event, phase, direction, distance, duration, fingers)
     {
       var screenW = $(window).width();
-      if (phase=="move" && direction =="left" && screenW-event.x < swipeTreshold) {
-        $("body").addClass("open-sidebar");
-        return false;
+      var x = event.x;
+      if (event.touches && event.touches.length > 0) {
+        x = event.touches[0].clientX;
       }
-      if (phase=="move" && direction =="right" && screenW-event.x < swipeTreshold+240) {
+
+      if (phase=="move" && direction =="left" && screenW-x < swipeTreshold) {
+        $("body").addClass("open-sidebar");
+        //return false;
+      }
+      if (phase=="move" && direction =="right" && screenW-x < swipeTreshold+240) {
         $("body").removeClass("open-sidebar");
-        return false;
+        //return false;
       }
     }
   }); 

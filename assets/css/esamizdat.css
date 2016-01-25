@@ -141,32 +141,6 @@ a:hover i {
   margin: 0 5px 0 0;
   text-shadow: none;
 }
-@media (max-width: 580px) {
-  #top-header .brand, #scroll-to-top {
-    transform: scale(0.55);
-    -moz-transform: scale(0.55);
-    -webkit-transform: scale(0.55);
-    -ms-transform: scale(0.55);
-  }
-  #top-header .brand {
-    transform-origin: left top;
-    -moz-transform-origin: left top;
-    -webkit-transform-origin: left top;
-    -ms-transform-origin: left top;
-  }
-  #scroll-to-top {
-    transform-origin: right top;
-    -moz-transform-origin: right top;
-    -webkit-transform-origin: right top;
-    -ms-transform-origin: right top;
-  }
-  #top-header .container-fluid {
-    padding: 5px 0 5px 113px;
-  }
-  .navbar-fake {
-    height: 35px;
-  }
-}
 
 #scroll-to-top {
   position: absolute;

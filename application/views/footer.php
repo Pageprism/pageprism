@@ -21,7 +21,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
     <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?= base_url();?>assets/js/jquery.touchSwipe.min.js"></script>
-    <script src="<?= base_url();?>assets/js/shelf.js?v=4"></script>
+    <script src="<?= base_url();?>assets/js/shelf.js?v=4c"></script>
     <script src="<?= base_url();?>assets/js/scrollNavi.js"></script>
    	<script src="<?= base_url();?>assets/js/waypoints.min.js"></script>
    	<script src="<?= base_url();?>assets/js/waypoints-sticky.min.js"></script>    
