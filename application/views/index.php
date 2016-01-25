@@ -1,10 +1,7 @@
 <!-- Container -->
 <div class="container-fluid" id="the-container">
-
-    <!-- Shelfs and covers -->
     <div class="shelfs-and-covers">
-
-        <!-- Books -->
+        <!-- Books and other items -->
         <div class="list-cover" id="covers"> 
             <?php
             $query = $this->db->query("SELECT * FROM book WHERE `shelf_id`='$shelf_id'");

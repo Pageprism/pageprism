@@ -19,7 +19,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->layout->show('index');
+    $shelf = $this->db->query("SELECT id FROM shelf ORDER BY rand() limit 1");
+    $row = $shelf->row();
+    $this->layout->show('index', array('shelf_id' => $row->id));
 	}
 }
 
