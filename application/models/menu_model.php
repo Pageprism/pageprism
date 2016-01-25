@@ -4,6 +4,7 @@ class Menu_model extends CI_Model {
   public function getMenu() {
     $menu = array();
 
+
     $this->addPages($menu);
     $this->addShelves($menu);
     $this->addAdmin($menu);
@@ -13,15 +14,29 @@ class Menu_model extends CI_Model {
   }
 
   function addPages(&$menu) {
+    $pages = array();
+    $pages[] = array(
+      'title' => 'Free software',
+      'url' => "https://github.com/Pageprism/pageprism",
+    );
+    $pages[] = array(
+      'title' => 'PageShare plans and ideas',
+      'url' => "/shelf/13",
+    );
     $query = $this->db->query("SELECT id,title,url_title FROM pages");
     if ($query->num_rows() > 0) {
       foreach ($query->result_array() as $page) {
-        $menu[] = array(
+        $pages[] = array(
           'title' => $page['title'],
           'url' => "/page/".$page['url_title'],
         );
       }
     }
+    $menu[] = array(
+      'title' => 'Principles',
+      'url' => "/shelf/13",
+      'children' => $pages,
+    );
   }
   function addShelves(&$menu) {
     $shelves = array();
