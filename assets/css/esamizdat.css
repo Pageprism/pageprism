@@ -88,6 +88,7 @@ a:hover i {
   height: 100%;
   z-index: 1000;
   top: 58px;
+  padding-bottom: 58px;
   right: -240px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;

@@ -6,19 +6,27 @@
   var navH = navi.height();
   var scrollTrigger = 64;
 
+  function updateMenuScrollbar(timeout) {
+    setTimeout(function() {
+      $('#mainmenu').perfectScrollbar('update');
+    }, timeout || 1);
+  }
+
   function hideNavi() {
     if (naviShown === false) return;
     naviShown = false;
-    menu.animate({top: 0}, 200);
+    menu.animate({top: 0}, 200).css({paddingBottom: 0});
     navi.animate({top: -navH}, 200, function() {
       navi.removeClass('navbar-fixed').css('top', 0);
+      updateMenuScrollbar();
     });
   }
   function showNavi() {
     if (naviShown === true) return;
     naviShown = true;
     navi.css('top', -navH).addClass('navbar-fixed').animate({top: 0}, 200);
-    menu.animate({top: navH-1}, 200);
+    menu.animate({top: navH-1}, 200).css({paddingBottom: navH-1});
+    updateMenuScrollbar();
   }
 
   var lastPosition = 0;
@@ -82,6 +90,11 @@
   $('#mainmenu li.parent > a').click(function(e) {
     $(this).parent().toggleClass('open');
     e.preventDefault();
+    updateMenuScrollbar(450);
+  });
+  $('#mainmenu').perfectScrollbar();
+  window.addEventListener('resize', function() {
+    updateMenuScrollbar();
   });
 
 })();
