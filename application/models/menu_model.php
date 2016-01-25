@@ -5,6 +5,7 @@ class Menu_model extends CI_Model {
     $menu = array();
 
     $this->addPages($menu);
+    $this->addShelves($menu);
     $this->addAdmin($menu);
     $this->processClasses($menu);
 
@@ -14,13 +15,31 @@ class Menu_model extends CI_Model {
   function addPages(&$menu) {
     $query = $this->db->query("SELECT id,title,url_title FROM pages");
     if ($query->num_rows() > 0) {
-      foreach ($query->result_array() as $pages_top) {
+      foreach ($query->result_array() as $page) {
         $menu[] = array(
-          'title' => $pages_top['title'],
-          'url' => "/page/".$pages_top['url_title'],
+          'title' => $page['title'],
+          'url' => "/page/".$page['url_title'],
         );
       }
     }
+  }
+  function addShelves(&$menu) {
+    $shelves = array();
+
+    $query = $this->db->query("SELECT id,name FROM shelf");
+    if ($query->num_rows() > 0) {
+      foreach ($query->result_array() as $shelf) {
+        $shelves[] = array(
+          'title' => $shelf['name'],
+          'url' => "/shelf/".$shelf['id'],
+        );
+      }
+    }
+    $menu[] = array(
+      'title' => 'Shelves',
+      'url' => '#',
+      'children' => $shelves
+    );
   }
 
   function addAdmin(&$menu) {
@@ -29,7 +48,6 @@ class Menu_model extends CI_Model {
       $menu[] = array(
         'title' => 'Admin',
         'url' => "#",
-        'open' => $this->uri->segment(1) == 'admin',
         'children' => array(
           array(
             'title' => 'Upload document',
@@ -61,22 +79,28 @@ class Menu_model extends CI_Model {
     }
   }
   function processClasses(&$menu) {
+    $someItemSelected = false;
+
     foreach($menu as &$menuitem) {
+      $selected = false;
       $classes = array();
 
+      if ($menuitem['url'] == '/'.$this->uri->uri_string) {
+        $selected = true;
+        $classes[] = 'selected';
+      }
       if (!empty($menuitem['children'])) {
         $classes[] = 'parent';
-
-        $this->processClasses($menuitem['children']);
+        $selected = $this->processClasses($menuitem['children']);
       }
-      if (!empty($menuitem['open'])) {
+      if ($selected) {
         $classes[] = 'open';
-      }
-      if ($menuitem['url'] == '/'.$this->uri->uri_string) {
-        $classes[] = 'selected';
+        $someItemSelected = true;
       }
       $menuitem['classes'] = implode(' ',$classes);
     }
+
+    return $someItemSelected;
   }
 
 }
