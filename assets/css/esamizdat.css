@@ -189,25 +189,17 @@ a:hover i {
   z-index: 1050;
 }
 
-/* Shelfs and shelfs-and-covers  */
+/* Covers  */
 #covers  {
+  width: auto;
   padding: 40px 0;
-  overflow: hidden;
+  position: relative;
+  overflow: auto;
+  white-space:nowrap;
 }
-@media (max-width: 1024px) {
-  .shelfs-and-covers {
-    overflow: auto;
-    position: relative;
-    white-space: nowrap;
-  }
-  #covers  {
-    width: auto;
-    padding: 20px 0;
-  }
-  .single-cover {
-    display: inline-block;
-    float: none;
-  }
+.single-cover {
+  display: inline-block;
+  float: none;
 }
 @media (max-width: 640px) {
   #covers  {
@@ -255,13 +247,9 @@ button.btn, button.btn:hover, button.btn:focus, button.btn:active {
   font-size: 1.2em;
 }
 
-
-/* Display as "Covers" */
-
 div.single-cover {
   text-align: center;
   margin: 0 0 10px 20px;
-  float: left;
   cursor: pointer;
 }
 div.single-cover .caption {

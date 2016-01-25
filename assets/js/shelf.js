@@ -7,9 +7,9 @@ function isScrolledToBook() {
 }
 
 $(function() {
-  $('.shelfs-and-covers').perfectScrollbar();
+  $('#covers').perfectScrollbar();
   window.addEventListener('resize', function() {
-    $('.shelfs-and-covers').perfectScrollbar('update');
+    $('#covers').perfectScrollbar('update');
   });
   $(document).on('click','span.pagenumber', function(){
     if ($(this).text() == 'X') {
