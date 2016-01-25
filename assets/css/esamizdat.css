@@ -93,20 +93,11 @@ a:hover i {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   line-height: 49px;
-}
-#mainmenu, #contents {
   -webkit-transition:  right 0.4s ease-in-out;
   -moz-transition:  right 0.4s ease-in-out;
   -ms-transition:  right 0.4s ease-in-out;
   -o-transition:  right 0.4s ease-in-out;
   transition:  right 0.4s ease-in-out;
-}
-#contents {
-  position: relative;
-  right: 0px;
-}
-.open-sidebar #contents {
-  right: 240px;
 }
 .open-sidebar #mainmenu{
   right: 0;
