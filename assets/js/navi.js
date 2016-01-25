@@ -5,6 +5,18 @@
   var naviShown = null;
   var navH = navi.height();
   var scrollTrigger = 64;
+  
+  if (window.localStorage.menuOpen == "true") {
+    openMainMenu(true);
+  }
+
+  function toggleMainMenu() {
+    openMainMenu(window.localStorage.menuOpen != "true");
+  }
+  function openMainMenu(toggle) {
+    window.localStorage.menuOpen = !!toggle
+    $("body").toggleClass("open-sidebar", !!toggle);
+  }
 
   function updateMenuScrollbar(timeout) {
     setTimeout(function() {
@@ -51,7 +63,7 @@
   });
 
   $("#sidebar-toggle").click(function(e) {
-    $('body').toggleClass("open-sidebar");
+    toggleMainMenu();
     e.preventDefault();
   });
   var swipeTreshold = 60;
@@ -67,11 +79,11 @@
       }
 
       if (phase=="move" && direction =="left" && screenW-x < swipeTreshold) {
-        $("body").addClass("open-sidebar");
+        openMainMenu(true);
         //return false;
       }
       if (phase=="move" && direction =="right" && screenW-x < swipeTreshold+240) {
-        $("body").removeClass("open-sidebar");
+        openMainMenu(false);
         //return false;
       }
     }
