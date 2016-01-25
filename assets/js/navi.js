@@ -1,4 +1,4 @@
-(function() {
+$(function() {
   var win = $(window);
   var navi = $('.navbar');
   var menu = $('#mainmenu');
@@ -6,9 +6,6 @@
   var navH = navi.height();
   var scrollTrigger = 64;
   
-  if (window.localStorage.menuOpen == "true") {
-    openMainMenu(true);
-  }
 
   function toggleMainMenu() {
     openMainMenu(window.localStorage.menuOpen != "true");

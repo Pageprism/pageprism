@@ -11,7 +11,7 @@
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <link href="<?php echo base_url();?>assets/css/perfect-scrollbar.css" rel="stylesheet" media="screen" />
 	<link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/esamizdat.css?v=4g" rel="stylesheet" media="screen" />
+    <link href="<?php echo base_url();?>assets/css/esamizdat.css?v=5" rel="stylesheet" media="screen" />
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
     <?php if (isset($cover_image)): ?>
     <meta property="og:image" content="<?= base_url(), $cover_image; ?>" />
@@ -30,6 +30,11 @@ _gaq.push(['_trackPageview']);
 
   </head>
   <body>
+    <script>
+    if (window.localStorage.menuOpen == "true") {
+      document.body.className = "open-sidebar";
+    }
+    </script>
     <div id="svgwrap">
       <svg width="64" height="64" viewBox="0 0 64 64">
         <path id="arrow-right" d="M19.203 17.28l-0.003 29.44 25.6-14.72z" />
