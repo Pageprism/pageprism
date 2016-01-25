@@ -432,22 +432,6 @@ span.pagenumber {
     right: 6px;
   }
 }
-@media (max-width: 350px) {
-  div.page-share {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    top: 12px;
-    right: 12px;
-    padding: 0px;
-  }
-  span.pagenumber {
-    top: 2px;
-    right: 1px;
-    font-size: 0.9em;
-  }
-}
-
 
 .single-page {
   margin-top: 2em;
