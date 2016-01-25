@@ -26,7 +26,7 @@ class Menu_model extends CI_Model {
   function addShelves(&$menu) {
     $shelves = array();
 
-    $query = $this->db->query("SELECT id,name FROM shelf");
+    $query = $this->db->query("SELECT id,name FROM shelf ORDER BY id desc");
     if ($query->num_rows() > 0) {
       foreach ($query->result_array() as $shelf) {
         $shelves[] = array(
