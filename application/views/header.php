@@ -66,25 +66,32 @@ _gaq.push(['_trackPageview']);
     	<div class="container-fluid">
 
             <a id="mainlogo" class="brand" href="/">PageShare</a>
-            <div class="nav">
-                <?php
-                $query = $this->db->query("SELECT id,title,url_title FROM pages");
-                    if ($query->num_rows() > 0)
-                    {
-                        foreach ($query->result_array() as $pages_top)
-                        {?>
-                            <a href="/page/<?=$pages_top['url_title']?>"><?=$pages_top['title']?></a>
-                        <?php
-                        }
-                    }
-
-
-                    if ($this->session->userdata('user_name') != "") { echo "<a href='admin/'>Admin mainpage</a>"; }
-                ?>
-            </div>
 
             <div id="scroll-to-top" style="display:none"><button class="btn">Back to shelves</button></div>
+            <a href="#" id="sidebar-toggle">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </a>
 		</div>
     </div>
 </div>
+<!-- Main menu -->
+<ul id="mainmenu">
+    <?php
+    $query = $this->db->query("SELECT id,title,url_title FROM pages");
+        if ($query->num_rows() > 0)
+        {
+            foreach ($query->result_array() as $pages_top)
+            {?>
+            <li><a href="/page/<?=$pages_top['url_title']?>"><?=$pages_top['title']?></a></li>
+            <?php
+            }
+        }
 
+
+        if ($this->session->userdata('user_name') != "") { echo "<li><a href='admin/'>Admin mainpage</a></li>"; }
+    ?>
+</ul>
+
+<div id="contents">

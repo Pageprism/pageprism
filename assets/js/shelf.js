@@ -22,7 +22,7 @@ $(function() {
   });
 
   // "Back to shelves"
-  $('#mainlogo, #scroll-to-top').click(function(e) {
+  $('#mainlogo').click(function(e) {
     if ($('.book-content-separator:visible').length == 0) {
       return;
     }
@@ -31,6 +31,27 @@ $(function() {
       e.preventDefault();
     }
   });
+
+
+  $("#sidebar-toggle").click(function(e) {
+    $('body').toggleClass("open-sidebar");
+    e.preventDefault();
+  });
+  var swipeTreshold = 60;
+  $("body").swipe({
+    swipeStatus:function(event, phase, direction, distance, duration, fingers)
+    {
+      var screenW = $(window).width();
+      if (phase=="move" && direction =="left" && screenW-event.x < swipeTreshold) {
+        $("body").addClass("open-sidebar");
+        return false;
+      }
+      if (phase=="move" && direction =="right" && screenW-event.x < swipeTreshold+240) {
+        $("body").removeClass("open-sidebar");
+        return false;
+      }
+    }
+  }); 
 
 
   $(window).scroll(lazyload);
