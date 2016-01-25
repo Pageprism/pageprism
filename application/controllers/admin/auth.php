@@ -19,13 +19,13 @@ class Auth extends CI_Controller {
 				if($this->simpleloginsecure->login($user, $password)) {
 				    redirect('admin/index');
 				} else {
-					$this->load->view('admin/auth', array('error' => 'wrong username or password'));
+					$this->layout->show('admin/auth', array('error' => 'wrong username or password'));
 				}
 			} else {
-				$this->load->view('admin/auth', array('error' => 'user or password empty'));
+				$this->layout->show('admin/auth', array('error' => 'user or password empty'));
 			}			
 		} else {
-			$this->load->view('admin/auth', array('error' => ''));
+			$this->layout->show('admin/auth', array('error' => ''));
 		}
 
 	}
@@ -35,15 +35,6 @@ class Auth extends CI_Controller {
 		$this->simpleloginsecure->logout();
 		redirect('/');
 	}
-
-	function ukko() 
-	{
-		$this->simpleloginsecure->create('user@user.com', 'password', 'full name');
-		echo 'created';
-	}
-
-
-
 }
 
 /* End of file auth.php */

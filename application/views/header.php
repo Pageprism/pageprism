@@ -30,6 +30,11 @@ _gaq.push(['_trackPageview']);
 
   </head>
   <body>
+    <div id="svgwrap">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path id="arrow-right" d="M19.203 17.28l-0.003 29.44 25.6-14.72z" />
+      </svg>
+    </div>
     <!-- Google Tag Manager -->
     <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T4VMZS"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -77,21 +82,8 @@ _gaq.push(['_trackPageview']);
     </div>
 </div>
 <!-- Main menu -->
-<ul id="mainmenu">
-    <?php
-    $query = $this->db->query("SELECT id,title,url_title FROM pages");
-        if ($query->num_rows() > 0)
-        {
-            foreach ($query->result_array() as $pages_top)
-            {?>
-            <li><a href="/page/<?=$pages_top['url_title']?>"><?=$pages_top['title']?></a></li>
-            <?php
-            }
-        }
-
-
-        if ($this->session->userdata('user_name') != "") { echo "<li><a href='admin/'>Admin mainpage</a></li>"; }
-    ?>
-</ul>
+<div id="mainmenu">
+  <?php $this->load->view('menu', array('menu' => $this->Menu_model->getMenu())); ?>
+</div>
 
 <div id="contents">

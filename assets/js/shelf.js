@@ -21,46 +21,6 @@ $(function() {
     $(this).parent().children('.share-part').toggle();
   });
 
-  // "Back to shelves"
-  $('#mainlogo').click(function(e) {
-    if ($('.book-content-separator:visible').length == 0) {
-      return;
-    }
-    if (isScrolledToBook()) {
-      $("html, body").animate({ scrollTop: 0 }, "fast");
-      e.preventDefault();
-    }
-  });
-
-
-  $("#sidebar-toggle").click(function(e) {
-    $('body').toggleClass("open-sidebar");
-    e.preventDefault();
-  });
-  var swipeTreshold = 60;
-  $(".navbar, .shelfs-and-covers, #mainmenu").swipe({
-    allowPageScroll: "vertical",
-    excludedElements: "button, input, select, textarea, a, .noSwipe, .page-share",
-    swipeStatus:function(event, phase, direction, distance, duration, fingers)
-    {
-      var screenW = $(window).width();
-      var x = event.x;
-      if (event.touches && event.touches.length > 0) {
-        x = event.touches[0].clientX;
-      }
-
-      if (phase=="move" && direction =="left" && screenW-x < swipeTreshold) {
-        $("body").addClass("open-sidebar");
-        //return false;
-      }
-      if (phase=="move" && direction =="right" && screenW-x < swipeTreshold+240) {
-        $("body").removeClass("open-sidebar");
-        //return false;
-      }
-    }
-  }); 
-
-
   $(window).scroll(lazyload);
   lazyload();
 

@@ -9,6 +9,10 @@ body {
   }
 }
 
+#svgwrap {
+  display: none;
+}
+
 .ps-container > .ps-scrollbar-x-rail,
 .ps-container > .ps-scrollbar-y-rail {
   display: block;
@@ -108,19 +112,61 @@ a:hover i {
   box-shadow: rgba(0, 0, 0, 0.3) -1px 4px 7px 0px;
 }
 
+#mainmenu ul {
+  padding: 0;
+  margin: 0;
+}
 #mainmenu li {
+  position: relative;
   list-style-type: none;
 }
-#mainmenu li:hover {
-  background: #eee;
+#mainmenu .parent .arrow {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  width: 20px;
+  height: 20px;
+  -webkit-transition:  transform 0.2s ease-in-out;
+  -moz-transition:  transform 0.2s ease-in-out;
+  -ms-transition:  transform 0.2s ease-in-out;
+  -o-transition:  transform 0.2s ease-in-out;
+  transition:  transform 0.2s ease-in-out;
 }
-#mainmenu a:link {
+#mainmenu .open > a > .arrow {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#mainmenu .parent ul {
+  max-height: 0;
+  overflow: hidden;
+  text-indent: 20px;
+  -webkit-transition:  max-height 0.2s ease-in-out;
+  -moz-transition:  max-height 0.2s ease-in-out;
+  -ms-transition:  max-height 0.2s ease-in-out;
+  -o-transition:  max-height 0.2s ease-in-out;
+  transition:  max-height 0.2s ease-in-out;
+}
+#mainmenu .parent.open > ul {
+  max-height: 500px;
+}
+
+#mainmenu a:link,
+#mainmenu a:visited {
   color: #000;
   font-size: 1.15em;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
   padding: 13px 13px;
   display: block;
   text-decoration: none;
+}
+#mainmenu .selected > a:link {
+  font-weight: bold;
+}
+#mainmenu a:hover {
+  background: #eee;
 }
 
 
