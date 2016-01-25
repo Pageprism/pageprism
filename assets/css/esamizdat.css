@@ -142,7 +142,6 @@ a:hover i {
 #mainmenu .parent ul {
   max-height: 0;
   overflow: hidden;
-  text-indent: 20px;
   -webkit-transition:  max-height 0.2s ease-in-out;
   -moz-transition:  max-height 0.2s ease-in-out;
   -ms-transition:  max-height 0.2s ease-in-out;
@@ -151,6 +150,9 @@ a:hover i {
 }
 #mainmenu .parent.open > ul {
   max-height: 500px;
+}
+#mainmenu .parent ul a {
+  padding-left: 20px;
 }
 
 #mainmenu a:link,
