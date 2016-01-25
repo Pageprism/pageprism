@@ -183,7 +183,6 @@ class Document extends MY_Controller {
 
   private function getFormData() {
     $author_id = $this->session->userdata('user_id');
-    $meta = $this->input->post('meta');
     $language = $this->input->post('language');
     $shelf_id = $this->input->post('shelf_id');
     $book_name = $this->input->post('book_name');
@@ -202,7 +201,6 @@ class Document extends MY_Controller {
       'book_name_clean' => $book_name_clean,
       'book_author' => $book_author,
       'book_timestamp' => $book_timestamp,			
-      'meta' => $meta,
       'language' => $language,
       'price' => '',
       'shelf_id' => $shelf_id,

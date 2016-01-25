@@ -50,7 +50,6 @@ CREATE TABLE `book` (
   `file_url_pdf` varchar(1000) DEFAULT NULL,
   `file_url_epub` varchar(1000) DEFAULT NULL,
   `file_url_cover` varchar(1000) DEFAULT NULL,
-  `meta` text,
   `language` varchar(1000) DEFAULT NULL,
   `price` varchar(1000) DEFAULT NULL,
   `shelf_id` int(11) NOT NULL,

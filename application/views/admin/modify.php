@@ -16,7 +16,6 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
 	<?php echo form_open_multipart('admin/document/update_info');?>
 
 	<p><span class="label">File:</span> <?php echo $data->book_name;?></p>
-	<p><span class="label">Meta:</span> <?php echo form_textarea('meta', $data->meta);?></p>
 	<p><span class="label">Language:</span> <?php echo form_input('language', $data->language);?></p>
 	<p><span class="label">Item name:</span> <?php echo form_input('book_name', $data->book_name);?></p>
 	<p><span class="label">Author:</span> <?php echo form_input('book_author', $data->book_author);?></p>
