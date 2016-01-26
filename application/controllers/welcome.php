@@ -2,26 +2,17 @@
 
 class Welcome extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
-	{
-    $shelf = $this->db->query("SELECT id FROM shelf ORDER BY rand() limit 1");
-    $row = $shelf->row();
-    redirect('shelf/'.$row->id);
+  {
+    $this->load->model('Shelf_model');
+    $id = $this->Shelf_model->getFrontpageId();
+
+    if ($id) {
+      redirect('shelf/'.$id);
+    } else {
+      $this->load->view('header');
+      $this->load->view('footer');
+    }
 	}
 }
 

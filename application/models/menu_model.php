@@ -21,8 +21,8 @@ class Menu_model extends CI_Model {
     $pages = array();
     foreach ($this->shelf_model->getShelvesForParent('principles') as $shelf) {
       $pages[] = array(
-        'title' => $shelf['name'],
-        'url' => "/shelf/".$shelf['id'],
+        'title' => $shelf->name,
+        'url' => "/shelf/".$shelf->id,
       );
     }
     $query = $this->db->query("SELECT id,title,url_title FROM pages");
@@ -36,7 +36,7 @@ class Menu_model extends CI_Model {
     }
     $menu[] = array(
       'title' => 'Principles',
-      'url' => "/shelf/13",
+      'url' => "#",
       'children' => $pages,
     );
   }
@@ -45,8 +45,8 @@ class Menu_model extends CI_Model {
 
     foreach ($this->shelf_model->getShelvesForParent('shelves') as $shelf) {
       $shelves[] = array(
-        'title' => $shelf['name'],
-        'url' => "/shelf/".$shelf['id'],
+        'title' => $shelf->name,
+        'url' => "/shelf/".$shelf->id,
       );
     }
     $menu[] = array(

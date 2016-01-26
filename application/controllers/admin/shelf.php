@@ -42,17 +42,34 @@ class Shelf extends MY_Controller {
 		$this->db->update('shelf', $sql_data);
 		redirect('admin/shelf/');
 	}
+	function update_frontpage_bit()
+	{
+    $id = $this->uri->segment(4);
+    $is_frontpage = $this->uri->segment(5) == 1;
+
+		if (!is_numeric($id)) {
+      echo 'ID Error: '.$this->uri->segment(4);
+      return;
+    }
+
+    $sql_data = array(
+      'is_frontpage' => $is_frontpage,
+    );
+    $this->db->where('id', $id);
+		$this->db->update('shelf', $sql_data);
+		redirect('admin/shelf/');
+	}
 
 	function remove()
 	{
 		$id = $this->uri->segment(4);
-		if (is_numeric($id) == true)
-		{
-			if ($this->db->delete('shelf', array('id' => $id)) == true)
-				redirect('admin/shelf/');
-		} else {
-			echo 'ID Error: '.$this->uri->segment(4);
-		}
+		if (!is_numeric($id)) {
+      echo 'ID Error: '.$this->uri->segment(4);
+      return;
+    }
+
+    if ($this->db->delete('shelf', array('id' => $id)) == true)
+      redirect('admin/shelf/');
 	}
 
 }
