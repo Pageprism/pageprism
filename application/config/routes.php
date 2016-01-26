@@ -51,6 +51,7 @@ $route['page/(:any)'] = 'page/view/$1';
 $route['admin'] = 'admin/index';
 $route['login'] = 'admin/auth';
 $route['logout'] = 'admin/auth/logout';
+$route['admin/shelf/modify/(:any)'] = 'admin/shelf/modify/$1';
 $route['admin/shelf/remove/(:any)'] = 'admin/shelf/remove/$1';
 $route['admin/content/edit/(:num)'] = 'admin/content/edit/$1';
 $route['admin/document/modify/(:num)'] = 'admin/document/modify/$1';

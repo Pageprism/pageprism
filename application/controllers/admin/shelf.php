@@ -3,13 +3,14 @@
 class Shelf extends MY_Controller {
 
 	function __construct()
-	{
+  {
 		parent::__construct();
+    $this->load->model('shelf_model');
 	}
 
 	function index()
 	{
-		$this->layout->show('admin/shelf');
+    $this->layout->show('admin/shelves', array('shelves' => $this->shelf_model->getShelves()));
 	}
 
 	function add_shelf()
@@ -18,9 +19,28 @@ class Shelf extends MY_Controller {
 		$sql_data = array('name' => $name);
 		$this->db->insert('shelf', $sql_data);
 		redirect('admin/shelf/');
+  }
+
+	function modify()
+	{
+    $id = $this->uri->segment(4);
+    $shelf = $this->shelf_model->getShelf($id);
+    $this->layout->show('admin/shelf/modify',array('shelf' => $shelf));
+	}
+	function update_info()
+	{
+		$id = $this->input->post('id');
+    $name = $this->input->post('name');
+
+    $sql_data = array(
+      'name' => $name
+    );
+    $this->db->where('id', $id);
+		$this->db->update('shelf', $sql_data);
+		redirect('admin/shelf/');
 	}
 
-	function remove_shelf()
+	function remove()
 	{
 		$id = $this->uri->segment(4);
 		if (is_numeric($id) == true)
