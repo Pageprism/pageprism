@@ -45,8 +45,7 @@ class Shelf extends MY_Controller {
 	function update_frontpage_bit()
 	{
     $id = $this->uri->segment(4);
-    $is_frontpage = $this->uri->segment(5) == 1;
-
+    $is_frontpage = $this->uri->segment(5);
 		if (!is_numeric($id)) {
       echo 'ID Error: '.$this->uri->segment(4);
       return;
@@ -57,6 +56,21 @@ class Shelf extends MY_Controller {
     );
     $this->db->where('id', $id);
 		$this->db->update('shelf', $sql_data);
+		redirect('admin/shelf/');
+	}
+	function set_frontpage()
+	{
+		$id = $this->input->post('frontpage');
+    
+    if ($id == 'all') {
+      $this->db->query('UPDATE shelf set is_frontpage = 1');
+    } else {
+      if (!is_numeric($id)) {
+        echo 'ID Error: '.$this->uri->segment(4);
+        return;
+      }
+      $this->db->query('UPDATE shelf set is_frontpage = (id = ?)', array($id));
+    }
 		redirect('admin/shelf/');
 	}
 

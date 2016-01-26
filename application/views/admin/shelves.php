@@ -21,14 +21,26 @@
     </td>
     <td>
       <?php if ($row->is_frontpage): ?>
-      <a href="/admin/shelf/set_frontpage_bit/<?= $row->id; ?>/0">Yes</a>
+      <a style="color: green;" href="/admin/shelf/set_frontpage_bit/<?= $row->id; ?>/0">Yes</a>
       <?php else: ?>
-      <a href="/admin/shelf/set_frontpage_bit/<?= $row->id; ?>/1">No</a>
+      <a style="color: red;" href="/admin/shelf/set_frontpage_bit/<?= $row->id; ?>/1">No</a>
       <?php endif; ?>
     </td>
   </tr>
   <?php endforeach; ?>
 </table>
+<?php echo form_open('admin/shelf/set_frontpage');?>
+<fieldset>
+  <legend>Set frontpage</legend>
+  <select name="frontpage">
+    <option value="all">Use any shelf randomly</option>
+    <?php foreach ($shelves as $row): ?>
+    <option value="<?= $row->id ?>"><?= htmlspecialchars($row->name) ?></option>
+    <?php endforeach; ?>
+  </select>
+	<?php echo form_submit('update', 'Set frontpage'); ?>
+</fieldset>
+</form>
 <?php	else: ?>
 <p>No shelves found</p>
 <?php endif; ?>
