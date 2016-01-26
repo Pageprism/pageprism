@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	{
     $shelf = $this->db->query("SELECT id FROM shelf ORDER BY rand() limit 1");
     $row = $shelf->row();
-    $this->layout->show('index', array('shelf_id' => $row->id));
+    redirect('shelf/'.$row->id);
 	}
 }
 
