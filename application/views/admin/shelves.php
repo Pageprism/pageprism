@@ -14,16 +14,16 @@
   <tr>
     <td><a href="/admin/shelf/modify/<?= $row->id; ?>"><?= $row->name; ?></a></td>
     <td><?= $row->bookcount; ?></td>
-    <td><?= $row->timestamp; ?></td>
+    <td><?= $row->created; ?></td>
     <td>
       <a href="/shelf/<?= $row->id; ?>">View</a>
       <a href="/admin/shelf/modify/<?= $row->id; ?>">Edit</a>
     </td>
     <td>
       <?php if ($row->is_frontpage): ?>
-      <a href="/admin/shelf/set_frontpage/<?= $row->id; ?>/0">Yes</a>
+      <a href="/admin/shelf/set_frontpage_bit/<?= $row->id; ?>/0">Yes</a>
       <?php else: ?>
-      <a href="/admin/shelf/set_frontpage/<?= $row->id; ?>/1">No</a>
+      <a href="/admin/shelf/set_frontpage_bit/<?= $row->id; ?>/1">No</a>
       <?php endif; ?>
     </td>
   </tr>
