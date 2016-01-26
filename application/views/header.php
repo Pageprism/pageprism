@@ -31,7 +31,7 @@ _gaq.push(['_trackPageview']);
   </head>
   <body>
     <script>
-    if (window.localStorage.menuOpen == "true") {
+    if (window.localStorage.menuOpen != "false") {
       document.body.className = "open-sidebar";
     }
     </script>
