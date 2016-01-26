@@ -16,7 +16,10 @@ class Shelf extends MY_Controller {
 	function add_shelf()
 	{
 		$name = $this->input->post('shelf_name');
-		$sql_data = array('name' => $name);
+    $sql_data = array(
+      'name' => $name, 
+      'created' => date('Y-m-d H:i:s')
+    );
 		$this->db->insert('shelf', $sql_data);
 		redirect('admin/shelf/');
   }
