@@ -32,8 +32,9 @@ CREATE TABLE `audio_file` (
   `length` int(11) unsigned NOT NULL,
   `page_number_start` int(11) unsigned NOT NULL,
   `page_number_end` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `audio_file_page_index` (`book_id`,`page_number_start`,`page_number_end`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +68,7 @@ CREATE TABLE `book` (
   `counter` int(11) DEFAULT '0',
   `misc_file_url` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +100,7 @@ CREATE TABLE `pdf` (
   `page_image_url` varchar(1000) DEFAULT NULL,
   `page_n` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2268 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2599 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,6 +114,7 @@ CREATE TABLE `shelf` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(1000) CHARACTER SET utf8 NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `menu_parent` varchar(32) DEFAULT 'shelves',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,4 +148,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-27 18:01:38
+-- Dump completed on 2016-01-26 17:14:45

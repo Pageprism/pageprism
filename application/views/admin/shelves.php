@@ -1,11 +1,7 @@
 <!-- Container -->
 <div class="container-fluid admin" id="the-container">
   <h1>Shelves</h1>
-<?php
-
-	if ($shelves)
-  {
-?>
+<?php if ($shelves): ?>
 <table>
   <tr>
     <th>Name</th>
@@ -25,10 +21,9 @@
   </tr>
   <?php endforeach; ?>
 </table>
-<?php	} else {
-		echo 'No shelves found';
-	}
-?>
+<?php	else: ?>
+<p>No shelves found</p>
+<?php endif; ?>
 <?php echo form_open('admin/shelf/add_shelf');?>
 <fieldset>
   <legend>Add shelf</legend>

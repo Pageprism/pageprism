@@ -2,8 +2,8 @@
 class Menu_model extends CI_Model {    
 
   public function getMenu() {
+    $this->load->model('shelf_model');
     $menu = array();
-
 
     $this->addPages($menu);
     $this->addShelves($menu);
@@ -19,10 +19,12 @@ class Menu_model extends CI_Model {
       'url' => "https://github.com/Pageprism/pageprism",
     );
     $pages = array();
-    $pages[] = array(
-      'title' => 'PageShare plans and ideas',
-      'url' => "/shelf/13",
-    );
+    foreach ($this->shelf_model->getShelvesForParent('principles') as $shelf) {
+      $pages[] = array(
+        'title' => $shelf['name'],
+        'url' => "/shelf/".$shelf['id'],
+      );
+    }
     $query = $this->db->query("SELECT id,title,url_title FROM pages");
     if ($query->num_rows() > 0) {
       foreach ($query->result_array() as $page) {
@@ -41,14 +43,11 @@ class Menu_model extends CI_Model {
   function addShelves(&$menu) {
     $shelves = array();
 
-    $query = $this->db->query("SELECT id,name FROM shelf ORDER BY id desc");
-    if ($query->num_rows() > 0) {
-      foreach ($query->result_array() as $shelf) {
-        $shelves[] = array(
-          'title' => $shelf['name'],
-          'url' => "/shelf/".$shelf['id'],
-        );
-      }
+    foreach ($this->shelf_model->getShelvesForParent('shelves') as $shelf) {
+      $shelves[] = array(
+        'title' => $shelf['name'],
+        'url' => "/shelf/".$shelf['id'],
+      );
     }
     $menu[] = array(
       'title' => 'Shelves',

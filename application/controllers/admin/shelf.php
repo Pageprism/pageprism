@@ -30,10 +30,10 @@ class Shelf extends MY_Controller {
 	function update_info()
 	{
 		$id = $this->input->post('id');
-    $name = $this->input->post('name');
 
     $sql_data = array(
-      'name' => $name
+      'name' => $this->input->post('name'),
+      'menu_parent' => $this->input->post('menu_parent'),
     );
     $this->db->where('id', $id);
 		$this->db->update('shelf', $sql_data);
