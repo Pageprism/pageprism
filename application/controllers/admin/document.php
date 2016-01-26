@@ -49,6 +49,7 @@ class Document extends MY_Controller {
       ));
     }
 
+    $this->session->set_flashdata('msg', 'Document saved!');
     redirect("admin/document/documentlist");
   }
 
@@ -100,6 +101,7 @@ class Document extends MY_Controller {
         }
 
         if ($this->db->delete('book', array('id' => $id)) == true)
+          $this->session->set_flashdata('msg', 'Document deleted!');
           redirect('admin/document/documentlist');
       } else {
         echo 'ID Error: '.$this->uri->segment(4);
@@ -177,8 +179,9 @@ class Document extends MY_Controller {
       $audioData['book_id'] = $insert_id;
       $this->db->insert('audio_file', $audioData);
     }
-
-    $this->layout->show('admin/upload_ready');
+    
+    $this->session->set_flashdata('msg', 'Upload succeeded!');
+    redirect('/admin/document/documentlist');
   }
 
   private function getFormData() {

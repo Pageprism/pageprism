@@ -15,5 +15,7 @@ $query = $this->db->query('SELECT * FROM book');
 		echo 'No documents found';
 	}
 ?>
-
+<p>
+  <a href="/admin/document/upload/">Upload document</a>
+</p>
 </div>

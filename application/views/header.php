@@ -92,3 +92,6 @@ _gaq.push(['_trackPageview']);
 </div>
 
 <div id="contents">
+  <?php if ($this->session->flashdata('msg')): ?>
+  <div id="message"><?= $this->session->flashdata('msg'); ?></div>
+  <?php endif; ?>
