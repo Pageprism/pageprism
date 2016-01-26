@@ -9,6 +9,7 @@
     <th>Created</th>
     <th>Actions</th>
     <th>Use as frontpage</th>
+    <th>Display in</th>
   </tr>
   <?php foreach ($shelves as $row): ?>
   <tr>
@@ -26,6 +27,7 @@
       <a style="color: red;" href="/admin/shelf/set_frontpage_bit/<?= $row->id; ?>/1">No</a>
       <?php endif; ?>
     </td>
+    <td><?= ucfirst($row->menu_parent); ?></td>
   </tr>
   <?php endforeach; ?>
 </table>
