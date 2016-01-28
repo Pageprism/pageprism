@@ -2,7 +2,7 @@ function isScrolledToBook() {
   var separator = $('.book-content-separator');
   var wt = $(window).scrollTop();    //* top of the window
   var nh = $('.navbar').height();
-  var ot = separator.length ? sepatator.offset().top : nh;  //* top of book
+  var ot = separator.length ? separator.offset().top : nh;  //* top of book
 
   return wt > ot - nh;
 }
