@@ -33,14 +33,12 @@ class Document extends MY_Controller {
     $this->db->where('id', $id);
     $this->db->update('book', $update_data);
 
+    $used_pages = array();
+    $error = null;
     $query = $this->db->query("SELECT id FROM audio_file WHERE `book_id`= ?", array($id));
     foreach($query->result() as $audio_file) {
       $val = $this->input->post('audio_file_pages_'.$audio_file->id);
-      if (strpos($val, '-') !== false) {
-        list($start, $end) = explode('-', $val);
-      } else {
-        $start = $end = (int)$val;
-      }
+      $start = $end = (int)$val;
 
       $this->db->where('id', $audio_file->id);
       $this->db->update('audio_file', array(
@@ -48,9 +46,14 @@ class Document extends MY_Controller {
         'page_number_end' => $end, 
       ));
     }
-
-    $this->session->set_flashdata('msg', 'Document saved!');
-    redirect("admin/document/documentlist");
+    
+    if (!$error) {
+      $this->session->set_flashdata('msg', 'Document saved!');
+      redirect("admin/document/documentlist");
+    } else {
+      $this->session->set_flashdata('msg', $error);
+      redirect("admin/document/modify/".$id);
+    }
   }
 
   function delete_document() {
@@ -394,6 +397,7 @@ class Document extends MY_Controller {
       }
       if (isset($fileInfo['comments_html']['track'][0])) {
         $audioData['track_number'] = (int)$fileInfo['comments_html']['track'][0];
+        $audioData['page_number_start'] = $audioData['page_number_end'] = $audioData['track_number'];
       }
       //implode(', ', $fileInfo['comments_html']['artist']);
     } catch(Exception $e) {

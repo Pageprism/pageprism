@@ -46,7 +46,7 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
   <table>
     <tr>
       <th>Track</th>
-      <th>Appears on page number(s)</th>
+      <th>Appears on page number</th>
     </tr>
     <?php foreach ($audio_files as $file): ?>
     <?php
