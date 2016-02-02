@@ -343,18 +343,8 @@ p.single-epub {
   position: relative;
 }
 
-div.rendered-page {
-  position: relative;
-  width: 992px;
-  margin: 0 auto;
-}
-@media (max-width: 992px) {
-  div.rendered-page {
-    width: 100%;
-  }
-}
 
-div.page-share {
+.page-share {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   border-radius: 25px;
@@ -368,7 +358,7 @@ div.page-share {
   text-align: left;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 0px;
 }
-span.pagenumber {
+.pagenumber {
   position: absolute;
   right: 16px;
   top: 16px;
@@ -382,6 +372,20 @@ span.pagenumber {
 }
 .share-part {
   display: none;
+}
+.page-share.open .share-part {
+  display: block;
+}
+.page-share.open .pagenumber {
+  visibility: hidden;
+}
+.page-share.open .pagenumber:after {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  content: "X";
 }
 
 @media (max-width: 550px) {
@@ -400,13 +404,21 @@ span.pagenumber {
 }
 
 .single-page {
-  margin-top: 2em;
+  position: relative;
+  width: 992px;
+  margin: 2em auto 0 auto;
+}
+@media (max-width: 992px) {
+  .single-page {
+    width: 100%;
+  }
 }
 
-.rendered-page-single {
+.single-page img{
   box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px;
 }
-.rendered-page-single.empty-page:before {
+.single-page .empty-page:before {
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px;
   content: "";
   display: block;
   padding-top: 141%;  /* initial ratio of 1:1*/

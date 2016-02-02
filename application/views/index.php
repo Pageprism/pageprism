@@ -13,7 +13,7 @@
                       class="single-cover thumbnail<?php if (isset($book_id) && $book_id == $book['id']) echo ' selected'; ?>" 
                       data-book-pages="<?= $book['pages'] ?: '0' ?>"
                       data-book-name="<?= $book['book_name'] ?>"
-                      id="<?=$book['id']?>" title="<?=$book['book_name']?>">
+                      data-book-id="<?=$book['id']?>" title="<?=$book['book_name']?>">
 
                             <!-- The "Cover" -->
                             <?php if (isset($book['file_url_cover'])) {?>
@@ -33,8 +33,6 @@
         </div>  
     </div>
     <hr class="book-content-separator" style="display:none" />
-    <input type="hidden" id="book-id-hidden" value="<?php if (isset($id)) echo $id?>" />
-
   
     <!-- The page(s) of single publication -->
     <div id="rendered-pages">
