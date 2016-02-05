@@ -1,14 +1,6 @@
-function isScrolledToBook() {
-  var separator = $('.book-content-separator');
-  var wt = $(window).scrollTop();    //* top of the window
-  var nh = $('.navbar').height();
-  var ot = separator.length ? separator.offset().top : nh;  //* top of book
-
-  return wt > ot - nh;
-}
 function openBook(bookId, pageCount, startingPage) {
   $(".book-content-separator").show();
-  $("#covers .single-cover").removeClass("selected").each(function() {
+  $("#covers .single-cover").each(function() {
     var selected = $(this).data('book-id') == bookId;
     $(this).toggleClass('selected', selected);
   });
@@ -69,13 +61,8 @@ $.fn.loadPage = function(book_id, page, callback) {
             if (this.complete) fun();
           });
         }
-
-        audiojs.events.ready(function() {
-          var audioTags = el.find('audio:not(.audioloaded)').addClass('audioloaded');
-          audioTags.each(function() {
-            var as = audiojs.create(this, {css: null});
-          });
-        });
+        
+        loadAudio(el.find('audio'));
       });
 
 
@@ -96,10 +83,6 @@ function scrollToPage(page) {
 }
 
 $(function() {
-  $('#covers').perfectScrollbar();
-  window.addEventListener('resize', function() {
-    $('#covers').perfectScrollbar('update');
-  });
   $(document).on('click','span.pagenumber', function(){
     $(this).parent().toggleClass('open');
   });
