@@ -27,7 +27,6 @@
     <script src="<?= base_url();?>assets/js/navi.js?v=2"></script>
    	<script src="<?= base_url();?>assets/js/waypoints.min.js"></script>
    	<script src="<?= base_url();?>assets/js/waypoints-sticky.min.js"></script>    
-    <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
     <?php if (isset($book_id) && isset($totalpages) && isset($page)):  ?>
     <script>
       $(document).ready(function() {
