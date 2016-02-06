@@ -1,3 +1,4 @@
+// jshint ignore: start
 // A cross-browser javascript shim for html5 audio
 (function(audiojs, audiojsInstance, container) {
   // Use the path to the audio.js file to create relative paths to the swf and player graphics
@@ -192,7 +193,7 @@
     // If an array is passed then it calls back to `createAll()`.  
     // Otherwise, it creates a single instance and returns it.  
     create: function(element, options) {
-      var options = options || {}
+      options = options || {};
       if (element.length) {
         return this.createAll(options, element);
       } else {
@@ -205,8 +206,8 @@
     // If `elements` is `null`, then automatically find any `<audio>` tags on the page and create `audiojs` instances for them.
     createAll: function(options, elements) {
       var audioElements = elements || document.getElementsByTagName('audio'),
-          instances = []
-          options = options || {};
+          instances = [];
+      options = options || {};
       for (var i = 0, ii = audioElements.length; i < ii; i++) {
         instances.push(this.newInstance(audioElements[i], options));
       }
@@ -216,15 +217,14 @@
     // ### Creating and returning a new instance
     // This goes through all the steps required to build out a usable `audiojs` instance.
     newInstance: function(element, options) {
-      var element = element,
-          s = this.helpers.clone(this.settings),
+      var s = this.helpers.clone(this.settings),
           id = 'audiojs'+this.instanceCount,
           wrapperId = 'audiojs_wrapper'+this.instanceCount,
           instanceCount = this.instanceCount++;
 
       // Check for `autoplay`, `loop` and `preload` attributes and write them into the settings.
-      if (element.getAttribute('autoplay') != null) s.autoplay = true;
-      if (element.getAttribute('loop') != null) s.loop = true;
+      if (element.getAttribute('autoplay') !== null) s.autoplay = true;
+      if (element.getAttribute('loop') !== null) s.loop = true;
       if (element.getAttribute('preload') == 'none') s.preload = false;
       // Merge the default settings with the user-defined `options`.
       if (options) this.helpers.merge(s, options);
@@ -332,21 +332,21 @@
         // If the swf isn't ready yet then just set `audio.mp3`. `init()` will load it in once the swf is ready.
         audio.mp3 = mp3;
         if (audio.swfReady) audio.element.load(mp3);
-      }
+      };
       audio['loadProgress'] = function(percent, duration) {
         audio.loadedPercent = percent;
         audio.duration = duration;
         audio.settings.loadStarted.apply(audio);
         audio.settings.loadProgress.apply(audio, [percent]);
-      }
+      };
       audio['skipTo'] = function(percent) {
         if (percent > audio.loadedPercent) return;
         audio.updatePlayhead.call(audio, [percent])
         audio.element.skipTo(percent);
-      }
+      };
       audio['updatePlayhead'] = function(percent) {
         audio.settings.updatePlayhead.apply(audio, [percent]);
-      }
+      };
       audio['play'] = function() {
         // If the audio hasn't started preloading, then start it now.  
         // Then set `preload` to `true`, so that any tracks loaded in subsequently are loaded straight away.
@@ -359,7 +359,7 @@
         // <http://dev.nuclearrooster.com/2008/07/27/externalinterfaceaddcallback-can-cause-ie-js-errors-with-certain-keyworkds/>
         audio.element.pplay();
         audio.settings.play.apply(audio);
-      }
+      };
       audio['pause'] = function() {
         audio.playing = false;
         // Use `ppause()` for consistency with `pplay()`, even though it isn't really required.
@@ -397,7 +397,7 @@
       // **Merge two objects, with `obj2` overwriting `obj1`**  
       // The merge is shallow, but that's all that is required for our purposes.
       merge: function(obj1, obj2) {
-        for (attr in obj2) {
+        for (var attr in obj2) {
           if (obj1.hasOwnProperty(attr) || obj2.hasOwnProperty(attr)) {
             obj1[attr] = obj2[attr];
           }
@@ -405,7 +405,7 @@
       },
       // **Clone a javascript object (recursively)**
       clone: function(obj){
-        if (obj == null || typeof(obj) !== 'object') return obj;
+        if (obj === null || typeof(obj) !== 'object') return obj;
         var temp = new obj.constructor();
         for (var key in obj) temp[key] = arguments.callee(obj[key]);
         return temp;
@@ -437,7 +437,7 @@
             prepend = style.innerHTML;
             break;
           }
-        };
+        }
 
         var head = document.getElementsByTagName('head')[0],
             firstchild = head.firstChild,
@@ -572,11 +572,11 @@
           doc[add](pre + 'readystatechange', init, false);
           win[add](pre + 'load', init, false);
         }
-      }
+      };
       })()
 
     }
-  }
+  };
 
   // ## The audiojs class
   // We create one of these per `<audio>` and then push them into `audiojs['instances']`.
@@ -591,11 +591,12 @@
       return element.getAttribute('src') || (source ? source.getAttribute('src') : null);
     })(element);
     this.settings = settings;
+    this.initCalled = false;
     this.loadStartedCalled = false;
     this.loadedPercent = 0;
     this.duration = 1;
     this.playing = false;
-  }
+  };
 
   container[audiojsInstance].prototype = {
     // API access events:
@@ -621,21 +622,25 @@
       this.settings.loadError.apply(this);
     },
     init: function() {
+      if (this.initCalled) return;
+      this.initCalled = true;
       this.settings.init.apply(this);
     },
     loadStarted: function() {
       // Wait until `element.duration` exists before setting up the audio player.
       if (!this.element.duration) return false;
+      if (this.loadStartedCalled) return;
 
       this.duration = this.element.duration;
       this.updatePlayhead();
       this.settings.loadStarted.apply(this);
+      this.loadStartedCalled = true;
     },
     loadProgress: function() {
-      if (this.element.buffered != null && this.element.buffered.length) {
+      if (this.element.buffered !== null && this.element.buffered.length) {
         // Ensure `loadStarted()` is only called once.
         if (!this.loadStartedCalled) {
-          this.loadStartedCalled = this.loadStarted();
+          this.loadStarted();
         }
         var durationLoaded = this.element.buffered.end(this.element.buffered.length - 1);
         this.loadedPercent = durationLoaded / this.duration;
@@ -650,7 +655,7 @@
     play: function() {
       var ios = (/(ipod|iphone|ipad)/i).test(navigator.userAgent);
       // On iOS this interaction will trigger loading the mp3, so run `init()`.
-      if (ios && this.element.readyState == 0) this.init.apply(this);
+      if (ios && this.element.readyState === 0) this.init.apply(this);
       // If the audio hasn't started preloading, then start it now.  
       // Then set `preload` to `true`, so that any tracks loaded in subsequently are loaded straight away.
       if (!this.settings.preload) {
@@ -675,7 +680,7 @@
       if (!this.settings.loop) this.pause.apply(this);
       this.settings.trackEnded.apply(this);
     }
-  }
+  };
 
   // **getElementsByClassName**  
   // Having to rely on `getElementsByTagName` is pretty inflexible internally, so a modified version of Dustin Diaz's `getElementsByClassName` has been included.
