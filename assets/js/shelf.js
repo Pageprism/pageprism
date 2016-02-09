@@ -1,15 +1,17 @@
 var currentBook = null;
 
 function openBook(bookId, pageCount, startingPage) {
+  if (currentBook == bookId) {
+    return;
+  }
+  if (currentBook) {
+    $(document).trigger('shelf:bookClosing', [currentBook]);
+  }
   $(".book-content-separator").show();
   $("#covers .single-cover").each(function() {
     var selected = $(this).data('book-id') == bookId;
     $(this).toggleClass('selected', selected);
   });
-
-  if (currentBook) {
-    $(document).trigger('shelf:bookClosing', [currentBook]);
-  }
   $("#rendered-pages").empty();
   currentBook = bookId;
   $(document).trigger('shelf:bookOpening', [bookId]);
@@ -49,14 +51,14 @@ function openBook(bookId, pageCount, startingPage) {
   }
 }
 
-$.fn.loadPage = function(book_id, page, callback) {
+$.fn.loadPage = function(bookId, page, callback) {
   var els = this;
   $.ajax({
     url: "/index.php/book/load_pages_js",
     type: 'POST',
     async: true,
     data: {
-      id : book_id,
+      id : bookId,
       page_n : page,
     },
     success: function(data) {
@@ -84,7 +86,7 @@ $.fn.loadPage = function(book_id, page, callback) {
           }
         }
         
-        $(this).trigger('shelf:pageLoaded', [book_id, page]);
+        $(this).trigger('shelf:pageLoaded', [bookId, page]);
       });
 
 
@@ -128,12 +130,17 @@ $(function() {
   }
   function openBookLink(linkElem, scrollToBook, pageNumber) {
     var pages = Math.max(1, parseInt(linkElem.data('book-pages')));
-    openBook(linkElem.data('book-id'), pages);
+    var bookId = linkElem.data('book-id');
+    if (currentBook == bookId) {
+      playlist.playPause();
+    } else {
+      openBook(bookId, pages);
   
-    if (scrollToBook) {
-      $('html, body').animate({
-        scrollTop: $(".book-content-separator").offset().top
-      }, "fast");
+      if (scrollToBook) {
+        $('html, body').animate({
+          scrollTop: $(".book-content-separator").offset().top
+        }, "fast");
+      }
     }
   }
 
