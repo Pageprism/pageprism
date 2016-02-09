@@ -16,11 +16,19 @@ function openBook(bookId, pageCount, startingPage) {
 
   startingPage = startingPage || 1;
 
+  var loadedCount = 0;
+  var onLoad = function() {
+    loadedCount++;
+    if (loadedCount == pageCount-(startingPage-1)) {
+      $(document).trigger('shelf:bookOpened', [bookId]);
+    }
+  };
+
   for (var i=startingPage;i<=pageCount;i++) {
     var page_element = $('<div class="single-page" id="page_'+i+'">LOADING #'+i+'</div>');
     $("#rendered-pages").append(page_element);
 
-    page_element.loadPage(bookId, i);
+    page_element.loadPage(bookId, i, onLoad);
   }
 
   if (startingPage > 1) {
@@ -65,10 +73,15 @@ $.fn.loadPage = function(book_id, page, callback) {
               run = true;
             }
           };
-
-          $(this).find('img').on('load', fun).each(function() {
-            if (this.complete) fun();
-          });
+          
+          var img = $(this).find('img');
+          if (img.length) {
+            img.on('load', fun).each(function() {
+              if (this.complete) fun();
+            });
+          } else {
+            fun();
+          }
         }
         
         $(this).trigger('shelf:pageLoaded', [book_id, page]);
@@ -136,5 +149,12 @@ $(function() {
     if (firstBook.length === 0) return;
     openBookLink(firstBook, false);
   }
+
+  $(document).on('audiojs:play', function(event, audiojs) {
+    $("#covers .single-cover.selected").addClass('playing');
+  });
+  $(document).on('audiojs:pause', function(event, audiojs) {
+    $("#covers .single-cover.selected").removeClass('playing');
+  });
 
 });

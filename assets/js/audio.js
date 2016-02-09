@@ -1,9 +1,34 @@
-(function() {
+var playlist = (function() {
   var currentAudio = null;
+
+  var playlist = {
+    playPause:  function() {
+      var playing = currentAudio && currentAudio.playing;
+      if (playing) {
+        playlist.pause();
+      } else {
+        playlist.play();
+      }
+    },
+    play: function() {
+      if (currentAudio) {
+        currentAudio.play();
+      } else {
+        var firstTrack = $('audio:eq(0)');
+        if (firstTrack.length === 0) return;
+
+        firstTrack.data('audiojs').play();
+      }
+    },
+    pause:  function() {
+      if (currentAudio) {
+        currentAudio.pause();
+      }
+    }
+  };
   
   $(document).on('shelf:pageLoaded', '.single-page', function() {
     var elements = $(this);
-    console.log(elements);
     audiojs.events.ready(function() {
       elements.find("audio:not(.audioloaded)").addClass('audioloaded').each(function() {
 
@@ -34,26 +59,16 @@
       currentAudio = null;
     }
   });
+  $(document).on('shelf:bookOpened', function() {
+    var playPending = true;
+    $('.single-page').on('audiojs:loadStarted', 'audio', function(event, audiojs) {
+      if (playPending) {
+        audiojs.play();
+        playPending = false;
+      }
+    });
+  });
   
-  $(document).on('playlist:playPause', function() {
-    var playing = currentAudio && currentAudio.playing;
-    $(document).trigger(playing ? 'playlist:pause' : 'playlist:play');
-  });
-  $(document).on('playlist:play', function() {
-    if (currentAudio) {
-      currentAudio.play();
-    } else {
-      var firstTrack = $('audio:eq(0)');
-      if (firstTrack.length === 0) return;
-      
-      firstTrack.data('audiojs').play();
-    }
-  });
-  $(document).on('playlist:pause', function() {
-    if (currentAudio) {
-      currentAudio.pause();
-    }
-  });
   $(document).on('audiojs:play', function(event, audiojs) {
     //Debug purposes
     currentlyPlayingAudio = audiojs;
@@ -78,4 +93,5 @@
     nextAudio.play();
   });
 
+  return playlist;
 })();
