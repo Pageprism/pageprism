@@ -2,6 +2,7 @@ var playlist = (function() {
   var currentAudio = null;
 
   var playlist = {
+    repeat: false,
     playPause:  function() {
       var playing = currentAudio && currentAudio.playing;
       if (playing) {
@@ -81,6 +82,7 @@ var playlist = (function() {
     if (nextIndex >= audios.length) {
       nextIndex = 0;
     }
+    if (nextIndex === 0 && !playlist.repeat) return;
     
     var nextAudio = audios.eq(nextIndex).data('audiojs');
     nextAudio.skipTo(0);
