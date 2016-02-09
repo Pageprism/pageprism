@@ -1,10 +1,18 @@
+var currentBook = null;
+
 function openBook(bookId, pageCount, startingPage) {
   $(".book-content-separator").show();
   $("#covers .single-cover").each(function() {
     var selected = $(this).data('book-id') == bookId;
     $(this).toggleClass('selected', selected);
   });
+
+  if (currentBook) {
+    $(document).trigger('shelf:bookClosing', [currentBook]);
+  }
   $("#rendered-pages").empty();
+  currentBook = bookId;
+  $(document).trigger('shelf:bookOpening', [bookId]);
 
   startingPage = startingPage || 1;
 
@@ -19,13 +27,14 @@ function openBook(bookId, pageCount, startingPage) {
     var loadMore = $('<div id="loadmore" >Load previous pages</div>');    
     $("#rendered-pages").prepend(loadMore);
     loadMore.click(function(){
+      var scrollToCurrent = function() {
+        scrollToPage(startingPage);
+      };
 
       for (var i=0; i < pageCount;i++) {
         var page_element = $('<div class="single-page" id="page_'+i+'">LOADING #'+i+'</div>');
         loadMore.before(page_element);
-        page_element.loadPage(bookId, i, function() {
-          scrollToPage(startingPage);
-        });
+        page_element.loadPage(bookId, i, scrollToCurrent);
       }
       loadMore.remove();
     });
@@ -55,18 +64,18 @@ $.fn.loadPage = function(book_id, page, callback) {
               callback.apply(el);
               run = true;
             }
-          }
+          };
 
           $(this).find('img').on('load', fun).each(function() {
             if (this.complete) fun();
           });
         }
         
-        loadAudio(el.find('audio'));
+        $(this).trigger('shelf:pageLoaded', [book_id, page]);
       });
 
 
-      if ($('.page-share.open').length == 0) {
+      if ($('.page-share.open').length === 0) {
         $('.page-share:first').addClass('open');
       }
       
@@ -74,7 +83,7 @@ $.fn.loadPage = function(book_id, page, callback) {
   });
 
   return this;
-}
+};
 
 function scrollToPage(page) {
   $('html, body').animate({
@@ -122,9 +131,9 @@ $(function() {
   });
 
   //Auto open a book if one's not open yet and some books exist
-  if ($('.single-cover.selected').length == 0) {
+  if ($('.single-cover.selected').length === 0) {
     var firstBook = $('.single-cover:first');
-    if (firstBook.length == 0) return;
+    if (firstBook.length === 0) return;
     openBookLink(firstBook, false);
   }
 

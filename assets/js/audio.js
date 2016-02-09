@@ -1,10 +1,11 @@
 (function() {
   var currentAudio = null;
   
-  //Push function to global namespace
-  loadAudio = function(elements) {
+  $(document).on('shelf:pageLoaded', '.single-page', function() {
+    var elements = $(this);
+    console.log(elements);
     audiojs.events.ready(function() {
-      elements.filter(":not(.audioloaded)").addClass('audioloaded').each(function() {
+      elements.find("audio:not(.audioloaded)").addClass('audioloaded').each(function() {
 
         //Prepare audiojs settings with triggers for jquery events
         var settings = {
@@ -26,7 +27,13 @@
         $(ajs.element).data('audiojs', ajs);
       });
     });
-  };
+  });
+  $(document).on('shelf:bookClosing', function() {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+  });
   
   $(document).on('playlist:playPause', function() {
     var playing = currentAudio && currentAudio.playing;
