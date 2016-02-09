@@ -60,13 +60,7 @@ var playlist = (function() {
     }
   });
   $(document).on('shelf:bookOpened', function() {
-    var playPending = true;
-    $('.single-page').on('audiojs:loadStarted', 'audio', function(event, audiojs) {
-      if (playPending) {
-        audiojs.play();
-        playPending = false;
-      }
-    });
+    $('.single-page').one('audiojs:loadStarted', 'audio:eq(0)', playlist.play);
   });
   
   $(document).on('audiojs:play', function(event, audiojs) {
