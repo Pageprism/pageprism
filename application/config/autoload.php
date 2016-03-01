@@ -112,7 +112,10 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('Menu_model');
+$autoload['model'] = array(
+  'Menu_model',
+  'Shelf_model',
+);
 
 
 /* End of file autoload.php */

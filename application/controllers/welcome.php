@@ -5,7 +5,9 @@ class Welcome extends CI_Controller {
 	public function index()
   {
     $this->load->model('Shelf_model');
-    $id = $this->Shelf_model->getFrontpageId();
+    $avoid_shelf = (int)$this->input->get('from_shelf');
+
+    $id = $this->Shelf_model->getFrontpageId($avoid_shelf);
 
     if ($id) {
       redirect('shelf/'.$id);

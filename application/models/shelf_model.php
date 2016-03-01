@@ -2,8 +2,15 @@
 
 class Shelf_model extends CI_Model {
   
-  public function getFrontpageId() {
-    $shelf = $this->db->query("SELECT id FROM shelf where is_frontpage ORDER BY rand() limit 1");
+  public function getFrontPageLink($shelf_id) {
+    $link = '/';
+    if ($shelf_id) {
+      $link .= '?from_shelf='.(int)$shelf_id;
+    }
+    return $link;
+  }
+  public function getFrontpageId($avoid_shelf = 0) {
+    $shelf = $this->db->query("SELECT id FROM shelf where is_frontpage ORDER BY id !=? desc, rand() limit 1", array($avoid_shelf));
     $row = $shelf->row();
     return $row ? $row->id : null;
   }
