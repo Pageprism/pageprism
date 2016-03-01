@@ -14,13 +14,12 @@ $(function() {
   var naviShown = null;
   var navH = navi.height();
   var scrollTrigger = 64;
-  
 
   function toggleMainMenu() {
     openMainMenu(window.localStorage.menuOpen != "true");
   }
   function openMainMenu(toggle) {
-    window.localStorage.menuOpen = !!toggle
+    window.localStorage.menuOpen = !!toggle;
     $("body").toggleClass("open-sidebar", !!toggle);
   }
 
@@ -72,6 +71,9 @@ $(function() {
     toggleMainMenu();
     e.preventDefault();
   });
+  $('#contents').click(function() {
+    openMainMenu(false);
+  });
   var swipeTreshold = 60;
   $(".navbar, .shelfs-and-covers, #mainmenu, .admin").swipe({
     allowPageScroll: "vertical",
@@ -97,7 +99,7 @@ $(function() {
 
   // The front page acts as a "Back to shelves" button
   $('#mainlogo').click(function(e) {
-    if ($('.book-content-separator:visible').length == 0) {
+    if ($('.book-content-separator:visible').length === 0) {
       return;
     }
     if (isScrolledToBook()) {
