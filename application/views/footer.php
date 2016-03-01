@@ -1,23 +1,4 @@
-
 </div>
-<!-- Footer -->
-    <div class="footer">
-        <a href="#" id="footer-to-top">PageShare</a>
-            <ul class="nav">
-                <?php
-                $query = $this->db->query("SELECT id,title,url_title FROM pages");
-                    if ($query->num_rows() > 0)
-                    {
-                        foreach ($query->result_array() as $pages_bottom)
-                        {?>
-                            <li><a href="/page/<?=$pages_bottom['url_title']?>"><?=$pages_bottom['title']?></a></li>
-                        <?php
-                        }
-                    }
-                ?>
-            </ul>
-    </div>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
     <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?= base_url();?>assets/js/jquery.touchSwipe.min.js"></script>
