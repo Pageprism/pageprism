@@ -75,7 +75,7 @@ _gaq.push(['_trackPageview']);
 	<div class="navbar-inner" id="top-header">
     	<div class="container-fluid">
 
-        <a id="mainlogo" class="brand" href="<?= $this->Shelf_model->getFrontPageLink($shelf_id); ?>">PageShare</a>
+        <a id="mainlogo" class="brand" href="<?= $this->Shelf_model->getFrontPageLink(isset($shelf_id) ? $shelf_id : false); ?>">PageShare</a>
 
             <div id="scroll-to-top" style="display:none"><button class="btn">Back to shelves</button></div>
             <a href="#" id="sidebar-toggle">
