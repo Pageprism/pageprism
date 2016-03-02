@@ -1,18 +1,6 @@
 $(function() {
-  function isScrolledToBook() {
-    var separator = $('.book-content-separator');
-    var wt = $(window).scrollTop();    //* top of the window
-    var nh = $('.navbar').height();
-    var ot = separator.length ? separator.offset().top : nh;  //* top of book
-
-    return wt > ot - nh;
-  }
 
   var win = $(window);
-  var navi = $('.navbar');
-  var menu = $('#mainmenu');
-  var naviShown = null;
-  var navH = navi.height();
   var scrollTrigger = 64;
 
   function toggleMainMenu() {
@@ -29,37 +17,27 @@ $(function() {
     }, timeout || 1);
   }
 
-  function hideNavi() {
-    if (naviShown === false) return;
-    naviShown = false;
-    menu.animate({top: 0}, 200).css({paddingBottom: 0});
-    navi.animate({top: -navH}, 200, function() {
-      navi.removeClass('navbar-fixed').css('top', 0);
-      updateMenuScrollbar();
-    });
-  }
-  function showNavi() {
-    if (naviShown === true) return;
-    naviShown = true;
-    navi.css('top', -navH).addClass('navbar-fixed').animate({top: 0}, 200);
-    menu.animate({top: navH-1}, 200).css({paddingBottom: navH-1});
-    updateMenuScrollbar();
-  }
-
   var lastPosition = 0;
   var timer = null;
   win.scroll(function() {
-    if (!isScrolledToBook()) {
-      navi.removeClass('navbar-fixed').css('top', 0);
+    var scrolled = win.scrollTop() > 0;
+    $("body").toggleClass("scrolled", scrolled);
+    
+    if (!scrolled) {
+      $("body").removeClass("show-navi");
       return;
     }
     var scrollDelta = win.scrollTop() - lastPosition;
     if (scrollDelta > 0) {
-      hideNavi();
+      $("body").removeClass("show-navi");
+      updateMenuScrollbar(250);
+
       lastPosition = win.scrollTop();
       clearTimeout(timer);
     } else if (-scrollDelta > scrollTrigger) {
-      showNavi();
+      $("body").addClass("show-navi");
+      updateMenuScrollbar(250);
+
       clearTimeout(timer);
       timer = setTimeout(function() {
         lastPosition = win.scrollTop();
@@ -113,8 +91,6 @@ $(function() {
     updateMenuScrollbar(450);
   });
   $('#mainmenu').perfectScrollbar();
-  window.addEventListener('resize', function() {
-    updateMenuScrollbar();
-  });
+  window.addEventListener('resize', updateMenuScrollbar);
 
 });

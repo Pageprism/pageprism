@@ -45,9 +45,18 @@ a:hover i {
   left: 0;
   width: 100%;
   z-index: 100;
+  -webkit-transition: top 0.2s ease-in-out;
+  -moz-transition: top 0.2s ease-in-out;
+  -ms-transition: top 0.2s ease-in-out;
+  -o-transition: top 0.2s ease-in-out;
+  transition: top 0.2s ease-in-out;
 }
-.navbar-fixed {
+body.scrolled .navbar {
   position: fixed;
+  top: -60px;
+}
+body.scrolled.show-navi .navbar {
+  top: 0;
 }
 /* Top header */
 #top-header {
@@ -83,7 +92,7 @@ a:hover i {
 
 #mainmenu {
   background: #fff;
-  position: fixed;
+  position: absolute;
   width: 240px;
   height: 100%;
   z-index: 1000;
@@ -93,15 +102,24 @@ a:hover i {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   line-height: 49px;
-  -webkit-transition:  right 0.4s ease-in-out;
-  -moz-transition:  right 0.4s ease-in-out;
-  -ms-transition:  right 0.4s ease-in-out;
-  -o-transition:  right 0.4s ease-in-out;
-  transition:  right 0.4s ease-in-out;
+  -webkit-transition: right 0.4s ease-in-out, top 0.2s ease-in-out;
+  -moz-transition: right 0.4s ease-in-out, top 0.2s ease-in-out;
+  -ms-transition: right 0.4s ease-in-out, top 0.2s ease-in-out;
+  -o-transition: right 0.4s ease-in-out, top 0.2s ease-in-out;
+  transition: right 0.4s ease-in-out, top 0.2s ease-in-out;
 }
 .open-sidebar #mainmenu{
   right: 0;
   box-shadow: rgba(0, 0, 0, 0.3) -1px 4px 7px 0px;
+}
+body.scrolled #mainmenu {
+  position: fixed;
+  top: 0;
+  padding-bottom: 0;
+}
+body.scrolled.show-navi #mainmenu {
+  top: 58px;
+  padding-bottom: 58px;
 }
 
 #mainmenu ul {
