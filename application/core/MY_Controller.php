@@ -7,8 +7,9 @@ class MY_Controller extends CI_Controller {
 		if ($this->session->userdata('logged_in') == false)
 		{
 			//$login_page= $this->load->view('admin/auth',"",true);
-			//exit($login_page);
-			redirect('admin/auth');
+      //exit($login_page);
+      $current_url = $_SERVER['REQUEST_URI'];
+			redirect('admin/auth?backUrl='.urlencode($current_url));
 		}
 	}
 
