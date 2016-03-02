@@ -8,7 +8,10 @@ class Auth extends CI_Controller {
 	}
 
 	function index()
-	{
+  {
+    $backUrl = $this->input->get('backUrl') ?: '/';
+    if ($backUrl[0] != '/') $backUrl = '/';
+
 		$user = $this->input->post('user');
 		$password = $this->input->post('password');
 		$posted = $this->input->post('posted');
@@ -17,15 +20,15 @@ class Auth extends CI_Controller {
 			if ($user && $password)
 			{
 				if($this->simpleloginsecure->login($user, $password)) {
-				    redirect('admin/index');
+				    redirect($backUrl);
 				} else {
-					$this->layout->show('admin/auth', array('error' => 'wrong username or password'));
+          $this->layout->show('admin/auth', array('error' => 'wrong username or password', 'backUrl' => $backUrl));
 				}
 			} else {
-				$this->layout->show('admin/auth', array('error' => 'user or password empty'));
+        $this->layout->show('admin/auth', array('error' => 'user or password empty', 'backUrl' => $backUrl));
 			}			
 		} else {
-			$this->layout->show('admin/auth', array('error' => ''));
+      $this->layout->show('admin/auth', array('error' => '', 'backUrl' => $backUrl));
 		}
 
 	}

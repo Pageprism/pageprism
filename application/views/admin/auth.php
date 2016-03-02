@@ -1,8 +1,8 @@
 <div id="login">
-  <h1>Authenticate:</h1>
-  <?php echo form_open('admin/auth');?>
-  <p>User: <?php echo form_input('user');?></p>
-  <p>Pass: <?php echo form_password('password');?></p>
+  <h1>Authenticate</h1>
+  <?php echo form_open('admin/auth?backUrl='.urlencode($backUrl));?>
+  <p><label>Username:</label> <?php echo form_input('user');?></p>
+  <p><label>Password:</label> <?php echo form_password('password');?></p>
   <?php echo form_hidden('posted', 'true');?>
 
   <?php echo form_submit('login', 'Login');?>

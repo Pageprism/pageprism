@@ -86,9 +86,11 @@ class Menu_model extends CI_Model {
         )
       );
     } else {
+      $current_url = $_SERVER['REQUEST_URI'];
+
       $menu[] = array(
         'title' => 'Log in',
-        'url' => "/login"
+        'url' => "/login?backUrl=".urlencode($current_url)
       );
     }
   }
