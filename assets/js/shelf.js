@@ -54,7 +54,7 @@ function openBook(bookId, pageCount, startingPage) {
 $.fn.loadPage = function(bookId, page, callback) {
   var els = this;
   $.ajax({
-    url: "/index.php/book/load_pages_js",
+    url: "/index.php/book/load_pages",
     type: 'POST',
     async: true,
     data: {

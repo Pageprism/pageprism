@@ -46,7 +46,7 @@ class Book extends CI_Controller {
 		}
 	}
   
-	public function load_pages_js() {
+	public function load_pages() {
 		$post_data = $this->input->post();
 		if ($post_data) {
 			$id = $post_data['id'];

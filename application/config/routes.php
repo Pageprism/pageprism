@@ -40,22 +40,21 @@
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
-$route['book/load_pages'] = 'book/load_pages';
-$route['book/load_pages_js'] = 'book/load_pages_js';
-$route['book/counter'] = 'book/counter';
-$route['book/(:any)'] = 'book/view/$1/p1';
-$route['book/(:any)/p(:num)'] = 'book/view/$1/p$2';
-$route['shelf/(:num)'] = 'shelf/view/$1';
-$route['page/(:any)'] = 'page/view/$1';
-$route['admin'] = 'admin/index';
+//Admin
 $route['login'] = 'admin/auth';
 $route['logout'] = 'admin/auth/logout';
+$route['admin'] = 'admin/index';
 $route['admin/shelf/modify/(:any)'] = 'admin/shelf/modify/$1';
 $route['admin/shelf/remove/(:any)'] = 'admin/shelf/remove/$1';
 $route['admin/shelf/set_frontpage_bit/(:any)/(:num)'] = 'admin/shelf/update_frontpage_bit/$1';
 $route['admin/content/edit/(:num)'] = 'admin/content/edit/$1';
 $route['admin/document/modify/(:num)'] = 'admin/document/modify/$1';
 $route['admin/(:any)'] = 'admin/$1';
+//Books
+$route['shelf/(:num)'] = 'shelf/view/$1';
+$route['book/load_pages'] = 'book/load_pages';
+$route['book/(:any)'] = 'book/view/$1/p1';
+$route['book/(:any)/p(:num)'] = 'book/view/$1/p$2';
 $route['(:any)/p(:num)'] = 'book/view/$1/p$2';
 $route['(:any)'] = 'book/view/$1/p1';
 
