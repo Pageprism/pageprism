@@ -13,7 +13,7 @@ class Menu_model extends CI_Model {
     $this->addCurrentBook($menu, $book);
     $this->addPages($menu);
     $this->addShelves($menu);
-    $this->addAdmin($menu);
+    $this->addAdmin($menu, $uri);
     $this->processClasses($menu, $uri);
 
     return $menu;
@@ -103,7 +103,8 @@ class Menu_model extends CI_Model {
     );
   }
 
-  function addAdmin(&$menu) {
+  function addAdmin(&$menu, $uri) {
+    if (!$uri) $uri = '/'.$this->uri->uri_string;
     $logged_in = $this->session->userdata('user_name') != "";
     if ($logged_in) {
       $menu[] = array(
@@ -133,11 +134,9 @@ class Menu_model extends CI_Model {
         )
       );
     } else {
-      $current_url = $_SERVER['REQUEST_URI'];
-
       $menu[] = array(
         'title' => 'Log in',
-        'url' => "/login?backUrl=".urlencode($current_url)
+        'url' => "/login?backUrl=".urlencode($uri)
       );
     }
   }
