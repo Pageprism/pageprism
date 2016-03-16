@@ -29,7 +29,7 @@ class Book extends CI_Controller {
 			foreach ($query->result_array() as $row)
       {
         $this->layout->show('index', array(
-          'rendered_content' => $this->load_pages($row['id'],$page_n),
+          'rendered_content' => $this->_load_pages($row['id'],$page_n),
           'shelf_id' => $row['shelf_id'],
           'page' => $page_n,
           'cover_image' => $row['file_url_cover'],
@@ -51,11 +51,11 @@ class Book extends CI_Controller {
 		if ($post_data) {
 			$id = $post_data['id'];
 			$page_n = $post_data['page_n'];
-			echo $this->load_pages($id,$page_n);
+			echo $this->_load_pages($id,$page_n);
 		}
   }
 
-	public function load_pages($id, $page_n) {
+	public function _load_pages($id, $page_n) {
     $query = $this->db->query("SELECT book.*, pdf.page_image_url, pdf.page_n 
       FROM book LEFT JOIN pdf ON pdf.book_id=book.id
       WHERE book.id = ? and (pdf.page_n = ? OR page_n IS NULL)", array($id, $page_n));
