@@ -87,7 +87,7 @@ $(function() {
   });
   //Prevent links without url from reloading stuff
   $(document).on('click', '#mainmenu a', function(e) {
-    if ($(this).attr('href') == '') {
+    if ($(this).attr('href') === '') {
       e.preventDefault();
     }
   });
