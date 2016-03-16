@@ -1,6 +1,6 @@
 <!-- Container -->
 <div class="container-fluid admin" id="the-container">
-  <h1>Shelves</h1>
+  <h1>Collections</h1>
 <?php if ($shelves): ?>
 <table>
   <tr>
@@ -35,7 +35,7 @@
 <fieldset>
   <legend>Set frontpage</legend>
   <select name="frontpage">
-    <option value="all">Use any shelf randomly</option>
+    <option value="all">Use any collection randomly</option>
     <?php foreach ($shelves as $row): ?>
     <option value="<?= $row->id ?>"><?= htmlspecialchars($row->name) ?></option>
     <?php endforeach; ?>
@@ -44,12 +44,12 @@
 </fieldset>
 </form>
 <?php	else: ?>
-<p>No shelves found</p>
+<p>No collections found</p>
 <?php endif; ?>
 <?php echo form_open('admin/shelf/add_shelf');?>
 <fieldset>
-  <legend>Add shelf</legend>
-Shelf name: <?php echo form_input('shelf_name');?>
+  <legend>Add collection</legend>
+Name: <?php echo form_input('shelf_name');?>
 <?php echo form_submit('submit', 'Add');?>
 </fieldset>
 </form>

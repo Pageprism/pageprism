@@ -32,7 +32,7 @@ class Menu_model extends CI_Model {
     }
     $shelf = $this->shelf_model->getShelf($book->shelf_id);
     if ($shelf) {
-      $items['Shelves'][] = array(
+      $items['Collections'][] = array(
         'title' => $shelf->name,
         'url' => "/shelf/".$shelf->id,
       );
@@ -97,7 +97,7 @@ class Menu_model extends CI_Model {
       );
     }
     $menu[] = array(
-      'title' => 'Shelves',
+      'title' => 'Collections',
       'url' => '#',
       'children' => $shelves
     );
