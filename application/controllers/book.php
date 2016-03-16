@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Book extends CI_Controller {
 
 	public function index() {
@@ -20,8 +19,8 @@ class Book extends CI_Controller {
 			$name = $post_data['id'];
 			$page_n = "1";
 		} else {
-			$name = $this->uri->segment(2);
-			$page_n = substr($this->uri->segment(3),1);
+			$name = $this->uri->rsegment(3);
+			$page_n = substr($this->uri->rsegment(4),1);
 		}
 
 		$query = $this->db->query("SELECT * FROM book WHERE book.book_name_clean = '$name'");

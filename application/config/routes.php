@@ -43,9 +43,8 @@ $route['404_override'] = '';
 $route['book/load_pages'] = 'book/load_pages';
 $route['book/load_pages_js'] = 'book/load_pages_js';
 $route['book/counter'] = 'book/counter';
-//$route['music/(:any)'] = 'book/song/$1';
 $route['book/(:any)'] = 'book/view/$1/p1';
-$route['book/(:any)/p(:num)'] = 'book/view/$1';
+$route['book/(:any)/p(:num)'] = 'book/view/$1/p$2';
 $route['shelf/(:num)'] = 'shelf/view/$1';
 $route['page/(:any)'] = 'page/view/$1';
 $route['admin'] = 'admin/index';
@@ -57,6 +56,8 @@ $route['admin/shelf/set_frontpage_bit/(:any)/(:num)'] = 'admin/shelf/update_fron
 $route['admin/content/edit/(:num)'] = 'admin/content/edit/$1';
 $route['admin/document/modify/(:num)'] = 'admin/document/modify/$1';
 $route['admin/(:any)'] = 'admin/$1';
+$route['(:any)/p(:num)'] = 'book/view/$1/p$2';
+$route['(:any)'] = 'book/view/$1/p1';
 
 
 /* End of file routes.php */
