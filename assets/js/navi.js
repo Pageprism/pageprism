@@ -85,7 +85,14 @@ $(function() {
       e.preventDefault();
     }
   });
-  $('#mainmenu li.parent > a').click(function(e) {
+  //Prevent links without url from reloading stuff
+  $(document).on('click', '#mainmenu a', function(e) {
+    if ($(this).attr('href') == '') {
+      e.preventDefault();
+    }
+  });
+  //Parent links open children
+  $(document).on('click', '#mainmenu li.parent > a', function(e) {
     $(this).parent().toggleClass('open');
     e.preventDefault();
     updateMenuScrollbar(450);

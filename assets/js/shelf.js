@@ -49,12 +49,15 @@ function openBook(bookId, pageCount, startingPage) {
       loadMore.remove();
     });
   }
+  $('#mainmenu').load("/index.php/ajax/load_menu", {book: bookId}, function() {
+    $('#mainmenu').perfectScrollbar('update');
+  });
 }
 
 $.fn.loadPage = function(bookId, page, callback) {
   var els = this;
   $.ajax({
-    url: "/index.php/book/load_pages",
+    url: "/index.php/ajax/load_pages",
     type: 'POST',
     async: true,
     data: {

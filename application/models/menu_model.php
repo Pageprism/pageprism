@@ -1,23 +1,70 @@
 <?php
 class Menu_model extends CI_Model {    
 
-  public function getMenu() {
+  public function getMenu($book = null, $uri = null) {
     $this->load->model('shelf_model');
     $menu = array();
 
-    $this->addPages($menu);
-    $this->addShelves($menu);
-    $this->addAdmin($menu);
-    $this->processClasses($menu);
-
-    return $menu;
-  }
-
-  function addPages(&$menu) {
     $menu[] = array(
       'title' => 'Free software (github.com)',
       'url' => "https://github.com/Pageprism/pageprism",
     );
+
+    $this->addCurrentBook($menu, $book);
+    $this->addPages($menu);
+    $this->addShelves($menu);
+    $this->addAdmin($menu);
+    $this->processClasses($menu, $uri);
+
+    return $menu;
+  }
+
+  function addCurrentBook(&$menu, $book) {
+    if (!$book) return;
+    $this->load->model('shelf_model');
+
+    $children = array();
+    $items = array();
+    foreach(array_map('trim', explode(',',$book->book_author)) as $author) {
+      $items['Authors'][] = array(
+        'title' => $author,
+      );
+    }
+    $shelf = $this->shelf_model->getShelf($book->shelf_id);
+    if ($shelf) {
+      $items['Shelves'][] = array(
+        'title' => $shelf->name,
+        'url' => "/shelf/".$shelf->id,
+      );
+    }
+    //TODO: Categories
+    foreach(array_map('trim', explode(',',$book->language)) as $language) {
+      $items['Languages'][] = array(
+        'title' => $language,
+      );
+    }
+    foreach(array_map('trim', explode(',',$book->book_timestamp)) as $timestamp) {
+      $items['Years'][] = array(
+        'title' => $timestamp,
+      );
+    }
+    foreach($items as $title => $subItems) {
+      $children[] = array(
+        'title' => $title,
+        'children' => $subItems
+      );
+    }
+
+
+    $menu[] = array(
+      'id' => 'current_book_info',
+      'title' => $book->book_name,
+      'url' => "/$book->book_name_clean",
+      'children' => $children
+    );
+
+  }
+  function addPages(&$menu) {
     $pages = array();
     foreach ($this->shelf_model->getShelvesForParent('principles') as $shelf) {
       $pages[] = array(
@@ -72,7 +119,7 @@ class Menu_model extends CI_Model {
             'url' => "/admin/document/documentlist",
           ),
           array(
-            'title' => 'Shelfs',
+            'title' => 'Collections',
             'url' => "/admin/shelf",
           ),
           array(
@@ -94,20 +141,27 @@ class Menu_model extends CI_Model {
       );
     }
   }
-  function processClasses(&$menu) {
+  function processClasses(&$menu, $uri = null) {
+    if (!$uri) $uri = '/'.$this->uri->uri_string;
     $someItemSelected = false;
-
+    
     foreach($menu as &$menuitem) {
+      if (!isset($menuitem['url'])) {
+        $menuitem['url'] = '';
+      }
       $selected = false;
       $classes = array();
+      if (isset($menuitem['classes'])) {
+        $classes[] = $menuitem['classes'];
+      }
 
-      if ($menuitem['url'] == '/'.$this->uri->uri_string) {
+      if ($menuitem['url'] == $uri) {
         $selected = true;
         $classes[] = 'selected';
       }
       if (!empty($menuitem['children'])) {
         $classes[] = 'parent';
-        $selected = $this->processClasses($menuitem['children']);
+        $selected = $this->processClasses($menuitem['children'], $uri) || $selected;
       }
       if ($selected) {
         $classes[] = 'open';

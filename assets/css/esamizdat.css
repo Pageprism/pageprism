@@ -9,7 +9,7 @@ body {
   }
 }
 
-#svgwrap {
+.hidden, #svgwrap {
   display: none;
 }
 
@@ -162,6 +162,9 @@ body.scrolled.show-navi #mainmenu {
 }
 #mainmenu .parent ul a {
   padding-left: 20px;
+}
+#mainmenu .parent ul ul a {
+  padding-left: 40px;
 }
 
 #mainmenu a:link,

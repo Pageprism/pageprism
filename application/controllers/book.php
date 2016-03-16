@@ -5,14 +5,6 @@ class Book extends CI_Controller {
 		redirect("/");
 	}
 
-	public function counter() {
-		$input = $this->input->post();
-		$id = $input['id'];
-		$this->db->set('counter', 'counter+1', FALSE);
-		$this->db->where('id', $id);
-		$this->db->update('book');
-	}
-
 	public function view() {
 		$post_data = $this->input->post();
 		if ($post_data) {
@@ -22,25 +14,17 @@ class Book extends CI_Controller {
 			$name = $this->uri->rsegment(3);
 			$page_n = substr($this->uri->rsegment(4),1);
 		}
-
-		$query = $this->db->query("SELECT * FROM book WHERE book.book_name_clean = '$name'");
-		if ($query->num_rows() > 0)
+    
+    $this->load->model('book_model');
+    $book = $this->book_model->loadBookByName($name);
+		if ($book)
 		{
-			foreach ($query->result_array() as $row)
-      {
-        $this->layout->show('index', array(
-          'rendered_content' => $this->_load_pages($row['id'],$page_n),
-          'shelf_id' => $row['shelf_id'],
-          'page' => $page_n,
-          'cover_image' => $row['file_url_cover'],
-          'book_id' => $row['id'],
-          'totalpages' => $row['pages'],
-          'title' => $row['book_name'],
-          'book_author' => $row['book_author'],
-          'book_timestamp' => $row['book_timestamp'],
-          'id' => $row['id']
-        ));
-			}
+      $this->layout->show('index', array(
+        'shelf_id' => $book->shelf_id,
+        'current_book' => $book,
+        'current_page' => $page_n,
+        'cover_image' => $book->file_url_cover,
+      ));
 		} else {
 			redirect("/");
 		}
