@@ -110,7 +110,7 @@ $(function() {
   $(document).on('click','.pagenumber', function(){
     $(this).parent().toggleClass('open');
   });
-  $(document).on('click','.single-page', function(e){
+  $(document).on('click','#contents', function(e){
     var target = $(e.target);
     if (target.is('.page-share') || target.parents('.page-share').length > 0) {
       return;

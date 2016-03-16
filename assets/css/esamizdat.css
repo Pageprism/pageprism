@@ -40,7 +40,7 @@ a:hover i {
   height: 60px;
 }
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -52,7 +52,6 @@ a:hover i {
   transition: top 0.2s ease-in-out;
 }
 body.scrolled .navbar {
-  position: fixed;
   top: -60px;
 }
 body.scrolled.show-navi .navbar {
@@ -92,7 +91,7 @@ body.scrolled.show-navi .navbar {
 
 #mainmenu {
   background: #fff;
-  position: absolute;
+  position: fixed;
   width: 240px;
   height: 100%;
   z-index: 1000;

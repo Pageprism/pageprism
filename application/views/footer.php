@@ -4,7 +4,7 @@
     <script src="<?= base_url();?>assets/js/jquery.touchSwipe.min.js"></script>
     <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
     <script src="<?= base_url();?>assets/js/audio.js?v=0"></script>
-    <script src="<?= base_url();?>assets/js/shelf.js?v=6"></script>
+    <script src="<?= base_url();?>assets/js/shelf.js?v=6a"></script>
     <script src="<?= base_url();?>assets/js/navi.js?v=2"></script>
    	<script src="<?= base_url();?>assets/js/waypoints.min.js"></script>
    	<script src="<?= base_url();?>assets/js/waypoints-sticky.min.js"></script>    
