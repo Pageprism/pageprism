@@ -61,7 +61,7 @@ if (empty($page->page_n)) $page->page_n = 1;
           <?php endif; ?>
 
           <?php if (!empty($page->misc_file_url)): ?>
-          <h5>Layouts/Licences: </h5>
+          <h5>Designs: </h5>
           <a href="<?= $page->misc_file_url ?>" target="_blank" 
             onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $page->book_name ?>\', \'Layouts/Licences\);">
             <?= shorten($page->misc_file_url) ?>
