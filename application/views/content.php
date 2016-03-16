@@ -19,7 +19,7 @@ if (empty($page->page_n)) $page->page_n = 1;
     <div class="share-part">
       <div share-part-separator>
         <h5 class="url">Page URL: </h5>
-        <a href="<?= base_url() ?>book/<?= $page->book_name_clean ?>/p<?= $page->page_n ?>" class="direct-url"><?= base_url() ?>book/<?= $page->book_name_clean ?>/p<?= $page->page_n ?></a>
+        <a href="<?= base_url() ?><?= $page->book_name_clean ?>/p<?= $page->page_n ?>" class="direct-url"><?= base_url() ?><?= $page->book_name_clean ?>/p<?= $page->page_n ?></a>
       </div>
       <div share-part-separator>
         <h5>Mobile File: </h5>
