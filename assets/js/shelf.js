@@ -1,6 +1,6 @@
 var currentBook = null;
 
-function openBook(bookId, pageCount, startingPage) {
+function openBook(bookId, pageCount, startingPage, callback) {
   if (currentBook == bookId) {
     return;
   }
@@ -23,6 +23,7 @@ function openBook(bookId, pageCount, startingPage) {
     loadedCount++;
     if (loadedCount == pageCount-(startingPage-1)) {
       $(document).trigger('shelf:bookOpened', [bookId]);
+      if (callback) callback(bookId);
     }
   };
 

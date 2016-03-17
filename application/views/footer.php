@@ -11,7 +11,7 @@
     <?php if (isset($current_book)):  ?>
     <script>
       $(document).ready(function() {
-        openBook(<?= $current_book->id ?>, <?= $current_book->pages ?>, <?= $current_page ?>);
+        openBook(<?= $current_book->id ?>, <?= $current_book->pages ?>, <?= $current_page ?>, function() { scrollToPage(<?= $current_page ?>); });
       });
     </script>
     <?php endif; ?>
