@@ -44,7 +44,7 @@ class Document extends MY_Controller {
     
     if (!$error) {
       $this->session->set_flashdata('msg', 'Document saved!');
-      redirect("admin/document/documentlist");
+      redirect($update_data['book_name_clean']);
     } else {
       $this->session->set_flashdata('msg', $error);
       redirect("admin/document/modify/".$id);

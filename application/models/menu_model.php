@@ -25,6 +25,15 @@ class Menu_model extends CI_Model {
 
     $children = array();
     $items = array();
+
+    $logged_in = $this->session->userdata('user_name') != "";
+    if ($logged_in) {
+      $children[] = array(
+        'title' => 'Edit this book',
+        'url' => '/admin/document/modify/'.$book->id,
+      );
+    }
+
     foreach(array_map('trim', explode(',',$book->book_author)) as $author) {
       $items['Authors'][] = array(
         'title' => $author,
@@ -114,10 +123,6 @@ class Menu_model extends CI_Model {
           array(
             'title' => 'Upload document',
             'url' => "/admin/document/upload",
-          ),
-          array(
-            'title' => 'Modify document',
-            'url' => "/admin/document/documentlist",
           ),
           array(
             'title' => 'Collections',
