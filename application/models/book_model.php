@@ -20,5 +20,10 @@ class Book_model extends CI_Model {
 		$query = $this->db->query("SELECT * FROM book WHERE book.shelf_id = ? order by ordering asc", $id);
     return $query->result();
   }
+  public function hasAudio($id) {
+		$query = $this->db->query("SELECT count(*) as count FROM audio_file WHERE book_id = ?", $id);
+    $res = $query->row();
+    return (bool)($res->count) ?: false;
+  }
 
 }

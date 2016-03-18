@@ -78,4 +78,15 @@ $(function() {
   $('#mainmenu').perfectScrollbar();
   window.addEventListener('resize', updateMenuScrollbar);
 
+  $(document).on('audiojs:play', function(event, audiojs) {
+    $("#playpause a").text('Pause album');
+  });
+  $(document).on('audiojs:pause', function(event, audiojs) {
+    $("#playpause a").text('Play album');
+  });
+  $(document).on('click', '#playpause', function(event) {
+    playlist.playPause();
+  });
+
+
 });
