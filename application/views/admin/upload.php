@@ -6,7 +6,7 @@
 	?>
 
 	<h1>Upload document:</h1>
-	<p>Uploader id: <?php echo $this->session->userdata('user_id');?> (<?php echo $this->session->userdata('user_name');?>)</p>
+  <!-- <p>Uploader id: <?php echo $this->session->userdata('user_id');?> (<?php echo $this->session->userdata('user_name');?>)</p> -->
 	<?php echo form_open_multipart('admin/document/create_document');?>
 	<p><span class="label">PDF File: </span><?php echo form_upload('pdffile');?></p>
   <p><span class="label">PDF Rendering Accuracy: </span><?php echo form_dropdown('pdf_resolution_dpi', array(
@@ -25,8 +25,9 @@
 	<p><span class="label">Print URL: </span><?php echo form_input('memory_piece_url');?></p>
 	<p><span class="label">Layouts/Licences URL: </span><?php echo form_input('misc_file_url');?></p>
 	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url');?></p>
-	<p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url');?></p>-->
+  <p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url');?></p>-->
 	<p><span class="label">Shelf: </span>
+  <?php if (empty($prechosen_shelf)): ?>
 		<?php 
 		$items = array();
 		$query = $this->db->query('SELECT id, name FROM shelf');
@@ -40,8 +41,12 @@
 				$items = array('0' => 'No shelfs found');
 				$disable_form = true;
 			}
-			echo form_dropdown('shelf_id', $items);
-		?></p>
+      echo form_dropdown('shelf_id', $items); ?>
+  <?php else: ?>
+  <?= $prechosen_shelf->name ?>
+  <?php echo form_hidden('shelf_id', $prechosen_shelf->id);?>
+<?php endif; ?>
+</p>
 	<?php if(isset($disable_form) == true)
 	{
 		echo form_submit('upload', 'Upload file', 'disabled=disabled');

@@ -271,11 +271,25 @@ div.single-cover {
   text-align: center;
   margin: 0 0 10px 20px;
   cursor: pointer;
+  vertical-align: top;
 }
 div.single-cover .caption {
+  padding: 0;
   width: 147px;
   position: absolute;
   bottom: 0px;
+}
+div.single-cover.add-book span {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  text-shadow: 1px 1px black;
+  display: block;
+  padding: 20px 10px;
+  font-size: 60px;
+}
+div.single-cover.add-book:hover span {
+  color: #ddd;
 }
 
 div.single-cover h3.title {

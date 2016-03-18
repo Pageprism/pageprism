@@ -8,7 +8,7 @@ function openBook(bookId, pageCount, startingPage, callback) {
     $(document).trigger('shelf:bookClosing', [currentBook]);
   }
   $(".book-content-separator").show();
-  $("#covers .single-cover").each(function() {
+  $("#covers .single-cover:not(.add-book)").each(function() {
     var selected = $(this).data('book-id') == bookId;
     $(this).toggleClass('selected', selected);
   });

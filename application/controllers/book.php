@@ -20,7 +20,9 @@ class Book extends CI_Controller {
 		if ($book)
 		{
       $this->layout->show('index', array(
+        'shelf_editable' => $this->session->userdata('logged_in'),
         'shelf_id' => $book->shelf_id,
+        'shelf' => $this->book_model->loadShelf($book->shelf_id),
         'current_book' => $book,
         'current_page' => $page_n,
         'cover_image' => $book->file_url_cover,

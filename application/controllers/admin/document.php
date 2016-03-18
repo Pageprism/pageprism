@@ -9,7 +9,11 @@ class Document extends MY_Controller {
 
   function upload()
   {
-    $this->layout->show('admin/upload');
+    $this->load->model('shelf_model');
+    $shelf_id = (int)$this->input->get('shelf');
+    $this->layout->show('admin/upload', array(
+      'prechosen_shelf' => $this->shelf_model->getShelf($shelf_id)
+    ));
   }
 
   function modify() {

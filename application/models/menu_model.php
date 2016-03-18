@@ -121,10 +121,6 @@ class Menu_model extends CI_Model {
         'url' => "#",
         'children' => array(
           array(
-            'title' => 'Upload document',
-            'url' => "/admin/document/upload",
-          ),
-          array(
             'title' => 'Collections',
             'url' => "/admin/shelf",
           ),
