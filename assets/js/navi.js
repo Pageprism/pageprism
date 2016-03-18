@@ -52,28 +52,6 @@ $(function() {
   $('#contents').click(function() {
     openMainMenu(false);
   });
-  var swipeTreshold = 60;
-  $(".navbar, .shelfs-and-covers, #mainmenu, .admin").swipe({
-    allowPageScroll: "vertical",
-    excludedElements: "button, input, select, textarea, a, .noSwipe, .page-share",
-    swipeStatus:function(event, phase, direction, distance, duration, fingers)
-    {
-      var screenW = $(window).width();
-      var x = event.x;
-      if (event.touches && event.touches.length > 0) {
-        x = event.touches[0].clientX;
-      }
-
-      if (phase=="move" && direction =="left" && screenW-x < swipeTreshold) {
-        openMainMenu(true);
-        //return false;
-      }
-      if (phase=="move" && direction =="right" && screenW-x < swipeTreshold+240) {
-        openMainMenu(false);
-        //return false;
-      }
-    }
-  }); 
 
   // The front page acts as a "Back to shelves" button
   $('#mainlogo').click(function(e) {
