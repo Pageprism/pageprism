@@ -25,7 +25,7 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
   <p><span class="label">Layouts/Licences URL: </span><?php echo form_input('misc_file_url', $data->misc_file_url);?></p>
 	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url', $data->eorder_url);?></p>
 	<p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url', $data->share_poster_url);?></p>-->
-	<p><span class="label">Shelf:</span>
+	<p><span class="label">Collection:</span>
 		<?php 
 		$items = array();
 		$query = $this->db->query('SELECT id, name FROM shelf');

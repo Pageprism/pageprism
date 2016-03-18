@@ -26,7 +26,7 @@
 	<p><span class="label">Layouts/Licences URL: </span><?php echo form_input('misc_file_url');?></p>
 	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url');?></p>
   <p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url');?></p>-->
-	<p><span class="label">Shelf: </span>
+	<p><span class="label">Collection: </span>
   <?php if (empty($prechosen_shelf)): ?>
 		<?php 
 		$items = array();
@@ -38,7 +38,7 @@
 					$items[$row['id']] = $row['name'];
 				}
 			} else {
-				$items = array('0' => 'No shelfs found');
+				$items = array('0' => 'No collections found');
 				$disable_form = true;
 			}
       echo form_dropdown('shelf_id', $items); ?>
