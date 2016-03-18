@@ -37,4 +37,21 @@ class Shelf_model extends CI_Model {
 
     return $query->row();
   }
+  public function getNextOrdering($id) {
+    $query = $this->db->query("SELECT max(ordering)+1 as next FROM book WHERE `shelf_id`= ?", array((int)$id));
+    $result = $query->row();
+
+    return $result->next ?: 0;
+  }
+
+  public function reorder($shelf_id, $book_ids) {
+    $i = 0; 
+    foreach($book_ids as $book_id) {
+      $this->db->where('shelf_id', $shelf_id);
+      $this->db->where('id', $book_id);
+      $this->db->update('book', array('ordering' => $i));
+      $i++;
+    }
+    return 1;
+  }
 }

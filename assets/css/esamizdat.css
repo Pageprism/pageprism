@@ -217,7 +217,7 @@ body.scrolled.show-navi #mainmenu {
   overflow: auto;
   white-space:nowrap;
 }
-.single-cover {
+.cover {
   display: inline-block;
   float: none;
 }
@@ -267,19 +267,19 @@ button.btn, button.btn:hover, button.btn:focus, button.btn:active {
   font-size: 1.2em;
 }
 
-div.single-cover {
+div.cover {
   text-align: center;
   margin: 0 0 10px 20px;
   cursor: pointer;
   vertical-align: top;
 }
-div.single-cover .caption {
+div.cover .caption {
   padding: 0;
   width: 147px;
   position: absolute;
   bottom: 0px;
 }
-div.single-cover.add-book span {
+div.cover.add-book span {
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -288,11 +288,11 @@ div.single-cover.add-book span {
   padding: 20px 10px;
   font-size: 60px;
 }
-div.single-cover.add-book:hover span {
+div.cover.add-book:hover span {
   color: #ddd;
 }
 
-div.single-cover h3.title {
+div.cover h3.title {
   margin: 0 0 4px 0;
   line-height: normal;
   font-size: 1.2em;
@@ -300,7 +300,7 @@ div.single-cover h3.title {
   overflow: hidden;
 }
 
-div.single-cover span {
+div.cover span {
   display: block;
   font-size: 1.1em;
 }

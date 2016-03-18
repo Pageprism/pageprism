@@ -67,6 +67,7 @@ CREATE TABLE `book` (
   `share_poster_url` varchar(1000) DEFAULT NULL,
   `counter` int(11) DEFAULT '0',
   `misc_file_url` varchar(1000) DEFAULT NULL,
+  `ordering` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

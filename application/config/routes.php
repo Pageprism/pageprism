@@ -52,6 +52,7 @@ $route['admin/document/modify/(:num)'] = 'admin/document/modify/$1';
 $route['admin/(:any)'] = 'admin/$1';
 //Books
 $route['shelf/(:num)'] = 'shelf/view/$1';
+$route['shelf/(:num)/reorder'] = 'admin/shelf/reorder/$1';
 $route['ajax/load_menu'] = 'menu/load_menu';
 $route['ajax/load_pages'] = 'book/load_pages';
 $route['book/(:any)'] = 'book/view/$1/p1';

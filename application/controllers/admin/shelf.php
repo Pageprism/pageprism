@@ -76,14 +76,30 @@ class Shelf extends MY_Controller {
 
 	function remove()
 	{
-		$id = $this->uri->segment(4);
+		$id = $this->uri->rsegment(4);
 		if (!is_numeric($id)) {
-      echo 'ID Error: '.$this->uri->segment(4);
+      echo 'ID Error: '.$this->uri->rsegment(4);
       return;
     }
 
     if ($this->db->delete('shelf', array('id' => $id)) == true)
       redirect('admin/shelf/');
+	}
+	function reorder()
+	{
+		$id = $this->uri->rsegment(3);
+		if (!is_numeric($id)) {
+      echo 0;
+      return;
+    }
+
+    //$user_id = $this->session->userdata('user_id');
+    $order = $this->input->post('order');
+    $order = explode(',', $order);
+
+    $this->load->model('shelf_model');
+    $success = $this->shelf_model->reorder($id, $order);
+    echo (int)$success;
 	}
 
 }

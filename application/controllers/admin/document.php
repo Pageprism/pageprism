@@ -119,7 +119,9 @@ class Document extends MY_Controller {
 
   function create_document()
   {
+    $this->load->model('shelf_model');
     $book_data = $this->getFormData();
+    $book_data['ordering'] = $this->shelf_model->getNextOrdering($book_data['shelf_id']);
     $this->load->library('ThumbnailGenerator');
 
     //Upload files!
@@ -183,7 +185,7 @@ class Document extends MY_Controller {
     }
     
     $this->session->set_flashdata('msg', 'Upload succeeded!');
-    redirect('/admin/document/documentlist');
+    redirect('/'.$book_data['book_name_clean']);
   }
 
   private function getFormData() {

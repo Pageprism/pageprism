@@ -17,7 +17,7 @@ class Book_model extends CI_Model {
     return $book ? $book[0] : null; 
   }
   public function loadShelf($id) {
-		$query = $this->db->query("SELECT * FROM book WHERE book.shelf_id = ?", $id);
+		$query = $this->db->query("SELECT * FROM book WHERE book.shelf_id = ? order by ordering asc", $id);
     return $query->result();
   }
 
