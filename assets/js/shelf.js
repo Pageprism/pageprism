@@ -95,7 +95,7 @@ $.fn.loadPage = function(bookId, page, callback) {
 
 
       if ($('.page-share.open').length === 0) {
-        $('.page-share:first').addClass('open');
+        $('.single-page:first .page-share').addClass('open');
       }
       
     }
