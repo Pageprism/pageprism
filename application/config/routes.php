@@ -43,13 +43,11 @@ $route['404_override'] = '';
 //Admin
 $route['login'] = 'admin/auth';
 $route['logout'] = 'admin/auth/logout';
-$route['admin'] = 'admin/index';
 $route['admin/shelf/modify/(:any)'] = 'admin/shelf/modify/$1';
 $route['admin/shelf/remove/(:any)'] = 'admin/shelf/remove/$1';
 $route['admin/shelf/set_frontpage_bit/(:any)/(:num)'] = 'admin/shelf/update_frontpage_bit/$1';
 $route['admin/content/edit/(:num)'] = 'admin/content/edit/$1';
 $route['admin/document/modify/(:num)'] = 'admin/document/modify/$1';
-$route['admin/(:any)'] = 'admin/$1';
 //Books
 $route['shelf/(:num)'] = 'shelf/view/$1';
 $route['shelf/(:num)/reorder'] = 'admin/shelf/reorder/$1';

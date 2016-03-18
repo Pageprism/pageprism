@@ -21,10 +21,6 @@ class Document extends MY_Controller {
     $this->layout->show('admin/modify',array('id' => $id));
   }
 
-  function documentlist() {
-    $this->layout->show('admin/documents');
-  }
-
   function update_info() {
     $id = $this->input->post('id');
     $update_data = $this->getFormData();
@@ -102,9 +98,11 @@ class Document extends MY_Controller {
           }
         }
 
+        $shelf_id = $data->shelf_id;
+
         if ($this->db->delete('book', array('id' => $id)) == true)
           $this->session->set_flashdata('msg', 'Document deleted!');
-          redirect('admin/document/documentlist');
+          redirect('shelf/'.$shelf_id);
       } else {
         echo 'ID Error: '.$this->uri->segment(4);
       }
