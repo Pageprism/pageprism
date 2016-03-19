@@ -20,6 +20,17 @@ class Shelf extends CI_Controller {
       'shelf' => $this->book_model->loadShelf($shelf_id),
     ));
 	}
+	public function aggregate() {
+    $this->load->model('book_model');
+    $aggregate_key = $this->uri->rsegment(3);
+    $aggregate_value = rawurldecode($this->uri->rsegment(4));
+
+    $this->layout->show('index', array(
+      'shelf_editable' => false,
+      'shelf_id' => 0,
+      'shelf' => $this->book_model->loadAggregateShelf($aggregate_key, $aggregate_value),
+    ));
+	}
 
 	public function getMenu() {
     $book_id = $this->uri->segment(2);

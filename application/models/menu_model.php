@@ -46,6 +46,7 @@ class Menu_model extends CI_Model {
     foreach(array_map('trim', explode(',',$book->book_author)) as $author) {
       $items['Authors'][] = array(
         'title' => $author,
+        'url' => '/author/'.rawurlencode($author)
       );
     }
     $shelf = $this->shelf_model->getShelf($book->shelf_id);
@@ -59,11 +60,13 @@ class Menu_model extends CI_Model {
     foreach(array_map('trim', explode(',',$book->language)) as $language) {
       $items['Languages'][] = array(
         'title' => $language,
+        'url' => '/language/'.rawurlencode($language)
       );
     }
     foreach(array_map('trim', explode(',',$book->book_timestamp)) as $timestamp) {
       $items['Years'][] = array(
         'title' => $timestamp,
+        'url' => '/year/'.rawurlencode($timestamp)
       );
     }
     foreach($items as $title => $subItems) {

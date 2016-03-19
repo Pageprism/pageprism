@@ -50,6 +50,9 @@ $route['admin/shelf/set_frontpage_bit/(:any)/(:num)'] = 'admin/shelf/update_fron
 $route['admin/content/edit/(:num)'] = 'admin/content/edit/$1';
 $route['admin/document/modify/(:num)'] = 'admin/document/modify/$1';
 //Books
+$route['author/(:any)'] = 'shelf/aggregate/author/$1';
+$route['language/(:any)'] = 'shelf/aggregate/language/$1';
+$route['year/(:any)'] = 'shelf/aggregate/year/$1';
 $route['shelf/(:num)'] = 'shelf/view/$1';
 $route['shelf/(:num)/reorder'] = 'admin/shelf/reorder/$1';
 $route['ajax/load_menu'] = 'menu/load_menu';
