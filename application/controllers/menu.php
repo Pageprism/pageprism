@@ -4,18 +4,18 @@ class Menu extends CI_Controller {
 
 	public function load_menu() {
     $book_id = $this->input->post('book');
+    $uri = $this->input->post('url');
 
     if ($book_id) {
       $this->load->model('book_model');
       $book = $this->book_model->loadBook($book_id);
       if ($book) {
-        $uri = '/'.$book->book_name_clean;
         $this->load->view('menu', array('menu' => $this->Menu_model->getMenu($book, $uri)));
         return;
       }
     }
 
-    $this->load->view('menu', array('menu' => $this->Menu_model->getMenu()));
+    $this->load->view('menu', array('menu' => $this->Menu_model->getMenu(null, $uri)));
 
 	}
 

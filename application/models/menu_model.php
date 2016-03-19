@@ -81,7 +81,8 @@ class Menu_model extends CI_Model {
       'id' => 'current_book_info',
       'title' => $book->book_name,
       'url' => "/$book->book_name_clean",
-      'children' => $children
+      'children' => $children,
+      'open' => true,
     );
 
   }
@@ -167,7 +168,7 @@ class Menu_model extends CI_Model {
         $classes[] = $menuitem['classes'];
       }
 
-      if ($menuitem['url'] == $uri) {
+      if ($menuitem['url'] == $uri || !empty($menuitem['open'])) {
         $selected = true;
         $classes[] = 'selected';
       }
