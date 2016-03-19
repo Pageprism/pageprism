@@ -49,6 +49,7 @@ $route['admin/shelf/remove/(:any)'] = 'admin/shelf/remove/$1';
 $route['admin/shelf/set_frontpage_bit/(:any)/(:num)'] = 'admin/shelf/update_frontpage_bit/$1';
 $route['admin/content/edit/(:num)'] = 'admin/content/edit/$1';
 $route['admin/document/modify/(:num)'] = 'admin/document/modify/$1';
+$route['admin/(:any)'] = 'admin/$1';
 //Books
 $route['author/(:any)'] = 'shelf/aggregate/author/$1';
 $route['language/(:any)'] = 'shelf/aggregate/language/$1';
