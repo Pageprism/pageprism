@@ -76,9 +76,9 @@ class Shelf extends MY_Controller {
 
 	function remove()
 	{
-		$id = $this->uri->rsegment(4);
+		$id = $this->uri->rsegment(3);
 		if (!is_numeric($id)) {
-      echo 'ID Error: '.$this->uri->rsegment(4);
+      echo 'ID Error: '.$this->uri->rsegment(3);
       return;
     }
 
