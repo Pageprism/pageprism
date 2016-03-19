@@ -23,7 +23,7 @@ class Shelf extends CI_Controller {
 	public function aggregate() {
     $this->load->model('book_model');
     $aggregate_key = $this->uri->rsegment(3);
-    $aggregate_value = rawurldecode($this->uri->rsegment(4));
+    $aggregate_value = html_entity_decode(rawurldecode($this->uri->rsegment(4)));
 
     $this->layout->show('index', array(
       'shelf_editable' => false,
