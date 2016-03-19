@@ -88,5 +88,8 @@ $(function() {
     playlist.playPause();
   });
 
+  $(document).on('mouseover click', '#message', function(event) {
+    $(this).fadeOut(function() { $(this).remove(); });
+  });
 
 });

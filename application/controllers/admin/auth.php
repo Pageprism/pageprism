@@ -19,13 +19,14 @@ class Auth extends CI_Controller {
 		{
 			if ($user && $password)
 			{
-				if($this->simpleloginsecure->login($user, $password)) {
-				    redirect($backUrl);
+        if($this->simpleloginsecure->login($user, $password)) {
+          $this->session->set_flashdata('msg', "Log in successful");
+          redirect($backUrl);
 				} else {
-          $this->layout->show('admin/auth', array('error' => 'wrong username or password', 'backUrl' => $backUrl));
+          $this->layout->show('admin/auth', array('error' => 'Wrong username or password', 'backUrl' => $backUrl));
 				}
 			} else {
-        $this->layout->show('admin/auth', array('error' => 'user or password empty', 'backUrl' => $backUrl));
+        $this->layout->show('admin/auth', array('error' => 'User or password empty', 'backUrl' => $backUrl));
 			}			
 		} else {
       $this->layout->show('admin/auth', array('error' => '', 'backUrl' => $backUrl));
@@ -36,6 +37,7 @@ class Auth extends CI_Controller {
 	function logout()
 	{
 		$this->simpleloginsecure->logout();
+    $this->session->set_flashdata('msg', "You have logged out");
 		redirect('/');
 	}
 }
