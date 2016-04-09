@@ -1,0 +1,147 @@
+
+.audiojs 
+  width: 410px
+  height: 36px
+  overflow: hidden
+  font-family: monospace
+  font-size: 12px
+
+  @media (max-width: 500px) 
+    width: 230px
+    
+    .scrubber 
+      width: 115px
+  
+  .audiojs .time 
+    font-size: 80%
+
+  audio 
+    position: absolute
+    left: -1px
+
+  .play-pause 
+    width: 20px
+    height: 40px
+    padding: 4px 0px
+    margin: 0px
+    float: left
+    overflow: hidden
+
+  p 
+    display: none
+    width: 16px
+    height: 40px
+    margin: 0px
+    cursor: pointer
+
+  .play 
+    display: block
+
+  .scrubber 
+    position: relative
+    float: left
+    width: 280px
+    background: #d0d0d0
+    height: 14px
+    margin: 10px 0
+    border-left: 0px
+    border-bottom: 0px
+    overflow: hidden
+
+  .progress 
+    position: absolute
+    top: 0px
+    left: 0px
+    height: 14px
+    width: 0px
+    background: #215295
+    z-index: 1
+    border-radius: 0
+
+  .loaded 
+    position: absolute
+    top: 0px
+    left: 0px
+    height: 14px
+    width: 0px
+    background: #f0f0f0
+
+  .time 
+    float: left
+    height: 36px
+    line-height: 36px
+    margin: 0px 0px 0px 6px
+    padding: 0px 3px 0px 6px
+
+  .time em 
+    padding: 0px 2px 0px 0px
+    font-style: normal
+
+  .time strong 
+    padding: 0px 0px 0px 2px
+    font-weight: normal
+
+  .error-message 
+    float: left
+    display: none
+    margin: 0px 10px
+    height: 36px
+    width: 400px
+    overflow: hidden
+    line-height: 36px
+    white-space: nowrap
+
+    text-overflow: ellipsis
+    -o-text-overflow: ellipsis
+    -icab-text-overflow: ellipsis
+    -khtml-text-overflow: ellipsis
+    -moz-text-overflow: ellipsis
+    -webkit-text-overflow: ellipsis
+
+  .error-message a 
+    color: #eee
+    text-decoration: none
+    padding-bottom: 1px
+    border-bottom: 1px solid #999
+    white-space: wrap
+
+
+  .play 
+    background: url("../audiojs/player-graphics.gif") -8px -1px no-repeat
+
+  .loading 
+    background: url("../audiojs/player-graphics.gif") -8px -31px no-repeat
+
+  .error 
+    background: url("../audiojs/player-graphics.gif") -8px -61px no-repeat
+
+  .pause 
+    background: url("../audiojs/player-graphics.gif") -8px -91px no-repeat
+
+
+.playing .play, .playing .loading, .playing .error 
+  display: none
+
+.playing .pause 
+  display: block
+
+
+.loading .play, .loading .pause, .loading .error 
+  display: none
+
+.loading .loading 
+  display: block
+
+
+.error .time, .error .play, .error .pause, .error .scrubber, .error .loading 
+  display: none
+
+.error .error 
+  display: block
+
+.error .play-pause p 
+  cursor: auto
+
+.error .error-message 
+  display: block
+

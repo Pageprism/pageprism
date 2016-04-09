@@ -1,0 +1,172 @@
+.navbar-fake 
+  height: 60px
+
+.navbar 
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 100
+  -webkit-transition: top 0.2s ease-in-out
+  -moz-transition: top 0.2s ease-in-out
+  -ms-transition: top 0.2s ease-in-out
+  -o-transition: top 0.2s ease-in-out
+  transition: top 0.2s ease-in-out
+
+body.scrolled .navbar 
+  top: -60px
+
+body.scrolled.show-navi .navbar 
+  top: 0
+
+/* Top header */
+#top-header 
+  background-color: #fff
+  background-image: none
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 7px 0px
+  border: none
+  min-height: 0px !important
+
+#sidebar-toggle 
+  background: #eee
+  border-radius: 3px
+  display: block
+  position: absolute
+  box-sizing: border-box
+  width: 40px
+  height: 40px
+  -moz-box-sizing: border-box
+  top: 10px
+  right: -10px
+  padding: 10px 7px
+  float: right
+
+#sidebar-toggle .bar
+  border-radius: 2px
+  display: block
+  width: 26px
+  margin-bottom: 5px
+  height: 3px
+  background-color: #000
+  border-radius: 1px;   
+
+
+#mainmenu 
+  background: #fff
+  position: fixed
+  width: 240px
+  height: 100%
+  z-index: 1000
+  top: 58px
+  padding-bottom: 58px
+  right: -240px
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  line-height: 49px
+  -webkit-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
+  -moz-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
+  -ms-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
+  -o-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
+  transition: right 0.4s ease-in-out, top 0.2s ease-in-out
+
+.open-sidebar #mainmenu
+  right: 0
+  box-shadow: rgba(0, 0, 0, 0.3) -1px 4px 7px 0px
+
+body.scrolled #mainmenu 
+  position: fixed
+  top: 0
+  padding-bottom: 0
+
+body.scrolled.show-navi #mainmenu 
+  top: 58px
+  padding-bottom: 58px
+
+
+#mainmenu ul 
+  padding: 0
+  margin: 0
+
+#mainmenu li 
+  position: relative
+  list-style-type: none
+
+#mainmenu .parent .arrow 
+  position: absolute
+  top: 13px
+  right: 13px
+  width: 20px
+  height: 20px
+  -webkit-transition:  transform 0.2s ease-in-out
+  -moz-transition:  transform 0.2s ease-in-out
+  -ms-transition:  transform 0.2s ease-in-out
+  -o-transition:  transform 0.2s ease-in-out
+  transition:  transform 0.2s ease-in-out
+
+#mainmenu .open > a > .arrow 
+  -webkit-transform: rotate(90deg)
+  -moz-transform: rotate(90deg)
+  -o-transform: rotate(90deg)
+  -ms-transform: rotate(90deg)
+  transform: rotate(90deg)
+
+#mainmenu .parent ul 
+  max-height: 0
+  overflow: hidden
+  -webkit-transition:  max-height 0.2s ease-in-out
+  -moz-transition:  max-height 0.2s ease-in-out
+  -ms-transition:  max-height 0.2s ease-in-out
+  -o-transition:  max-height 0.2s ease-in-out
+  transition:  max-height 0.2s ease-in-out
+
+#mainmenu .parent.open > ul 
+  max-height: 500px
+
+#mainmenu .parent ul a 
+  padding-left: 20px
+
+#mainmenu .parent ul ul a 
+  padding-left: 40px
+
+
+#mainmenu a:link,
+#mainmenu a:visited 
+  color: #000
+  font-size: 1.15em
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25)
+  padding: 13px 13px
+  display: block
+  text-decoration: none
+
+#mainmenu .selected > a:link 
+  font-weight: bold
+
+#mainmenu a:hover 
+  background: #eee
+
+
+
+#top-header .container-fluid 
+  position: relative
+  padding: 5px
+
+#top-header .brand 
+  z-index: 1050
+  background: url('../img/sprite-icons.png') 0px 5px no-repeat
+  height: 49px
+  padding: 0
+  display: inline-block
+  padding: 0 0 0 62px
+  line-height: 49px
+  font-size: 25px
+  color: black
+  margin: 0 5px 0 0
+  text-shadow: none
+
+
+#scroll-to-top 
+  position: absolute
+  top: 7px
+  right: 20px
+  z-index: 1050
+
