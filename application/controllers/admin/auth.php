@@ -11,6 +11,7 @@ class Auth extends CI_Controller {
   {
     $backUrl = $this->input->get('backUrl') ?: '/';
     if ($backUrl[0] != '/') $backUrl = '/';
+    if (strpos($backUrl, '/login') === 0) $backUrl = '/';
 
 		$user = $this->input->post('user');
 		$password = $this->input->post('password');
