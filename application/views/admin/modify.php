@@ -1,5 +1,5 @@
 <!-- Container -->
-<div class="container-fluid admin" id="the-container">
+<div class="container-fluid admin-container">
 
 <?php
 $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
@@ -12,7 +12,6 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
   $query = $this->db->query("SELECT * FROM audio_file WHERE `book_id`= ?", array($id));
   $audio_files = $query->result();
 ?>
-	<h1>Modify file:</h1>
 	<?php echo form_open_multipart('admin/document/update_info');?>
 
 	<p><span class="label">File:</span> <?php echo $data->book_name;?></p>

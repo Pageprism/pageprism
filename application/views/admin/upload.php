@@ -1,11 +1,11 @@
 <!-- Container -->
-<div class="container-fluid admin" id="the-container">
+<div class="container-fluid admin-container">
 
 	<?php
 	if (isset($error)) echo "<h3>$error</h3>";
 	?>
 
-	<h1>Upload document:</h1>
+	<h1>Upload document</h1>
   <!-- <p>Uploader id: <?php echo $this->session->userdata('user_id');?> (<?php echo $this->session->userdata('user_name');?>)</p> -->
 	<?php echo form_open_multipart('admin/document/create_document');?>
 	<p><span class="label">PDF File: </span><?php echo form_upload('pdffile');?></p>

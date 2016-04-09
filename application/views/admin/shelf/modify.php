@@ -1,6 +1,6 @@
 <!-- Container -->
-<div class="container-fluid admin" id="the-container">
-	<h1>Modify collection:</h1>
+<div class="container-fluid admin-container">
+	<h1>Modify collection</h1>
 	<?php echo form_open_multipart('admin/shelf/update_info');?>
 
 	<p><span class="label">Name:</span> <?php echo form_input('name', $shelf->name);?></p>

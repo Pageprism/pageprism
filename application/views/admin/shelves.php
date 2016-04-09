@@ -1,5 +1,5 @@
 <!-- Container -->
-<div class="container-fluid admin" id="the-container">
+<div class="container-fluid admin-container">
   <h1>Collections</h1>
 <?php if ($shelves): ?>
 <table>
