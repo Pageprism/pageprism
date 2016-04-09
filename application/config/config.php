@@ -253,25 +253,23 @@ $config['encryption_key'] = 'J/N?t&T~wpXR:NJwa&OI7#y&FgLDr*}u';
 | 'sess_cookie_name'		= the name you want for the cookie
 | 'sess_expiration'			= the number of SECONDS you want the session to last.
 |   by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
-| 'sess_expire_on_close'	= Whether to cause the session to expire automatically
-|   when the browser window is closed
-| 'sess_encrypt_cookie'		= Whether to encrypt the cookie
 | 'sess_use_database'		= Whether to save the session data to a database
 | 'sess_table_name'			= The name of the session database table
 | 'sess_match_ip'			= Whether to match the user's IP address when reading the session data
-| 'sess_match_useragent'	= Whether to match the User Agent when reading the session data
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
 $config['sess_cookie_name']		= 'ci_session';
 $config['sess_expiration']		= 7200;
-$config['sess_expire_on_close']	= FALSE;
-$config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= FALSE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
-$config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;
+
+/* CI 3.0 https://www.codeigniter.com/userguide3/installation/upgrade_300.html */
+$config['sess_driver'] = 'files';
+$config['sess_save_path'] = null;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -376,6 +374,7 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+
 /*
 | -------------------------------------------------------------------
 |  Native Auto-load
@@ -389,7 +388,7 @@ function __autoload($class)
 {
  if(strpos($class, 'CI_') !== 0)
  {
-  @include_once( APPPATH . 'core/'. $class . EXT );
+  @include_once( APPPATH . 'core/'. $class . '.php');
  }
 }
 

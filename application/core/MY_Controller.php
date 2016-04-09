@@ -4,7 +4,7 @@ class MY_Controller extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('logged_in') == false)
+		if ($this->session->userdata('logged_in') == null)
 		{
 			//$login_page= $this->load->view('admin/auth',"",true);
       //exit($login_page);
