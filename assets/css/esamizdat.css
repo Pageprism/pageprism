@@ -322,21 +322,6 @@ body.scrolled.show-navi #mainmenu {
   margin: 0 0 10px 20px;
   cursor: pointer;
   vertical-align: top;
-}
-
-.cover.add-book span {
-  text-shadow: 1px 1px 3px black;
-  display: block;
-  font-size: 80px;
-  line-height: 234px;
-}
-
-div.cover span {
-  display: block;
-  font-size: 1.1em;
-}
-
-.thumbnail {
   padding: 2px;
   border: 2px solid #fff;
   width: 161px;
@@ -350,28 +335,52 @@ div.cover span {
 }
 
 @media (max-width: 1024px) {
-  .thumbnail {
+  .cover {
     width: 144px;
     height: 205px;
   }
 }
 
 @media (max-width: 640px) {
-  .thumbnail {
+  .cover {
     width: 81px;
     height: 114px;
   }
 }
 
-.thumbnail.hilight, .thumbnail.selected {
+.cover.add-book span {
+  text-shadow: 1px 1px 3px black;
+  display: block;
+  font-size: 80px;
+  line-height: 234px;
+}
+
+@media (max-width: 1024px) {
+  .cover.add-book span {
+    line-height: 203px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cover.add-book span {
+    line-height: 112px;
+  }
+}
+
+.cover.hilight, .cover.selected {
   border: 2px solid #AAA;
   -moz-box-shadow: 0 0 10px #88A;
   -webkit-box-shadow: 0 0 10px #88A;
   box-shadow: 0px 0px 10px #88A;
 }
 
-.thumbnail.hilight img, .thumbnail.selected img {
+.cover.hilight img, .cover.selected img {
   opacity: 0.7;
+}
+
+div.cover span {
+  display: block;
+  font-size: 1.1em;
 }
 
 .book-content-separator {
@@ -543,7 +552,7 @@ div.cover span {
     right: 12px;
     padding: 5px;
   }
-  span.pagenumber {
+  div.page-share span.pagenumber {
     top: 6px;
     right: 6px;
   }

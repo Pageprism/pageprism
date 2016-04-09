@@ -19,21 +19,6 @@
   margin: 0 0 10px 20px
   cursor: pointer
   vertical-align: top
-
-  &.add-book 
-    span 
-      text-shadow: 1px 1px 3px black
-      display: block
-      font-size: 80px
-      line-height: 234px;
-    &:hover span
-      //color: 
-
-div.cover span 
-  display: block
-  font-size: 1.1em
-
-.thumbnail 
   padding: 2px
   border: 2px solid #fff
   width: 161px
@@ -52,6 +37,19 @@ div.cover span
     width: 81px
     height: 114px
 
+  &.add-book 
+    span 
+      text-shadow: 1px 1px 3px black
+      display: block
+      font-size: 80px
+      line-height: 234px;
+      @media (max-width: 1024px) 
+        line-height: 203px
+      @media (max-width: 640px) 
+        line-height: 112px
+    &:hover span
+      //color: 
+
   &.hilight,
   &.selected
     border: 2px solid #AAA
@@ -61,6 +59,10 @@ div.cover span
 
     img
       opacity: 0.7
+
+div.cover span 
+  display: block
+  font-size: 1.1em
 
 .book-content-separator 
   height: 30px
