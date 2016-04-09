@@ -1,12 +1,18 @@
 #ajax-content-container
   overflow: hidden
 
+  &.loading
+
+
   #ajax-content
     @include transition(transform 0.4s ease-in-out)
     @include transform(none)
 
     &.loading
-      visibility: none
+      background: url(../img/hourglass.svg) center center no-repeat;
+      & > * 
+        visibility: none
+
     &.loaded
       @include transform(translateY(-100%))
       @include transition(transform 0s)

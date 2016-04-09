@@ -309,12 +309,6 @@ body.scrolled.show-navi #mainmenu {
   white-space: nowrap;
 }
 
-@media (max-width: 640px) {
-  #shelf {
-    margin: 20px 0;
-  }
-}
-
 .cover {
   display: inline-block;
   float: none;
@@ -422,6 +416,10 @@ div.cover span {
 }
 
 #ajax-content-container #ajax-content.loading {
+  background: url(../img/hourglass.svg) center center no-repeat;
+}
+
+#ajax-content-container #ajax-content.loading > * {
   visibility: none;
 }
 
