@@ -90,21 +90,16 @@ class Layout
 			return false;
 		}
 
-		// loop through each template view
-		foreach($this->templates[$this->active_template] as $temp)
-		{
-			// yield inserts the main content
-			if($temp === '-YIELD-')
-			{
-				$this->ci->load->view($view, $this->data);
-			}
-			else
-			{
-				// load the view with the class data array
-				$this->ci->load->view($temp, $this->data);
-			}
-			
-		}
+    if (!$this->ci->input->is_ajax_request()) {
+      // loop through each template view
+      $layout = $this->templates[$this->active_template];
+      $data = $this->data;
+      $this->ci->load->view($layout, array_merge($this->data, array('load_inner_view' => function() use ($view, $data) {
+        $this->ci->load->view($view, $data);
+      })));
+    } else {
+      $this->ci->load->view($view, $this->data);
+    }
 
 		// reset the chain, clankety clank
 		$this->_cleanup();

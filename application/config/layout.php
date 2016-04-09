@@ -26,13 +26,8 @@
 */
 
 $layout['templates'] = array(
-
 	// default template
-	'main'	=>	array(
-		'header',
-		'-YIELD-',
-		'footer'
-	)
+	'main'	=> 'layout'
 );
 
 
