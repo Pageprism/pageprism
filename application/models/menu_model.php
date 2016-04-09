@@ -11,7 +11,6 @@ class Menu_model extends CI_Model {
     );
 
     $this->addCurrentBook($menu, $book);
-    $this->addPages($menu);
     $this->addShelves($menu);
     $this->addAdmin($menu, $uri);
     $this->processClasses($menu, $uri);
@@ -86,32 +85,16 @@ class Menu_model extends CI_Model {
     );
 
   }
-  function addPages(&$menu) {
-    $pages = array();
+  function addShelves(&$menu) {
+    //Add principles shelf
     foreach ($this->shelf_model->getShelvesForParent('principles') as $shelf) {
-      $pages[] = array(
+      $menu[] = array(
         'title' => $shelf->name,
         'url' => "/shelf/".$shelf->id,
       );
     }
-    $query = $this->db->query("SELECT id,title,url_title FROM pages");
-    if ($query->num_rows() > 0) {
-      foreach ($query->result_array() as $page) {
-        $pages[] = array(
-          'title' => $page['title'],
-          'url' => "/page/".$page['url_title'],
-        );
-      }
-    }
-    $menu[] = array(
-      'title' => 'Principles',
-      'url' => "#",
-      'children' => $pages,
-    );
-  }
-  function addShelves(&$menu) {
-    $shelves = array();
 
+    $shelves = array();
     foreach ($this->shelf_model->getShelvesForParent('shelves') as $shelf) {
       $shelves[] = array(
         'title' => $shelf->name,
@@ -136,10 +119,6 @@ class Menu_model extends CI_Model {
           array(
             'title' => 'Collections',
             'url' => "/admin/shelf",
-          ),
-          array(
-            'title' => 'Edit content',
-            'url' => "/admin/content",
           ),
           array(
             'title' => 'Log out',
