@@ -13,8 +13,27 @@
 | If this is not set then CodeIgniter will guess the protocol, domain and
 | path to your installation.
 |
-*/
-$config['base_url']	= '';
+ */
+$allowed_domains = array('pageshare.fi', 'test.pageshare.fi', 'pageshare.test');
+$default_domain  = 'pageshare.fi';
+
+if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
+{
+  $domain = $_SERVER['HTTP_HOST'];
+}
+else
+{
+  $domain = $default_domain;
+}
+
+if ( ! empty($_SERVER['HTTPS']))
+{
+  $config['base_url'] = 'https://'.$domain;
+}
+else
+{
+  $config['base_url'] = 'http://'.$domain;
+}
 
 /*
 |--------------------------------------------------------------------------
