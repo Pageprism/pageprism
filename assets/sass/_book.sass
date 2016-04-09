@@ -1,0 +1,119 @@
+#rendered-pages 
+  position: relative
+
+
+
+.page-share 
+  -webkit-border-radius: 25px
+  -moz-border-radius: 25px
+  border-radius: 25px
+  position: absolute
+  top: 15px
+  right: 15px
+  min-width: 18px
+  min-height: 18px
+  padding: 15px
+  background: #FFF
+  text-align: left
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 0px
+
+.pagenumber 
+  position: absolute
+  right: 16px
+  top: 16px
+  cursor: pointer
+  font-size: 1.3em
+  width: 18px
+  height: 18px
+  text-align: center
+  color: #215295
+  line-height: 14px
+
+.share-part 
+  display: none
+
+.page-share.open .share-part 
+  display: block
+
+.page-share.open .pagenumber 
+  visibility: hidden
+
+.page-share.open .pagenumber:after 
+  visibility: visible
+  position: absolute
+  top: 0
+  left: 0
+  display: block
+  content: "X"
+
+
+@media (max-width: 550px) 
+  div.page-share 
+    -webkit-border-radius: 15px
+    -moz-border-radius: 15px
+    border-radius: 15px
+    top: 12px
+    right: 12px
+    padding: 5px
+  
+  span.pagenumber 
+    top: 6px
+    right: 6px
+  
+
+
+.single-page 
+  position: relative
+  width: 992px
+  margin: 2em auto 0 auto
+
+@media (max-width: 992px) 
+  .single-page 
+    width: 100%
+  
+
+
+.single-page img
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px
+
+.single-page .empty-page:before 
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px
+  content: ""
+  display: block
+  padding-top: 141%;  /* initial ratio of 1:1*/
+
+
+.share-part a.download-pdf, .share-part a.download-epub, .share-part a.download-music 
+  font-size: 1.2em
+  margin-right: 15px
+
+.share-part a.download-music 
+  float: right
+  line-height: 35px
+
+
+.share-part a.social i 
+  font-size: 2em
+
+
+.share-part h5.url 
+  display: block
+
+
+.share-part h5 
+  margin: 10px 0 1px 0
+
+p.direct-url 
+  padding: 6px
+  background-color: #f0f0f0
+  font-size: 1.2em
+
+i.icon-book 
+  font-size: 1.3em
+
+#loadmore 
+  margin: 20px
+  text-align: center
+  padding: 15px
+  color: #005580
+  cursor: pointer
