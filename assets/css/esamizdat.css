@@ -300,11 +300,8 @@ body.scrolled.show-navi #mainmenu {
 }
 
 /* Covers  */
-.shelfs-and-covers {
+#shelf {
   background-color: #f0f0f0;
-}
-
-#covers {
   width: auto;
   padding: 40px 0;
   position: relative;
@@ -313,7 +310,7 @@ body.scrolled.show-navi #mainmenu {
 }
 
 @media (max-width: 640px) {
-  #covers {
+  #shelf {
     margin: 20px 0;
   }
 }

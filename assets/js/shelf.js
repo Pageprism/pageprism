@@ -8,7 +8,7 @@ function openBook(bookId, pageCount, startingPage, callback) {
     $(document).trigger('shelf:bookClosing', [currentBook]);
   }
   $(".book-content-separator").show();
-  $("#covers .cover").each(function() {
+  $("#shelf .cover").each(function() {
     var selected = $(this).data('book-id') == bookId;
     $(this).toggleClass('selected', selected);
   });
@@ -156,12 +156,12 @@ $(function() {
   }
 
   var href = location.pathname;
-  $("#covers .document").click(function(){
+  $("#shelf .cover").click(function(){
     _gaq.push(['_trackEvent', 'Covers', 'Click-to-open', $(this).data('book-name')]);
     openBookLink($(this), true);
   });
-  if ($('#covers').is('.editable')) {
-    $("#covers").sortable({
+  if ($('#shelf').is('.editable')) {
+    $("#shelf").sortable({
       cancel: ".add-book",
       stop: function(e, ui) {
         var shelf_id = $('#covers').data('shelf-id');
