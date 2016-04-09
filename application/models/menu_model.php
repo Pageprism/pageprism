@@ -9,6 +9,13 @@ class Menu_model extends CI_Model {
       'title' => 'Free software (github.com)',
       'url' => "https://github.com/Pageprism/pageprism",
     );
+    //Add principles shelf
+    foreach ($this->shelf_model->getShelvesForParent('principles') as $shelf) {
+      $menu[] = array(
+        'title' => $shelf->name,
+        'url' => "/shelf/".$shelf->id,
+      );
+    }
 
     $this->addCurrentBook($menu, $book);
     $this->addShelves($menu);
@@ -81,19 +88,10 @@ class Menu_model extends CI_Model {
       'title' => $book->book_name,
       'url' => "/$book->book_name_clean",
       'children' => $children,
-      'open' => true,
     );
 
   }
   function addShelves(&$menu) {
-    //Add principles shelf
-    foreach ($this->shelf_model->getShelvesForParent('principles') as $shelf) {
-      $menu[] = array(
-        'title' => $shelf->name,
-        'url' => "/shelf/".$shelf->id,
-      );
-    }
-
     $shelves = array();
     foreach ($this->shelf_model->getShelvesForParent('shelves') as $shelf) {
       $shelves[] = array(
@@ -156,7 +154,6 @@ class Menu_model extends CI_Model {
         $selected = $this->processClasses($menuitem['children'], $uri) || $selected;
       }
       if ($selected) {
-        $classes[] = 'open';
         $someItemSelected = true;
       }
       $menuitem['classes'] = implode(' ',$classes);
