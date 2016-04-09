@@ -172,11 +172,9 @@ class SimpleLoginSecure
 			if(!$hasher->CheckPassword($user_pass, $user_data['user_pass']))
 				return false;
 
-			//Destroy old session
-			$this->CI->session->sess_destroy();
-			
-			//Create a fresh, brand new session
-			$this->CI->session->sess_create();
+			//Destroy old session and create a fresh, brand new session
+      session_regenerate_id(FALSE);
+      session_unset();
 
 			$this->CI->db->simple_query('UPDATE ' . $this->user_table  . ' SET user_last_login = NOW() WHERE user_id = ' . $user_data['user_id']);
 
