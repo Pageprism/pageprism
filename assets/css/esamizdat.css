@@ -10,7 +10,7 @@ body {
   }
 }
 
-.hidden, #svgwrap {
+.hidden {
   display: none;
 }
 

@@ -35,11 +35,6 @@ _gaq.push(['_trackPageview']);
       document.body.className = "open-sidebar";
     }
     </script>
-    <div id="svgwrap">
-      <svg width="64" height="64" viewBox="0 0 64 64">
-        <path id="arrow-right" d="M19.203 17.28l-0.003 29.44 25.6-14.72z" />
-      </svg>
-    </div>
     <!-- Google Tag Manager -->
     <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T4VMZS"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

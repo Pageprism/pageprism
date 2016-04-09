@@ -8,7 +8,9 @@
     <a href='<?= $menuitem['url'] ?>'>
       <?= $menuitem['title'] ?>
       <?php if (!empty($menuitem['children'])): ?>
-      <svg class="arrow" viewBox="0 0 64 64"><use xlink:href="#arrow-right"></svg>
+      <svg class="arrow" viewBox="0 0 64 64">
+        <path id="arrow-right" d="M19.203 17.28l-0.003 29.44 25.6-14.72z" />
+      </svg>
       <?php endif; ?>
     </a>
     <?php else: ?>
