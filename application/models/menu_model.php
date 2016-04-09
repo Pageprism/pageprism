@@ -47,6 +47,7 @@ class Menu_model extends CI_Model {
       $children[] = array(
         'title' => 'Edit this book',
         'url' => '/admin/document/modify/'.$book->id,
+        'popUnder' => true,
       );
     }
 
@@ -99,6 +100,7 @@ class Menu_model extends CI_Model {
       $shelves[] = array(
         'title' => 'Edit collections',
         'url' => "/admin/shelf",
+        'popUnder' => true,
       );
     }
     foreach ($this->shelf_model->getShelvesForParent('shelves') as $shelf) {
@@ -124,7 +126,8 @@ class Menu_model extends CI_Model {
       if (!$uri) $uri = '/'.$this->uri->uri_string;
       $menu[] = array(
         'title' => 'Log in',
-        'url' => "/login?backUrl=".urlencode($uri)
+        'url' => "/login?backUrl=".urlencode($uri),
+        'popUnder' => true,
       );
     }
   }

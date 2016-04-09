@@ -254,8 +254,8 @@ body.scrolled.show-navi #mainmenu {
 #mainmenu .open > a > .arrow {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
@@ -393,6 +393,40 @@ div.cover span {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#111111',GradientType=0 );
   /* IE6-9 */
+}
+
+#ajax-content-container {
+  overflow: hidden;
+}
+
+#ajax-content-container #ajax-content {
+  -webkit-transition: transform 0.4s ease-in-out;
+  -moz-transition: transform 0.4s ease-in-out;
+  -ms-transition: transform 0.4s ease-in-out;
+  -o-transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+}
+
+#ajax-content-container #ajax-content.loading {
+  visibility: none;
+}
+
+#ajax-content-container #ajax-content.loaded {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+  -webkit-transition: transform 0s;
+  -moz-transition: transform 0s;
+  -ms-transition: transform 0s;
+  -o-transition: transform 0s;
+  transition: transform 0s;
 }
 
 .single-page {

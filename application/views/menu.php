@@ -5,7 +5,9 @@
   <?php endif; if(!empty($menuitem['id'])): ?> id="<?= $menuitem['id']; ?>" 
   <?php endif; ?> >
     <?php if (empty($menuitem['html'])): ?>
-    <a href='<?= $menuitem['url'] ?>'>
+    <a href='<?= $menuitem['url'] ?>'
+      <?php if (isset($menuitem['popUnder'])) echo 'class="popUnder"'; ?>
+      >
       <?= $menuitem['title'] ?>
       <?php if (!empty($menuitem['children'])): ?>
       <svg class="arrow" viewBox="0 0 64 64">

@@ -58,7 +58,9 @@
       </div>
       <?php endif; ?>
       <?php $load_inner_view(); ?>
-      </div id="ajax"></div>
+      <div id="ajax-content-container">
+        <div id="ajax-content"></div>
+      </div>
     </div>
     <script>
     if (window.localStorage.menuOpen != "false") {

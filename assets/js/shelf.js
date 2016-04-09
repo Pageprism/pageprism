@@ -12,7 +12,7 @@ function openBook(bookId, pageCount, startingPage, callback) {
     var selected = $(this).data('book-id') == bookId;
     $(this).toggleClass('selected', selected);
   });
-  $("#rendered-pages").empty();
+  $("#ajax-content").empty();
   currentBook = bookId;
   $(document).trigger('shelf:bookOpening', [bookId]);
 
@@ -29,14 +29,14 @@ function openBook(bookId, pageCount, startingPage, callback) {
 
   for (var i=startingPage;i<=pageCount;i++) {
     var page_element = $('<div class="single-page" id="page_'+i+'">LOADING #'+i+'</div>');
-    $("#rendered-pages").append(page_element);
+    $("#ajax-content").append(page_element);
 
     page_element.loadPage(bookId, i, onLoad);
   }
 
   if (startingPage > 1) {
     var loadMore = $('<div id="loadmore" >Load previous pages</div>');    
-    $("#rendered-pages").prepend(loadMore);
+    $("#ajax-content").prepend(loadMore);
     loadMore.click(function(){
       var scrollToCurrent = function() {
         scrollToPage(startingPage);
@@ -50,9 +50,7 @@ function openBook(bookId, pageCount, startingPage, callback) {
       loadMore.remove();
     });
   }
-  $('#mainmenu').load("/index.php/ajax/load_menu", {book: bookId, url: document.location.pathname}, function() {
-    $('#mainmenu').perfectScrollbar('update');
-  });
+  reloadMainMenu(document.location.pathname, {book: bookId});
 }
 
 $.fn.loadPage = function(bookId, page, callback) {

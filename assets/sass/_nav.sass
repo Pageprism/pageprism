@@ -7,11 +7,7 @@
   left: 0
   width: 100%
   z-index: 100
-  -webkit-transition: top 0.2s ease-in-out
-  -moz-transition: top 0.2s ease-in-out
-  -ms-transition: top 0.2s ease-in-out
-  -o-transition: top 0.2s ease-in-out
-  transition: top 0.2s ease-in-out
+  @include transition(top 0.2s ease-in-out)
 
 body.scrolled .navbar 
   top: -60px
@@ -77,11 +73,7 @@ body.scrolled.show-navi .navbar
   box-sizing: border-box
   -moz-box-sizing: border-box
   line-height: 49px
-  -webkit-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
-  -moz-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
-  -ms-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
-  -o-transition: right 0.4s ease-in-out, top 0.2s ease-in-out
-  transition: right 0.4s ease-in-out, top 0.2s ease-in-out
+  @include transition((right 0.4s ease-in-out, top 0.2s ease-in-out))
 
 .open-sidebar #mainmenu
   right: 0
@@ -112,27 +104,15 @@ body.scrolled.show-navi #mainmenu
     right: 13px
     width: 20px
     height: 20px
-    -webkit-transition:  transform 0.2s ease-in-out
-    -moz-transition:  transform 0.2s ease-in-out
-    -ms-transition:  transform 0.2s ease-in-out
-    -o-transition:  transform 0.2s ease-in-out
-    transition:  transform 0.2s ease-in-out
+    @include transition(transform 0.2s ease-in-out)
 
   .open > a > .arrow 
-    -webkit-transform: rotate(90deg)
-    -moz-transform: rotate(90deg)
-    -o-transform: rotate(90deg)
-    -ms-transform: rotate(90deg)
-    transform: rotate(90deg)
+    @include transform(rotate(90deg))
 
   .parent ul 
     max-height: 0
     overflow: hidden
-    -webkit-transition:  max-height 0.2s ease-in-out
-    -moz-transition:  max-height 0.2s ease-in-out
-    -ms-transition:  max-height 0.2s ease-in-out
-    -o-transition:  max-height 0.2s ease-in-out
-    transition:  max-height 0.2s ease-in-out
+    @include transition(max-height 0.2s ease-in-out)
 
   .parent.open > ul 
     max-height: 500px

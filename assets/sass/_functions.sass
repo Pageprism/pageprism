@@ -1,0 +1,54 @@
+@mixin hide-text
+  text-indent: -20000px
+  outline: none
+
+@mixin opacity($opacity)
+  opacity: $opacity
+  // IE 8
+  $ie_opacity: $opacity * 100
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$ie_opacity})"
+
+@mixin transition($t)
+  -webkit-transition: $t
+  -moz-transition: $t
+  -ms-transition: $t
+  -o-transition: $t
+  transition: $t
+
+@mixin transform($t)
+  -webkit-transform: $t
+  -moz-transform: $t
+  -ms-transform: $t
+  -o-transform: $t
+  transform: $t
+
+@mixin border-radius($r)
+  border-radius: $r
+  -ms-border-radius: $r
+  -moz-border-radius: $r
+  -webkit-border-radius: $r
+  -ms-behavior: url(#{$template_root}/lib/pie/PIE.php)
+
+@mixin aspect-ratio($ratio)
+  height: auto
+  &:before 
+    content: ''
+    display: block
+    box-sizing: content-box
+    padding-top: 100% / $ratio
+    height: 0
+    float: left
+  &:after
+    content: ''
+    display: block
+    clear: left
+
+@mixin box-shadow($top: 2px, $left: 2px, $blur: 2px, $color: #000, $inset: false) 
+  @if $inset 
+    -webkit-box-shadow:inset $top $left $blur $color
+    -moz-box-shadow:inset $top $left $blur $color
+    box-shadow:inset $top $left $blur $color
+  @else 
+    -webkit-box-shadow: $top $left $blur $color
+    -moz-box-shadow: $top $left $blur $color
+    box-shadow: $top $left $blur $color

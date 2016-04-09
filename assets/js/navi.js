@@ -1,15 +1,46 @@
+function popUnderLoad(url) {
+  var content = $('#ajax-content');
+  openMainMenu(false);
+  content.addClass('loading');
+  content.css('min-height', content.height()).empty();
+  content.load(url, function() {
+    reloadMainMenu(url);
+
+    content.addClass('loaded');
+    content.removeClass('loading');
+    content.css('min-height', 'auto');
+    setTimeout(function() {
+      content.removeClass('loaded');
+    }, 10);
+    setTimeout(function() {
+      $('html, body').animate({
+        scrollTop: content.offset().top
+      }, "fast");
+    }, 400);
+  });
+}
+function toggleMainMenu() {
+  openMainMenu(window.localStorage.menuOpen != "true");
+}
+function openMainMenu(toggle) {
+  window.localStorage.menuOpen = !!toggle;
+  $("body").toggleClass("open-sidebar", !!toggle);
+}
+function reloadMainMenu(url, data) {
+  data = data || {};
+  data.url = url;
+
+  $('#mainmenu').load("/index.php/ajax/load_menu", data, function() {
+    $('#mainmenu').perfectScrollbar('update');
+  });
+}
+
+
 $(function() {
 
   var win = $(window);
   var scrollTrigger = 64;
 
-  function toggleMainMenu() {
-    openMainMenu(window.localStorage.menuOpen != "true");
-  }
-  function openMainMenu(toggle) {
-    window.localStorage.menuOpen = !!toggle;
-    $("body").toggleClass("open-sidebar", !!toggle);
-  }
 
   function updateMenuScrollbar(timeout) {
     setTimeout(function() {
@@ -68,6 +99,11 @@ $(function() {
     if ($(this).attr('href') === '') {
       e.preventDefault();
     }
+  });
+  $(document).on('click', 'a.popUnder', function(e) {
+    var href = $(this).attr('href');
+    popUnderLoad(href);
+    e.preventDefault();
   });
   //Parent links open children
   $(document).on('click', '#mainmenu li.parent > a', function(e) {

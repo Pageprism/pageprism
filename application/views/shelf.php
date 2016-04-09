@@ -20,10 +20,7 @@
   </div>
   <?php endforeach; ?>
   <?php if ($shelf_editable): ?>
-  <a href="/admin/document/upload?shelf=<?= $shelf_id; ?>"><div class="cover add-book thumbnail"><span>+</span></div></a>
+  <a class="popUnder" href="/admin/document/upload?shelf=<?= $shelf_id; ?>"><div class="cover add-book thumbnail"><span>+</span></div></a>
   <?php endif; ?>
 </div>
 <hr class="book-content-separator" style="display:none" />
-
-<div id="rendered-pages">
-</div>
