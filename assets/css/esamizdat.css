@@ -21,7 +21,7 @@ body {
 }
 
 a {
-  color: #215295;
+  color: #5B8DC9;
 }
 
 a:hover i {
@@ -328,17 +328,10 @@ body.scrolled.show-navi #mainmenu {
 }
 
 .cover.add-book span {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  text-shadow: 1px 1px black;
+  text-shadow: 1px 1px 3px black;
   display: block;
-  padding: 20px 10px;
-  font-size: 60px;
-}
-
-.cover.add-book:hover span {
-  color: #ddd;
+  font-size: 80px;
+  line-height: 234px;
 }
 
 div.cover span {
@@ -489,7 +482,7 @@ div.cover span {
   width: 18px;
   height: 18px;
   text-align: center;
-  color: #215295;
+  color: #5B8DC9;
   line-height: 14px;
 }
 
