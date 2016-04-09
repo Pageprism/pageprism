@@ -5,7 +5,7 @@
         <div class="<?= ($shelf_editable) ? ' editable' : '' ?>" id="covers" data-shelf-id="<?= $shelf_id ?>"> 
           <?php foreach ($shelf as $book): ?>
           <div
-            class="cover document thumbnail<?php if (isset($current_book) && $current_book->id == $book->id) echo ' selected'; ?>" 
+            class="cover thumbnail<?php if (isset($current_book) && $current_book->id == $book->id) echo ' selected'; ?>" 
             data-book-pages="<?= $book->pages ?: '0' ?>"
             data-book-name="<?= $book->book_name ?>"
             data-book-id="<?=$book->id?>" title="<?=$book->book_name ?>">

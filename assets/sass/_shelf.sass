@@ -1,6 +1,9 @@
 
 
 /* Covers  */
+.shelfs-and-covers 
+  background-color: #f0f0f0
+
 #covers  
   width: auto
   padding: 40px 0
@@ -8,18 +11,61 @@
   overflow: auto
   white-space: nowrap
 
+  @media (max-width: 640px) 
+    margin: 20px 0
+
 .cover 
   display: inline-block
   float: none
+  text-align: center
+  margin: 0 0 10px 20px
+  cursor: pointer
+  vertical-align: top
 
-@media (max-width: 640px) 
-  #covers  
-    margin: 20px 0
-  
+  &.add-book 
+    span 
+      position: absolute
+      bottom: 0px
+      right: 0px
+      text-shadow: 1px 1px black
+      display: block
+      padding: 20px 10px
+      font-size: 60px
+    &:hover span
+      color: #ddd
 
+div.cover span 
+  display: block
+  font-size: 1.1em
 
-.shelfs-and-covers 
-  background-color: #f0f0f0
+.thumbnail 
+  padding: 2px
+  border: 2px solid #fff
+  width: 161px
+  height: 228px
+  background-color: #ffffff
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px
+  -webkit-border-radius: 2px
+  -moz-border-radius: 2px
+  border-radius: 2px
+  position: relative
+
+  @media (max-width: 1024px) 
+    width: 144px
+    height: 205px
+  @media (max-width: 640px) 
+    width: 81px
+    height: 114px
+
+  &.hilight,
+  &.selected
+    border: 2px solid #AAA
+    -moz-box-shadow: 0 0 10px #88A
+    -webkit-box-shadow: 0 0 10px #88A
+    box-shadow: 0px 0px 10px #88A
+
+    img
+      opacity: 0.7
 
 .book-content-separator 
   height: 30px
@@ -40,94 +86,3 @@
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#111111',GradientType=0 )
   /* IE6-9 */
-
-div.cover 
-  text-align: center
-  margin: 0 0 10px 20px
-  cursor: pointer
-  vertical-align: top
-
-div.cover .caption 
-  padding: 0
-  width: 147px
-  position: absolute
-  bottom: 0px
-
-div.cover.add-book span 
-  position: absolute
-  bottom: 0px
-  right: 0px
-  text-shadow: 1px 1px black
-  display: block
-  padding: 20px 10px
-  font-size: 60px
-
-div.cover.add-book:hover span 
-  color: #ddd
-
-
-div.cover h3.title 
-  margin: 0 0 4px 0
-  line-height: normal
-  font-size: 1.2em
-  max-height: 58px
-  overflow: hidden
-
-
-div.cover span 
-  display: block
-  font-size: 1.1em
-
-
-.thumbnail 
-  padding: 2px
-  border: 2px solid #fff
-  width: 161px
-  height: 228px
-  background-color: #ffffff
-  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px
-  -webkit-border-radius: 2px
-  -moz-border-radius: 2px
-  border-radius: 2px
-  position: relative
-
-
-@media (max-width: 1024px) 
-  .thumbnail 
-    width: 144px
-    height: 205px
-  
-
-@media (max-width: 640px) 
-  .thumbnail 
-    width: 81px
-    height: 114px
-  
-
-
-.thumbnail.hilight,
-.thumbnail.selected
-  border: 2px solid #AAA
-  -moz-box-shadow: 0 0 10px #88A
-  -webkit-box-shadow: 0 0 10px #88A
-  box-shadow: 0px 0px 10px #88A
-
-.thumbnail.hilight img,
-.thumbnail.selected img
-  opacity: 0.7
-
-.music-icon, .epub-icon 
-  background: url('../img/sprite-icons.png') 0 -52px
-  width: 90px
-  height: 90px
-  text-indent: 100%
-  white-space: nowrap
-  overflow: hidden
-  margin: 15px 0 0 36px
-
-.epub-icon 
-  background-position: -4px -395px
-p.single-epub 
-  font-size: 1.2em
-  text-align: left
-  margin: 10px 20px

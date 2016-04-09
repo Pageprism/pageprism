@@ -12,8 +12,8 @@
     .scrubber 
       width: 115px
   
-  .audiojs .time 
-    font-size: 80%
+    .time 
+      font-size: 80%
 
   audio 
     position: absolute
@@ -73,13 +73,13 @@
     margin: 0px 0px 0px 6px
     padding: 0px 3px 0px 6px
 
-  .time em 
-    padding: 0px 2px 0px 0px
-    font-style: normal
+    em 
+      padding: 0px 2px 0px 0px
+      font-style: normal
 
-  .time strong 
-    padding: 0px 0px 0px 2px
-    font-weight: normal
+    strong 
+      padding: 0px 0px 0px 2px
+      font-weight: normal
 
   .error-message 
     float: left
@@ -105,7 +105,6 @@
     border-bottom: 1px solid #999
     white-space: wrap
 
-
   .play 
     background: url("../audiojs/player-graphics.gif") -8px -1px no-repeat
 
@@ -118,30 +117,24 @@
   .pause 
     background: url("../audiojs/player-graphics.gif") -8px -91px no-repeat
 
+  .loading, .error, .pause 
+    display: none
+  &.loading, &.playing
+    .play
+      display: none
 
-.playing .play, .playing .loading, .playing .error 
-  display: none
+  &.playing .pause
+    display: block
+  &.loading .loading
+    display: block
 
-.playing .pause 
-  display: block
-
-
-.loading .play, .loading .pause, .loading .error 
-  display: none
-
-.loading .loading 
-  display: block
-
-
-.error .time, .error .play, .error .pause, .error .scrubber, .error .loading 
-  display: none
-
-.error .error 
-  display: block
-
-.error .play-pause p 
-  cursor: auto
-
-.error .error-message 
-  display: block
+  &.error 
+    .time, .scrubber, .play 
+      display: none
+    .error 
+      display: block
+    .play-pause p 
+      cursor: auto
+    .error-message 
+      display: block
 

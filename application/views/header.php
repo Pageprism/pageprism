@@ -72,19 +72,16 @@ _gaq.push(['_trackPageview']);
 <!-- Top Header -->
 <div class="navbar-fake"></div>
 <div class="navbar navbar-inverse">
-	<div class="navbar-inner" id="top-header">
-    	<div class="container-fluid">
-
-        <a id="mainlogo" class="brand" href="<?= $this->Shelf_model->getFrontPageLink(isset($shelf_id) ? $shelf_id : false); ?>">PageShare</a>
-
-            <div id="scroll-to-top" style="display:none"><button class="btn">Back to shelves</button></div>
-            <a href="#" id="sidebar-toggle">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </a>
-		</div>
+  <div class="navbar-inner" id="top-header">
+    <div class="container-fluid">
+      <a id="mainlogo" class="brand" href="<?= $this->Shelf_model->getFrontPageLink(isset($shelf_id) ? $shelf_id : false); ?>">PageShare</a>
+      <a href="#" id="sidebar-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
     </div>
+  </div>
 </div>
 <!-- Main menu -->
 <div id="mainmenu">

@@ -149,6 +149,25 @@ body.scrolled.show-navi .navbar {
   min-height: 0px !important;
 }
 
+#top-header .container-fluid {
+  position: relative;
+  padding: 5px;
+}
+
+#top-header .brand {
+  z-index: 1050;
+  background: url("../img/sprite-icons.png") 0px 5px no-repeat;
+  height: 49px;
+  padding: 0;
+  display: inline-block;
+  padding: 0 0 0 62px;
+  line-height: 49px;
+  font-size: 25px;
+  color: black;
+  margin: 0 5px 0 0;
+  text-shadow: none;
+}
+
 #sidebar-toggle {
   background: #eee;
   border-radius: 3px;
@@ -280,33 +299,11 @@ body.scrolled.show-navi #mainmenu {
   background: #eee;
 }
 
-#top-header .container-fluid {
-  position: relative;
-  padding: 5px;
-}
-
-#top-header .brand {
-  z-index: 1050;
-  background: url("../img/sprite-icons.png") 0px 5px no-repeat;
-  height: 49px;
-  padding: 0;
-  display: inline-block;
-  padding: 0 0 0 62px;
-  line-height: 49px;
-  font-size: 25px;
-  color: black;
-  margin: 0 5px 0 0;
-  text-shadow: none;
-}
-
-#scroll-to-top {
-  position: absolute;
-  top: 7px;
-  right: 20px;
-  z-index: 1050;
-}
-
 /* Covers  */
+.shelfs-and-covers {
+  background-color: #f0f0f0;
+}
+
 #covers {
   width: auto;
   padding: 40px 0;
@@ -315,57 +312,22 @@ body.scrolled.show-navi #mainmenu {
   white-space: nowrap;
 }
 
-.cover {
-  display: inline-block;
-  float: none;
-}
-
 @media (max-width: 640px) {
   #covers {
     margin: 20px 0;
   }
 }
 
-.shelfs-and-covers {
-  background-color: #f0f0f0;
-}
-
-.book-content-separator {
-  height: 30px;
-  margin: 0;
-  background: #4c4c4c;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #4c4c4c 0%, #111111 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(100%, #111111));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #4c4c4c 0%, #111111 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #4c4c4c 0%, #111111 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #4c4c4c 0%, #111111 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #4c4c4c 0%, #111111 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#111111',GradientType=0 );
-  /* IE6-9 */
-}
-
-div.cover {
+.cover {
+  display: inline-block;
+  float: none;
   text-align: center;
   margin: 0 0 10px 20px;
   cursor: pointer;
   vertical-align: top;
 }
 
-div.cover .caption {
-  padding: 0;
-  width: 147px;
-  position: absolute;
-  bottom: 0px;
-}
-
-div.cover.add-book span {
+.cover.add-book span {
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -375,16 +337,8 @@ div.cover.add-book span {
   font-size: 60px;
 }
 
-div.cover.add-book:hover span {
+.cover.add-book:hover span {
   color: #ddd;
-}
-
-div.cover h3.title {
-  margin: 0 0 4px 0;
-  line-height: normal;
-  font-size: 1.2em;
-  max-height: 58px;
-  overflow: hidden;
 }
 
 div.cover span {
@@ -419,41 +373,60 @@ div.cover span {
   }
 }
 
-.thumbnail.hilight,
-.thumbnail.selected {
+.thumbnail.hilight, .thumbnail.selected {
   border: 2px solid #AAA;
   -moz-box-shadow: 0 0 10px #88A;
   -webkit-box-shadow: 0 0 10px #88A;
   box-shadow: 0px 0px 10px #88A;
 }
 
-.thumbnail.hilight img,
-.thumbnail.selected img {
+.thumbnail.hilight img, .thumbnail.selected img {
   opacity: 0.7;
 }
 
-.music-icon, .epub-icon {
-  background: url("../img/sprite-icons.png") 0 -52px;
-  width: 90px;
-  height: 90px;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  margin: 15px 0 0 36px;
+.book-content-separator {
+  height: 30px;
+  margin: 0;
+  background: #4c4c4c;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #4c4c4c 0%, #111111 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(100%, #111111));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #4c4c4c 0%, #111111 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #4c4c4c 0%, #111111 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #4c4c4c 0%, #111111 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #4c4c4c 0%, #111111 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#111111',GradientType=0 );
+  /* IE6-9 */
 }
 
-.epub-icon {
-  background-position: -4px -395px;
-}
-
-p.single-epub {
-  font-size: 1.2em;
-  text-align: left;
-  margin: 10px 20px;
-}
-
-#rendered-pages {
+.single-page {
   position: relative;
+  width: 992px;
+  margin: 2em auto 0 auto;
+}
+
+@media (max-width: 992px) {
+  .single-page {
+    width: 100%;
+  }
+}
+
+.single-page img {
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px;
+}
+
+.single-page .empty-page:before {
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px;
+  content: "";
+  display: block;
+  padding-top: 141%;
+  /* initial ratio of 1:1*/
 }
 
 .page-share {
@@ -471,7 +444,43 @@ p.single-epub {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 0px;
 }
 
-.pagenumber {
+.page-share .share-part {
+  display: none;
+}
+
+.page-share .share-part a.download-pdf, .page-share .share-part a.download-epub, .page-share .share-part a.download-music {
+  font-size: 1.2em;
+  margin-right: 15px;
+}
+
+.page-share .share-part a.download-music {
+  float: right;
+  line-height: 35px;
+}
+
+.page-share .share-part a.social i {
+  font-size: 2em;
+}
+
+.page-share .share-part h5.url {
+  display: block;
+}
+
+.page-share .share-part h5 {
+  margin: 10px 0 1px 0;
+}
+
+.page-share .share-part p.direct-url {
+  padding: 6px;
+  background-color: #f0f0f0;
+  font-size: 1.2em;
+}
+
+.page-share .share-part i.icon-book {
+  font-size: 1.3em;
+}
+
+.page-share .pagenumber {
   position: absolute;
   right: 16px;
   top: 16px;
@@ -482,10 +491,6 @@ p.single-epub {
   text-align: center;
   color: #215295;
   line-height: 14px;
-}
-
-.share-part {
-  display: none;
 }
 
 .page-share.open .share-part {
@@ -520,62 +525,6 @@ p.single-epub {
   }
 }
 
-.single-page {
-  position: relative;
-  width: 992px;
-  margin: 2em auto 0 auto;
-}
-
-@media (max-width: 992px) {
-  .single-page {
-    width: 100%;
-  }
-}
-
-.single-page img {
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px;
-}
-
-.single-page .empty-page:before {
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 10px 0px;
-  content: "";
-  display: block;
-  padding-top: 141%;
-  /* initial ratio of 1:1*/
-}
-
-.share-part a.download-pdf, .share-part a.download-epub, .share-part a.download-music {
-  font-size: 1.2em;
-  margin-right: 15px;
-}
-
-.share-part a.download-music {
-  float: right;
-  line-height: 35px;
-}
-
-.share-part a.social i {
-  font-size: 2em;
-}
-
-.share-part h5.url {
-  display: block;
-}
-
-.share-part h5 {
-  margin: 10px 0 1px 0;
-}
-
-p.direct-url {
-  padding: 6px;
-  background-color: #f0f0f0;
-  font-size: 1.2em;
-}
-
-i.icon-book {
-  font-size: 1.3em;
-}
-
 #loadmore {
   margin: 20px;
   text-align: center;
@@ -599,10 +548,9 @@ i.icon-book {
   .audiojs .scrubber {
     width: 115px;
   }
-}
-
-.audiojs .audiojs .time {
-  font-size: 80%;
+  .audiojs .time {
+    font-size: 80%;
+  }
 }
 
 .audiojs audio {
@@ -722,35 +670,35 @@ i.icon-book {
   background: url("../audiojs/player-graphics.gif") -8px -91px no-repeat;
 }
 
-.playing .play, .playing .loading, .playing .error {
+.audiojs .loading, .audiojs .error, .audiojs .pause {
   display: none;
 }
 
-.playing .pause {
-  display: block;
-}
-
-.loading .play, .loading .pause, .loading .error {
+.audiojs.loading .play, .audiojs.playing .play {
   display: none;
 }
 
-.loading .loading {
+.audiojs.playing .pause {
   display: block;
 }
 
-.error .time, .error .play, .error .pause, .error .scrubber, .error .loading {
+.audiojs.loading .loading {
+  display: block;
+}
+
+.audiojs.error .time, .audiojs.error .scrubber, .audiojs.error .play {
   display: none;
 }
 
-.error .error {
+.audiojs.error .error {
   display: block;
 }
 
-.error .play-pause p {
+.audiojs.error .play-pause p {
   cursor: auto;
 }
 
-.error .error-message {
+.audiojs.error .error-message {
   display: block;
 }
 
