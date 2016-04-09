@@ -86,7 +86,7 @@ body.scrolled.show-navi .navbar {
   margin-bottom: 5px;
   height: 3px;
   background-color: #000;
-  border-radius: 1px;   
+  border-radius: 1px;
 }
 
 #mainmenu {
@@ -359,7 +359,7 @@ div.cover span {
     width: 81px;
     height: 114px;
   }
-} 
+}
 
 .thumbnail.hilight,
 .thumbnail.selected{
@@ -614,14 +614,14 @@ p.single-lyrics {
 .audiojs audio {
   position: absolute;
   left: -1px;
-} 
+}
 .audiojs {
   width: 410px;
   height: 36px;
   overflow: hidden;
   font-family: monospace;
   font-size: 12px;
-} 
+}
 .audiojs .play-pause {
   width: 20px;
   height: 40px;
@@ -629,17 +629,17 @@ p.single-lyrics {
   margin: 0px;
   float: left;
   overflow: hidden;
-} 
+}
 .audiojs p {
   display: none;
   width: 16px;
   height: 40px;
   margin: 0px;
   cursor: pointer;
-} 
+}
 .audiojs .play {
   display: block;
-} 
+}
 .audiojs .scrubber {
   position: relative;
   float: left;
@@ -650,7 +650,7 @@ p.single-lyrics {
   border-left: 0px;
   border-bottom: 0px;
   overflow: hidden;
-} 
+}
 .audiojs .progress {
   position: absolute;
   top: 0px;
@@ -660,7 +660,7 @@ p.single-lyrics {
   background: #215295;
   z-index: 1;
   border-radius: 0;
-} 
+}
 .audiojs .loaded {
   position: absolute;
   top: 0px;
@@ -668,22 +668,22 @@ p.single-lyrics {
   height: 14px;
   width: 0px;
   background: #f0f0f0;
-} 
+}
 .audiojs .time {
   float: left;
   height: 36px;
   line-height: 36px;
   margin: 0px 0px 0px 6px;
   padding: 0px 3px 0px 6px;
-} 
+}
 .audiojs .time em {
   padding: 0px 2px 0px 0px;
   font-style: normal;
-} 
+}
 .audiojs .time strong {
   padding: 0px 0px 0px 2px;
   font-weight: normal;
-} 
+}
 .audiojs .error-message {
   float: left;
   display: none;
@@ -700,51 +700,51 @@ p.single-lyrics {
   -khtml-text-overflow: ellipsis;
   -moz-text-overflow: ellipsis;
   -webkit-text-overflow: ellipsis;
-} 
+}
 .audiojs .error-message a {
   color: #eee;
   text-decoration: none;
   padding-bottom: 1px;
   border-bottom: 1px solid #999;
   white-space: wrap;
-} 
+}
 
 .audiojs .play {
   background: url("../audiojs/player-graphics.gif") -8px -1px no-repeat;
-} 
+}
 .audiojs .loading {
   background: url("../audiojs/player-graphics.gif") -8px -31px no-repeat;
-} 
+}
 .audiojs .error {
   background: url("../audiojs/player-graphics.gif") -8px -61px no-repeat;
-} 
+}
 .audiojs .pause {
   background: url("../audiojs/player-graphics.gif") -8px -91px no-repeat;
-} 
+}
 
 .playing .play, .playing .loading, .playing .error {
   display: none;
-} 
+}
 .playing .pause {
   display: block;
-} 
+}
 
 .loading .play, .loading .pause, .loading .error {
   display: none;
-} 
+}
 .loading .loading {
   display: block;
-} 
+}
 
 .error .time, .error .play, .error .pause, .error .scrubber, .error .loading {
   display: none;
-} 
+}
 .error .error {
   display: block;
-} 
+}
 .error .play-pause p {
   cursor: auto;
-} 
+}
 .error .error-message {
   display: block;
 }
