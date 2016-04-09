@@ -14,7 +14,7 @@ class Shelf extends CI_Controller {
 	public function view() {
     $this->load->model('book_model');
     $shelf_id = $this->uri->segment(2);
-    $this->layout->show('index', array(
+    $this->layout->show('shelf', array(
       'shelf_editable' => $this->session->userdata('logged_in'),
       'shelf_id' => $shelf_id,
       'shelf' => $this->book_model->loadShelf($shelf_id),
