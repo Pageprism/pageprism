@@ -17,9 +17,11 @@ class Menu_model extends CI_Model {
       );
     }
 
+    $this->logged_in = $this->session->userdata('user_name') != "";
+
     $this->addCurrentBook($menu, $book);
     $this->addShelves($menu);
-    $this->addAdmin($menu, $uri);
+    $this->addLogin($menu, $uri);
     $this->processClasses($menu, $uri);
 
     return $menu;
@@ -41,8 +43,7 @@ class Menu_model extends CI_Model {
       );
     }
       
-    $logged_in = $this->session->userdata('user_name') != "";
-    if ($logged_in) {
+    if ($this->logged_in) {
       $children[] = array(
         'title' => 'Edit this book',
         'url' => '/admin/document/modify/'.$book->id,
@@ -93,6 +94,13 @@ class Menu_model extends CI_Model {
   }
   function addShelves(&$menu) {
     $shelves = array();
+      
+    if ($this->logged_in) {
+      $shelves[] = array(
+        'title' => 'Edit collections',
+        'url' => "/admin/shelf",
+      );
+    }
     foreach ($this->shelf_model->getShelvesForParent('shelves') as $shelf) {
       $shelves[] = array(
         'title' => $shelf->name,
@@ -106,25 +114,14 @@ class Menu_model extends CI_Model {
     );
   }
 
-  function addAdmin(&$menu, $uri) {
-    if (!$uri) $uri = '/'.$this->uri->uri_string;
-    $logged_in = $this->session->userdata('user_name') != "";
-    if ($logged_in) {
+  function addLogin(&$menu, $uri) {
+    if ($this->logged_in) {
       $menu[] = array(
-        'title' => 'Admin',
-        'url' => "#",
-        'children' => array(
-          array(
-            'title' => 'Collections',
-            'url' => "/admin/shelf",
-          ),
-          array(
-            'title' => 'Log out',
-            'url' => "/logout"
-          ),
-        )
+        'title' => 'Log out',
+        'url' => "/logout"
       );
     } else {
+      if (!$uri) $uri = '/'.$this->uri->uri_string;
       $menu[] = array(
         'title' => 'Log in',
         'url' => "/login?backUrl=".urlencode($uri)
