@@ -7,8 +7,8 @@ class Menu extends CI_Controller {
     $uri = $this->input->post('url');
 
     if ($book_id) {
-      $this->load->model('book_model');
-      $book = $this->book_model->loadBook($book_id);
+      $this->load->model('book');
+      $book = $this->book->loadBook($book_id);
       if ($book) {
         $this->load->view('menu', array('menu' => $this->Menu_model->getMenu($book, $uri)));
         return;

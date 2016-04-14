@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Book extends CI_Controller {
+class BookController extends CI_Controller {
 
 	public function index() {
 		redirect("/");
@@ -15,14 +15,14 @@ class Book extends CI_Controller {
 			$page_n = substr($this->uri->rsegment(4),1);
 		}
     
-    $this->load->model('book_model');
-    $book = $this->book_model->loadBookByName($name);
+    $this->load->model('book');
+    $book = $this->book->loadBookByName($name);
 		if ($book)
 		{
       $this->layout->show('shelf', array(
         'shelf_editable' => $this->session->userdata('logged_in'),
         'shelf_id' => $book->shelf_id,
-        'shelf' => $this->book_model->loadShelf($book->shelf_id),
+        'shelf' => $this->book->loadShelf($book->shelf_id),
         'current_book' => $book,
         'current_page' => $page_n,
         'cover_image' => $book->file_url_cover,

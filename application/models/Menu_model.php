@@ -30,12 +30,12 @@ class Menu_model extends CI_Model {
   function addCurrentBook(&$menu, $book) {
     if (!$book) return;
     $this->load->model('shelf_model');
-    $this->load->model('book_model');
+    $this->load->model('book');
 
     $children = array();
     $items = array();
 
-    $has_audio = $this->book_model->hasAudio($book->id);
+    $has_audio = $this->book->hasAudio($book->id);
     if ($has_audio) {
       $children[] = array(
         'id' => 'playpause',

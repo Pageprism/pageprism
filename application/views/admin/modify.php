@@ -21,7 +21,7 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
 	<p><span class="label">Timestamp:</span> <?php echo form_input('book_timestamp', $data->book_timestamp);?></p>
 	<p><span class="label">Meme URL: </span><?php echo form_input('follow_author_url', $data->follow_author_url);?></p>
 	<p><span class="label">Print URL: </span><?php echo form_input('memory_piece_url', $data->memory_piece_url);?></p>
-  <p><span class="label">Layouts/Licences URL: </span><?php echo form_input('misc_file_url', $data->misc_file_url);?></p>
+  <p><span class="label">Designs URL: </span><?php echo form_input('misc_file_url', $data->misc_file_url);?></p>
 	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url', $data->eorder_url);?></p>
 	<p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url', $data->share_poster_url);?></p>-->
 	<p><span class="label">Collection:</span>
