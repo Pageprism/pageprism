@@ -9,7 +9,6 @@ class BookAttributes extends CI_Model {
         'type' => $type,
         'name' => $name,
       ))->result();
-      print_r($rows);
 
       if (!$rows) {
         $row = new stdClass;

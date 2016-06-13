@@ -37,11 +37,15 @@ class Book extends CI_Model {
     return $books;
   }
   public function loadAggregateShelf($key, $value) {
-    static $allowed_keys = array('author' => 'book_author', 'year' => 'book_timestamp', 'language' => 'language');
-    if (empty($allowed_keys[$key])) return array();
-    $column = $allowed_keys[$key];
-
-		$query = $this->db->query("SELECT * FROM book WHERE book.$column LIKE ? order by book_name asc", "%$value%");
+    $query = $this->db->query("SELECT book.* FROM book 
+      INNER JOIN book_attribute as ba ON book.id = ba.book_id
+      INNER JOIN attribute_title as at ON ba.title_id = at.id
+      WHERE ba.value LIKE ? 
+      AND at.type = 'attribute'
+      AND at.name = ?
+      ORDER BY book_name asc", 
+      array("%$value%", $key)
+      );
     $books = $query->result();
     $this->BookAttributes->loadInto($books);
 
@@ -52,6 +56,10 @@ class Book extends CI_Model {
 		$query = $this->db->query("SELECT count(*) as count FROM audio_file WHERE book_id = ?", $id);
     $res = $query->row();
     return (bool)($res->count) ?: false;
+  }
+
+  public function saveBook($book) {
+    
   }
 
 }
