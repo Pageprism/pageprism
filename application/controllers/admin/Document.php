@@ -2,17 +2,6 @@
 
 class Document extends MY_Controller {
 
-  function migrateBookAttributes() {
-    $this->load->model('BookAttributes');
-		$query = $this->db->query("SELECT * FROM book");
-    $books = $query->result();
-    foreach($books as $book) {
-      echo "<p>Saving $book->id</p>";
-      $this->_save_attributes($book->id, $book);
-      echo "<p>Saved!</p>";
-    }
-  }
-
   function index()
   {
 
@@ -195,6 +184,7 @@ class Document extends MY_Controller {
     }
     $this->db->insert('book', $book_data);
     $insert_id = $this->db->insert_id();
+    $this->_save_attributes($insert_id, (object)$book_data);
     
     foreach($pageRecords as $pageData) {
       $pageData['book_id'] = $insert_id;
