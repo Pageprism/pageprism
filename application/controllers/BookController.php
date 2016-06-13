@@ -41,7 +41,10 @@ class BookController extends CI_Controller {
 		}
   }
 
-	public function _load_pages($id, $page_n) {
+  public function _load_pages($id, $page_n) {
+    $this->load->model('book');
+    $book = $this->book->loadBook($id);
+
     $query = $this->db->query("SELECT book.*, pdf.page_image_url, pdf.page_n 
       FROM book LEFT JOIN pdf ON pdf.book_id=book.id
       WHERE book.id = ? and (pdf.page_n = ? OR page_n IS NULL)", array($id, $page_n));
@@ -62,7 +65,7 @@ class BookController extends CI_Controller {
     foreach ($pages as $row)
     {
       $row->audio_tracks = $audio_files;
-      $pageContent[] = $this->load->view('content', array('page' => $row), true);
+      $pageContent[] = $this->load->view('content', array('book' => $book, 'page' => $row), true);
     }
     return implode("\n", $pageContent);
 	}
