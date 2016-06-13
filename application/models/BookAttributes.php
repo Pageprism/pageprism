@@ -22,15 +22,35 @@ class BookAttributes extends CI_Model {
     }
     return $this->titleCache[$type][$name];
   }
-
-  public function save($book, $type, $attribute, $values) {
+  
+  /** Attaches values to a attribute of a book
+   * @param $book Either a book object or a book id
+   * @param $type Attribute type name (attribute, url, ?)
+   * @param $attribute_ordering The order number of the attribute name, used for sorting the attributes when viewing
+   * @param $attribute_title The name of the attribute
+   * @param $values An array containing values for the attribute. The values can themselves be two item arrays in which case a subtitle is created for the first item. 
+   *
+   * For example to update the authors of a movie with one main author and a co-editor you can provide te values ['John Smith', ['Script co-editor', 'B. Clarck']]
+   */
+  public function save($book, $type, $attribute_ordering, $attribute_title, $values) {
     if (is_object($book)) $book = $book->id;
-    $title = $this->getTitle($type, $attribute);
+    $title = $this->getTitle($type, $attribute_title);
     $this->db->trans_start();
     $this->db->delete('book_attribute', array(
       'book_id' => $book,
       'title_id' => $title->id
     ));
+
+    $this->db->delete('book_attribute_title_ordering', array(
+      'book_id' => $book,
+      'title_id' => $title->id
+    ));
+    $this->db->insert('book_attribute_title_ordering', array(
+      'book_id' => $book,
+      'title_id' => $title->id,
+      'ordering' => $attribute_ordering
+    ));
+
     $ordering = 0;
     foreach($values as $value) {
       $row = new stdClass;

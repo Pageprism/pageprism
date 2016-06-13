@@ -2,6 +2,17 @@
 
 class Document extends MY_Controller {
 
+  function migrateBookAttributes() {
+    $this->load->model('BookAttributes');
+		$query = $this->db->query("SELECT * FROM book");
+    $books = $query->result();
+    foreach($books as $book) {
+      echo "<p>Saving $book->id</p>";
+      $this->_save_attributes($book->id, $book);
+      echo "<p>Saved!</p>";
+    }
+  }
+
   function index()
   {
 
@@ -23,13 +34,13 @@ class Document extends MY_Controller {
 
   private function _save_attributes($book_id, $book) {
     $this->load->model('BookAttributes');
-    $this->BookAttributes->save($book_id, 'attribute', 'Language', array_filter([$book->language]));
-    $this->BookAttributes->save($book_id, 'attribute', 'Author', array_filter([$book->book_author]));
-    $this->BookAttributes->save($book_id, 'attribute', 'Year', array_filter([$book->book_timestamp]));
+    $this->BookAttributes->save($book_id, 'attribute', 0, 'Author', array_filter([$book->book_author]));
+    $this->BookAttributes->save($book_id, 'attribute', 1, 'Language', array_filter([$book->language]));
+    $this->BookAttributes->save($book_id, 'attribute', 2, 'Year', array_filter([$book->book_timestamp]));
 
-    $this->BookAttributes->save($book_id, 'url', 'Meme', array_filter([$book->follow_author_url]));
-    $this->BookAttributes->save($book_id, 'url', 'Print', array_filter([$book->memory_piece_url]));
-    $this->BookAttributes->save($book_id, 'url', 'Designs', array_filter([$book->misc_file_url]));
+    $this->BookAttributes->save($book_id, 'url', 0, 'Meme', array_filter([$book->follow_author_url]));
+    $this->BookAttributes->save($book_id, 'url', 1, 'Print', array_filter([$book->memory_piece_url]));
+    $this->BookAttributes->save($book_id, 'url', 2, 'Designs', array_filter([$book->misc_file_url]));
   }
 
   function update_info() {
