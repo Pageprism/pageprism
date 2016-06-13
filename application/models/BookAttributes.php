@@ -80,18 +80,22 @@ class BookAttributes extends CI_Model {
     $ids = array_keys($books);
     
     $data = $this->db->
-      select('title.type', 'title.name', 'subtitle.name', 'value')->
-      from('book_attribute')->
+      select('attr.book_id, title.type, title.name as title, subtitle.name as subtitle, value')->
+      from('book_attribute attr')->
       join('attribute_title as title', 'title.id = title_id')->
-      join('attribute_title as subtitle', 'title.id = subtitle_id')->
-      where_in('book_id', $ids)->
-      order_by('ordering', 'asc')->get()->result();
+      join('attribute_title as subtitle', 'title.id = subtitle_id', 'left')->
+      join('book_attribute_title_ordering as ord', 'ord.book_id = attr.book_id AND ord.title_id = attr.title_id')->
+      where_in('attr.book_id', $ids)->
+      order_by('ord.ordering, attr.ordering', 'asc')->get()->result();
 
     foreach($data as $row) {
+      $book = $books[$row->book_id];
+      unset($row->book_id);
+
       if (!isset($book->attributes->{$row->type})) {
         $book->attributes->{$row->type} = new stdClass;
       }
-      $book->attributes->{$row->type}->{$row->title} = $row;
+      $book->attributes->{$row->type}->{$row->title}[] = $row;
     }
   }
 
