@@ -44,7 +44,7 @@ class Book extends CI_Model {
       AND at.type = 'attribute'
       AND at.name = ?
       ORDER BY book_name asc", 
-      array("%$value%", $key)
+      array($value, $key)
       );
     $books = $query->result();
     $this->BookAttributes->loadInto($books);
