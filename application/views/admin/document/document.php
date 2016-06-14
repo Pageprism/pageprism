@@ -38,7 +38,7 @@
     <legend>Details</legend>
     <?php $this->load->view('admin/document/attributes', array(
       'book' => $book, 'type' => 'attribute', 'options' => [
-        'default_attributes' => ['Author', 'Category', 'Language', 'Year'], 
+        'default_attributes' => ['Author', 'Category', 'Language', 'Year of publication'], 
         'allow_multiple_values' => true
       ])); ?> 
   </fieldset>
