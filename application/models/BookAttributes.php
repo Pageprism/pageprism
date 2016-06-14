@@ -92,6 +92,7 @@ class BookAttributes extends CI_Model {
       $book->attributes = new stdClass;
     }
     $ids = array_keys($books);
+    if (empty($ids)) return;
     
     $data = $this->db->
       select('attr.book_id, title.type, title.name as title, subtitle.name as subtitle, value')->
