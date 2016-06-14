@@ -1,12 +1,15 @@
 <?php
 
+$options = (object)($options + [
+  'allow_multiple_values' => false,
+  'allow_editing_names' => false,
+  'default_attributes' => [],
+]);
 $attributes = (array)$book->attributes->{$type} ?? new StdClass;
 
-if (isset($default_attributes)) {
-  foreach($default_attributes as $attr_name) {
-    if (empty($attributes[$attr_name])) {
-      $attributes[$attr_name] = [];
-    }
+foreach($options->default_attributes as $attr_name) {
+  if (empty($attributes[$attr_name])) {
+    $attributes[$attr_name] = [];
   }
 }
 
@@ -15,14 +18,14 @@ $attributes[''] = [];
 
 $i = 0;
 ?>
-<div class="attributeEditor<?php if (empty($allow_multiple_values)): ?> no-multiple-values<?php endif; ?>" data-type="<?= $type ?>">
+<div class="attributeEditor<?php if (empty($options->allow_multiple_values)): ?> no-multiple-values<?php endif; ?>" data-type="<?= $type ?>">
 <?php foreach($attributes as $name => $values): 
 if (empty($values)) {
   $values[] = (object)['value' => '', 'subtitle' => ''];
 }
 ?>
   <div class="attribute<?php if ($name === ''): ?> dummy<?php endif; ?>">
-    <input class="title" type="text" name="attributes[<?= $type ?>][<?= $i ?>][name]" value="<?= htmlspecialchars($name) ?>" />
+    <input class="title" type="text" name="attributes[<?= $type ?>][<?= $i ?>][name]" value="<?= htmlspecialchars($name) ?>" <?php if (!$options->allow_editing_names): ?> readonly<?php endif; ?> />
     <div class="values">
       <?php foreach($values as $v => $value): ?>
       <div class="value">
@@ -35,9 +38,9 @@ if (empty($values)) {
     </div>
   </div>
   <?php $i++; endforeach; ?>
-  <!--
+  <?php if ($options->allow_editing_names): ?>
   <div class="add_attribute">
     <button class="add">Add <?= $type ?></button>
   </div>
-  -->
+  <?php endif; ?>
 </div>

@@ -20,11 +20,19 @@
 	<p><span class="label">Item name: </span><?php echo form_input('book_name');?></p>
   <fieldset>
     <legend>Details</legend>
-    <?php $this->load->view('admin/document/attributes', array('type' => 'attribute', 'default_attributes' => ['Author', 'Year', 'Language'], 'allow_multiple_values' => true)); ?> 
+    <?php $this->load->view('admin/document/attributes', array(
+      'book' => null, 'type' => 'attribute', 'options' => [
+        'default_attributes' => ['Author', 'Category', 'Language', 'Year'], 
+        'allow_multiple_values' => true
+      ])); ?> 
   </fieldset>
   <fieldset>
     <legend>URLs</legend>
-    <?php $this->load->view('admin/document/attributes', array('type' => 'url', 'default_attributes' => ['Meme', 'Print', 'Design'], 'allow_multiple_values' => false)); ?> 
+    <?php $this->load->view('admin/document/attributes', array(
+      'book' => null, 'type' => 'url', 'options' => [
+        'default_attributes' => ['Meme', 'Print', 'Design'], 
+        'allow_multiple_values' => false
+      ])); ?> 
   </fieldset>
 	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url');?></p>
   <p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url');?></p>-->

@@ -760,6 +760,10 @@ div.cover span {
   vertical-align: top;
 }
 
+.attributeEditor .attribute .title[readonly] {
+  background: transparent;
+}
+
 .attributeEditor .attribute .title:focus {
   border-color: #ccc;
   outline: 0;

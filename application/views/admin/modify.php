@@ -28,11 +28,20 @@
   ?></p>
   <fieldset>
     <legend>Details</legend>
-    <?php $this->load->view('admin/document/attributes', array('book' => $book, 'type' => 'attribute', 'default_attributes' => ['Author', 'Category', 'Language', 'Year'], 'allow_multiple_values' => true)); ?> 
+    <?php $this->load->view('admin/document/attributes', array(
+      'book' => $book, 'type' => 'attribute', 'options' => [
+        'default_attributes' => ['Author', 'Category', 'Language', 'Year'], 
+        'allow_multiple_values' => true
+      ])); ?> 
   </fieldset>
   <fieldset>
     <legend>URLs</legend>
-    <?php $this->load->view('admin/document/attributes', array('book' => $book, 'type' => 'url', 'default_attributes' => ['Meme', 'Print', 'Design'], 'allow_multiple_values' => false)); ?> 
+    <?php $this->load->view('admin/document/attributes', array(
+      'book' => $book, 'type' => 'url', 'options' => [
+        'default_attributes' => ['Meme', 'Print', 'Design'], 
+        'allow_editing_names' => true,
+        'allow_multiple_values' => false
+      ])); ?> 
   </fieldset>
   <?php if (!empty($audio_files)): ?>
   <h2>MP3 audio files</h2>
