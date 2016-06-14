@@ -10,7 +10,9 @@
 {{/each}}
 
 {{#if editable}}
-<div>
-  <a class="editBook popUnder" href="/admin/document/modify/{{book.id}}">Edit this book</a>
+<div class="editBook oo-ui-iconElement">
+  <a class="popUnder" href="/admin/document/modify/{{book.id}}">
+    <span class="oo-ui-iconElement-icon oo-ui-icon-edit"></span> Edit
+  </a>
 </div>
 {{/if}}

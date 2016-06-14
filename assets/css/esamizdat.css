@@ -81,6 +81,43 @@ button.btn, button.btn:hover, button.btn:focus, button.btn:active {
   font-size: 1.2em;
 }
 
+.oo-ui-iconElement .oo-ui-iconElement-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.oo-ui-iconElement .oo-ui-iconElement-icon,
+.oo-ui-iconElement.oo-ui-iconElement-icon {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-width: 24px;
+  width: 1.875em;
+  min-height: 24px;
+  height: 1.875em;
+}
+
+.oo-ui-icon-edit {
+  background-image: url("../img/icons/edit-ltr.png");
+  background-image: -webkit-linear-gradient(transparent, transparent), url("../img/icons/edit-ltr.svg");
+  background-image: linear-gradient(transparent, transparent), url("../img/icons/edit-ltr.svg");
+  background-image: -o-linear-gradient(transparent, transparent), url("../img/icons/edit-ltr.png");
+}
+
+.oo-ui-icon-caretDown {
+  background-image: url("../img/icons/caretDown.png");
+  background-image: -webkit-linear-gradient(transparent, transparent), url("../img/icons/caretDown.svg");
+  background-image: linear-gradient(transparent, transparent), url("../img/icons/caretDown.svg");
+  background-image: -o-linear-gradient(transparent, transparent), url("../img/icons/caretDown.png");
+}
+
+.oo-ui-icon-caretUp {
+  background-image: url("../img/icons/caretUp.png");
+  background-image: -webkit-linear-gradient(transparent, transparent), url("../img/icons/caretUp.svg");
+  background-image: linear-gradient(transparent, transparent), url("../img/icons/caretUp.svg");
+  background-image: -o-linear-gradient(transparent, transparent), url("../img/icons/caretUp.png");
+}
+
 .navbar-fake {
   height: 60px;
 }
@@ -134,6 +171,32 @@ body.scrolled.show-navi .navbar {
   color: black;
   margin: 0 5px 0 0;
   text-shadow: none;
+}
+
+#top-header .brand .arrows {
+  display: none;
+}
+
+.has_book_info #top-header .brand .arrows {
+  display: inline-block;
+  font-size: 0.6em;
+  vertical-align: middle;
+}
+
+.has_book_info #top-header .brand .arrows .closeArrow {
+  display: none;
+}
+
+.has_book_info #top-header .brand .arrows .openArrow {
+  display: inline-block;
+}
+
+.has_book_info.book_info_open #top-header .brand .closeArrow {
+  display: inline-block;
+}
+
+.has_book_info.book_info_open #top-header .brand .openArrow {
+  display: none;
 }
 
 #sidebar-toggle {
@@ -212,6 +275,12 @@ body.scrolled.show-navi .navbar {
   font-size: 1.5em;
   line-height: 1.8em;
   margin: 0.1em;
+}
+
+#book_info .editBook {
+  position: absolute;
+  right: 20px;
+  bottom: 14px;
 }
 
 #mainmenu {

@@ -36,7 +36,10 @@
     <div class="navbar navbar-inverse">
       <div class="navbar-inner" id="top-header">
         <div class="container-fluid">
-          <a id="mainlogo" class="brand" href="<?= $this->Shelf_model->getFrontPageLink(isset($shelf_id) ? $shelf_id : false); ?>">PageShare</a>
+          <a id="mainlogo" class="brand oo-ui-iconElement" href="<?= $this->Shelf_model->getFrontPageLink(isset($shelf_id) ? $shelf_id : false); ?>">
+            <span class="text">PageShare</span>
+            <span class="arrows"><span class="oo-ui-iconElement-icon oo-ui-icon-caretDown openArrow"></span><span class="oo-ui-iconElement-icon oo-ui-icon-caretUp closeArrow"></span></span>
+          </a>
           <a href="#" id="sidebar-toggle">
             <span class="bar"></span>
             <span class="bar"></span>

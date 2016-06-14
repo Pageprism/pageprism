@@ -29,9 +29,9 @@ $(function() {
     $("body").toggleClass("book_info_open");
   });
   $(document).on('shelf:bookClosing', function(event, bookId) {
-    brand.text('PageShare'); 
+    brand.find('.text').text('PageShare'); 
     container.empty();
-    $("body").removeClass("has_book_info");
+    $("body").removeClass("has_book_info book_info_open");
     currentBook = null;
   });
   $(document).on('shelf:bookOpening', function(event, bookId) {
@@ -43,7 +43,7 @@ $(function() {
       data: {id : bookId},
       success: function(data) {
         if (!data.book) return;
-        brand.text(data.book.book_name); 
+        brand.find('.text').text(data.book.book_name); 
         loadBookInfo(data);
       }
     });
