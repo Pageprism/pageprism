@@ -12,7 +12,7 @@ $(function() {
       $("body").addClass("has_book_info");
     }
     if (!template) {
-      $.get('/assets/handlebar/book_info.handlebar', function(tmpl) {
+      $.get('/assets/handlebars/book_info.handlebars', function(tmpl) {
         template = Handlebars.compile(tmpl);
         fill();
       });
