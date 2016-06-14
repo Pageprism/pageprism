@@ -37,12 +37,12 @@ if (empty($page->page_n)) $page->page_n = 1;
           <?php foreach($book->attributes->url as $attribute_name => $attribute_values): ?>
           <h5><?= $attribute_name ?>: </h5>
           <?php foreach($attribute_values as $attribute_value): ?>
-          <a href="<?= $page->follow_author_url ?>" target="_blank" 
-            onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= $book->book_name ?>\', \'<?= $attribute_name ?>\);">
+          <a href="<?= htmlspecialchars($attribute_value->value) ?>" target="_blank" 
+            onclick="_gaq.push([\'_trackEvent\', \'eSamiszat-Shelf\', \'<?= htmlspecialchars($book->book_name) ?>\', \'<?= $attribute_name ?>\);">
             <?php if ($attribute_value->subtitle): ?>
-            <?= $attribute_value->subtitle; ?>: 
+            <?= htmlspecialchars($attribute_value->subtitle); ?>: 
             <?php endif; ?>
-            <?= shorten($attribute_value->value) ?>
+            <?= htmlspecialchars(shorten($attribute_value->value)) ?>
           </a>
           <?php endforeach; ?>
           <?php endforeach; ?>
