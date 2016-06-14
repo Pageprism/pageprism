@@ -12,7 +12,7 @@ $(function() {
       $("body").addClass("has_book_info");
     }
     if (!template) {
-      $.get('/assets/mustache/book_info.mustache', function(tmpl) {
+      $.get('/assets/handlebar/book_info.handlebar', function(tmpl) {
         template = Handlebars.compile(tmpl);
         fill();
       });
