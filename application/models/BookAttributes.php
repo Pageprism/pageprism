@@ -45,29 +45,43 @@ class BookAttributes extends CI_Model {
       'book_id' => $book,
       'title_id' => $title->id
     ));
-    $this->db->insert('book_attribute_title_ordering', array(
-      'book_id' => $book,
-      'title_id' => $title->id,
-      'ordering' => $attribute_ordering
-    ));
 
-    $ordering = 0;
-    foreach($values as $value) {
-      $row = new stdClass;
-      $row->ordering = $ordering++;
-      $row->book_id = $book;
-      $row->title_id = $title->id;
+    if (!empty($values)) {
+      $this->db->insert('book_attribute_title_ordering', array(
+        'book_id' => $book,
+        'title_id' => $title->id,
+        'ordering' => $attribute_ordering
+      ));
 
-      if (is_array($value)) {
-        list($subtitle, $value) = $value;
-        $row->subtitle_id = $this->getTitle($type, $subtitle)->id;
-      } else {
-        $row->subtitle_id = null;
+      $ordering = 0;
+      foreach($values as $value) {
+        $row = new stdClass;
+        $row->ordering = $ordering++;
+        $row->book_id = $book;
+        $row->title_id = $title->id;
+
+        if (is_array($value)) {
+          list($subtitle, $value) = $value;
+          $row->subtitle_id = $this->getTitle($type, $subtitle)->id;
+        } else {
+          $row->subtitle_id = null;
+        }
+        $row->value = $value;
+        $this->db->insert('book_attribute', $row);
       }
-      $row->value = $value;
-      $this->db->insert('book_attribute', $row);
     }
     $this->db->trans_complete();
+  }
+
+  public function clear($book) {
+    if (is_object($book)) $book = $book->id;
+
+    $this->db->delete('book_attribute', array(
+      'book_id' => $book,
+    ));
+    $this->db->delete('book_attribute_title_ordering', array(
+      'book_id' => $book,
+    ));
   }
 
   /** Attaches attributes to books */

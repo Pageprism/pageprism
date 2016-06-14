@@ -2,16 +2,6 @@
 
 class Document extends MY_Controller {
 
-  function migrateBookAttributes() {
-    $this->load->model('BookAttributes');
-		$query = $this->db->query("SELECT * FROM book");
-    $books = $query->result();
-    foreach($books as $book) {
-      echo "<p>Saving $book->id</p>";
-      $this->_save_attributes($book->id, $book);
-      echo "<p>Saved!</p>";
-    }
-  }
 
   function index()
   {
@@ -29,18 +19,37 @@ class Document extends MY_Controller {
 
   function modify() {
     $id = $this->uri->segment(4);
-    $this->layout->show('admin/modify',array('id' => $id));
+    $this->load->model('Book');
+    $book = $this->Book->loadBook($id);
+    $this->layout->show('admin/modify',array('id' => $id, 'book' => $book));
   }
 
-  private function _save_attributes($book_id, $book) {
+  private function _save_attributes($book_id) {
     $this->load->model('BookAttributes');
-    $this->BookAttributes->save($book_id, 'attribute', 0, 'Author', array_filter([$book->book_author]));
-    $this->BookAttributes->save($book_id, 'attribute', 1, 'Language', array_filter([$book->language]));
-    $this->BookAttributes->save($book_id, 'attribute', 2, 'Year', array_filter([$book->book_timestamp]));
+    $this->load->model('Book');
 
-    $this->BookAttributes->save($book_id, 'url', 0, 'Meme', array_filter([$book->follow_author_url]));
-    $this->BookAttributes->save($book_id, 'url', 1, 'Print', array_filter([$book->memory_piece_url]));
-    $this->BookAttributes->save($book_id, 'url', 2, 'Designs', array_filter([$book->misc_file_url]));
+    $attribute_data = $this->input->post('attributes');
+    $attributes = new StdClass;
+
+    $this->BookAttributes->clear($book_id);
+
+    foreach($attribute_data as $type => $attributes) {
+      foreach($attributes as $ordering => $data) {
+        if (trim($data['name']) === '') continue;
+        if (empty($data['values'])) $data['values'] = [];
+
+        $values = [];
+        foreach($data['values'] as $val) {
+          if (trim($val['value']) === '') continue;
+
+          $val = [$val['subtitle'], $val['value']];
+          if (trim($val['subtitle']) === '') $val = $val[1];
+          $values[] = $val;
+        }
+
+        $this->BookAttributes->save($book_id, $type, $ordering, $data['name'], $values);
+      }
+    }
   }
 
   function update_info() {
@@ -49,7 +58,7 @@ class Document extends MY_Controller {
 
     $this->db->where('id', $id);
     $this->db->update('book', $update_data);
-    $this->_save_attributes($id, (object)$update_data);
+    $this->_save_attributes($id);
 
     $used_pages = array();
     $error = null;
@@ -195,7 +204,7 @@ class Document extends MY_Controller {
     }
     $this->db->insert('book', $book_data);
     $insert_id = $this->db->insert_id();
-    $this->_save_attributes($insert_id, (object)$book_data);
+    $this->_save_attributes($insert_id);
     
     foreach($pageRecords as $pageData) {
       $pageData['book_id'] = $insert_id;
@@ -212,34 +221,21 @@ class Document extends MY_Controller {
 
   private function getFormData() {
     $author_id = $this->session->userdata('user_id');
-    $language = $this->input->post('language');
     $shelf_id = $this->input->post('shelf_id');
     $book_name = $this->input->post('book_name');
     $book_name_clean = formatURL($book_name);
-    $book_author = $this->input->post('book_author');
-    $book_timestamp = $this->input->post('book_timestamp');
-    $eorder_url = $this->input->post('eorder_url');
-    $follow_author_url = $this->input->post('follow_author_url');
-    $memory_piece_url = $this->input->post('memory_piece_url');
-    $misc_file_url = $this->input->post('misc_file_url');
 
     return array(
       'author_id' => $author_id,
       'type' => 'pdf',
       'book_name' => $book_name,
       'book_name_clean' => $book_name_clean,
-      'book_author' => $book_author,
-      'book_timestamp' => $book_timestamp,			
-      'language' => $language,
       'price' => '',
       'shelf_id' => $shelf_id,
-      'eorder_url' => $eorder_url,
-      'follow_author_url' => $follow_author_url,
-      'memory_piece_url' => $memory_piece_url,
-      'misc_file_url' => $misc_file_url,
       'public' => '1'
     );
   }
+
   private function upload_files($path) {
     $config['upload_path'] = $path;
     $config['allowed_types'] = 'gif|jpg|png|pdf|mp3|epub|zip';

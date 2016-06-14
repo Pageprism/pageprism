@@ -53,6 +53,7 @@ $route['admin/(:any)'] = 'admin/$1';
 $route['author/(:any)'] = 'shelf/aggregate/author/$1';
 $route['language/(:any)'] = 'shelf/aggregate/language/$1';
 $route['year/(:any)'] = 'shelf/aggregate/year/$1';
+$route['search/(:any)/(:any)'] = 'shelf/aggregate/$1/$2';
 $route['shelf/(:num)'] = 'shelf/view/$1';
 $route['shelf/(:num)/reorder'] = 'admin/shelf/reorder/$1';
 $route['ajax/load_menu'] = 'menu/load_menu';

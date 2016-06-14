@@ -51,11 +51,13 @@ class Menu_model extends CI_Model {
       );
     }
 
-    foreach(array_map('trim', explode(',',$book->book_author)) as $author) {
-      $items['Authors'][] = array(
-        'title' => $author,
-        'url' => '/author/'.rawurlencode($author)
-      );
+    foreach($book->attributes->attribute as $name => $values) {
+      foreach($values as $value) {
+        $items[$name][] = array(
+          'title' => $value->value,
+          'url' => '/search/'.$name.'/'.rawurlencode($value->value)
+        );
+      }
     }
     $shelf = $this->shelf_model->getShelf($book->shelf_id);
     if ($shelf) {
@@ -65,18 +67,6 @@ class Menu_model extends CI_Model {
       );
     }
     //TODO: Categories
-    foreach(array_map('trim', explode(',',$book->language)) as $language) {
-      $items['Languages'][] = array(
-        'title' => $language,
-        'url' => '/language/'.rawurlencode($language)
-      );
-    }
-    foreach(array_map('trim', explode(',',$book->book_timestamp)) as $timestamp) {
-      $items['Years'][] = array(
-        'title' => $timestamp,
-        'url' => '/year/'.rawurlencode($timestamp)
-      );
-    }
     foreach($items as $title => $subItems) {
       $children[] = array(
         'title' => $title,

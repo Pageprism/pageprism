@@ -13,8 +13,10 @@
     <?php } else {?>
     <div class="caption">
       <h3 class="title"><?=$book->book_name?></h3>
-      <span class="author"><?=$book->book_author?></span>
-      <span class="timestamp"><?=$book->book_timestamp?></span>
+      <?php /*
+      <span class="author"><?= implode(',', $book->attributes->attribute->Author ?? []) ?></span>
+      <span class="timestamp"><?=implode(',', $book->attributes->attribute->Year ?? [])?></span>
+       */ ?>
     </div>
     <?php } ?>
   </div>

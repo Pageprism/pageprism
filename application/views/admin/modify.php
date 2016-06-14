@@ -2,28 +2,14 @@
 <div class="container-fluid admin-container">
 
 <?php
-$query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
-
-	if ($query->num_rows() > 0)
-	{
-		$data = $query->row();
-  }
-
   $query = $this->db->query("SELECT * FROM audio_file WHERE `book_id`= ?", array($id));
   $audio_files = $query->result();
 ?>
 	<?php echo form_open_multipart('admin/document/update_info');?>
 
-	<p><span class="label">File:</span> <?php echo $data->book_name;?></p>
-	<p><span class="label">Language:</span> <?php echo form_input('language', $data->language);?></p>
-	<p><span class="label">Item name:</span> <?php echo form_input('book_name', $data->book_name);?></p>
-	<p><span class="label">Author:</span> <?php echo form_input('book_author', $data->book_author);?></p>
-	<p><span class="label">Timestamp:</span> <?php echo form_input('book_timestamp', $data->book_timestamp);?></p>
-	<p><span class="label">Meme URL: </span><?php echo form_input('follow_author_url', $data->follow_author_url);?></p>
-	<p><span class="label">Print URL: </span><?php echo form_input('memory_piece_url', $data->memory_piece_url);?></p>
-  <p><span class="label">Designs URL: </span><?php echo form_input('misc_file_url', $data->misc_file_url);?></p>
-	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url', $data->eorder_url);?></p>
-	<p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url', $data->share_poster_url);?></p>-->
+	<p><span class="label">Name:</span> <?php echo form_input('book_name', $book->book_name);?></p>
+	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url', $book->eorder_url);?></p>
+	<p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url', $book->share_poster_url);?></p>-->
 	<p><span class="label">Collection:</span>
 		<?php 
 		$items = array();
@@ -38,8 +24,16 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
 				$items = array('0' => 'No shelves found');
 				$disable_form = true;
 			}
-			echo form_dropdown('shelf_id', $items, $data->shelf_id);
+			echo form_dropdown('shelf_id', $items, $book->shelf_id);
   ?></p>
+  <fieldset>
+    <legend>Details</legend>
+    <?php $this->load->view('admin/document/attributes', array('book' => $book, 'type' => 'attribute', 'default_attributes' => ['Author', 'Category', 'Language', 'Year'], 'allow_multiple_values' => true)); ?> 
+  </fieldset>
+  <fieldset>
+    <legend>URLs</legend>
+    <?php $this->load->view('admin/document/attributes', array('book' => $book, 'type' => 'url', 'default_attributes' => ['Meme', 'Print', 'Design'], 'allow_multiple_values' => false)); ?> 
+  </fieldset>
   <?php if (!empty($audio_files)): ?>
   <h2>MP3 audio files</h2>
   <table>
@@ -67,12 +61,12 @@ $query = $this->db->query("SELECT * FROM book WHERE `id`= ?", array($id));
     <?php endforeach; ?>
   </table>
   <?php endif; ?>
-	<?php echo form_hidden('id', $id);?>
+  <?php echo form_hidden('id', $book->id);?>
 
 	<?php echo form_submit('update', 'Update'); ?>
 
 	<hr>
-	<a href="/admin/document/delete_document/<?php echo $data->id;?>">Remove document</a>
+	<a href="/admin/document/delete_document/<?php echo $book->id;?>">Remove document</a>
 
 </form>
 </div>

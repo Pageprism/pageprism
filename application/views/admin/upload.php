@@ -17,13 +17,15 @@
   ), '300');?></p>
 	<p><span class="label">ePub File: </span><?php echo form_upload('epubfile');?></p>
 	<p><span class="label">MP3 File or MP3 Zip File: </span><?php echo form_upload('audiozipfile');?></p>
-	<p><span class="label">Language: </span><?php echo form_input('language');?></p>
 	<p><span class="label">Item name: </span><?php echo form_input('book_name');?></p>
-	<p><span class="label">Author: </span><?php echo form_input('book_author');?></p>
-	<p><span class="label">Timestamp: </span><?php echo form_input('book_timestamp');?></p>
-	<p><span class="label">Meme URL: </span><?php echo form_input('follow_author_url');?></p>
-	<p><span class="label">Print URL: </span><?php echo form_input('memory_piece_url');?></p>
-	<p><span class="label">Layouts/Licences URL: </span><?php echo form_input('misc_file_url');?></p>
+  <fieldset>
+    <legend>Details</legend>
+    <?php $this->load->view('admin/document/attributes', array('type' => 'attribute', 'default_attributes' => ['Author', 'Year', 'Language'], 'allow_multiple_values' => true)); ?> 
+  </fieldset>
+  <fieldset>
+    <legend>URLs</legend>
+    <?php $this->load->view('admin/document/attributes', array('type' => 'url', 'default_attributes' => ['Meme', 'Print', 'Design'], 'allow_multiple_values' => false)); ?> 
+  </fieldset>
 	<!--<p><span class="label">Like enough to get a copy URL: </span><?php echo form_input('eorder_url');?></p>
   <p><span class="label">Share poster URL: </span><?php echo form_input('share_poster_url');?></p>-->
 	<p><span class="label">Collection: </span>

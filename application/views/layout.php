@@ -76,6 +76,7 @@
     <script src="<?= base_url();?>assets/js/audio.js?v=0"></script>
     <script src="<?= base_url();?>assets/js/shelf.js?v=7"></script>
     <script src="<?= base_url();?>assets/js/navi.js?v=3"></script>
+    <script src="<?= base_url();?>assets/js/attributeEditor.js?v=0"></script>
     <?php if (isset($current_book)):  ?>
     <script>
     $(document).ready(function() {
