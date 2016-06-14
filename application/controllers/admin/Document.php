@@ -238,7 +238,6 @@ class Document extends MY_Controller {
       'type' => 'pdf',
       'book_name' => $book_name,
       'book_name_clean' => $book_name_clean,
-      'price' => '',
       'shelf_id' => $shelf_id,
       'public' => '1'
     );
