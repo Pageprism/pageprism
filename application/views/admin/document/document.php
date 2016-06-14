@@ -28,7 +28,7 @@
 				$items = array('0' => 'No collections found');
 				$disable_form = true;
 			}
-      echo form_dropdown('shelf_id', $items); ?>
+      echo form_dropdown('shelf_id', $items, $book->shelf_id ?? null); ?>
   <?php else: ?>
   <?= $prechosen_shelf->name ?>
   <?php echo form_hidden('shelf_id', $prechosen_shelf->id);?>
@@ -46,7 +46,7 @@
     <legend>URLs</legend>
     <?php $this->load->view('admin/document/attributes', array(
       'book' => $book, 'type' => 'url', 'options' => [
-        'default_attributes' => ['Meme', 'Print', 'Design'], 
+        'default_attributes' => ['Meme', 'Print', 'Designs'], 
         'allow_editing_names' => true,
         'allow_multiple_values' => false
       ])); ?> 
