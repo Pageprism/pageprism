@@ -6,7 +6,6 @@ $(function() {
 
   function loadBookInfo(info) {
     function fill() {
-      console.log(info);
       var rendered = template(info);
       container.html(rendered);
       $("body").addClass("has_book_info");
