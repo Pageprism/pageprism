@@ -5,7 +5,7 @@ $options = (object)($options + [
   'allow_editing_names' => false,
   'default_attributes' => [],
 ]);
-$attributes = (array)$book->attributes->{$type} ?? new StdClass;
+$attributes = (array)($book->attributes->{$type} ?? new StdClass);
 
 foreach($options->default_attributes as $attr_name) {
   if (empty($attributes[$attr_name])) {

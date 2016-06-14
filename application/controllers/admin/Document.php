@@ -12,7 +12,7 @@ class Document extends MY_Controller {
   {
     $this->load->model('shelf_model');
     $shelf_id = (int)$this->input->get('shelf');
-    $this->layout->show('admin/upload', array(
+    $this->layout->show('admin/document/document', array(
       'prechosen_shelf' => $this->shelf_model->getShelf($shelf_id)
     ));
   }
@@ -21,7 +21,7 @@ class Document extends MY_Controller {
     $id = $this->uri->segment(4);
     $this->load->model('Book');
     $book = $this->Book->loadBook($id);
-    $this->layout->show('admin/modify',array('id' => $id, 'book' => $book));
+    $this->layout->show('admin/document/document',array('id' => $id, 'book' => $book));
   }
 
   private function _save_attributes($book_id) {
@@ -52,6 +52,14 @@ class Document extends MY_Controller {
     }
   }
 
+  function save() {
+    $id = $this->input->post('id');
+    if ($id) {
+      $this->update_info();
+    } else {
+      $this->create_document();
+    }
+  }
   function update_info() {
     $id = $this->input->post('id');
     $update_data = $this->getFormData();
@@ -168,7 +176,7 @@ class Document extends MY_Controller {
     //If there were errors show them and exit...
     if ($uploadData['errors']) {
       $error = array('error' => implode('<br>', $uploadData['errors']));
-      $this->layout->show('admin/upload', $error);
+      $this->layout->show('admin/document/document', $error);
       return;
     }
     
