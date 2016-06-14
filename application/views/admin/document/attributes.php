@@ -34,7 +34,7 @@ if (empty($values)) {
         <button class="remove">X</button>
       </div>
       <?php endforeach; ?>
-      <button class="add">+ Add <span><?= htmlspecialchars(strtolower($name)) ?></span></button>
+      <button class="add">+ Add another</button>
     </div>
   </div>
   <?php $i++; endforeach; ?>

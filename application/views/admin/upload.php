@@ -31,6 +31,7 @@
     <?php $this->load->view('admin/document/attributes', array(
       'book' => null, 'type' => 'url', 'options' => [
         'default_attributes' => ['Meme', 'Print', 'Design'], 
+        'allow_editing_names' => true,
         'allow_multiple_values' => false
       ])); ?> 
   </fieldset>
