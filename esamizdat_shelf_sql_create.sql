@@ -66,14 +66,12 @@ CREATE TABLE `book` (
   `file_url_pdf` varchar(1000) DEFAULT NULL,
   `file_url_epub` varchar(1000) DEFAULT NULL,
   `file_url_cover` varchar(1000) DEFAULT NULL,
-  `price` varchar(1000) DEFAULT NULL,
   `shelf_id` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `public` tinyint(4) NOT NULL,
   `book_name` varchar(1000) NOT NULL,
   `book_name_clean` varchar(1000) NOT NULL,
   `pages` int(11) DEFAULT NULL,
-  `counter` int(11) DEFAULT '0',
   `ordering` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8;
@@ -174,4 +172,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-14 18:46:18
+-- Dump completed on 2016-06-14 18:55:50
