@@ -47,4 +47,7 @@ $(function() {
       }
     });
   });
+  $('#contents').click(function() {
+    $("body").removeClass("book_info_open");
+  });
 });
