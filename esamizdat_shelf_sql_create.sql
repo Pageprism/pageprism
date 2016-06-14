@@ -27,7 +27,7 @@ CREATE TABLE `attribute_title` (
   `type` varchar(16) NOT NULL,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,25 +66,17 @@ CREATE TABLE `book` (
   `file_url_pdf` varchar(1000) DEFAULT NULL,
   `file_url_epub` varchar(1000) DEFAULT NULL,
   `file_url_cover` varchar(1000) DEFAULT NULL,
-  `language` varchar(1000) DEFAULT NULL,
   `price` varchar(1000) DEFAULT NULL,
   `shelf_id` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `public` tinyint(4) NOT NULL,
   `book_name` varchar(1000) NOT NULL,
   `book_name_clean` varchar(1000) NOT NULL,
-  `book_author` varchar(1000) NOT NULL,
-  `book_timestamp` int(11) DEFAULT NULL,
   `pages` int(11) DEFAULT NULL,
-  `eorder_url` varchar(1000) DEFAULT NULL,
-  `follow_author_url` varchar(1000) DEFAULT NULL,
-  `memory_piece_url` varchar(1000) DEFAULT NULL,
-  `share_poster_url` varchar(1000) DEFAULT NULL,
   `counter` int(11) DEFAULT '0',
-  `misc_file_url` varchar(1000) DEFAULT NULL,
   `ordering` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +124,7 @@ CREATE TABLE `pdf` (
   `page_image_url` varchar(1000) DEFAULT NULL,
   `page_n` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2608 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2610 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,4 +174,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-13 22:58:00
+-- Dump completed on 2016-06-14 18:46:18
