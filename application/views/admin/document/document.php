@@ -13,8 +13,8 @@
 <?php echo form_open_multipart('admin/document/save');?>
 
 	<p><span class="label">Name:</span> <?php echo form_input('book_name', $book->book_name ?? null);?></p>
-	<p><span class="label">Collection:</span>
   <?php if (empty($prechosen_shelf)): ?>
+	<p><span class="label">Collection:</span>
 		<?php 
 		$items = array();
 		$query = $this->db->query('SELECT id, name FROM shelf');
@@ -29,11 +29,11 @@
 				$disable_form = true;
 			}
       echo form_dropdown('shelf_id', $items, $book->shelf_id ?? null); ?>
-  <?php else: ?>
-  <?= $prechosen_shelf->name ?>
-  <?php echo form_hidden('shelf_id', $prechosen_shelf->id);?>
-<?php endif; ?>
   </p>
+  <?php else: ?>
+  <?php echo form_hidden('shelf_id', $prechosen_shelf->id);?>
+  <?php endif; ?>
+  <?php if ($is_new) $this->load->view('admin/document/files'); ?>
   <fieldset>
     <legend>Details</legend>
     <?php $this->load->view('admin/document/attributes', array(
@@ -51,7 +51,6 @@
         'allow_multiple_values' => false
       ])); ?> 
   </fieldset>
-  <?php if ($is_new) $this->load->view('admin/document/files'); ?>
   <?php if (!empty($audio_files)): ?>
   <h2>MP3 audio files</h2>
   <table>
