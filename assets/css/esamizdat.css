@@ -280,7 +280,7 @@ body.scrolled.show-navi .navbar {
 #book_info .editBook {
   position: absolute;
   right: 20px;
-  bottom: 14px;
+  top: 24px;
 }
 
 #mainmenu {
