@@ -34,7 +34,7 @@ if (empty($page->page_n)) $page->page_n = 1;
         </div>
         <?php endforeach; ?>
         <div share-part-separator>
-          <?php foreach($book->attributes->url as $attribute_name => $attribute_values): ?>
+          <?php foreach($book->attributes->url ?? [] as $attribute_name => $attribute_values): ?>
           <h5><?= $attribute_name ?>: </h5>
           <?php foreach($attribute_values as $attribute_value): ?>
           <a href="<?= htmlspecialchars($attribute_value->value) ?>" target="_blank" 
