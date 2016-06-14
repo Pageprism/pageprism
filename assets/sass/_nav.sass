@@ -21,6 +21,8 @@ body.scrolled.show-navi .navbar
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 7px 0px
   border: none
   min-height: 0px !important
+  position: relative
+  z-index: 1
 
   .container-fluid 
     position: relative
@@ -59,8 +61,34 @@ body.scrolled.show-navi .navbar
     margin-bottom: 5px
     height: 3px
     background-color: #000
-    border-radius: 1px;   
+    border-radius: 1px   
 
+#book_info
+  position: absolute
+  top: 58px
+  left: 0px
+  width: 300px
+  max-width: 100%
+  padding: 14px 25px
+  background: #fff
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-shadow: rgba(0, 0, 0, 0.3) -1px 4px 7px 0px
+  @include transition(transform 0.4s ease-in-out)
+  @include transform(translateY(-110%))
+
+  .has_book_info.book_info_open &
+    @include transform(translateY(0))
+  .scrolled.book_info_open &
+    @include transform(translateY(-110%))
+  .scrolled.show-navi.book_info_open &
+    @include transform(translateY(0))
+
+  h2
+    font-size: 1.5em
+    line-height: 1.8em
+    margin: 0.1em
+  
 #mainmenu 
   background: #fff
   position: fixed

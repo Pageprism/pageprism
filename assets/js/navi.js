@@ -1,4 +1,6 @@
 function popUnderLoad(url) {
+  $(document).trigger('pageshare:openingLink', [url]);
+
   var content = $('#ajax-content');
   openMainMenu(false);
   content.addClass('loading');
@@ -40,7 +42,6 @@ $(function() {
 
   var win = $(window);
   var scrollTrigger = 64;
-
 
   function updateMenuScrollbar(timeout) {
     setTimeout(function() {

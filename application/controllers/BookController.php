@@ -30,7 +30,27 @@ class BookController extends CI_Controller {
 		} else {
 			redirect("/");
 		}
-	}
+  }
+
+  public function book_info() {
+		$id = $this->input->post_get('id');
+		if ($id) {
+      $this->load->model('book');
+      $this->load->model('shelf_model');
+      $book = $this->book->loadBook($id);
+      $shelf = $this->shelf_model->getShelf($book->shelf_id);
+      $logged_in = $this->session->userdata('user_name') != "";
+
+      $data = [
+        'book' => $book,
+        'collections' => [$shelf],
+        'editable' => $logged_in
+      ];
+      $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($data, $this->input->is_ajax_request() ? 0 :JSON_PRETTY_PRINT));
+    }
+  }
   
 	public function load_pages() {
 		$post_data = $this->input->post();

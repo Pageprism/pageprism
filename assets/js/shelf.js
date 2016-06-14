@@ -185,5 +185,11 @@ $(function() {
   $(document).on('audiojs:pause', function(event, audiojs) {
     $("#covers .cover.selected").removeClass('playing');
   });
+  $(document).on('pageshare:openingLink', function(event, url) {
+    if (currentBook) {
+      $(document).trigger('shelf:bookClosing', [currentBook]);
+      currentBook = null;
+    }
+  });
 
 });

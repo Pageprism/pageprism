@@ -44,6 +44,9 @@
           </a>
         </div>
       </div>
+      <div id="book_info">
+
+      </div>
     </div>
     <!-- Main menu -->
     <div id="mainmenu">
@@ -69,11 +72,12 @@
     }
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
-
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
     <?= load_script('audio'); ?>
+    <?= load_script('bookInfo'); ?>
     <?= load_script('shelf'); ?>
     <?= load_script('navi'); ?>
     <?= load_script('attributeEditor'); ?>

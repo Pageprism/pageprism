@@ -1,0 +1,16 @@
+{{#each book.attributes.attribute as |attribute name|}}
+<h2>{{name}}:</h2>
+{{#each this}}
+<a href="/search/{{name}}/{{this.value}}">{{this.value}}</a>{{#unless @last}},{{/unless}}
+{{/each}}
+{{/each}}
+<h2>Collections:</h2>
+{{#each collections}}
+<a href="/shelf/{{this.id}}">{{this.name}}</a>{{#unless @last}},{{/unless}}
+{{/each}}
+
+{{#if editable}}
+<div>
+  <a class="editBook popUnder" href="/admin/document/modify/{{book.id}}">Edit this book</a>
+</div>
+{{/if}}

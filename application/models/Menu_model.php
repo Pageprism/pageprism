@@ -19,7 +19,7 @@ class Menu_model extends CI_Model {
 
     $this->logged_in = $this->session->userdata('user_name') != "";
 
-    $this->addCurrentBook($menu, $book);
+    //$this->addCurrentBook($menu, $book);
     $this->addShelves($menu);
     $this->addLogin($menu, $uri);
     $this->processClasses($menu, $uri);

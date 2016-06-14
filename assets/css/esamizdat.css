@@ -113,6 +113,8 @@ body.scrolled.show-navi .navbar {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 7px 0px;
   border: none;
   min-height: 0px !important;
+  position: relative;
+  z-index: 1;
 }
 
 #top-header .container-fluid {
@@ -157,6 +159,59 @@ body.scrolled.show-navi .navbar {
   height: 3px;
   background-color: #000;
   border-radius: 1px;
+}
+
+#book_info {
+  position: absolute;
+  top: 58px;
+  left: 0px;
+  width: 300px;
+  max-width: 100%;
+  padding: 14px 25px;
+  background: #fff;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.3) -1px 4px 7px 0px;
+  -webkit-transition: transform 0.4s ease-in-out;
+  -moz-transition: transform 0.4s ease-in-out;
+  -ms-transition: transform 0.4s ease-in-out;
+  -o-transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
+  -webkit-transform: translateY(-110%);
+  -moz-transform: translateY(-110%);
+  -ms-transform: translateY(-110%);
+  -o-transform: translateY(-110%);
+  transform: translateY(-110%);
+}
+
+.has_book_info.book_info_open #book_info {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.scrolled.book_info_open #book_info {
+  -webkit-transform: translateY(-110%);
+  -moz-transform: translateY(-110%);
+  -ms-transform: translateY(-110%);
+  -o-transform: translateY(-110%);
+  transform: translateY(-110%);
+}
+
+.scrolled.show-navi.book_info_open #book_info {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+#book_info h2 {
+  font-size: 1.5em;
+  line-height: 1.8em;
+  margin: 0.1em;
 }
 
 #mainmenu {
