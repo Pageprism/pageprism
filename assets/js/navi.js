@@ -41,7 +41,7 @@ function reloadMainMenu(url, data) {
 $(function() {
 
   var win = $(window);
-  var scrollTrigger = 64;
+  var scrollTrigger = 8;
 
   function updateMenuScrollbar(timeout) {
     setTimeout(function() {
