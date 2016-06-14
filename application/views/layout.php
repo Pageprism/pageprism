@@ -5,13 +5,13 @@
     <base href="<?php echo base_url()?>">
     <title>PageShare</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <?php $this->load->helper('asset'); ?>
 
-    <!-- Bootstrap -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <link href="<?php echo base_url();?>assets/css/perfect-scrollbar.css" rel="stylesheet" media="screen" />
     <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/esamizdat.css?v=7" rel="stylesheet" media="screen" />
+    <?= load_stylesheet('esamizdat'); ?>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
     <?php if (isset($cover_image)): ?>
@@ -73,10 +73,10 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
-    <script src="<?= base_url();?>assets/js/audio.js?v=0"></script>
-    <script src="<?= base_url();?>assets/js/shelf.js?v=7"></script>
-    <script src="<?= base_url();?>assets/js/navi.js?v=3"></script>
-    <script src="<?= base_url();?>assets/js/attributeEditor.js?v=0"></script>
+    <?= load_script('audio'); ?>
+    <?= load_script('shelf'); ?>
+    <?= load_script('navi'); ?>
+    <?= load_script('attributeEditor'); ?>
     <?php if (isset($current_book)):  ?>
     <script>
     $(document).ready(function() {
