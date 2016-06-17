@@ -390,6 +390,14 @@ body.scrolled.show-navi #mainmenu {
   background: #eee;
 }
 
+.scroll_to_top {
+  display: none;
+}
+
+body.scrolled .scroll_to_top {
+  display: block;
+}
+
 /* Covers  */
 #shelf {
   background-color: #f0f0f0;

@@ -6,6 +6,11 @@ class Menu_model extends CI_Model {
     $menu = array();
 
     $menu[] = array(
+      'title' => 'Scroll to top',
+      'url' => "#",
+      'classes' => 'scroll_to_top'
+    );
+    $menu[] = array(
       'title' => 'Free software (github.com)',
       'url' => "https://github.com/Pageprism/pageprism",
     );
@@ -19,7 +24,6 @@ class Menu_model extends CI_Model {
 
     $this->logged_in = $this->session->userdata('user_name') != "";
 
-    //$this->addCurrentBook($menu, $book);
     $this->addShelves($menu);
     $this->addLogin($menu, $uri);
     $this->processClasses($menu, $uri);
@@ -27,62 +31,6 @@ class Menu_model extends CI_Model {
     return $menu;
   }
 
-  function addCurrentBook(&$menu, $book) {
-    if (!$book) return;
-    $this->load->model('shelf_model');
-    $this->load->model('book');
-
-    $children = array();
-    $items = array();
-
-    $has_audio = $this->book->hasAudio($book->id);
-    if ($has_audio) {
-      $children[] = array(
-        'id' => 'playpause',
-        'title' => 'Play album',
-      );
-    }
-      
-    if ($this->logged_in) {
-      $children[] = array(
-        'title' => 'Edit this book',
-        'url' => '/admin/document/modify/'.$book->id,
-        'popUnder' => true,
-      );
-    }
-
-    foreach($book->attributes->attribute as $name => $values) {
-      foreach($values as $value) {
-        $items[$name][] = array(
-          'title' => $value->value,
-          'url' => '/search/'.$name.'/'.rawurlencode($value->value)
-        );
-      }
-    }
-    $shelf = $this->shelf_model->getShelf($book->shelf_id);
-    if ($shelf) {
-      $items['Collections'][] = array(
-        'title' => $shelf->name,
-        'url' => "/shelf/".$shelf->id,
-      );
-    }
-    //TODO: Categories
-    foreach($items as $title => $subItems) {
-      $children[] = array(
-        'title' => $title,
-        'children' => $subItems
-      );
-    }
-
-
-    $menu[] = array(
-      'id' => 'current_book_info',
-      'title' => $book->book_name,
-      'url' => "/$book->book_name_clean",
-      'children' => $children,
-    );
-
-  }
   function addShelves(&$menu) {
     $shelves = array();
       

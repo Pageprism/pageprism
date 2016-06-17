@@ -95,6 +95,11 @@ $(function() {
       e.preventDefault();
     }
   });
+  $(document).on('click', '.scroll_to_top', function(e) {
+    e.preventDefault();
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+  });
+
   //Prevent links without url from reloading stuff
   $(document).on('click', '#mainmenu a', function(e) {
     if ($(this).attr('href') === '') {
