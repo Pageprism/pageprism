@@ -81,11 +81,11 @@
   <fieldset>
     <legend>Publication options</legend>
     <p>
-      <?= form_checkbox('public', 1, $book->public, ['id' => 'public']); ?>
+      <?= form_checkbox('public', 1, $book->public ?? 1, ['id' => 'public']); ?>
       <label for="public">Public</label>
     </p>
     <p>
-      <?= form_checkbox('allow_aggregating', 1, $book->public, ['id' => 'allow_aggregating']); ?>
+      <?= form_checkbox('allow_aggregating', 1, $book->allow_aggregating ?? 1, ['id' => 'allow_aggregating']); ?>
       <label for="allow_aggregating">Display in aggregated collections and search results</label>
     </p>
   </fieldset>
