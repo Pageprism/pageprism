@@ -123,6 +123,8 @@ CREATE TABLE `pdf` (
   `book_id` int(11) NOT NULL,
   `page_image_url` varchar(1000) DEFAULT NULL,
   `page_n` int(11) NOT NULL,
+  `height` smallint(6) NOT NULL,
+  `width` smallint(6) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2610 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -174,4 +176,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-18 19:45:15
+-- Dump completed on 2016-06-18 20:01:21

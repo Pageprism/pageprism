@@ -2,6 +2,21 @@
 
 class Document extends MY_Controller {
 
+  function migrateImageSizes() {
+    $pages = $this->db->query('select id, page_image_url as path from pdf where width = 0')->result();
+    foreach($pages as $page) {
+      echo 'Fixing page ',$page->id,'<br>';
+
+      list($width, $height) = getimagesize($page->path);
+      $this->db->where('id', $page->id);
+      $this->db->update('pdf', [
+        'width' => $width, 
+        'height' => $height
+      ]);
+      echo 'OK<br>';
+    }
+  }
+
   function index()
   {
 
@@ -321,10 +336,13 @@ class Document extends MY_Controller {
     
     $fileRecords = array();
     foreach($pngFiles[120] as $page_nr => $filepath) {
+      list($width, $height) = getimagesize($filepath);
       $filepath = substr($filepath, strlen($save_dir));
       $fileRecords[] = array(
         'page_image_url' => $url_path.$filepath,
-        'page_n' => $page_nr
+        'page_n' => $page_nr,
+        'width' => $width,
+        'height' => $height
       );
     }
 
