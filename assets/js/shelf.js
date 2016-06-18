@@ -161,9 +161,9 @@ $(function() {
     $("#shelf").sortable({
       cancel: ".add-book",
       stop: function(e, ui) {
-        var shelf_id = $('#covers').data('shelf-id');
+        var shelf_id = $('#shelf').data('shelf-id');
         var documents = [];
-        $("#covers .document").each(function() {
+        $("#shelf .document").each(function() {
           documents.push($(this).data('book-id'));
         });
         $.post('/shelf/'+shelf_id+'/reorder', {order: documents.join(",")});
@@ -179,10 +179,10 @@ $(function() {
   }
 
   $(document).on('audiojs:play', function(event, audiojs) {
-    $("#covers .cover.selected").addClass('playing');
+    $("#shelf .cover.selected").addClass('playing');
   });
   $(document).on('audiojs:pause', function(event, audiojs) {
-    $("#covers .cover.selected").removeClass('playing');
+    $("#shelf .cover.selected").removeClass('playing');
   });
   $(document).on('pageshare:openingLink', function(event, url) {
     if (currentBook) {
