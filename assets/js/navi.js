@@ -7,6 +7,7 @@ function popUnderLoad(url) {
   content.css('min-height', content.height()).empty();
   content.load(url, function() {
     reloadMainMenu(url);
+    $(document).trigger('pageshare:openedLink', [url]);
 
     content.addClass('loaded');
     content.removeClass('loading');

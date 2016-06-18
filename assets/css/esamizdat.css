@@ -871,6 +871,24 @@ div.cover span {
   font-size: 20px;
 }
 
+.ui-autocomplete {
+  border: 1px solid #ccc;
+  background: #ffffff;
+  list-style: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  max-width: 245px;
+}
+
+.ui-autocomplete li {
+  padding: 5px;
+}
+
+.ui-autocomplete li.ui-state-focus {
+  background: #EDF5FF;
+}
+
 .attributeEditor button {
   display: inline-block;
   background: transparent;

@@ -28,6 +28,7 @@ $(function() {
     });
     container.find('.add').before(clone);
     clone.find('.value').focus();
+    initAutocomplete();
   });
   $(document).on('click', '.attributeEditor .add_attribute .add', function(e) {
     e.preventDefault(); 
@@ -37,6 +38,7 @@ $(function() {
     container.find('.add_attribute').before(clone);
     renumberAttributes(container);
     clone.find('.title').focus();
+    initAutocomplete();
   });
   $(document).on('click', '.attributeEditor .remove', function(e) {
     e.preventDefault(); 
@@ -49,5 +51,38 @@ $(function() {
       $(this).parents('.attribute').remove();
     }
   });
+
+  var attributeAutocompleteCache = {};
+
+  function initAutocomplete() {
+    $(".attributeEditor input.value:not('.has-autocomplete')").each(function() {
+      var input = $(this);
+      var type = input.parents('.attributeEditor').data('type');
+      $(this).autocomplete({
+        minLength: 1,
+        source: function(request, response) {
+          var attributeName = input.parents('.attribute').find(' > input.title').val();
+          var data = {
+            query: request.term,
+            type: type,
+            attribute: attributeName
+          };
+          
+          var key = JSON.stringify([type, attributeName, request.term]);
+          if (attributeAutocompleteCache[key]) {
+            response(attributeAutocompleteCache[key]);
+            return;
+          }
+
+          $.getJSON("/ajax/autocomplete/attributes", data, function(result, status, xhr) {
+            attributeAutocompleteCache[key] = result;
+            response(result);
+          });
+        }
+      }); 
+    }).addClass('has-autocomplete');
+  }
+  $(document).on('pageshare:openedLink', initAutocomplete);
+  initAutocomplete();
 
 });

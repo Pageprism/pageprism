@@ -153,7 +153,6 @@ $(function() {
     }
   }
 
-  var href = location.pathname;
   $("#shelf .cover").click(function(){
     _gaq.push(['_trackEvent', 'Covers', 'Click-to-open', $(this).data('book-name')]);
     openBookLink($(this), true);

@@ -52,6 +52,18 @@ class Document extends MY_Controller {
     }
   }
 
+  function autocomplete_attributes() {
+    $this->load->model('BookAttributes');
+    $data = $this->BookAttributes->search(
+      $this->input->get('type'), 
+      $this->input->get('attribute'), 
+      $this->input->get('query')
+    );
+    $this->output
+      ->set_content_type('application/json')
+      ->set_output(json_encode($data, $this->input->is_ajax_request() ? 0 :JSON_PRETTY_PRINT));
+  }
+
   function save() {
     $id = $this->input->post('id');
     if ($id) {

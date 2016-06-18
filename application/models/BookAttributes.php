@@ -114,4 +114,25 @@ class BookAttributes extends CI_Model {
     }
   }
 
+  public function search($type, $name, $query) {
+    $query = trim($query);
+    if (!$query) return [];
+
+    $boolean_query = $query.'*';
+
+    $query = $this->db->query('SELECT distinct value 
+      FROM book_attribute 
+      JOIN attribute_title at ON title_id = at.id
+      WHERE match(value) against (? in boolean mode) 
+      AND at.type = ?
+      AND at.name = ?
+      ORDER BY MATCH (value) AGAINST (?) +  match(value) against (? in boolean mode) desc
+      LIMIT 10', 
+      array($boolean_query, $type, $name, $query, $boolean_query)
+    );
+
+    $res = $query->result();
+    return array_map(function($row) { return $row->value; }, $res);
+  }
+
 }
