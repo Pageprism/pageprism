@@ -73,6 +73,7 @@ CREATE TABLE `book` (
   `book_name_clean` varchar(1000) NOT NULL,
   `pages` int(11) DEFAULT NULL,
   `ordering` int(11) NOT NULL,
+  `allow_aggregating` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -173,4 +174,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-18 15:47:25
+-- Dump completed on 2016-06-18 19:45:15
