@@ -29,11 +29,8 @@ function openMainMenu(toggle) {
   window.localStorage.menuOpen = !!toggle;
   $("body").toggleClass("open-sidebar", !!toggle);
 }
-function reloadMainMenu(url, data) {
-  data = data || {};
-  data.url = url;
-
-  $('#mainmenu').load("/index.php/ajax/load_menu", data, function() {
+function reloadMainMenu(url) {
+  $('#mainmenu').load("/index.php/ajax/load_menu", {url: url}, function() {
     $('#mainmenu').perfectScrollbar('update');
   });
 }

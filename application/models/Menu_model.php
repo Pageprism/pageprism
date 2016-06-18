@@ -1,7 +1,7 @@
 <?php
 class Menu_model extends CI_Model {    
 
-  public function getMenu($book = null, $uri = null) {
+  public function getMenu($uri = null) {
     $this->load->model('shelf_model');
     $menu = array();
 

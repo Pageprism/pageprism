@@ -50,7 +50,7 @@ function openBook(bookId, pageCount, startingPage, callback) {
       loadMore.remove();
     });
   }
-  reloadMainMenu(document.location.pathname, {book: bookId});
+  reloadMainMenu(document.location.pathname);
 }
 
 $.fn.loadPage = function(bookId, page, callback) {
