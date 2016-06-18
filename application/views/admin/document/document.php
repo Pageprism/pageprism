@@ -78,6 +78,18 @@
     <?php endforeach; ?>
   </table>
   <?php endif; ?>
+  <fieldset>
+    <legend>Publication options</legend>
+    <p>
+      <?= form_checkbox('public', 1, $book->public, ['id' => 'public']); ?>
+      <label for="public">Public</label>
+    </p>
+    <p>
+      <?= form_checkbox('allow_aggregating', 1, $book->public, ['id' => 'allow_aggregating']); ?>
+      <label for="allow_aggregating">Display in aggregated collections and search results</label>
+    </p>
+  </fieldset>
+  <hr />
 
   <?php if ($is_new): ?>
   <?= form_submit('upload', 'Upload file', isset($disable_form) ? 'disabled=disabled' : null); ?>

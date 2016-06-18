@@ -15,7 +15,8 @@ class Shelf_model extends CI_Model {
     return $row ? $row->id : null;
   }
   public function getShelves() {
-    $query = $this->db->query('SELECT shelf.*, count(book.id) as bookcount FROM shelf left join book on book.shelf_id = shelf.id group by shelf.id order by shelf.id desc');
+    $user_id = $this->session->userdata('user_id');
+    $query = $this->db->query('SELECT shelf.*, count(book.id) as bookcount FROM shelf left join book on book.shelf_id = shelf.id where (book.public OR book.author_id = ?) group by shelf.id order by shelf.id desc', [$user_id]);
 
     if ($query->num_rows() == 0) return array();
 

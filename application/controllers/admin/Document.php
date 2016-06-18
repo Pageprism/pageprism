@@ -2,7 +2,6 @@
 
 class Document extends MY_Controller {
 
-
   function index()
   {
 
@@ -243,6 +242,8 @@ class Document extends MY_Controller {
     $author_id = $this->session->userdata('user_id');
     $shelf_id = $this->input->post('shelf_id');
     $book_name = $this->input->post('book_name');
+    $public = (int)$this->input->post('public');
+    $allow_aggregating = (int)$this->input->post('allow_aggregating');
     $book_name_clean = formatURL($book_name);
 
     return array(
@@ -251,7 +252,8 @@ class Document extends MY_Controller {
       'book_name' => $book_name,
       'book_name_clean' => $book_name_clean,
       'shelf_id' => $shelf_id,
-      'public' => '1'
+      'public' => $public,
+      'allow_aggregating' => $allow_aggregating
     );
   }
 
