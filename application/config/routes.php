@@ -58,7 +58,6 @@ $route['shelf/(:num)'] = 'shelf/view/$1';
 $route['shelf/(:num)/reorder'] = 'admin/shelf/reorder/$1';
 $route['ajax/load_menu'] = 'menu/load_menu';
 $route['ajax/load_book'] = 'bookController/book_info';
-$route['ajax/load_pages'] = 'bookController/load_pages';
 $route['ajax/autocomplete/attributes'] = 'admin/document/autocomplete_attributes';
 $route['book/(:any)'] = 'bookController/view/$1/p1';
 $route['book/(:any)/p(:num)'] = 'bookController/view/$1/p$2';

@@ -83,16 +83,6 @@ $(function() {
     openMainMenu(false);
   });
 
-  // The front page acts as a "Back to shelves" button
-  $('#mainlogo').click(function(e) {
-    if ($('.book-content-separator:visible').length === 0) {
-      return;
-    }
-    if (isScrolledToBook()) {
-      $("html, body").animate({ scrollTop: 0 }, "fast");
-      e.preventDefault();
-    }
-  });
   $(document).on('click', '.scroll_to_top', function(e) {
     e.preventDefault();
     $("html, body").animate({ scrollTop: 0 }, "fast");

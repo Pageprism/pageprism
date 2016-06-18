@@ -38,57 +38,21 @@ class BookController extends CI_Controller {
       $this->load->model('book');
       $this->load->model('shelf_model');
       $book = $this->book->loadBook($id);
+      $pages = $this->book->loadPages($id);
       $shelf = $this->shelf_model->getShelf($book->shelf_id);
       $logged_in = $this->session->userdata('user_name') != "";
 
       $data = [
         'book' => $book,
         'collections' => [$shelf],
-        'editable' => $logged_in
+        'editable' => $logged_in,
+        'pages' => $pages
       ];
       $this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($data, $this->input->is_ajax_request() ? 0 :JSON_PRETTY_PRINT));
     }
   }
-  
-	public function load_pages() {
-		$post_data = $this->input->post();
-		if ($post_data) {
-			$id = $post_data['id'];
-			$page_n = $post_data['page_n'];
-			echo $this->_load_pages($id,$page_n);
-		}
-  }
-
-  public function _load_pages($id, $page_n) {
-    $this->load->model('book');
-    $book = $this->book->loadBook($id);
-
-    $query = $this->db->query("SELECT book.*, pdf.page_image_url, pdf.page_n 
-      FROM book LEFT JOIN pdf ON pdf.book_id=book.id
-      WHERE book.id = ? and (pdf.page_n = ? OR page_n IS NULL)", array($id, $page_n));
-		
-		if ($query->num_rows() == 0)
-		{
-      echo 'No results';
-      return;
-    }
-    
-    $pages = $query->result();
-    $audio_files = $this->db->query("SELECT * FROM audio_file 
-      WHERE book_id = ? and ? BETWEEN page_number_start AND page_number_end", array($id, $page_n))->result();
-
-    // audio_file_url, track_number, title, album, length, page_number_start, page_number_end
-    
-    $pageContent = array();
-    foreach ($pages as $row)
-    {
-      $row->audio_tracks = $audio_files;
-      $pageContent[] = $this->load->view('content', array('book' => $book, 'page' => $row), true);
-    }
-    return implode("\n", $pageContent);
-	}
 
 }
 

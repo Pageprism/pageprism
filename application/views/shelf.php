@@ -6,7 +6,6 @@
       if (isset($current_book) && $current_book->id == $book->id) echo ' selected'; 
       if (!$book->public) echo ' hidden'; 
     ?>" 
-    data-book-pages="<?= $book->pages ?: '0' ?>"
     data-book-name="<?= $book->book_name ?>"
     data-book-id="<?=$book->id?>" title="<?=$book->book_name ?>">
 
@@ -28,4 +27,4 @@
   <a class="popUnder" href="/admin/document/upload?shelf=<?= $shelf_id; ?>"><div class="cover add-book thumbnail"><span>+</span></div></a>
   <?php endif; ?>
 </div>
-<hr class="book-content-separator" style="display:none" />
+<hr class="book-content-separator" />

@@ -14,6 +14,7 @@
     <?= load_stylesheet('esamizdat'); ?>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
+    <link href='<?= base_url(); ?>' rel='top'>
     <?php if (isset($cover_image)): ?>
     <meta property="og:image" content="<?= base_url(), $cover_image; ?>" />
     <?php endif; ?>
@@ -74,7 +75,7 @@
       document.body.className = "open-sidebar";
     }
     </script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
@@ -87,7 +88,7 @@
     <?php if (isset($current_book)):  ?>
     <script>
     $(document).ready(function() {
-      openBook(<?= $current_book->id ?>, <?= $current_book->pages ?: 1 ?>, <?= $current_page ?>, function() { scrollToPage(<?= $current_page ?>); });
+      openBook(<?= $current_book->id ?>, <?= $current_page ?>, function() { scrollToPage(<?= $current_page ?>); });
     });
     </script>
     <?php endif; ?>
