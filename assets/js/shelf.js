@@ -15,31 +15,50 @@ $(function() {
   /* Support for image loading placeholders */
   var placeHolder = (function() {
     var placeholders = {};
-    var empty = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    var svgSupport = !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;
     var canvas = document.createElement('canvas');
-    var support = canvas.getContext && canvas.toDataURL('image/png').indexOf('data:image/png') != -1;
-    var ctx = canvas.getContext ? canvas.getContext('2d') : {};
+    var canvasSupport = canvas.getContext && canvas.toDataURL('image/png').indexOf('data:image/png') != -1;
+    
+    if (svgSupport) {
+      var svg = Handlebars.compile('<?xml version="1.0" standalone="no"?><svg width="{{w}}" height="{{h}}" viewBox="0 0 {{w}} {{h}}" xmlns="http://www.w3.org/2000/svg" version="1.1"><text font-size="30" font-family="Open Sans" y="60"><tspan x="{{m}}" text-anchor="middle">Loading...</tspan></text></svg>');
 
-    return function(img) {
-      if (!support) return empty;
+      return function placeHolder(img) {
+        var w = img.width;
+        var h = img.height;
+        var key = w+"x"+h;
 
-      var w = img.width;
-      var h = img.height;
-      var key = w+"x"+h;
+        if (!placeholders[key]) {
+          placeholders[key] = 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg({ w: w,h: h, m: w/2 }));
+        }
+        return placeholders[key];
+      };
+      
+    } else if (canvasSupport) {
+      var ctx = canvas.getContext ? canvas.getContext('2d') : {};
 
-      if (!placeholders[key]) {
-        canvas.width = w;
-        canvas.height = h;
-        ctx.fillStyle = 'transparent';
-        ctx.fillRect(0, 0, w, h);
-        ctx.font="30px Open Sans"; 
-        ctx.fillStyle = 'black';
-        ctx.textAlign = 'center';
-        ctx.fillText("Loading...",w/2,60);
-        placeholders[key] = canvas.toDataURL('image/png');
-      }
-      return placeholders[key];
-    };
+      return function placeHolder(img) {
+
+        var w = img.width;
+        var h = img.height;
+        var key = w+"x"+h;
+
+        if (!placeholders[key]) {
+          canvas.width = w;
+          canvas.height = h;
+          ctx.fillStyle = 'transparent';
+          ctx.fillRect(0, 0, w, h);
+          ctx.font="30px Open Sans"; 
+          ctx.fillStyle = 'black';
+          ctx.textAlign = 'center';
+          ctx.fillText("Loading...",w/2,60);
+          placeholders[key] = canvas.toDataURL('image/png');
+        }
+        return placeholders[key];
+      };
+    } else {
+      var empty = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+      return function() { return empty; };
+    }
   })();
 
   var currentBook = null;
@@ -89,7 +108,7 @@ $(function() {
       $('.single-page img').one('appear', function() {
         var page = $(this).parent();
         var i = parseInt(page.data('page-number'), 10);
-        console.log(i);
+        //console.log(i);
         page.trigger('shelf:pageLoaded', [bookId, i]);
       });
       if (callback) callback();
