@@ -12,6 +12,36 @@ function scrollToPage(page) {
 }
 
 $(function() {
+  /* Support for image loading placeholders */
+  var placeHolder = (function() {
+    var placeholders = {};
+    var empty = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    var canvas = document.createElement('canvas');
+    var support = canvas.getContext && canvas.toDataURL('image/png').indexOf('data:image/png') != -1;
+    var ctx = canvas.getContext ? canvas.getContext('2d') : {};
+
+    return function(img) {
+      if (!support) return empty;
+
+      var w = img.width;
+      var h = img.height;
+      var key = w+"x"+h;
+
+      if (!placeholders[key]) {
+        canvas.width = w;
+        canvas.height = h;
+        ctx.fillStyle = 'transparent';
+        ctx.fillRect(0, 0, w, h);
+        ctx.font="30px Open Sans"; 
+        ctx.fillStyle = 'black';
+        ctx.textAlign = 'center';
+        ctx.fillText("Loading...",w/2,60);
+        placeholders[key] = canvas.toDataURL('image/png');
+      }
+      return placeholders[key];
+    };
+  })();
+
   var currentBook = null;
   var bookTemplate = $.get({
     url: '/assets/handlebars/book_pages.handlebars',
@@ -44,38 +74,24 @@ $(function() {
       template = template[0]; info = info[0];
       if (!info.book) return;
 
-      var rendered = template($.extend(info, base_url));
+      var rendered = $(template($.extend(info, base_url)));
+      rendered.find('img').each(function() {
+        this.src = placeHolder(this);
+      });
       $('#ajax-content').html(rendered);
-
-
-      if (startingPage > 1) {
-        $('.single-page').each(function() {
-          var pageNr = parseInt($(this).data('page-number'), 10);
-          if (pageNr < startingPage) $(this).hide();
-        });
-        var loadMore = $('<div id="loadmore" >Load previous pages</div>');    
-        $("#page_"+startingPage).before(loadMore);
-
-        loadMore.click(function(){
-          $('.single-page').show();
-          scrollToPage(startingPage);
-          $('html, body').animate({
-            scrollTop: $("#loadmore").offset().top - 100
-          }, "fast");
-          loadMore.remove();
-        });
-      }
-      
       $('.single-page img').lazyload({
-        threshold: $(window).height()*6,
-        skip_invisible: true
+        threshold: $(window).height()*5,
       });
       $('.single-page:visible:first .page-share').addClass('open');
 
       $(document).trigger('shelf:bookOpened', [bookId, info]);
-      for (var i=startingPage;i<=info.pages.length;i++) {
-        $('#page_'+i).trigger('shelf:pageLoaded', [bookId, i]);
-      }
+      
+      $('.single-page img').one('appear', function() {
+        var page = $(this).parent();
+        var i = parseInt(page.data('page-number'), 10);
+        console.log(i);
+        page.trigger('shelf:pageLoaded', [bookId, i]);
+      });
       if (callback) callback();
     });
   };

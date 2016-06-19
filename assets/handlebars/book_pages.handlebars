@@ -1,5 +1,5 @@
 {{#each pages as |page| }}
-  <div class="single-page" id="page_{{page.nr}}" data-page-number="{{page.nr}}">
+<div class="single-page" id="page_{{page.nr}}" data-page-number="{{page.nr}}">
   <div class="page-share">
     <span class="pagenumber">{{page.nr}}</span>
     <div class="share-part">
@@ -47,7 +47,9 @@
   {{#if page.url}}
   <img data-original="{{page.url}}" width="{{page.width}}" height="{{page.height}}" />
   {{else}}
-  <div class="empty-page"></div>
+  <div class="empty-page">
+    <img data-original="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="display: none;" />{{!-- Dummy image for the page loading mechanism --}}
+  </div>
   {{/if}}
 </div>
 {{/each}}
