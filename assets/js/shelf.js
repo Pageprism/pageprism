@@ -104,13 +104,6 @@ $(function() {
       $('.single-page:visible:first .page-share').addClass('open');
 
       $(document).trigger('shelf:bookOpened', [bookId, info]);
-      
-      $('.single-page img').one('appear', function() {
-        var page = $(this).parent();
-        var i = parseInt(page.data('page-number'), 10);
-        //console.log(i);
-        page.trigger('shelf:pageLoaded', [bookId, i]);
-      });
       if (callback) callback();
     });
   };

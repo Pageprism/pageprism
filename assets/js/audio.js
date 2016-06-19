@@ -28,7 +28,7 @@ var playlist = (function() {
     }
   };
   
-  $(document).on('shelf:pageLoaded', '.single-page', function() {
+  $(document).on('shelf:bookOpened', function() {
     var elements = $(this);
     audiojs.events.ready(function() {
       elements.find("audio:not(.audioloaded)").addClass('audioloaded').each(function() {
@@ -53,15 +53,13 @@ var playlist = (function() {
         $(ajs.element).data('audiojs', ajs);
       });
     });
+    $('.single-page').one('audiojs:loadStarted', 'audio:eq(0)', playlist.play);
   });
   $(document).on('shelf:bookClosing', function() {
     if (currentAudio) {
       currentAudio.pause();
       currentAudio = null;
     }
-  });
-  $(document).on('shelf:bookOpened', function() {
-    $('.single-page').one('audiojs:loadStarted', 'audio:eq(0)', playlist.play);
   });
   
   $(document).on('audiojs:play', function(event, audiojs) {
