@@ -47,6 +47,7 @@ $(function() {
       var rendered = template($.extend(info, base_url));
       $('#ajax-content').html(rendered);
 
+
       if (startingPage > 1) {
         $('.single-page').each(function() {
           var pageNr = parseInt($(this).data('page-number'), 10);
@@ -64,8 +65,12 @@ $(function() {
           loadMore.remove();
         });
       }
-
-      $('.single-page:first .page-share').addClass('open');
+      
+      $('.single-page img').lazyload({
+        threshold: $(window).height()*6,
+        skip_invisible: true
+      });
+      $('.single-page:visible:first .page-share').addClass('open');
 
       $(document).trigger('shelf:bookOpened', [bookId, info]);
       for (var i=startingPage;i<=info.pages.length;i++) {

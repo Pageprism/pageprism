@@ -80,6 +80,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
+    <script src="<?= base_url();?>assets/js/jquery.lazyload.min.js"></script>
     <?= load_script('audio'); ?>
     <?= load_script('bookInfo'); ?>
     <?= load_script('shelf'); ?>
