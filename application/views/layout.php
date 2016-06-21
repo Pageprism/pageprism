@@ -6,10 +6,9 @@
     <title>PageShare</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php $this->load->helper('asset'); ?>
-
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-    <link href="<?php echo base_url();?>assets/css/perfect-scrollbar.css" rel="stylesheet" media="screen" />
+    <?= load_stylesheet('bootstrap.min', true); ?>
+    <?= load_stylesheet('perfect-scrollbar', true); ?>
     <?= load_stylesheet('esamizdat'); ?>
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
     <link href='<?= base_url(); ?>' rel='top'>
@@ -69,9 +68,9 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <?= load_script('attributeEditor'); ?>
     <?php endif; ?>
-    <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <?= load_script('perfect-scrollbar.jquery.min', true); ?>
     <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
-    <script src="<?= base_url();?>assets/js/jquery.lazyload.min.js"></script>
+    <?= load_script('jquery.lazyload.min', true); ?>
     <?= load_script('audio'); ?>
     <?= load_script('bookInfo'); ?>
     <?= load_script('shelf'); ?>
