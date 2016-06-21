@@ -64,8 +64,11 @@
     }
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <?php if ($this->session->userdata('logged_in')):  ?>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <?= load_script('attributeEditor'); ?>
+    <?php endif; ?>
     <script src="<?= base_url();?>assets/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
     <script src="<?= base_url();?>assets/js/jquery.lazyload.min.js"></script>
@@ -73,7 +76,6 @@
     <?= load_script('bookInfo'); ?>
     <?= load_script('shelf'); ?>
     <?= load_script('navi'); ?>
-    <?= load_script('attributeEditor'); ?>
     <?php if (isset($current_book)):  ?>
     <script>
     $(document).ready(function() {
