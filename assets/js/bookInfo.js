@@ -1,18 +1,7 @@
 $(function() {
   var brand = $('#mainlogo');
   var container = $('#book_info');
-  var infoTemplate = $.get({
-    url: '/assets/handlebars/book_info.handlebars',
-    dataFilter: function(tmpl) { return Handlebars.compile(tmpl); }
-  });
-
-  function loadBookInfo(info) {
-    infoTemplate.done(function(template) {
-      var rendered = template(info);
-      container.html(rendered);
-      $("body").addClass("has_book_info");
-    });
-  }
+  var infoTemplate = Pageshare.Templates['assets/handlebars/book_info.handlebars'];
 
   brand.click(function(e) {
     if ($("body").is('.has_book_info')) {
@@ -29,7 +18,9 @@ $(function() {
     if (!data.book) return;
 
     brand.find('.text').text(data.book.book_name); 
-    loadBookInfo(data);
+    var rendered = infoTemplate(data);
+    container.html(rendered);
+    $("body").addClass("has_book_info");
   });
   $('#contents').click(function() {
     $("body").removeClass("book_info_open");

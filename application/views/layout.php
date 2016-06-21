@@ -71,6 +71,7 @@
     <?= load_script('perfect-scrollbar.jquery.min', true); ?>
     <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
     <?= load_script('jquery.lazyload.min', true); ?>
+    <?= load_script('templates'); ?>
     <?= load_script('audio'); ?>
     <?= load_script('bookInfo'); ?>
     <?= load_script('shelf'); ?>

@@ -1,0 +1,27 @@
+{
+  "name": "pageprism",
+  "version": "0.1.0",
+  "description": "PagePrism ======",
+  "main": " ",
+  "scripts": {
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pageprism/pageprism.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pageprism/pageprism/issues"
+  },
+  "homepage": "https://github.com/Pageprism/pageprism#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-handlebars": "^1.0.0",
+    "grunt-fast-watch": "^0.4.2",
+    "grunt-newer": "^1.2.0",
+    "grunt-sass": "^1.2.0",
+    "load-grunt-tasks": "^3.5.0"
+  }
+}

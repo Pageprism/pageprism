@@ -62,10 +62,7 @@ $(function() {
   })();
 
   var currentBook = null;
-  var bookTemplate = $.get({
-    url: '/assets/handlebars/book_pages.handlebars',
-    dataFilter: function(tmpl) { return Handlebars.compile(tmpl); }
-  });
+  var bookTemplate = Pageshare.Templates['assets/handlebars/book_pages.handlebars'];
   var base_url = {base_url: $('link[rel="top"]').attr('href')};
 
   openBook = function openBook(bookId, startingPage, callback) {
@@ -85,15 +82,14 @@ $(function() {
     $("#ajax-content").empty();
     $(document).trigger('shelf:bookOpening', [bookId]);
 
-    $.when(bookTemplate, $.ajax({
+    $.ajax({
       url: "/index.php/ajax/load_book",
       type: 'POST',
       data: {id : bookId},
-    })).done(function(template, info) {
-      template = template[0]; info = info[0];
+    }).done(function(info) {
       if (!info.book) return;
 
-      var rendered = $(template($.extend(info, base_url)));
+      var rendered = $(bookTemplate($.extend(info, base_url)));
       rendered.find('img').each(function() {
         this.src = placeHolder(this);
       });
