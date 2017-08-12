@@ -6,6 +6,8 @@ worker/composer.lock
 worker/composer
 local_and_temp/
 worker/**/ignore.dirty.*
+worker/ignore.dirty.*
+worker/log.txt
 !front/assets/
 content
 !content/index.html
