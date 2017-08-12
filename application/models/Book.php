@@ -28,7 +28,6 @@ class Book extends CI_Model {
     if (!$books) return null;
     return $books[0];
   }
-
   public function loadShelf($id) {
     $user_id = $this->session->userdata('user_id');
     $query = $this->db->query("SELECT * FROM book WHERE book.shelf_id = ? 
@@ -56,7 +55,6 @@ class Book extends CI_Model {
 
     return $books;
   }
-
   public function hasAudio($id) {
 		$query = $this->db->query("SELECT count(*) as count FROM audio_file WHERE book_id = ?", $id);
     $res = $query->row();

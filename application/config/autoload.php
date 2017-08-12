@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -29,6 +29,12 @@
 
 // Load Facebook library.
 require_once('application/libraries/facebook/facebook.php');
+//Load AWR library
+
+//Needed for enabling interaction with worker
+require_once('/var/www/html/pageshare/worker/common/WorkUtil.php');
+require_once('/var/www/html/pageshare/worker/common/DBManager.php');
+require_once('/var/www/html/pageshare/worker/model/TaskBase.php');
 
 /*
 | -------------------------------------------------------------------
@@ -55,7 +61,8 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('layout', 'form_validation', 'database','session','javascript','upload','SimpleLoginSecure');//, 'parser');
+$autoload['libraries'] = array('layout', 'form_validation', 'database',
+    'session', 'javascript', 'upload', 'SimpleLoginSecure', 'PdfConverter');//, 'parser');
 
 
 /*
@@ -67,7 +74,7 @@ $autoload['libraries'] = array('layout', 'form_validation', 'database','session'
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('form', 'url', 'formatURL');
+$autoload['helper'] = array('form', 'url', 'formatURL','legacy','env','upgrade','authorize');
 
 
 /*
@@ -113,8 +120,8 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array(
-  'Menu_model',
-  'Shelf_model',
+    'Menu_model',
+    'Shelf_model',
 );
 
 

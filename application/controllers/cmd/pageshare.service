@@ -1,0 +1,13 @@
+[Unit]
+Description=example
+
+[Service]
+ExecStart=/usr/bin/php /var/www/html/worker/index.php
+Type=simple
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+
+

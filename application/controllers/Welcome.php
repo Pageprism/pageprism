@@ -1,21 +1,19 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
-	public function index()
-  {
-    $this->load->model('Shelf_model');
-    $avoid_shelf = (int)$this->input->get('from_shelf');
+    public function index()
+    {
 
-    $id = $this->Shelf_model->getFrontpageId($avoid_shelf);
-
-    if ($id) {
-      redirect('shelf/'.$id);
-    } else {
-      $this->load->view('header');
-      $this->load->view('footer');
     }
-	}
+
+    public function fonts(){
+        redirect('assets/fonts/'.$this->uri->segment(2));
+    }
+    public function img(){
+        redirect('assets/img/'.$this->uri->segment(2));
+    }
 }
 
 /* End of file welcome.php */

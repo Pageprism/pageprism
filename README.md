@@ -1,10 +1,7 @@
-PagePrism
-======
+# Pageshare v1.8.4
 
-This is a fork of a book sharing site that was originally designed by Luisa-Claudia Sovijärvi and implemented by Evermade Oy. After their sudden disappearance the development has been continued here.
+This is a book sharing site that was originally designed by Luisa-Claudia Sovijärvi.
 
-Dependencies
-======
+# Dependencies
 
-PHP 5.3
-Ghostscript
+PHP 7.0.5-ZTS, Ghostscript

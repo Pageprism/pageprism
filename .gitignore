@@ -1,5 +1,0 @@
-application/config/database.php
-application/logs/
-content/*
-!content/index.html
-node_modules

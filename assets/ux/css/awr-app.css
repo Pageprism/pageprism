@@ -1,0 +1,35 @@
+.my-simple {
+    color: red;
+}
+{"version":3,"file":"app.css","sources":["app.sass","module/one/_example.sass"],"sourcesContent":["@import \"module/one/example\";\nbody {\n  h1 {\n    color: blue !important; }\n  header {\n    margin-top: -2px;\n    .navbar {\n      padding: 0 5% 0 5%;\n      border-radius: 0 !important; } }\n  div.main {\n    padding: 0 15% 0 15%; } }\n\n.demoApp1 {\n  .head {\n    width: 100%;\n    height: 35px;\n    margin-bottom: 20px;\n    strong {\n      font-size: 1.5em; } }\n  table {\n    tbody {\n      tr {\n        cursor: pointer; }\n      tr:hover {\n        background: darken(#fff, 10%); } } } }\n\n.user-modal {\n  ul.options {\n    margin-left: 15%; } }\n\n\n",""],"names":[],"mappings":"AACA,AACE,IADE,CACF,EAAE,CAAC;EACD,KAAK,EAAE,eAAe,GAAI;;AAF9B,AAGE,IAHE,CAGF,MAAM,CAAC;EACL,UAAU,EAAE,IAAI,GAGmB;EAPvC,AAKI,IALA,CAGF,MAAM,CAEJ,OAAO,CAAC;IACN,OAAO,EAAE,SAAS;IAClB,aAAa,EAAE,YAAY,GAAI;;AAPrC,AAQE,IARE,CAQF,GAAG,AAAA,KAAK,CAAC;EACP,OAAO,EAAE,WAAW,GAAI;;AAE5B,AACE,SADO,CACP,KAAK,CAAC;EACJ,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,IAAI,GAEK;EAN5B,AAKI,SALK,CACP,KAAK,CAIH,MAAM,CAAC;IACL,SAAS,EAAE,KAAK,GAAI;;AAN1B,AASM,SATG,CAOP,KAAK,CACH,KAAK,CACH,EAAE,CAAC;EACD,MAAM,EAAE,OAAO,GAAI;;AAV3B,AAWM,SAXG,CAOP,KAAK,CACH,KAAK,CAGH,EAAE,AAAA,MAAM,CAAC;EACP,UAAU,EAAE,OAAiB,GAAG;;AAExC,AACE,WADS,CACT,EAAE,AAAA,QAAQ,CAAC;EACT,WAAW,EAAE,GAAG,GAAI"}
+body h1 {
+  color: blue !important; }
+
+body header {
+  margin-top: -2px; }
+  body header .navbar {
+    padding: 0 5% 0 5%;
+    border-radius: 0 !important; }
+
+body div.main {
+  padding: 0 15% 0 15%; }
+
+.demoApp1 .head {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 20px; }
+  .demoApp1 .head strong {
+    font-size: 1.5em; }
+
+.demoApp1 table tbody tr {
+  cursor: pointer; }
+
+.demoApp1 table tbody tr:hover {
+  background: #e6e6e6; }
+
+.user-modal ul.options {
+  margin-left: 15%; }
+
+/*# sourceMappingURL=app.css.map */
+
+/*# sourceMappingURL=awr-app.css.map */

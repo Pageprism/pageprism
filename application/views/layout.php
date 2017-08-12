@@ -1,121 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <base href="<?php echo base_url()?>">
+<head>
+    <meta charset="UTF-8">
+    <base href="<?php echo base_url() ?>">
     <title>PageShare</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?php $this->load->helper('asset'); ?>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <?= load_stylesheet('bootstrap.min', true); ?>
-    <?= load_stylesheet('perfect-scrollbar', true); ?>
-    <?= load_stylesheet('esamizdat'); ?>
-    <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/esamizdat.ico" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet'
+          type='text/css'>
+    <!--ESSENTIAL SCRIPTS HERE -->
+    <?= load_ux_js('awr-ux.vendor'); ?>
+    <?= load_ux_js('awr-ux.min'); ?>
+    <!-- the following awr-ux files are actually build by the current's project's grunt!-->
+    <?= load_script('awr-ux-app.vendor.min'); ?>
+    <?= load_script('awr-ux-app.templates'); ?>
+
+
+    <!--UX STYLES-->
+    <?= load_ux_css('awr-ux.vendor'); ?>
+    <?= load_ux_css('awr-ux.min'); ?>
+    <!--APP STYLES-->
+    <?= load_stylesheet('awr-ux-app.vendor'); ?>
+    <?= load_stylesheet('pageshare-v1.min'); ?>
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/esamizdat.ico"/>
     <link href='<?= base_url(); ?>' rel='top'>
     <?php if (isset($cover_image)): ?>
-    <meta property="og:image" content="<?= base_url(), $cover_image; ?>" />
+        <meta property="og:image" content="<?= base_url(), $cover_image; ?>"/>
     <?php endif; ?>
 
+    <script type="application/javascript">
+        awr = window.awr || {};
+        pageshare = window.pageshare || {};
+        /**
+         * The variables set by server should be set here, and server
+         * side logic should not intervene the client side logic
+         * more than this. No stupid server side rendered views and
+         * front-end functionalities anymore, please!!
+         * We use the serverVariables also only for the sake of
+         * computability with the legacy logic which is still around in many areas.
+         * Otherwise even this wouldn't be necessary.
+         */
+        pageshare.serverVariables = {};
+        /**
+         * The awr-ux app templates should be registered under awr.app.templates,
+         * Pageshare.Templates should be pointed to awr.app.templates to preventing
+         * the legacy template calls from breaking.
+         */
+        var pageshare = window.pageshare || {};
 
-  </head>
-  <body>
-    <!-- Top Header -->
-    <div class="navbar-fake"></div>
-    <div class="navbar navbar-inverse">
-      <div class="navbar-inner" id="top-header">
-        <div class="container-fluid">
-          <a id="mainlogo" class="brand oo-ui-iconElement" href="<?= $this->Shelf_model->getFrontPageLink(isset($shelf_id) ? $shelf_id : false); ?>">
-            <span class="text">PageShare</span>
-            <span class="arrows"><span class="oo-ui-iconElement-icon oo-ui-icon-caretDown openArrow"></span><span class="oo-ui-iconElement-icon oo-ui-icon-caretUp closeArrow"></span></span>
-          </a>
-          <a href="#" id="sidebar-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </a>
-        </div>
-      </div>
-      <div id="book_info">
+        /**
+         * the legacy mainMenuModel is still needed and in use.
+         * The rendering job however, is moved to JavaScript.
+         * The JavaScript module responsible fot this
+         * can be found under front/modules/mainMenu.
+         */
+        <?php $mModel = $this->Menu_model->getMenu(); ?>
+        pageshare.serverVariables.legacyMainMenuModel = <?php echo json_encode($mModel) ?>;
+    </script>
+</head>
+<body id="freemium">
+<!--  <h1></h1>-->
+<!-- Top Header -->
+<input type="hidden" id="frontPageLink" name="frontPageLink"
+       value="<?= $this->Shelf_model->getFrontPageLink(isset($shelf_id) ? $shelf_id : false); ?>"/>
 
-      </div>
-    </div>
-    <!-- Main menu -->
-    <div id="mainmenu">
-      <?php $this->load->view('menu', array('menu' => $this->Menu_model->getMenu())); ?>
-    </div>
-    <div id="contents">
-      <?php if ($this->session->flashdata('msg')): ?>
-      <div id="message_holder">
-        <div id="message">
-          <span class="close">x</span>
-          <?= $this->session->flashdata('msg'); ?>
-        </div>
-      </div>
-      <?php endif; ?>
-      <?php $load_inner_view(); ?>
-      <div id="ajax-content-container">
+<div id="mainHeaderContainer">
+</div>
+<!-- Main menu -->
+<div id="mainMenu">
+
+</div>
+
+<div id="contents">
+    <div id="ajax-content-container">
         <div id="ajax-content"></div>
-      </div>
     </div>
-    <script>
-    if (window.localStorage.menuOpen != "false") {
-      document.body.className = "open-sidebar";
-    }
-    </script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-    <?php if ($this->session->userdata('logged_in')):  ?>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <?= load_script('attributeEditor'); ?>
-    <?php endif; ?>
-    <?= load_script('perfect-scrollbar.jquery.min', true); ?>
-    <script src="<?= base_url();?>assets/audiojs/audio.min.js"></script>
-    <?= load_script('jquery.lazyload.min', true); ?>
-    <?= load_script('templates'); ?>
-    <?= load_script('audio'); ?>
-    <?= load_script('bookInfo'); ?>
-    <?= load_script('shelf'); ?>
-    <?= load_script('navi'); ?>
-    <?php if (isset($current_book)):  ?>
-    <script>
-    $(document).ready(function() {
-      openBook(<?= $current_book->id ?>, <?= $current_page ?>, function() { scrollToPage(<?= $current_page ?>); });
-    });
-    </script>
-    <?php endif; ?>
-    <div id="fb-root"></div>
-    <script type="text/javascript">
-    $(document).ready(function() { setTimeout(function() {
-      window.fbAsyncInit = function() {
-        FB.init({
-        appId : '366708340107485',
-          status : true, // check login status
-          cookie : true, // enable cookies to allow the server to access the session
-          xfbml : true // parse XFBML
-        });
-      };
+</div>
+<div id="loading">
+    <h4 class=""><span class="fa fa-clock-o"></span>&nbsp;Loading...</h4>
+</div>
 
-      (function() {
-        var e = document.createElement('script');
-        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-        e.async = true;
-        document.getElementById('fb-root').appendChild(e);
-      }());
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-41565206-1', 'auto');
-      ga('send', 'pageview');
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-41565206-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    }, 2500); });
-    </script>
-  </body>
+<script type="application/javascript">
+    /**
+     * The awr-ux app templates should be registered under awr.app.templates,
+     * Pageshare.Templates should be pointed to awr.app.templates to preventing
+     * the legacy template calls from breaking.
+     */
+    Pageshare = window.Pageshare || {};
+    if (awr.app) {
+        Pageshare.Templates = awr.app.templates;
+    }
+</script>
+
+<!-- app main-->
+<?= load_script('pageshare-v1.min'); ?>
+
+</body>
 </html>
+

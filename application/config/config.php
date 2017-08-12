@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -14,25 +14,21 @@
 | path to your installation.
 |
  */
-$allowed_domains = array('pageshare.fi', 'test.pageshare.fi', 'pageshare.test');
-$default_domain  = 'pageshare.fi';
+$env_key = json_decode(file_get_contents('application/config/env_key.json'));
+$env_cnf = json_decode(file_get_contents('application/envs/env.' . $env_key->name . '.json'));
+$allowed_domains = $env_cnf->allowed_domains;
+$default_domain = $env_cnf->default_domain;
 
-if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
-{
-  $domain = $_SERVER['HTTP_HOST'];
-}
-else
-{
-  $domain = $default_domain;
+if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE)) {
+    $domain = $_SERVER['HTTP_HOST'];
+} else {
+    $domain = $default_domain;
 }
 
-if ( ! empty($_SERVER['HTTPS']))
-{
-  $config['base_url'] = 'https://'.$domain;
-}
-else
-{
-  $config['base_url'] = 'http://'.$domain;
+if (!empty($_SERVER['HTTPS'])) {
+    $config['base_url'] = 'https://' . $domain;
+} else {
+    $config['base_url'] = 'http://' . $domain;
 }
 
 /*
@@ -45,7 +41,7 @@ else
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = ' ';
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +59,7 @@ $config['index_page'] = '';
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol'] = 'AUTO';
 
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +84,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language'] = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -173,11 +169,11 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 | use segment based URLs.
 |
 */
-$config['allow_get_array']		= TRUE;
+$config['allow_get_array'] = TRUE;
 $config['enable_query_strings'] = FALSE;
-$config['controller_trigger']	= 'c';
-$config['function_trigger']		= 'm';
-$config['directory_trigger']	= 'd'; // experimental not currently in use
+$config['controller_trigger'] = 'c';
+$config['function_trigger'] = 'm';
+$config['directory_trigger'] = 'd'; // experimental not currently in use
 
 /*
 |--------------------------------------------------------------------------
@@ -199,7 +195,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 2;
 
 /*
 |--------------------------------------------------------------------------
@@ -210,7 +206,8 @@ $config['log_threshold'] = 0;
 | application/logs/ folder. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '';
+//$config['log_path'] = '/var/log/pageprism/';
+$config['log_path'] = $env_cnf->log_path;
 
 /*
 |--------------------------------------------------------------------------
@@ -243,7 +240,8 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'J/N?t&T~wpXR:NJwa&OI7#y&FgLDr*}u';
+//$config['encryption_key'] = 'J/N?t&T~wpXR:NJwa&OI7#y&FgLDr*}u';
+$config['encryption_key'] = $env_cnf->encryption_key;
 
 /*
 |--------------------------------------------------------------------------
@@ -259,12 +257,12 @@ $config['encryption_key'] = 'J/N?t&T~wpXR:NJwa&OI7#y&FgLDr*}u';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_cookie_name']		= 'ci_session';
-$config['sess_expiration']		= 7200;
-$config['sess_use_database']	= FALSE;
-$config['sess_table_name']		= 'ci_sessions';
-$config['sess_match_ip']		= FALSE;
-$config['sess_time_to_update']	= 300;
+$config['sess_cookie_name'] = 'ci_session';
+$config['sess_expiration'] = 7200;
+$config['sess_use_database'] = FALSE;
+$config['sess_table_name'] = 'ci_sessions';
+$config['sess_match_ip'] = FALSE;
+$config['sess_time_to_update'] = 300;
 
 /* CI 3.0 https://www.codeigniter.com/userguide3/installation/upgrade_300.html */
 $config['sess_driver'] = 'files';
@@ -282,10 +280,10 @@ $config['sess_save_path'] = null;
 | 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
 |
 */
-$config['cookie_prefix']	= "";
-$config['cookie_domain']	= "";
-$config['cookie_path']		= "/";
-$config['cookie_secure']	= FALSE;
+$config['cookie_prefix'] = "";
+$config['cookie_domain'] = "";
+$config['cookie_path'] = "/";
+$config['cookie_secure'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -332,7 +330,7 @@ $config['csrf_expire'] = 7200;
 | by the output class.  Do not 'echo' any values with compression enabled.
 |
 */
-$config['compress_output'] = FALSE;
+$config['compress_output'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -384,13 +382,15 @@ $config['proxy_ips'] = '';
 | for base controllers and some third-party libraries.
 |
 */
-function __autoload($class)
-{
- if(strpos($class, 'CI_') !== 0)
- {
-  @include_once( APPPATH . 'core/'. $class . '.php');
- }
-}
+
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+if (!function_exists('__autoload')) {
+    function __autoload($class)
+    {
+        if (strpos($class, 'CI_') !== 0) {
+            @include_once(APPPATH . 'core/' . $class . '.php');
+        }
+    }
+}

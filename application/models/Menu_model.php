@@ -1,6 +1,10 @@
 <?php
-class Menu_model extends CI_Model {    
+class Menu_model extends CI_Model {
 
+    /**
+     * from legacy code and still creates some weak dependency to community
+     * functionality "MainMenu"
+     */
   public function getMenu($uri = null) {
     $this->load->model('shelf_model');
     $menu = array();
@@ -25,7 +29,7 @@ class Menu_model extends CI_Model {
     $this->logged_in = $this->session->userdata('user_name') != "";
 
     $this->addShelves($menu);
-    $this->addLogin($menu, $uri);
+//    $this->addLogin($menu, $uri);
     $this->processClasses($menu, $uri);
 
     return $menu;
@@ -33,7 +37,7 @@ class Menu_model extends CI_Model {
 
   function addShelves(&$menu) {
     $shelves = array();
-      
+
     if ($this->logged_in) {
       $shelves[] = array(
         'title' => 'Edit collections',
@@ -72,7 +76,7 @@ class Menu_model extends CI_Model {
   function processClasses(&$menu, $uri = null) {
     if (!$uri) $uri = '/'.$this->uri->uri_string;
     $someItemSelected = false;
-    
+
     foreach($menu as &$menuitem) {
       if (!isset($menuitem['url'])) {
         $menuitem['url'] = '';
