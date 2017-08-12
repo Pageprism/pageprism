@@ -1,0 +1,13 @@
+{
+    "name": "pageshare/worker",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Kavan Soleimanbeigi",
+            "email": "solxiom@gmail.com"
+        }
+    ],
+    "require": {
+        "siriusphp/validation":"*"
+    }
+}

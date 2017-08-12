@@ -1,0 +1,11 @@
+{
+  "servername": "localhost",
+  "username": "root",
+  "password": "63846384",
+  "dbName": "kirjahylly",
+  "taskTable": "Task",
+  "docTable": "Doc",
+  "fileTable": "File",
+  "docPageTable": "DocPage",
+  "log_file": "/var/log/pageprism/works.log"
+}
