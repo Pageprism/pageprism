@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "v2.5.9",
+  "version": "v2.5.10",
   "v-tag": "stable",
   "scripts": {
     "dev": "npm run development",
