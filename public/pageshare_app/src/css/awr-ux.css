@@ -1,0 +1,1379 @@
+{"version":3,"file":"ux.css","sources":["ux.sass","_variables.sass","_classes.sass","_icons.sass","sass/_app-main.sass","sass/_col5-scope-table.sass","sass/_awrScreen.sass","sass/_test-session.scss","sass/_no-browser-support.scss","extensions/_ext-root.sass","extensions/demo-authorizer/_demo-authorizer.scss","extensions/demo-authorizer/_demo-timer.scss","extensions/formEssentials/_form-essentials.scss","extensions/formEssentials/form-member/_form-member.scss","extensions/formEssentials/tag-field/_tag-field.scss","extensions/formEssentials/awr-rate/_awr-rate.scss","extensions/infinite-scroll/_infinite-scroll.scss","extensions/modal/_modal.scss","extensions/dialogs/_dialogs.scss"],"sourcesContent":["@import \"_variables.sass\";\n@import \"_classes.sass\";\n@import \"_icons.sass\";\n@import \"sass/app-main\";\n@import \"sass/col5-scope-table\";\n@import \"sass/awrScreen\";\n@import \"sass/test-session\";\n@import \"sass/no-browser-support\";\n@import \"extensions/ext-root\";\n\n\n\n\n\n\n\n\n","$awr-text-muted: lighten(#777,20%);\n$awr-link-color: #337ab7;\n$awr-blue: #5B8DC9;\n$awr-light-blue: #EDF5FF;\n$awr-dark-blue: #20446E;\n\n$mq-mobile-portrait: 315px !default;\n$mq-mobile-landscape: 480px !default;\n$mq-tablet-portrait: 768px !default;\n$mq-tablet-landscape: 988px !default;\n$mq-desktop: 1382px !default;\n\n$awr-blue: #5B8DC9;\n$awr-light-blue: #EDF5FF;\n$awr-dark-blue: #20446E;\n\n$awr-text-muted: lighten(#777, 20%);\n$awr-link-color: #337ab7;\n\n\n","@import \"_variables.sass\";\n\n.element {\n  padding: 5px;\n  height: 30px;\n  vertical-align: middle; }\n\n.bold-element {\n  height: 30px;\n  font-weight: 600; }\n\n.link-element {\n  color: $awr-link-color;\n  text-decoration: underline;\n  cursor: pointer; }\n\n.link-element:hover {\n  color: lighten($awr-link-color, 20%); }\n\n.link-element.no-underline {\n  text-decoration: none; }\n\n.no-underline {\n  text-decoration: none; }\n\n.keep-left {\n  float: left !important; }\n\n.keep-right {\n  float: right !important; }\n\n.text-muted {\n  color: $awr-text-muted; }\n\n.awr-text-left {\n  text-align: left !important; }\n\n.awr-text-right {\n  text-align: right !important; }\n\n.awr-clickable {\n  cursor: pointer; }\n\n.awr-clickable-text {\n  @extend .awr-clickable;\n  @extend .bold-element; }\n\n.awr-clickable-text:hover {\n  text-decoration: underline; }\n\n\n\n.arrow-up {\n  width: 0;\n  height: 0;\n  border-left: 5px solid transparent;\n  border-right: 5px solid transparent;\n  border-bottom: 5px solid; }\n\n.arrow-down {\n  width: 0;\n  height: 0;\n  border-left: 5px solid transparent;\n  border-right: 5px solid transparent;\n  border-top: 5px solid; }\n\n.arrow-right {\n  width: 0;\n  height: 0;\n  border-top: 5px solid transparent;\n  border-bottom: 5px solid transparent;\n  border-left: 5px solid; }\n\n.arrow-left {\n  width: 0;\n  height: 0;\n  border-top: 5px solid transparent;\n  border-bottom: 5px solid transparent;\n  border-right: 5px solid; }\n\n.modal {\n  z-index: 1150 !important; }\n\n.modal-backdrop {\n  z-index: 1140 !important; }\n\n.no-padding {\n  padding: 0; }\n\n@media (min-width: $mq-mobile-landscape) {\n  .awr-visible-xs {\n    display: none; } }\n\n@media (max-width: $mq-tablet-portrait) {\n  .awr-visible-sm {\n    display: none; } }\n\n@media (min-width: $mq-tablet-landscape) {\n  .awr-visible-sm {\n    display: none; } }\n","@import \"_variables.sass\";\n@import \"_classes.sass\";\n\n.icon-before-after {\n  text-decoration: none !important;\n  display: inline-block;\n  margin-right: 3px;\n  font-size: 16px;\n  vert-align: middle;\n  padding: 0 3px 2px 3px;\n  height: 20px;\n  width: 19px; }\n\n\n.awr-icon.date-element {\n  @extend .element;\n  &:before {\n    //content: \"\\1F4C5\"\n    content: \"\\1F4C6\";\n    margin-right: 5px;\n    margin-left: 5px;\n    font-size: 1.3em;\n    color: darken(red, 35%); } }\n\n.awr-icon.books-element {\n  @extend .bold-element;\n  &:before {\n    content: \"\\1F4DA\";\n    margin-right: 5px;\n    font-size: 1.3em;\n    color: darken(red, 40%); } }\n\n.awr-icon.edit-element {\n  @extend .element;\n  font-weight: 600;\n  &:after {\n    content: \"\\1F4DD\";\n    width: 35px;\n    margin-left: 10px;\n    font-size: 1.5em;\n    cursor: pointer;\n    padding: 5px;\n    text-align: center; }\n  &:hover {\n    &:after {\n      background: lighten(#ccc, 35%);\n      border: 1px solid darken(#ccc, 5%);\n      border-radius: 5px;\n      width: 30px; } } }\n\n.awr-icon.edit-element.icon-left {\n  padding-left: 10px;\n  &:after {\n    display: none; }\n  &:before {\n    padding: 5px;\n    content: \"\\1F4DD\";\n    width: 35px;\n    margin-right: 20px;\n    font-size: 1.5em;\n    cursor: pointer;\n    text-align: center;\n    border: 1px solid white; }\n  &:hover {\n    &:after {\n      display: none; }\n    &:before {\n      background: lighten(#ccc, 35%);\n      border: 1px solid darken(#ccc, 5%);\n      border-radius: 5px;\n      max-width: 20px !important; } } }\n\n\n/* text-underline for &:before Is it possible to remove this?*/\n/* Yes, if you change the display style to inline-block from default->inline*/\n.awr-icon.back-link:hover {\n  text-decoration: underline;\n  &:before {\n    background: lighten($awr-link-color, 20%);\n    text-decoration: none !important; } }\n\n.awr-icon.back-link {\n  @extend .element;\n  @extend .link-element;\n  @extend .no-underline;\n  &:before {\n    @extend .icon-before-after;\n    color: white;\n    background: $awr-link-color;\n    font-size: 16px;\n    font-weight: 900;\n    border-radius: 50%;\n    /*other options: \\2190 \\21E6*/\n    content: \"\\21B5\"; } }\n\n.awr-icon.add-element:hover {\n  text-decoration: underline;\n  &:before {\n    background: lighten($awr-link-color, 20%);\n    text-decoration: none !important; } }\n\n.awr-icon.add-element {\n  @extend .element;\n  @extend .link-element;\n  @extend .no-underline;\n  vertical-align: middle;\n  &:before {\n    @extend .icon-before-after;\n    color: white;\n    padding: 0 2px 4px 2px !important;\n    font-size: 16px;\n    font-weight: 900;\n    border-radius: 26%;\n    margin-right: 5px;\n    background: $awr-link-color;\n    content: \"\\2795\"; } }\n","@media (min-width: 1800px) {\n  body > [awr-app] > .awr-scope-block > .main {\n    padding-right: 13.5%;\n    padding-left: 13.5%; } }\n\n@media (min-width: 1400px) and (max-width: 1800px) {\n  body > [awr-app] > .awr-scope-block > .main {\n    padding-right: 12%;\n    padding-left: 12%; } }\n\n@media (min-width: 1200px) and (max-width: 1400px) {\n  body > [awr-app] > .awr-scope-block > .main {\n    padding-right: 10%;\n    padding-left: 10%; } }\n\n@media (min-width: 750px) and (max-width: 1200px) {\n  body > [awr-app] > .awr-scope-block > .main {\n    padding-right: 8%;\n    padding-left: 8%; } }\n\n@media (max-width: 750px) {\n  body > [awr-app] > .awr-scope-block > .main {\n    padding-right: 4% !important;\n    padding-left: 4% !important; } }\n\n#rootFrameWorkLabel {\n  position: absolute;\n  bottom: 20px;\n  right: 20px; }\n","table.awr-col5-table.table > tbody tr td,\ntable.awr-col5-table.table > tbody tr th,\ntable.awr-col5-table.table > tfoot tr td,\ntable.awr-col5-table.table > tfoot tr th,\ntable.awr-col5-table.table > thead tr td,\ntable.awr-col5-table.table > thead tr th {\n  padding: 8px;\n  line-height: 1.42857143;\n  vertical-align: top;\n  border-top: 1px solid #ddd; }\n\n.table > .awr-scope-block {\n  display: table-row;\n  width: 100%; }\n\ntable.awr-col5-table {\n  thead > tr {\n    display: table; }\n  tbody {\n    tr {\n      cursor: pointer; }\n    tr:hover {\n      background: darken(#fff, 10%); } } }\n@media (min-width: 1700px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 250px !important; }\n    tbody {\n      td, th {\n        min-width: 250px !important; } } } }\n\n@media (min-width: 1800px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 280px !important; }\n    tbody {\n      td, th {\n        min-width: 280px !important; } } } }\n\n@media (min-width: 1400px) and (max-width: 1800px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 250px !important; }\n    tbody {\n      td, th {\n        min-width: 250px !important; } } } }\n\n@media (min-width: 1200px) and (max-width: 1400px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 200px !important; }\n    tbody {\n      td, th {\n        min-width: 200px !important; } } } }\n\n@media (min-width: 1000px) and (max-width: 1200px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 180px !important; }\n    tbody {\n      td, th {\n        min-width: 180px !important; } } } }\n\n@media (min-width: 850px) and (max-width: 1000px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 165px !important; }\n    tbody {\n      td, th {\n        min-width: 165px !important; } } } }\n\n@media (min-width: 750px) and (max-width: 850px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 150px !important; }\n    tbody {\n      td, th {\n        min-width: 150px !important; } } } }\n\n@media (min-width: 650px) and (max-width: 750px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 130px !important; }\n    tbody {\n      td, th {\n        min-width: 130px !important; } } } }\n\n@media (min-width: 400px) and (max-width: 650px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 110px !important; }\n    tbody {\n      td, th {\n        min-width: 110px !important; } } } }\n\n@media (min-width: 350px) and (max-width: 400px) {\n  table.awr-col5-table {\n    thead > tr > th {\n      min-width: 90px !important; }\n    tbody {\n      td, th {\n        min-width: 90px !important; } } } }\n","$awr-mobile-portrait: 315px !default;\n$awr-mobile-landscape: 480px !default;\n$awr-tablet-portrait: 768px !default;\n$awr-tablet-landscape: 988px !default;\n$awr-desktop: 1382px !default;\n$awr-large-max-value: 2400px !default;\n\n.awr-screen {\n  display: none; }\n\n.awr-screen.awr-screen-mobile {\n  @media (max-width: $awr-mobile-landscape) {\n    display: initial; } }\n\n.awr-screen.awr-screen-tablet {\n  @media (min-width: $awr-mobile-landscape) and (max-width: $awr-tablet-landscape) {\n    display: initial; } }\n\n.awr-screen.awr-screen-min-tablet {\n  @media (min-width: $awr-mobile-landscape) {\n    display: initial; } }\n\n.awr-screen.awr-screen-max-tablet {\n  @media (max-width: $awr-tablet-landscape) {\n    display: initial; } }\n\n.awr-screen.awr-screen-medium {\n  @media (min-width: $awr-tablet-landscape) and (max-width: $awr-desktop) {\n    display: initial; } }\n\n.awr-screen.awr-screen-min-medium {\n  @media (min-width: $awr-tablet-landscape) {\n    display: initial; } }\n\n.awr-screen.awr-screen-max-medium {\n  @media (max-width: $awr-desktop) {\n    display: initial; } }\n\n.awr-screen.awr-screen-large {\n  @media (min-width: $awr-desktop) and (max-width: $awr-large-max-value) {\n    display: initial; } }\n\n.awr-screen.awr-screen-min-large {\n  @media (min-width: $awr-desktop) {\n    display: initial; } }\n\n.awr-screen.awr-screen-max-large {\n  @media (max-width: $awr-large-max-value) {\n    display: initial; } }\n\n.awr-screen.awr-screen-x-large {\n  @media (min-width: $awr-large-max-value) {\n    display: initial; } }\n","$t-session-dark: #1A1A1A;\n$t-session-play-color: darken(#00cc00, 8%);\n.awr-test-session {\n  position: relative;\n  font-size: 10px;\n  padding-left: 150px;\n  padding-top: 0 !important;\n  background: lighten($t-session-dark, 30%);\n  color: $t-session-dark;\n  .content {\n    padding-left: 10px;\n    background: #fff;\n    min-height: 100%;\n    position: relative;\n    &.busy{\n      .busy-notif{\n        display: block;\n      }\n    }\n    .hd-box {\n      position: absolute;\n      top: 0;\n      left: 0;\n      min-width: 100%;\n      min-height: 65px;\n      border-bottom: 1px solid lighten($t-session-dark, 35%);\n      background: darken(#fff, 1%);\n    }\n    .busy-notif{\n      display: none;\n      width: 360px;\n      margin: 100px auto;\n      font-size: 1.4rem;\n      font-weight: 600;\n      span:nth-of-type(2){\n\n      }\n    }\n  }\n  #groupHeader {\n    padding-top: 60px;\n    h3 {\n      font-size: 1.8rem;\n      display: inline-block;\n    }\n    .group-actions {\n      display: block;\n      width: 100%;\n      text-align: right;\n      padding: 0 20px 0 0;\n      button {\n        padding: 5px 8px;\n        border-radius: 30px;\n        cursor: pointer;\n        outline: none;\n        border: 1px solid lighten($t-session-dark, 55%);\n        .fa, .fas {\n          color: $t-session-play-color;\n        }\n      }\n    }\n\n  }\n  #sideBar {\n\n    position: absolute;\n    left: 0;\n    top: 0;\n    height: 100%;\n    width: 150px;\n    color: #fff;\n    padding-top: 60px;\n\n    h3 {\n      font-size: 1.4rem;\n      margin-left: 10px;\n    }\n\n    .brand {\n      position: absolute;\n      top: 10px;\n      left: 10px;\n      img {\n        width: 100px;\n        clear: both;\n        display: block;\n      }\n      strong {\n        font-size: 1.5rem;\n      }\n    }\n\n    ul#tGroups {\n      width: 100%;\n      padding-left: 0;\n      li {\n        list-style: none;\n        padding: 5px 0 5px 10px;\n        cursor: pointer;\n        .fa, .fas {\n          display: none;\n        }\n        &:hover {\n          background: lighten($t-session-dark, 35%);\n        }\n        &.active {\n\n          font-weight: 600;\n          span:nth-of-type(2) {\n            text-decoration: underline;\n          }\n          .fas, .fa {\n            text-decoration: none;\n            display: inline;\n          }\n        }\n      }\n    }\n  }\n  #mocha {\n    margin: 0 !important;\n    padding-top: 10px;\n    font-family: 'Lucida Grande', 'Lucida Sans Unicode', arial, sans-serif;\n    #mocha-stats{\n      .progress{\n        background: #fff !important;\n        canvas{\n          background: #fff !important;\n        }\n      }\n    }\n    .test {\n      min-height: 30px;\n    }\n    .test a.replay {\n      border-radius: 50%;\n      background: lighten($t-session-dark, 95%);\n      border: 1px solid lighten($t-session-dark, 60%);\n      line-height: 12px;\n      margin-right: 10px;\n      font-size: 1.9rem;\n      color: $t-session-play-color;\n      opacity: 0.8;\n      padding: 2px 1px 1px 1.5px;\n      margin-top: -2px;\n    }\n    ul#mocha-report {\n      li.suite {\n        h1 {\n          font-size: 1.8rem !important;\n          margin: 15px 0 !important;\n        }\n        ul {\n          li.suite {\n            h1 {\n              font-size: 1.4rem !important;\n              margin: 6px 0 10px 0 !important;\n            }\n          }\n        }\n      }\n    }\n  }\n\n}","#badBrowserSupport{\n  width: 800px;\n  max-width: 95%;\n  margin: 60px auto;\n  position: relative;\n  height: 100%;\n  background:#fff;\n  color:#000;\n  padding: 10px 10px 30px 10px;\n}\n#badBrowserSupport h2{\n  margin: 0 auto 30px auto;\n  color: #000;\n  padding: 0 2%;\n}\n#badBrowserSupport p{\n  margin-bottom: 60px;\n  padding: 0 2%;\n}\n.bottom-page-awiar-logo{\n  margin: 30px auto;\n  width: 140px;\n  display: block;\n}\n@media (min-width: 700px) {\n  #badBrowserSupport h2{\n    margin: 0 auto 20px auto;\n  }\n  .bottom-page-awiar-logo{\n    margin: 70px auto;\n  }\n}","@import \"demo-authorizer/demo-authorizer\";\n@import \"demo-authorizer/demo-timer\";\n@import \"formEssentials/form-essentials\";\n@import \"infinite-scroll/infinite-scroll\";\n@import \"modal/modal\";\n@import \"dialogs/dialogs\";\n","$helen-dark: #1A1A1A !default;\n$header-background: lighten($helen-dark,8%) !default;\nbody.demo-not-authorized{\n  overflow: hidden !important;\n}\n.demo-authorizer {\n  color: #000 !important;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  background: #fff;\n  z-index: 100000;\n  display: block;\n  .mobile-input-container{\n    display: none;\n    input.mobile-chars{\n      height: 40px;\n      border-radius: 3px;\n      width: 80%;\n      border: 1px solid darken(#fff,10%);\n      outline: none;\n      padding: 5px;\n      text-align: center;\n      text-transform: uppercase;\n      font-size: 1.4em;\n    }\n  }\n  .input-container{\n    display: block;\n  }\n  @media (max-width: 1030px) {\n    .mobile-input-container{\n      display: block;\n    }\n    .input-container{\n      display: none;\n    }\n  }\n  header{\n    width: 100%;\n    height: 95px;\n    background: $header-background;\n    @media (min-width: $mq-mobile-landscape) {\n      padding: 0 95px 15px 95px;\n    }\n    @media (max-width: $mq-mobile-landscape) {\n      padding: 0 25px 15px 25px;\n      text-align: center;\n    }\n    .logo > img {\n      width: 100px;\n      margin-top:20px;\n    }\n  }\n\n  .slogan{\n    @media (max-height:420px) {\n      display: none;\n    }\n\n    position: absolute;\n    bottom: 30px;\n    right: 40px;\n    font-size: 1.3em;\n    font-weight: 600;\n    .w:after{\n      content: '  ';\n      line-height: 1.2em;\n    }\n  }\n  .content {\n    padding: 0;\n    text-align: center;\n    .animate {\n      width: 50%;\n      margin: 10px auto;\n      padding: 10px;\n      height: 30px;\n      text-align: center;\n      .block {\n        width: 20px;\n        height: 5px;\n        border: 1px solid darken(#fff, 40%);\n        border-radius: 5px;\n        background: darken(#fff, 30%);\n        margin: 20px 0 0 15%;\n      }\n    }\n    .row {\n      margin-top: 20px;\n    }\n    @media (min-width: $mq-tablet-landscape) {\n      width: 50%;\n      margin: 200px auto;\n    }\n    h3 {\n      margin-bottom: 30px;\n    }\n  }\n  .char-in {\n    width: 35px;\n    height: 35px;\n    text-transform: uppercase;\n    font-weight: 600;\n    text-align: center;\n  }\n  .char-in.not-valid {\n    border: 1px solid red;\n  }\n\n  .row {\n    .fa {\n      font-size: 1.8em !important;\n    }\n    .fa-check, .fa-remove {\n      display: none;\n    }\n    .fa.on {\n      display: inline;\n    }\n  }\n}\n\n.demo-authorizer.authorized {\n  display: none;\n}\n",".demo-timer {\n  position: fixed;\n  bottom: 0;\n  z-index: 100000;\n  display: none;\n  background: #fff;\n  padding: 4px 10px;\n  color: #000 !important;\n  text-align: center;\n  border: 1px solid darken(#fff, 35%);\n  border-top-left-radius: 20px;\n  border-top-right-radius: 20px;\n  font-size: 1.4rem;\n  line-height: 1.3em;\n  font-weight: 600;\n  @media (min-width: $mq-mobile-landscape) {\n    width: 240px;\n    &.pos-middle {\n      left: 45%;\n    }\n    &.pos-right {\n      right: 1%;\n      button.to-right {\n        color: lighten(#000, 50%);\n        &:active {\n          border: none;\n        }\n      }\n    }\n    &.pos-left {\n      left: 1%;\n      button.to-left {\n        color: lighten(#000, 50%);\n        &:active {\n          border: none;\n        }\n      }\n    }\n  }\n  @media (max-width: $mq-mobile-landscape) {\n    width: 100%;\n    max-width: 100%;\n    overflow-x: hidden;\n    left: 0;\n    height: 34px;\n    min-height: 34px;\n    margin: 0 auto;\n    border-radius: 0;\n    border: none;\n    background: none;\n    .timer-content{\n      border: 1px solid darken(#fff, 35%);\n      border-top-left-radius: 20px;\n      border-top-right-radius: 20px;\n      border-bottom: none;\n      background: rgba(#fff,0.5);\n      padding: 4px 10px;\n    }\n    button.to-left, button.to-right {\n      display: none;\n    }\n  }\n\n  .timer-content {\n    width: 200px;\n    margin: 0 auto;\n  }\n  .add-zero:before {\n    content: '0';\n  }\n  button.fa-stop {\n    outline: none;\n    padding: 2px 4px;\n  }\n  button.to-left, button.to-right {\n    position: absolute;\n    top: 8px;\n    background: #fff;\n    border: none;\n    outline: none;\n    &:active {\n      border: 1px inset darken(#fff, 10%);\n    }\n  }\n  button.to-left {\n    left: 5px;\n  }\n  button.to-right {\n    right: 5px;\n  }\n}\n\n.demo-timer.on {\n  display: flex;\n  @media (max-width: $mq-mobile-landscape){\n    display: block;\n  }\n}\n\n.demo-refresh-confirm {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  background: rgba(#fff, 0.4);\n  z-index: 100000;\n  display: block;\n  .content {\n    @media (min-width: $mq-mobile-landscape) {\n      width: 450px;\n    }\n    @media (max-width: $mq-mobile-landscape) {\n      width: 96%;\n      text-align: center;\n    }\n    margin: 10% auto;\n    background: darken(#fff, 20%);\n    padding: 10px 25px 15px 25px;\n    border-radius: 5px;\n    box-shadow: 10px 10px 5px #888888;\n    h1 {\n      width: 100%;\n      font-size: 1.4em;\n      font-weight: 600;\n      padding-bottom: 20px;\n      border-bottom: 1px solid darken(#fff, 35%);\n    }\n    .btn-row {\n      @media (min-width: $mq-mobile-landscape) {\n        margin: 20px 10px 10px 10px;\n        text-align: right;\n      }\n      @media (max-width: $mq-mobile-landscape) {\n        display: inline-flex;\n        text-align: center;\n        .btn-default {\n          border-top-right-radius: 0;\n          border-bottom-right-radius: 0;\n        }\n        .btn-success {\n          border-top-left-radius: 0;\n          border-bottom-left-radius: 0;\n        }\n      }\n\n    }\n  }\n\n}","@import \"form-member/form-member\";\n@import \"tag-field/tag-field\";\n@import \"awr-rate/awr-rate\";\n\n$not-valid-err-color: darken(red, 20%);\n.in-group.not-valid {\n  .v-msg, .v-symbol.fail {\n    display: initial;\n  }\n  input, textarea {\n    border: 1px solid $not-valid-err-color;\n    outline: none;\n  }\n}\n\n.in-group.valid {\n  .v-symbol.valid {\n    display: initial;\n  }\n}\n\n.in-group {\n  position: relative;\n  &.no-icon {\n    input, textarea, button {\n      padding-left: 10px;\n    }\n  }\n  input,textarea{\n    font-size: 13px;\n  }\n  input, textarea, button {\n    padding-left: 27px;\n    font-weight: 600;\n    background: rgba(#fff, 0.6);\n    border-radius: 3px;\n    outline: none;\n    box-shadow: none;\n    &:focus, &:active {\n      border-color: #ccc;\n      box-shadow: none;\n    }\n  }\n  input, textarea, select {\n    width: 100%;\n    color: lighten(#000, 30%);\n  }\n  select {\n    height: 28px;\n    //padding: 6px 12px;\n    font-size: 13px;\n    line-height: 1.42857143;\n    //color: #555;\n    background-color: #fff;\n    //border: 1px solid #ccc;\n    outline: none;\n    border-color: #ccc;\n    border-radius: 4px;\n    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);\n    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);\n    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;\n    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;\n    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;\n  }\n  textarea {\n    padding: 8px 20px 8px 32px;\n  }\n  .v-msg, .v-symbol {\n    display: none;\n  }\n  .v-msg {\n    position: absolute;\n    color: lighten($not-valid-err-color, 35%);\n    right: 4px;\n    top: -18px;\n  }\n  .v-symbol {\n    position: absolute !important;\n    right: 15px !important;\n  }\n\n  .v-symbol.fail {\n    .fa {\n      position: relative !important;\n      color: $not-valid-err-color !important;\n    }\n  }\n  .v-symbol.valid {\n    .fa {\n      position: relative !important;\n    }\n  }\n  .f-icon.fa, .f-icon.fas, .f-icon.far,\n  .v-symbol .fa, .v-symbol .fas, .v-symbol .far {\n    color: darken(silver, 30%);\n    position: absolute;\n    font-size: 1.3em;\n    top: 8px;\n    left: 6px;\n  }\n}",".in-group {\n\n  input {\n    &::placeholder {\n      //text-transform: capitalize;\n    }\n  }\n  /* Customize the label (the container) */\n  .checkbox-container {\n    display: block;\n    position: relative;\n    padding-left: 35px;\n    margin-bottom: 12px;\n    cursor: pointer;\n    font-size: 15px;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n  }\n  /* Hide the browser's default checkbox */\n  .checkbox-container input {\n    position: absolute;\n    opacity: 0;\n    cursor: pointer;\n    z-index: 100;\n    top: 0;\n    left: 0;\n    height: 20px;\n    width: 20px;\n  }\n  .checkbox-container .checkbox-label {\n    position: absolute;\n    top: -4px;\n    left: 25px;\n    .word {\n      &::before {\n        content: ' ';\n      }\n    }\n  }\n  /* Create a custom checkbox */\n  .checkmark {\n    z-index: 10;\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 15px;\n    width: 15px;\n    background-color: darken(#eee, 10%);\n  }\n  /* On mouse-over, add a grey background color */\n  .checkbox-container:hover input ~ .checkmark {\n    background-color: darken(#ccc, 5%);\n  }\n\n  /* When the checkbox is checked, add a blue background */\n  .checkbox-container input:checked ~ .checkmark {\n    background-color: #2196F3;\n  }\n\n  /* Create the checkmark/indicator (hidden when not checked) */\n  .checkmark:after {\n    content: \"\";\n    position: absolute;\n    display: none;\n  }\n\n  /* Show the checkmark when checked */\n  .checkbox-container input:checked ~ .checkmark:after {\n    display: block;\n  }\n\n  /* Style the checkmark/indicator */\n  .checkbox-container .checkmark:after {\n    left: 5px;\n    top: 1px;\n    width: 5px;\n    height: 10px;\n    border: solid white;\n    border-width: 0 3px 3px 0;\n    -webkit-transform: rotate(45deg);\n    -ms-transform: rotate(45deg);\n    transform: rotate(45deg);\n  }\n\n}\n\n.form-member-parent.hz-layout {\n  display: flex;\n  flex-direction: row;\n  margin: 15px 0 20px 0;\n}\n\n.form-member-title {\n  h3 {\n    font-size: 17px;\n    font-weight: 600;\n  }\n}\n\n.form-member-label {\n  font-size: 13.5px;\n  font-weight: 600;\n}\n\n.form-member.textarea-type {\n  textarea {\n    resize: none;\n    outline: none;\n  }\n}\n\n.form-member.select-type {\n  select {\n    border: 1px solid darken(#ccc, 5%);\n  }\n}\n\n.form-member.rate-type {\n  margin-top: 10px;\n}\n\n.form-member.range-type {\n  input {\n    box-shadow: none;\n    border: none;\n    outline: none;\n    &:active {\n      box-shadow: none;\n      border: none;\n      outline: none;\n    }\n  }\n}\n\n.form-member.checkbox-type {\n  width: 100%;\n  height: 15px;\n}\n\n.form-member.radio-group {\n  margin-top: 15px;\n  &.hz-layout {\n    display: flex;\n    flex-direction: row;\n    margin: 0;\n    .group-member{\n      margin-right: 10px;\n      label{\n        margin: 1px 0 0 -6px;\n      }\n    }\n  }\n  .group-member {\n    display: flex;\n    text-align: right;\n    .radio-group-label {\n      font-size: 13px;\n    }\n    input[type=\"radio\"] {\n      width: 40px;\n      outline: none;\n    }\n  }\n}\n\n.form-member.button-group {\n  margin-top: 15px;\n  display: flex;\n  font-size: 13px;\n  .group-member {\n    margin: 0;\n    outline: none;\n    border: 1px solid #ccc;\n    padding: 8px;\n    border-left: none;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    &.active-btn {\n      background: darken(#fff, 20%);\n    }\n  }\n  button.group-member:first-of-type {\n    border-left: 1px solid #ccc;\n    border-top-left-radius: 8px;\n    border-bottom-left-radius: 8px;\n  }\n  button.group-member:last-of-type {\n    border-top-right-radius: 8px;\n    border-bottom-right-radius: 8px;\n  }\n  button{\n    .after-icon, .before-icon{\n      font-size: 14px;\n    }\n  }\n}\n\n.form-member.pretty-file-type {\n  position: relative;\n  border: 1px solid #ccc;\n  padding: 0;\n  height: 34px;\n  border-radius: 4px;\n  font-size: 13px;\n  font-weight: 600;\n  overflow: hidden;\n  .f-icon.fa-file {\n    top: 10px;\n  }\n  .v-symbol.fail, .v-symbol.valid {\n    right: 129px !important;\n    top: -2px !important;\n  }\n\n  &.has-file {\n    .v-symbol.fail, .v-symbol.valid {\n      right: 159px !important;\n    }\n    .file-name {\n      display: inline-flex;\n      .fa {\n        font-size: 14px;\n      }\n    }\n    .placeholder {\n      display: none;\n    }\n    button.remove-btn {\n      display: initial;\n    }\n  }\n  input {\n    display: none;\n  }\n  .placeholder {\n    margin: 8px 0 0 9px;\n    color: lighten(#000, 59.5%);\n  }\n  .file-name {\n    display: none;\n    position: absolute;\n    left: 0;\n    top: 0;\n    height: 100%;\n\n    span {\n      height: 100%;\n    }\n    .name {\n      margin-left: 30px;\n      padding-top: 7px;\n    }\n    .size {\n      margin-left: 10px;\n      padding-top: 10px;\n      font-size: 1.2rem;\n      color: lighten(#000, 59.5%);\n      &::before {\n        content: ' ( ';\n      }\n      &::after {\n        content: ' ) ';\n      }\n    }\n  }\n\n  button {\n    overflow: hidden;\n    padding-top: 5px;\n    position: absolute;\n    height: 36px;\n    border: none;\n    border-left: 1px solid #ccc;\n    border-radius: 0;\n    outline: none;\n    display: flex;\n    font-size: 12px;\n    &.add-btn {\n      right: 0;\n      top: -4px;\n      .f-icon {\n        top: 13px;\n      }\n    }\n    &.remove-btn {\n      display: none;\n      right: 110px;\n      top: 0;\n      width: 35px;\n      .f-icon {\n        top: 10px;\n      }\n    }\n    &:hover {\n      color: lighten(#000, 40%);\n    }\n    span:first-of-type {\n      margin: -1px 5px;\n    }\n    span:nth-of-type(2) {\n      margin-left: 25px;\n    }\n  }\n}",".tag-field {\n  color: #000;\n  width: 100%;\n  position: relative;\n  .status-msg {\n    margin-left: 10px;\n    color: #000;\n    display: none;\n    position: absolute;\n    &.on {\n      display: initial;\n    }\n  }\n  &.has-suggestions{\n    .suggestions{\n      display: flex;\n    }\n  }\n  .suggestions{\n    display: none;\n    flex-direction:column;\n    position: absolute;\n    z-index:100;\n    font-size: 13px;\n    padding: 0;\n    width: 99%;\n    margin: 0 auto;\n    border: 1px solid darken(#fff, 15%);\n    border-top: none;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    background: darken(#fff,2%);\n    //bottom: 0;\n    left: 0.5%;\n    span{\n      margin-bottom: 6px;\n      padding: 10px;\n      width: 100%;\n      cursor: pointer;\n    }\n    span.selected, span:hover{\n      background: darken(#fff,6%);\n    }\n  }\n  .tags-container {\n    display: flex;\n    flex-direction: row;\n    flex-flow: wrap;\n    width: 100%;\n    border: 1px solid darken(#fff, 15%);\n    padding-left: 5px;\n    border-radius: 4px;\n    .input-container{\n      display: inline-block;\n      input {\n        border: none;\n        outline: none;\n        padding: 10px;\n        font-size: 13px;\n        height: 100%;\n        display: inline-block;\n        &::placeholder {\n        }\n        &::placeholder{\n          color: lighten(#000,59%);\n        }\n      }\n    }\n\n    .tag {\n      display: inline-block;\n      margin: 7px 5px 7px 0;\n      background: darken(#fff, 3%);\n      border: 1px solid darken(#fff, 8%);\n      color: #000;\n      padding: 3px 25px 3px 15px;\n      border-radius: 2px;\n      text-transform: capitalize;\n      white-space: nowrap;\n      position: relative;\n      &:hover {\n        border: 1px solid darken(#fff, 18%);\n      }\n      .remove {\n        position: absolute;\n        top: 4px;\n        right: 0;\n        cursor: pointer;\n        height: 100%;\n        width: 15px;\n        .fas.fa-times {\n          font-size: 13px;\n          &:hover {\n            color: lighten(#000, 60%);\n          }\n        }\n      }\n\n    }\n  }\n}",".awr-rate {\n  .content {\n    display: flex;\n    flex-direction: row;\n\n  }\n  .r-info {\n    span:first-of-type {\n      font-weight: 600;\n      font-size: 16px;\n    }\n    span:last-of-type{\n      font-size: 11px;\n      color: darken(#ccc,25%);\n      margin-left: -1px;\n    }\n  }\n  .star-container {\n    display: flex;\n    flex-direction: row;\n    margin-right: 10px;\n    position: relative;\n    height: 40px;\n    &.h{\n      .zero-item{\n        display: initial;\n      }\n    }\n    .zero-item{\n      font-size: 12px;\n      margin-right: 5px;\n      position: absolute;\n      top:25px;\n      right: 0;\n      display: none;\n    }\n    .r-item {\n      cursor: pointer;\n      position: relative;\n      height: 20px;\n      margin-right: 2px;\n      .s-icon{\n        font-size: 15px;\n        color: #ffa500;\n      }\n      .h-icon{\n        font-size: 15px;\n        color: lighten(#ffa500,30%);\n        display: none;\n        position: absolute;\n        left: 0;\n        top: 2px;\n      }\n      &.h{\n        .h-icon{\n          display: initial;\n        }\n      }\n    }\n  }\n\n}",".infinite-scroll {\n  width: 100%;\n  height: 100%;\n  position: relative;\n\n  .loop-cont.bottom-up{\n    //position: absolute;\n    //width: 100%;\n    //display: table;\n    //vertical-align: bottom;\n  }\n  .infinite-loading {\n    //display: none;\n    width: 100%;\n    text-align: center;\n    position: absolute;\n    @media (min-width: $mq-mobile-landscape) {\n      top: 45%;\n    }\n    @media (max-width: $mq-mobile-landscape) {\n      top: 35%;\n    }\n    //height: 20px;\n    padding: 10px;\n    font-size: 1.2em;\n    font-weight: 500;\n    .loading-cont{\n      padding: 10px;\n      background: rgba(#000,0.6);\n      max-width: 100px;\n      margin: 0 auto;\n      border-radius: 6px;\n    }\n  }\n\n  .infinite-content {\n    width: 100%;\n    overflow-y: scroll;\n    height:100%;\n    position: relative;\n    display: flex;\n    align-items: flex-start;\n    &.bottom-start{\n      align-items: flex-end;\n    }\n    & > .awr-scope-block{\n      width: 100%;\n      max-height: 100%;\n    }\n    .loop-cont{\n      width: 100%;\n    }\n    .vertical-top-push {\n      min-width: 100%;\n    }\n    .vertical-bottom-push {\n      min-width: 100%;\n    }\n\n\n    &::-webkit-scrollbar-track {\n      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n      border-radius: 20px;\n    }\n    &::-webkit-scrollbar {\n      width: 6px;\n    }\n\n    &::-webkit-scrollbar-thumb {\n      border-radius: 20px;\n      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);\n      background-color: lighten($header-background, 35%);\n    }\n  }\n}","$h-dark-modal: #1A1A1A;\n$modal-body-font-color: lighten($h-dark-modal, 40%);\n\n.awr-modal-comp {\n  display: none;\n}\n\n#awrModalRmBtn {\n  display: none;\n}\n\n.awr-scope-block.awr-modal-parent, .awr-modal-parent {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  z-index: 20000;\n  background: rgba(lighten($h-dark-modal, 25%), 0.6);\n  color: black;\n  display: none;\n  .awr-true-if-block, .awr-scope-block {\n    display: none;\n  }\n  &.on {\n    display: block;\n    .awr-true-if-block, .awr-scope-block {\n      display: initial;\n    }\n    .awr-modal {\n      .awr-modal-content {\n        #awrModalRmBtn {\n          display: initial;\n        }\n        .awr-modal-comp {\n          display: initial;\n        }\n      }\n    }\n  }\n  .awr-modal {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    @media (max-width: 500px) {\n      padding: 0 8px 0 5px;\n    }\n    .awr-modal-content {\n      //width: 60%;\n      background: #fff;\n      padding: 20px;\n      min-width: 500px;\n      //min-height: 300px;\n      margin: 0 auto;\n      position: relative;\n      @media (max-width: 500px) {\n        min-width: 90%;\n      }\n      #awrModalRmBtn {\n        position: absolute;\n        top: 5px;\n        right: 6px;\n        cursor: pointer;\n        &:hover {\n          color: $modal-body-font-color;\n        }\n      }\n\n    }\n\n  }\n\n}\n","$dialog-shadow: -4px 6px 5px 0px rgba(0, 0, 0, 0.35);\n.awr-dialogs {\n  width: 100%;\n  min-height: 100%;\n  background: none;\n  position: relative;\n  z-index: 40000;\n\n  .left-container,\n  .right-container {\n    display: table;\n    min-width: 100px;\n    @media (max-width: 767px) {\n      left: 50%;\n      transform: translate(-50%, 0);\n      position: absolute;\n    }\n\n    .dialog-items {\n      display: flex;\n      flex-direction: column;\n    }\n  }\n\n  .middle-container {\n    margin: 0 auto;\n    left: 50%;\n    transform: translate(-50%, 0);\n    position: absolute;\n    text-align: center;\n\n    .inner {\n      display: table;\n      margin: 0 auto;\n    }\n  }\n\n  .left-container {\n    float: left;\n  }\n\n  .right-container {\n    float: right;\n  }\n}\n\n.awr-dialogs .basic-awr-dialog {\n  background: #fff;\n  padding: 15px;\n  min-width: 300px;\n  min-height: 100px;\n  margin: 5px;\n  -webkit-box-shadow: $dialog-shadow;\n  -moz-box-shadow: $dialog-shadow;\n  box-shadow: $dialog-shadow;\n  position: relative;\n  text-align: left;\n  @media (max-width: 767px) {\n    min-width: 90%;\n  }\n\n  .h1, .h2, .h3, h1, h2, h3 {\n    margin-top: 10px;\n  }\n\n  & > .close-btn {\n    position: absolute;\n    top: 10px;\n    right: 10px;\n    cursor: pointer;\n  }\n}"],"names":[],"mappings":"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"}
+.element, .awr-icon.date-element, .awr-icon.edit-element, .awr-icon.back-link, .awr-icon.add-element {
+  padding: 5px;
+  height: 30px;
+  vertical-align: middle; }
+
+.bold-element, .awr-clickable-text, .awr-icon.books-element {
+  height: 30px;
+  font-weight: 600; }
+
+.link-element, .awr-icon.back-link, .awr-icon.add-element {
+  color: #337ab7;
+  text-decoration: underline;
+  cursor: pointer; }
+
+.link-element:hover, .awr-icon.back-link:hover, .awr-icon.add-element:hover {
+  color: #77acd9; }
+
+.link-element.no-underline, .awr-icon.back-link, .awr-icon.add-element {
+  text-decoration: none; }
+
+.no-underline, .awr-icon.back-link, .awr-icon.add-element {
+  text-decoration: none; }
+
+.keep-left {
+  float: left !important; }
+
+.keep-right {
+  float: right !important; }
+
+.text-muted {
+  color: #aaaaaa; }
+
+.awr-text-left {
+  text-align: left !important; }
+
+.awr-text-right {
+  text-align: right !important; }
+
+.awr-clickable, .awr-clickable-text {
+  cursor: pointer; }
+
+.awr-clickable-text:hover {
+  text-decoration: underline; }
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid; }
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid; }
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid; }
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid; }
+
+.modal {
+  z-index: 1150 !important; }
+
+.modal-backdrop {
+  z-index: 1140 !important; }
+
+.no-padding {
+  padding: 0; }
+
+@media (min-width: 480px) {
+  .awr-visible-xs {
+    display: none; } }
+
+@media (max-width: 768px) {
+  .awr-visible-sm {
+    display: none; } }
+
+@media (min-width: 988px) {
+  .awr-visible-sm {
+    display: none; } }
+
+.element, .awr-icon.date-element, .awr-icon.edit-element, .awr-icon.back-link, .awr-icon.add-element {
+  padding: 5px;
+  height: 30px;
+  vertical-align: middle; }
+
+.bold-element, .awr-clickable-text, .awr-icon.books-element {
+  height: 30px;
+  font-weight: 600; }
+
+.link-element, .awr-icon.back-link, .awr-icon.add-element {
+  color: #337ab7;
+  text-decoration: underline;
+  cursor: pointer; }
+
+.link-element:hover, .awr-icon.back-link:hover, .awr-icon.add-element:hover {
+  color: #77acd9; }
+
+.link-element.no-underline, .awr-icon.back-link, .awr-icon.add-element {
+  text-decoration: none; }
+
+.no-underline, .awr-icon.back-link, .awr-icon.add-element {
+  text-decoration: none; }
+
+.keep-left {
+  float: left !important; }
+
+.keep-right {
+  float: right !important; }
+
+.text-muted {
+  color: #aaaaaa; }
+
+.awr-text-left {
+  text-align: left !important; }
+
+.awr-text-right {
+  text-align: right !important; }
+
+.awr-clickable, .awr-clickable-text {
+  cursor: pointer; }
+
+.awr-clickable-text:hover {
+  text-decoration: underline; }
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid; }
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid; }
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid; }
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid; }
+
+.modal {
+  z-index: 1150 !important; }
+
+.modal-backdrop {
+  z-index: 1140 !important; }
+
+.no-padding {
+  padding: 0; }
+
+@media (min-width: 480px) {
+  .awr-visible-xs {
+    display: none; } }
+
+@media (max-width: 768px) {
+  .awr-visible-sm {
+    display: none; } }
+
+@media (min-width: 988px) {
+  .awr-visible-sm {
+    display: none; } }
+
+.icon-before-after, .awr-icon.back-link:before, .awr-icon.add-element:before {
+  text-decoration: none !important;
+  display: inline-block;
+  margin-right: 3px;
+  font-size: 16px;
+  vert-align: middle;
+  padding: 0 3px 2px 3px;
+  height: 20px;
+  width: 19px; }
+
+.awr-icon.date-element:before {
+  content: "\1F4C6";
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 1.3em;
+  color: #4d0000; }
+
+.awr-icon.books-element:before {
+  content: "\1F4DA";
+  margin-right: 5px;
+  font-size: 1.3em;
+  color: #330000; }
+
+.awr-icon.edit-element {
+  font-weight: 600; }
+  .awr-icon.edit-element:after {
+    content: "\1F4DD";
+    width: 35px;
+    margin-left: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center; }
+  .awr-icon.edit-element:hover:after {
+    background: white;
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
+    width: 30px; }
+
+.awr-icon.edit-element.icon-left {
+  padding-left: 10px; }
+  .awr-icon.edit-element.icon-left:after {
+    display: none; }
+  .awr-icon.edit-element.icon-left:before {
+    padding: 5px;
+    content: "\1F4DD";
+    width: 35px;
+    margin-right: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid white; }
+  .awr-icon.edit-element.icon-left:hover:after {
+    display: none; }
+  .awr-icon.edit-element.icon-left:hover:before {
+    background: white;
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
+    max-width: 20px !important; }
+
+/* text-underline for &:before Is it possible to remove this?*/
+/* Yes, if you change the display style to inline-block from default->inline*/
+.awr-icon.back-link:hover {
+  text-decoration: underline; }
+  .awr-icon.back-link:hover:before {
+    background: #77acd9;
+    text-decoration: none !important; }
+
+.awr-icon.back-link:before {
+  color: white;
+  background: #337ab7;
+  font-size: 16px;
+  font-weight: 900;
+  border-radius: 50%;
+  /*other options: \2190 \21E6*/
+  content: "\21B5"; }
+
+.awr-icon.add-element:hover {
+  text-decoration: underline; }
+  .awr-icon.add-element:hover:before {
+    background: #77acd9;
+    text-decoration: none !important; }
+
+.awr-icon.add-element {
+  vertical-align: middle; }
+  .awr-icon.add-element:before {
+    color: white;
+    padding: 0 2px 4px 2px !important;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 26%;
+    margin-right: 5px;
+    background: #337ab7;
+    content: "\2795"; }
+
+@media (min-width: 1800px) {
+  body > [awr-app] > .awr-scope-block > .main {
+    padding-right: 13.5%;
+    padding-left: 13.5%; } }
+
+@media (min-width: 1400px) and (max-width: 1800px) {
+  body > [awr-app] > .awr-scope-block > .main {
+    padding-right: 12%;
+    padding-left: 12%; } }
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  body > [awr-app] > .awr-scope-block > .main {
+    padding-right: 10%;
+    padding-left: 10%; } }
+
+@media (min-width: 750px) and (max-width: 1200px) {
+  body > [awr-app] > .awr-scope-block > .main {
+    padding-right: 8%;
+    padding-left: 8%; } }
+
+@media (max-width: 750px) {
+  body > [awr-app] > .awr-scope-block > .main {
+    padding-right: 4% !important;
+    padding-left: 4% !important; } }
+
+#rootFrameWorkLabel {
+  position: absolute;
+  bottom: 20px;
+  right: 20px; }
+
+table.awr-col5-table.table > tbody tr td,
+table.awr-col5-table.table > tbody tr th,
+table.awr-col5-table.table > tfoot tr td,
+table.awr-col5-table.table > tfoot tr th,
+table.awr-col5-table.table > thead tr td,
+table.awr-col5-table.table > thead tr th {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd; }
+
+.table > .awr-scope-block {
+  display: table-row;
+  width: 100%; }
+
+table.awr-col5-table thead > tr {
+  display: table; }
+
+table.awr-col5-table tbody tr {
+  cursor: pointer; }
+
+table.awr-col5-table tbody tr:hover {
+  background: #e6e6e6; }
+
+@media (min-width: 1700px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 250px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 250px !important; } }
+
+@media (min-width: 1800px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 280px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 280px !important; } }
+
+@media (min-width: 1400px) and (max-width: 1800px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 250px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 250px !important; } }
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 200px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 200px !important; } }
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 180px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 180px !important; } }
+
+@media (min-width: 850px) and (max-width: 1000px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 165px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 165px !important; } }
+
+@media (min-width: 750px) and (max-width: 850px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 150px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 150px !important; } }
+
+@media (min-width: 650px) and (max-width: 750px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 130px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 130px !important; } }
+
+@media (min-width: 400px) and (max-width: 650px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 110px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 110px !important; } }
+
+@media (min-width: 350px) and (max-width: 400px) {
+  table.awr-col5-table thead > tr > th {
+    min-width: 90px !important; }
+  table.awr-col5-table tbody td, table.awr-col5-table tbody th {
+    min-width: 90px !important; } }
+
+.awr-screen {
+  display: none; }
+
+@media (max-width: 480px) {
+  .awr-screen.awr-screen-mobile {
+    display: initial; } }
+
+@media (min-width: 480px) and (max-width: 988px) {
+  .awr-screen.awr-screen-tablet {
+    display: initial; } }
+
+@media (min-width: 480px) {
+  .awr-screen.awr-screen-min-tablet {
+    display: initial; } }
+
+@media (max-width: 988px) {
+  .awr-screen.awr-screen-max-tablet {
+    display: initial; } }
+
+@media (min-width: 988px) and (max-width: 1382px) {
+  .awr-screen.awr-screen-medium {
+    display: initial; } }
+
+@media (min-width: 988px) {
+  .awr-screen.awr-screen-min-medium {
+    display: initial; } }
+
+@media (max-width: 1382px) {
+  .awr-screen.awr-screen-max-medium {
+    display: initial; } }
+
+@media (min-width: 1382px) and (max-width: 2400px) {
+  .awr-screen.awr-screen-large {
+    display: initial; } }
+
+@media (min-width: 1382px) {
+  .awr-screen.awr-screen-min-large {
+    display: initial; } }
+
+@media (max-width: 2400px) {
+  .awr-screen.awr-screen-max-large {
+    display: initial; } }
+
+@media (min-width: 2400px) {
+  .awr-screen.awr-screen-x-large {
+    display: initial; } }
+
+.awr-test-session {
+  position: relative;
+  font-size: 10px;
+  padding-left: 150px;
+  padding-top: 0 !important;
+  background: #676767;
+  color: #1A1A1A; }
+  .awr-test-session .content {
+    padding-left: 10px;
+    background: #fff;
+    min-height: 100%;
+    position: relative; }
+    .awr-test-session .content.busy .busy-notif {
+      display: block; }
+    .awr-test-session .content .hd-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 65px;
+      border-bottom: 1px solid #737373;
+      background: #fcfcfc; }
+    .awr-test-session .content .busy-notif {
+      display: none;
+      width: 360px;
+      margin: 100px auto;
+      font-size: 1.4rem;
+      font-weight: 600; }
+  .awr-test-session #groupHeader {
+    padding-top: 60px; }
+    .awr-test-session #groupHeader h3 {
+      font-size: 1.8rem;
+      display: inline-block; }
+    .awr-test-session #groupHeader .group-actions {
+      display: block;
+      width: 100%;
+      text-align: right;
+      padding: 0 20px 0 0; }
+      .awr-test-session #groupHeader .group-actions button {
+        padding: 5px 8px;
+        border-radius: 30px;
+        cursor: pointer;
+        outline: none;
+        border: 1px solid #a6a6a6; }
+        .awr-test-session #groupHeader .group-actions button .fa, .awr-test-session #groupHeader .group-actions button .fas {
+          color: #00a300; }
+  .awr-test-session #sideBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 150px;
+    color: #fff;
+    padding-top: 60px; }
+    .awr-test-session #sideBar h3 {
+      font-size: 1.4rem;
+      margin-left: 10px; }
+    .awr-test-session #sideBar .brand {
+      position: absolute;
+      top: 10px;
+      left: 10px; }
+      .awr-test-session #sideBar .brand img {
+        width: 100px;
+        clear: both;
+        display: block; }
+      .awr-test-session #sideBar .brand strong {
+        font-size: 1.5rem; }
+    .awr-test-session #sideBar ul#tGroups {
+      width: 100%;
+      padding-left: 0; }
+      .awr-test-session #sideBar ul#tGroups li {
+        list-style: none;
+        padding: 5px 0 5px 10px;
+        cursor: pointer; }
+        .awr-test-session #sideBar ul#tGroups li .fa, .awr-test-session #sideBar ul#tGroups li .fas {
+          display: none; }
+        .awr-test-session #sideBar ul#tGroups li:hover {
+          background: #737373; }
+        .awr-test-session #sideBar ul#tGroups li.active {
+          font-weight: 600; }
+          .awr-test-session #sideBar ul#tGroups li.active span:nth-of-type(2) {
+            text-decoration: underline; }
+          .awr-test-session #sideBar ul#tGroups li.active .fas, .awr-test-session #sideBar ul#tGroups li.active .fa {
+            text-decoration: none;
+            display: inline; }
+  .awr-test-session #mocha {
+    margin: 0 !important;
+    padding-top: 10px;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', arial, sans-serif; }
+    .awr-test-session #mocha #mocha-stats .progress {
+      background: #fff !important; }
+      .awr-test-session #mocha #mocha-stats .progress canvas {
+        background: #fff !important; }
+    .awr-test-session #mocha .test {
+      min-height: 30px; }
+    .awr-test-session #mocha .test a.replay {
+      border-radius: 50%;
+      background: white;
+      border: 1px solid #b3b3b3;
+      line-height: 12px;
+      margin-right: 10px;
+      font-size: 1.9rem;
+      color: #00a300;
+      opacity: 0.8;
+      padding: 2px 1px 1px 1.5px;
+      margin-top: -2px; }
+    .awr-test-session #mocha ul#mocha-report li.suite h1 {
+      font-size: 1.8rem !important;
+      margin: 15px 0 !important; }
+    .awr-test-session #mocha ul#mocha-report li.suite ul li.suite h1 {
+      font-size: 1.4rem !important;
+      margin: 6px 0 10px 0 !important; }
+
+#badBrowserSupport {
+  width: 800px;
+  max-width: 95%;
+  margin: 60px auto;
+  position: relative;
+  height: 100%;
+  background: #fff;
+  color: #000;
+  padding: 10px 10px 30px 10px; }
+
+#badBrowserSupport h2 {
+  margin: 0 auto 30px auto;
+  color: #000;
+  padding: 0 2%; }
+
+#badBrowserSupport p {
+  margin-bottom: 60px;
+  padding: 0 2%; }
+
+.bottom-page-awiar-logo {
+  margin: 30px auto;
+  width: 140px;
+  display: block; }
+
+@media (min-width: 700px) {
+  #badBrowserSupport h2 {
+    margin: 0 auto 20px auto; }
+  .bottom-page-awiar-logo {
+    margin: 70px auto; } }
+
+body.demo-not-authorized {
+  overflow: hidden !important; }
+
+.demo-authorizer {
+  color: #000 !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 100000;
+  display: block; }
+  .demo-authorizer .mobile-input-container {
+    display: none; }
+    .demo-authorizer .mobile-input-container input.mobile-chars {
+      height: 40px;
+      border-radius: 3px;
+      width: 80%;
+      border: 1px solid #e6e6e6;
+      outline: none;
+      padding: 5px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.4em; }
+  .demo-authorizer .input-container {
+    display: block; }
+  @media (max-width: 1030px) {
+    .demo-authorizer .mobile-input-container {
+      display: block; }
+    .demo-authorizer .input-container {
+      display: none; } }
+  .demo-authorizer header {
+    width: 100%;
+    height: 95px;
+    background: #2e2e2e; }
+    @media (min-width: 480px) {
+      .demo-authorizer header {
+        padding: 0 95px 15px 95px; } }
+    @media (max-width: 480px) {
+      .demo-authorizer header {
+        padding: 0 25px 15px 25px;
+        text-align: center; } }
+    .demo-authorizer header .logo > img {
+      width: 100px;
+      margin-top: 20px; }
+  .demo-authorizer .slogan {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    font-size: 1.3em;
+    font-weight: 600; }
+    @media (max-height: 420px) {
+      .demo-authorizer .slogan {
+        display: none; } }
+    .demo-authorizer .slogan .w:after {
+      content: '  ';
+      line-height: 1.2em; }
+  .demo-authorizer .content {
+    padding: 0;
+    text-align: center; }
+    .demo-authorizer .content .animate {
+      width: 50%;
+      margin: 10px auto;
+      padding: 10px;
+      height: 30px;
+      text-align: center; }
+      .demo-authorizer .content .animate .block {
+        width: 20px;
+        height: 5px;
+        border: 1px solid #999999;
+        border-radius: 5px;
+        background: #b3b3b3;
+        margin: 20px 0 0 15%; }
+    .demo-authorizer .content .row {
+      margin-top: 20px; }
+    @media (min-width: 988px) {
+      .demo-authorizer .content {
+        width: 50%;
+        margin: 200px auto; } }
+    .demo-authorizer .content h3 {
+      margin-bottom: 30px; }
+  .demo-authorizer .char-in {
+    width: 35px;
+    height: 35px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center; }
+  .demo-authorizer .char-in.not-valid {
+    border: 1px solid red; }
+  .demo-authorizer .row .fa {
+    font-size: 1.8em !important; }
+  .demo-authorizer .row .fa-check, .demo-authorizer .row .fa-remove {
+    display: none; }
+  .demo-authorizer .row .fa.on {
+    display: inline; }
+
+.demo-authorizer.authorized {
+  display: none; }
+
+.demo-timer {
+  position: fixed;
+  bottom: 0;
+  z-index: 100000;
+  display: none;
+  background: #fff;
+  padding: 4px 10px;
+  color: #000 !important;
+  text-align: center;
+  border: 1px solid #a6a6a6;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-size: 1.4rem;
+  line-height: 1.3em;
+  font-weight: 600; }
+  @media (min-width: 480px) {
+    .demo-timer {
+      width: 240px; }
+      .demo-timer.pos-middle {
+        left: 45%; }
+      .demo-timer.pos-right {
+        right: 1%; }
+        .demo-timer.pos-right button.to-right {
+          color: gray; }
+          .demo-timer.pos-right button.to-right:active {
+            border: none; }
+      .demo-timer.pos-left {
+        left: 1%; }
+        .demo-timer.pos-left button.to-left {
+          color: gray; }
+          .demo-timer.pos-left button.to-left:active {
+            border: none; } }
+  @media (max-width: 480px) {
+    .demo-timer {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      left: 0;
+      height: 34px;
+      min-height: 34px;
+      margin: 0 auto;
+      border-radius: 0;
+      border: none;
+      background: none; }
+      .demo-timer .timer-content {
+        border: 1px solid #a6a6a6;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom: none;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 4px 10px; }
+      .demo-timer button.to-left, .demo-timer button.to-right {
+        display: none; } }
+  .demo-timer .timer-content {
+    width: 200px;
+    margin: 0 auto; }
+  .demo-timer .add-zero:before {
+    content: '0'; }
+  .demo-timer button.fa-stop {
+    outline: none;
+    padding: 2px 4px; }
+  .demo-timer button.to-left, .demo-timer button.to-right {
+    position: absolute;
+    top: 8px;
+    background: #fff;
+    border: none;
+    outline: none; }
+    .demo-timer button.to-left:active, .demo-timer button.to-right:active {
+      border: 1px inset #e6e6e6; }
+  .demo-timer button.to-left {
+    left: 5px; }
+  .demo-timer button.to-right {
+    right: 5px; }
+
+.demo-timer.on {
+  display: flex; }
+  @media (max-width: 480px) {
+    .demo-timer.on {
+      display: block; } }
+
+.demo-refresh-confirm {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 100000;
+  display: block; }
+  .demo-refresh-confirm .content {
+    margin: 10% auto;
+    background: #cccccc;
+    padding: 10px 25px 15px 25px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px #888888; }
+    @media (min-width: 480px) {
+      .demo-refresh-confirm .content {
+        width: 450px; } }
+    @media (max-width: 480px) {
+      .demo-refresh-confirm .content {
+        width: 96%;
+        text-align: center; } }
+    .demo-refresh-confirm .content h1 {
+      width: 100%;
+      font-size: 1.4em;
+      font-weight: 600;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #a6a6a6; }
+    @media (min-width: 480px) {
+      .demo-refresh-confirm .content .btn-row {
+        margin: 20px 10px 10px 10px;
+        text-align: right; } }
+    @media (max-width: 480px) {
+      .demo-refresh-confirm .content .btn-row {
+        display: inline-flex;
+        text-align: center; }
+        .demo-refresh-confirm .content .btn-row .btn-default {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0; }
+        .demo-refresh-confirm .content .btn-row .btn-success {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0; } }
+
+.in-group {
+  /* Customize the label (the container) */
+  /* Hide the browser's default checkbox */
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */ }
+  .in-group .checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .in-group .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px; }
+  .in-group .checkbox-container .checkbox-label {
+    position: absolute;
+    top: -4px;
+    left: 25px; }
+    .in-group .checkbox-container .checkbox-label .word::before {
+      content: ' '; }
+  .in-group .checkmark {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #d5d5d5; }
+  .in-group .checkbox-container:hover input ~ .checkmark {
+    background-color: #bfbfbf; }
+  .in-group .checkbox-container input:checked ~ .checkmark {
+    background-color: #2196F3; }
+  .in-group .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none; }
+  .in-group .checkbox-container input:checked ~ .checkmark:after {
+    display: block; }
+  .in-group .checkbox-container .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg); }
+
+.form-member-parent.hz-layout {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0 20px 0; }
+
+.form-member-title h3 {
+  font-size: 17px;
+  font-weight: 600; }
+
+.form-member-label {
+  font-size: 13.5px;
+  font-weight: 600; }
+
+.form-member.textarea-type textarea {
+  resize: none;
+  outline: none; }
+
+.form-member.select-type select {
+  border: 1px solid #bfbfbf; }
+
+.form-member.rate-type {
+  margin-top: 10px; }
+
+.form-member.range-type input {
+  box-shadow: none;
+  border: none;
+  outline: none; }
+  .form-member.range-type input:active {
+    box-shadow: none;
+    border: none;
+    outline: none; }
+
+.form-member.checkbox-type {
+  width: 100%;
+  height: 15px; }
+
+.form-member.radio-group {
+  margin-top: 15px; }
+  .form-member.radio-group.hz-layout {
+    display: flex;
+    flex-direction: row;
+    margin: 0; }
+    .form-member.radio-group.hz-layout .group-member {
+      margin-right: 10px; }
+      .form-member.radio-group.hz-layout .group-member label {
+        margin: 1px 0 0 -6px; }
+  .form-member.radio-group .group-member {
+    display: flex;
+    text-align: right; }
+    .form-member.radio-group .group-member .radio-group-label {
+      font-size: 13px; }
+    .form-member.radio-group .group-member input[type="radio"] {
+      width: 40px;
+      outline: none; }
+
+.form-member.button-group {
+  margin-top: 15px;
+  display: flex;
+  font-size: 13px; }
+  .form-member.button-group .group-member {
+    margin: 0;
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-left: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+    .form-member.button-group .group-member.active-btn {
+      background: #cccccc; }
+  .form-member.button-group button.group-member:first-of-type {
+    border-left: 1px solid #ccc;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px; }
+  .form-member.button-group button.group-member:last-of-type {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px; }
+  .form-member.button-group button .after-icon, .form-member.button-group button .before-icon {
+    font-size: 14px; }
+
+.form-member.pretty-file-type {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 0;
+  height: 34px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden; }
+  .form-member.pretty-file-type .f-icon.fa-file {
+    top: 10px; }
+  .form-member.pretty-file-type .v-symbol.fail, .form-member.pretty-file-type .v-symbol.valid {
+    right: 129px !important;
+    top: -2px !important; }
+  .form-member.pretty-file-type.has-file .v-symbol.fail, .form-member.pretty-file-type.has-file .v-symbol.valid {
+    right: 159px !important; }
+  .form-member.pretty-file-type.has-file .file-name {
+    display: inline-flex; }
+    .form-member.pretty-file-type.has-file .file-name .fa {
+      font-size: 14px; }
+  .form-member.pretty-file-type.has-file .placeholder {
+    display: none; }
+  .form-member.pretty-file-type.has-file button.remove-btn {
+    display: initial; }
+  .form-member.pretty-file-type input {
+    display: none; }
+  .form-member.pretty-file-type .placeholder {
+    margin: 8px 0 0 9px;
+    color: #989898; }
+  .form-member.pretty-file-type .file-name {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%; }
+    .form-member.pretty-file-type .file-name span {
+      height: 100%; }
+    .form-member.pretty-file-type .file-name .name {
+      margin-left: 30px;
+      padding-top: 7px; }
+    .form-member.pretty-file-type .file-name .size {
+      margin-left: 10px;
+      padding-top: 10px;
+      font-size: 1.2rem;
+      color: #989898; }
+      .form-member.pretty-file-type .file-name .size::before {
+        content: ' ( '; }
+      .form-member.pretty-file-type .file-name .size::after {
+        content: ' ) '; }
+  .form-member.pretty-file-type button {
+    overflow: hidden;
+    padding-top: 5px;
+    position: absolute;
+    height: 36px;
+    border: none;
+    border-left: 1px solid #ccc;
+    border-radius: 0;
+    outline: none;
+    display: flex;
+    font-size: 12px; }
+    .form-member.pretty-file-type button.add-btn {
+      right: 0;
+      top: -4px; }
+      .form-member.pretty-file-type button.add-btn .f-icon {
+        top: 13px; }
+    .form-member.pretty-file-type button.remove-btn {
+      display: none;
+      right: 110px;
+      top: 0;
+      width: 35px; }
+      .form-member.pretty-file-type button.remove-btn .f-icon {
+        top: 10px; }
+    .form-member.pretty-file-type button:hover {
+      color: #666666; }
+    .form-member.pretty-file-type button span:first-of-type {
+      margin: -1px 5px; }
+    .form-member.pretty-file-type button span:nth-of-type(2) {
+      margin-left: 25px; }
+
+.tag-field {
+  color: #000;
+  width: 100%;
+  position: relative; }
+  .tag-field .status-msg {
+    margin-left: 10px;
+    color: #000;
+    display: none;
+    position: absolute; }
+    .tag-field .status-msg.on {
+      display: initial; }
+  .tag-field.has-suggestions .suggestions {
+    display: flex; }
+  .tag-field .suggestions {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    z-index: 100;
+    font-size: 13px;
+    padding: 0;
+    width: 99%;
+    margin: 0 auto;
+    border: 1px solid #d9d9d9;
+    border-top: none;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: #fafafa;
+    left: 0.5%; }
+    .tag-field .suggestions span {
+      margin-bottom: 6px;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer; }
+    .tag-field .suggestions span.selected, .tag-field .suggestions span:hover {
+      background: #f0f0f0; }
+  .tag-field .tags-container {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    padding-left: 5px;
+    border-radius: 4px; }
+    .tag-field .tags-container .input-container {
+      display: inline-block; }
+      .tag-field .tags-container .input-container input {
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 13px;
+        height: 100%;
+        display: inline-block; }
+        .tag-field .tags-container .input-container input::placeholder {
+          color: #969696; }
+    .tag-field .tags-container .tag {
+      display: inline-block;
+      margin: 7px 5px 7px 0;
+      background: #f7f7f7;
+      border: 1px solid #ebebeb;
+      color: #000;
+      padding: 3px 25px 3px 15px;
+      border-radius: 2px;
+      text-transform: capitalize;
+      white-space: nowrap;
+      position: relative; }
+      .tag-field .tags-container .tag:hover {
+        border: 1px solid #d1d1d1; }
+      .tag-field .tags-container .tag .remove {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        cursor: pointer;
+        height: 100%;
+        width: 15px; }
+        .tag-field .tags-container .tag .remove .fas.fa-times {
+          font-size: 13px; }
+          .tag-field .tags-container .tag .remove .fas.fa-times:hover {
+            color: #999999; }
+
+.awr-rate .content {
+  display: flex;
+  flex-direction: row; }
+
+.awr-rate .r-info span:first-of-type {
+  font-weight: 600;
+  font-size: 16px; }
+
+.awr-rate .r-info span:last-of-type {
+  font-size: 11px;
+  color: #8c8c8c;
+  margin-left: -1px; }
+
+.awr-rate .star-container {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  position: relative;
+  height: 40px; }
+  .awr-rate .star-container.h .zero-item {
+    display: initial; }
+  .awr-rate .star-container .zero-item {
+    font-size: 12px;
+    margin-right: 5px;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    display: none; }
+  .awr-rate .star-container .r-item {
+    cursor: pointer;
+    position: relative;
+    height: 20px;
+    margin-right: 2px; }
+    .awr-rate .star-container .r-item .s-icon {
+      font-size: 15px;
+      color: #ffa500; }
+    .awr-rate .star-container .r-item .h-icon {
+      font-size: 15px;
+      color: #ffdb99;
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 2px; }
+    .awr-rate .star-container .r-item.h .h-icon {
+      display: initial; }
+
+.in-group.not-valid .v-msg, .in-group.not-valid .v-symbol.fail {
+  display: initial; }
+
+.in-group.not-valid input, .in-group.not-valid textarea {
+  border: 1px solid #990000;
+  outline: none; }
+
+.in-group.valid .v-symbol.valid {
+  display: initial; }
+
+.in-group {
+  position: relative; }
+  .in-group.no-icon input, .in-group.no-icon textarea, .in-group.no-icon button {
+    padding-left: 10px; }
+  .in-group input, .in-group textarea {
+    font-size: 13px; }
+  .in-group input, .in-group textarea, .in-group button {
+    padding-left: 27px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    outline: none;
+    box-shadow: none; }
+    .in-group input:focus, .in-group input:active, .in-group textarea:focus, .in-group textarea:active, .in-group button:focus, .in-group button:active {
+      border-color: #ccc;
+      box-shadow: none; }
+  .in-group input, .in-group textarea, .in-group select {
+    width: 100%;
+    color: #4d4d4d; }
+  .in-group select {
+    height: 28px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    outline: none;
+    border-color: #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; }
+  .in-group textarea {
+    padding: 8px 20px 8px 32px; }
+  .in-group .v-msg, .in-group .v-symbol {
+    display: none; }
+  .in-group .v-msg {
+    position: absolute;
+    color: #ff4d4d;
+    right: 4px;
+    top: -18px; }
+  .in-group .v-symbol {
+    position: absolute !important;
+    right: 15px !important; }
+  .in-group .v-symbol.fail .fa {
+    position: relative !important;
+    color: #990000 !important; }
+  .in-group .v-symbol.valid .fa {
+    position: relative !important; }
+  .in-group .f-icon.fa, .in-group .f-icon.fas, .in-group .f-icon.far,
+  .in-group .v-symbol .fa, .in-group .v-symbol .fas, .in-group .v-symbol .far {
+    color: #747474;
+    position: absolute;
+    font-size: 1.3em;
+    top: 8px;
+    left: 6px; }
+
+.infinite-scroll {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+  .infinite-scroll .infinite-loading {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: 500; }
+    @media (min-width: 480px) {
+      .infinite-scroll .infinite-loading {
+        top: 45%; } }
+    @media (max-width: 480px) {
+      .infinite-scroll .infinite-loading {
+        top: 35%; } }
+    .infinite-scroll .infinite-loading .loading-cont {
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      max-width: 100px;
+      margin: 0 auto;
+      border-radius: 6px; }
+  .infinite-scroll .infinite-content {
+    width: 100%;
+    overflow-y: scroll;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-start; }
+    .infinite-scroll .infinite-content.bottom-start {
+      align-items: flex-end; }
+    .infinite-scroll .infinite-content > .awr-scope-block {
+      width: 100%;
+      max-height: 100%; }
+    .infinite-scroll .infinite-content .loop-cont {
+      width: 100%; }
+    .infinite-scroll .infinite-content .vertical-top-push {
+      min-width: 100%; }
+    .infinite-scroll .infinite-content .vertical-bottom-push {
+      min-width: 100%; }
+    .infinite-scroll .infinite-content::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 20px; }
+    .infinite-scroll .infinite-content::-webkit-scrollbar {
+      width: 6px; }
+    .infinite-scroll .infinite-content::-webkit-scrollbar-thumb {
+      border-radius: 20px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #888888; }
+
+.awr-modal-comp {
+  display: none; }
+
+#awrModalRmBtn {
+  display: none; }
+
+.awr-scope-block.awr-modal-parent, .awr-modal-parent {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  background: rgba(90, 90, 90, 0.6);
+  color: black;
+  display: none; }
+  .awr-scope-block.awr-modal-parent .awr-true-if-block, .awr-scope-block.awr-modal-parent .awr-scope-block, .awr-modal-parent .awr-true-if-block, .awr-modal-parent .awr-scope-block {
+    display: none; }
+  .awr-scope-block.awr-modal-parent.on, .awr-modal-parent.on {
+    display: block; }
+    .awr-scope-block.awr-modal-parent.on .awr-true-if-block, .awr-scope-block.awr-modal-parent.on .awr-scope-block, .awr-modal-parent.on .awr-true-if-block, .awr-modal-parent.on .awr-scope-block {
+      display: initial; }
+    .awr-scope-block.awr-modal-parent.on .awr-modal .awr-modal-content #awrModalRmBtn, .awr-modal-parent.on .awr-modal .awr-modal-content #awrModalRmBtn {
+      display: initial; }
+    .awr-scope-block.awr-modal-parent.on .awr-modal .awr-modal-content .awr-modal-comp, .awr-modal-parent.on .awr-modal .awr-modal-content .awr-modal-comp {
+      display: initial; }
+  .awr-scope-block.awr-modal-parent .awr-modal, .awr-modal-parent .awr-modal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    @media (max-width: 500px) {
+      .awr-scope-block.awr-modal-parent .awr-modal, .awr-modal-parent .awr-modal {
+        padding: 0 8px 0 5px; } }
+    .awr-scope-block.awr-modal-parent .awr-modal .awr-modal-content, .awr-modal-parent .awr-modal .awr-modal-content {
+      background: #fff;
+      padding: 20px;
+      min-width: 500px;
+      margin: 0 auto;
+      position: relative; }
+      @media (max-width: 500px) {
+        .awr-scope-block.awr-modal-parent .awr-modal .awr-modal-content, .awr-modal-parent .awr-modal .awr-modal-content {
+          min-width: 90%; } }
+      .awr-scope-block.awr-modal-parent .awr-modal .awr-modal-content #awrModalRmBtn, .awr-modal-parent .awr-modal .awr-modal-content #awrModalRmBtn {
+        position: absolute;
+        top: 5px;
+        right: 6px;
+        cursor: pointer; }
+        .awr-scope-block.awr-modal-parent .awr-modal .awr-modal-content #awrModalRmBtn:hover, .awr-modal-parent .awr-modal .awr-modal-content #awrModalRmBtn:hover {
+          color: gray; }
+
+.awr-dialogs {
+  width: 100%;
+  min-height: 100%;
+  background: none;
+  position: relative;
+  z-index: 40000; }
+  .awr-dialogs .left-container,
+  .awr-dialogs .right-container {
+    display: table;
+    min-width: 100px; }
+    @media (max-width: 767px) {
+      .awr-dialogs .left-container,
+      .awr-dialogs .right-container {
+        left: 50%;
+        transform: translate(-50%, 0);
+        position: absolute; } }
+    .awr-dialogs .left-container .dialog-items,
+    .awr-dialogs .right-container .dialog-items {
+      display: flex;
+      flex-direction: column; }
+  .awr-dialogs .middle-container {
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    text-align: center; }
+    .awr-dialogs .middle-container .inner {
+      display: table;
+      margin: 0 auto; }
+  .awr-dialogs .left-container {
+    float: left; }
+  .awr-dialogs .right-container {
+    float: right; }
+
+.awr-dialogs .basic-awr-dialog {
+  background: #fff;
+  padding: 15px;
+  min-width: 300px;
+  min-height: 100px;
+  margin: 5px;
+  -webkit-box-shadow: -4px 6px 5px 0px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: -4px 6px 5px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: -4px 6px 5px 0px rgba(0, 0, 0, 0.35);
+  position: relative;
+  text-align: left; }
+  @media (max-width: 767px) {
+    .awr-dialogs .basic-awr-dialog {
+      min-width: 90%; } }
+  .awr-dialogs .basic-awr-dialog .h1, .awr-dialogs .basic-awr-dialog .h2, .awr-dialogs .basic-awr-dialog .h3, .awr-dialogs .basic-awr-dialog h1, .awr-dialogs .basic-awr-dialog h2, .awr-dialogs .basic-awr-dialog h3 {
+    margin-top: 10px; }
+  .awr-dialogs .basic-awr-dialog > .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer; }
+
+/*# sourceMappingURL=ux.css.map */
