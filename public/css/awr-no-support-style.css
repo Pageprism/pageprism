@@ -1,0 +1,32 @@
+#badBrowserSupport{
+    width: 800px;
+    max-width: 95%;
+    margin: 60px auto;
+    position: relative;
+    height: 100%;
+    background:#fff;
+    color:#000;
+    padding: 10px 10px 30px 10px;
+}
+#badBrowserSupport h2{
+    margin: 0 auto 30px auto;
+    color: #000;
+    padding: 0 2%;
+}
+#badBrowserSupport p{
+    margin-bottom: 60px;
+    padding: 0 2%;
+}
+.bottom-page-awiar-logo{
+    margin: 30px auto;
+    width: 140px;
+    display: block;
+}
+@media (min-width: 700px) {
+    #badBrowserSupport h2{
+        margin: 0 auto 20px auto;
+    }
+    .bottom-page-awiar-logo{
+        margin: 70px auto;
+    }
+}

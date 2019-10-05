@@ -1,0 +1,48 @@
+{
+  "title": "Pageshare",
+  "charset": "UTF-8",
+  "icon": {
+    "href": "/assets/ps/img/icons/icon.png",
+    "type": "image/png"
+  },
+  "meta": [
+    {
+      "name": "dev-csrf-token",
+      "content": "abcdE6384KjMNNOP"
+    },{
+      "name": "Description",
+      "content": "Pageshare is a book publishing platform for readers, authors and publishers."
+    },
+    {
+      "property": "og:title",
+      "content": "Pageshare"
+    },
+    {
+      "property": "og:description",
+      "content": "Pageshare is a book publishing platform for readers, authors and publishers"
+    },
+    {
+      "property": "og:image",
+      "content": "https://www.pageshare.awiar.net/assets/ps/img/ps-logo.png"
+    },
+    {
+      "property": "twitter:title",
+      "content": "Pageshare"
+    },
+    {
+      "property": "twitter:description",
+      "content": "Pageshare is a book publishing platform for readers, authors and publishers"
+    },
+    {
+      "property": "twitter:image",
+      "content": "https://www.pageshare.awiar.net/assets/ps/img/ps-logo.png"
+    }
+  ],
+  "link": [
+    {
+      "rel": "shortcut icon",
+      "type": "image/png",
+      "href": "/assets/ps/img/icons/icon.png?v=121"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "product_group_id": "ps",
+  "app_root": "public",
+  "apps": [
+    {
+      "group": "AWR_ADMIN_GROUP",
+      "type": "ux_app",
+      "code": "insider",
+      "name": "ps_auth_app",
+      "layout_group": "ps"
+    },
+    {
+      "group": "AWR_APP_GROUP",
+      "type": "ux_app",
+      "code": "home",
+      "name": "pageshare_app",
+      "layout_group": "ps"
+    },
+    {
+      "group": "AWR_APP_GROUP",
+      "type": "ux_app",
+      "code": "read",
+      "name": "read_app",
+      "layout_group": "ps"
+    },
+    {
+      "group": "AWR_APP_GROUP",
+      "type": "ux_app",
+      "code": "profile",
+      "name": "profile_app",
+      "layout_group": "ps"
+    }
+  ]
+}

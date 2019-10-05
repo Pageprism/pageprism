@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ $app->title }}</title>
+
+    @foreach ($app->meta_tags as $meta)
+    <meta @foreach ($meta as $key=> $value) {{ $key }} = "{{ $value }}" @endforeach />
+    @endforeach
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="awr-app-group" content="{{ $app->app_group }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link @foreach ($app->icon as $key => $value) {{ $key }} = "{{ $value }}" @endforeach />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/{{ $app->name }}/css/awr-ux.vendor.css?v={{ $app->ux_version }}"/>
+    <link rel="stylesheet" type="text/css" href="/{{ $app->name }}/css/awr-ux.min.css?v={{ $app->ux_version }}"/>
+    <link rel="stylesheet" type="text/css" href="/{{ $app->name }}/css/awr-app.min.css?v={{ $app->app_version }}"/>
+    <script type="text/javascript" src="/{{ $app->name }}/js/awr-ux.vendor.js?v={{ $app->ux_version }}"></script>
+    <?php
+        if (!(empty($app) && empty($app->data))) {
+            $server_data = json_encode($app->data);
+        } else {
+            $server_data = json_encode((object)[]);
+        }
+    ?>
+
+    <script type="text/javascript">
+        window.awr = window.awr || {};
+        <?php echo "awr.serverData = " . $server_data . ";"  ?>
+
+        window.onload = function () {
+            try {
+                let fn = awr.core.templates.app.app;
+                if (typeof fn === 'function') {
+                    let waitForCont, contentStr = fn({appName: 'AwrUXApplication'});
+                    //under 45 chars contains only the comments and rawhelper is not yet ready
+                    if (contentStr && contentStr.trim().length <= 45) {
+                        waitForCont = setInterval(function () {
+                            fn = awr.core.templates.app.app;
+                            contentStr = fn({appName: 'uxDemoAppProd'});
+                            if (contentStr && contentStr.trim().length > 45) {
+                                clearInterval(waitForCont);
+                                document.getElementById('$$root$$').outerHTML = contentStr;
+                            }
+                        }, 100);
+                    } else if (contentStr) {
+                        document.getElementById('$$root$$').outerHTML = contentStr;
+                    } else {
+                        console.error('onLoad@index@AWR: handlebars didn\'t load properly. Failed to init index.html (2)');
+                    }
+                } else {
+                    console.error('onLoad@index@AWR: handlebars didn\'t load properly. Failed to init index.html (1)');
+                }
+            } catch (e) {
+                console.error(`onLoad@index@AWR: Failed to init index.html (0).\n\t + Details: ${e}`);
+            }
+        };
+    </script>
+
+</head>
+<body>
+<h4 id="rootLoadingSpinner" class="text-info">
+
+    &nbsp;<span class="ct fas fa-circle-notch fa-spin"></span><span class="ct">&nbsp;Loading...</span>
+</h4>
+<div id="$$root$$">
+    <h1 class="fa fa-check-square col-md-offset-1 hidden" id="rootFrameWorkLabel"> AWIAR UX (PRODUCTION) </h1>
+</div>
+<!--UX CORE ERRORS-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux-errors.min.js?v={{ $app->ux_version }}"></script>
+<!--UX CORE Templates-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux-templates.min.js?v={{ $app->ux_version }}"></script>
+<!--UX CORE SCRIPTS-->
+<!--UX POLYFILLS-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux-polyfills.min.js?v={{ $app->ux_version }}"></script>
+<!--UX KERNEL-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux-kernel.min.js?v={{ $app->ux_version }}"></script>
+<!--UX UTILS-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux-utils.min.js?v={{ $app->ux_version }}"></script>
+<!--UX EXTENSIONS-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux-extensions.min.js?v={{ $app->ux_version }}"></script>
+<!--UX MODULES-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux-modules.min.js?v={{ $app->ux_version }}"></script>
+<!--{{--<script type="text/javascript" src="/{{ $app->name }}/js/awr-ux.min.js?v={{ $app->ux_version }}"></script>--}}-->
+<!--APP FORMS-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-app-forms.min.js?v={{ $app->app_version }}"></script>
+<!--APP ERRORS-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-app-errors.min.js?v={{ $app->app_version }}"></script>
+<!--APP Templates-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-app-templates.min.js?v={{ $app->app_version }}"></script>
+<!--APP SCRIPTS-->
+<script type="text/javascript" src="/{{ $app->name }}/js/awr-app.min.js?v={{ $app->app_version }}"></script>
+
+<script type="application/javascript">
+    window.awr = window.awr || {};
+    window.awr.VERSION = "{{ $app->ux_version }}";
+    window.awr.APP_VERSION = "{{ $app->app_version }}";
+</script>
+
+
+</body>
+</html>

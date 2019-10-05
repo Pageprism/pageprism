@@ -1,0 +1,370 @@
+{
+  "prefix": "api",
+  "controllers_path": "/App/Http/Controllers",
+  "middleware": "secure:api",
+  "routes": [
+    {
+      "controller": "UserController",
+      "resource": "user",
+      "middleware": {
+        "index": "admins",
+        "show": "admins",
+        "store": "secure:client",
+        "update": "admins",
+        "destroy": "admins"
+      }
+    },
+    {
+      "controller": "ContactMessageController",
+      "resource": "contact_message",
+      "middleware": {
+        "index": "admins",
+        "show": "admins",
+        "store": "secure:client",
+        "update": "admins",
+        "destroy": "admins"
+      }
+    },
+    {
+      "controller": "RequesterController",
+      "resource": "requester",
+      "middleware": {
+        "index": "admins",
+        "show": "admins",
+        "store": "secure:client",
+        "update": "admins",
+        "destroy": "admins"
+      }
+    },
+    {
+      "controller": "ReplyController",
+      "resource": "reply",
+      "middleware": {
+        "index": "admins",
+        "show": "admins",
+        "store": "admins",
+        "update": "admins",
+        "destroy": "admins"
+      }
+    },
+    {
+      "controller": "BlogController",
+      "resource": "blog",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "admins",
+        "update": "admins",
+        "destroy": "admins"
+      }
+    },
+    {
+      "controller": "MyBlogController",
+      "resource": "my_blog",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "TagController",
+      "resource": "tag",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "CommentController",
+      "resource": "comment",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "ReactionController",
+      "resource": "reaction",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "ProfileController",
+      "resource": "profile",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "method_not_allowed",
+        "update": "secure:api",
+        "destroy": "method_not_allowed"
+      }
+    },
+    {
+      "controller": "ProfileStoryController",
+      "resource": "profile_story",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "method_not_allowed",
+        "update": "secure:api",
+        "destroy": "method_not_allowed"
+      }
+    },
+    {
+      "controller": "ExperienceController",
+      "resource": "experience",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "SkillController",
+      "resource": "skill",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "method_not_allowed",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "FollowingController",
+      "resource": "following",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "method_not_allowed",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "SocialLinkController",
+      "resource": "social_link",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "BookmarkController",
+      "resource": "bookmark",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "TrackController",
+      "resource": "track",
+      "middleware": {
+        "index": "admins",
+        "show": "secure:client",
+        "store": "secure:client",
+        "update": "secure:client",
+        "destroy": "admins"
+      }
+    },
+    {
+      "controller": "UserSessionController",
+      "resource": "user_session",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "method_not_allowed",
+        "update": "method_not_allowed",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "NotificationController",
+      "resource": "notification",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "method_not_allowed",
+        "update": "secure:api",
+        "destroy": "method_not_allowed"
+      }
+    },
+    {
+      "controller": "PSDocController",
+      "resource": "ps_doc",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "method_not_allowed",
+        "update": "method_not_allowed",
+        "destroy": "method_not_allowed"
+      }
+    },
+    {
+      "controller": "MyPSDocController",
+      "resource": "my_ps_doc",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "StoryMetaController",
+      "resource": "story_meta",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "StorySettingController",
+      "resource": "story_setting",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "PSCollectionController",
+      "resource": "ps_collection",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "method_not_allowed",
+        "update": "method_not_allowed",
+        "destroy": "method_not_allowed"
+      }
+    },
+    {
+      "controller": "MyPSCollectionController",
+      "resource": "my_ps_collection",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "MainCollectionController",
+      "resource": "main_collection",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "method_not_allowed",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "StorySeriesController",
+      "resource": "story_series",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "secure:api",
+        "update": "secure:api",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "TagSubscriptionController",
+      "resource": "tag_subscription",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "method_not_allowed",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "PSPublisherController",
+      "resource": "ps_publisher",
+      "middleware": {
+        "index": "secure:client",
+        "show": "secure:client",
+        "store": "ps_admins",
+        "update": "secure:api",
+        "destroy": "ps_admins"
+      }
+    },
+    {
+      "controller": "PSPublisherRoleController",
+      "resource": "ps_publisher_role",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "method_not_allowed",
+        "destroy": "secure:api"
+      }
+    },
+    {
+      "controller": "RoleController",
+      "resource": "role",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "ps_admins",
+        "update": "method_not_allowed",
+        "destroy": "ps_admins"
+      }
+    },
+    {
+      "controller": "PSUserController",
+      "resource": "ps_user",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "method_not_allowed",
+        "update": "ps_admins",
+        "destroy": "ps_admins"
+      }
+    },
+    {
+      "controller": "InviteController",
+      "resource": "invite",
+      "middleware": {
+        "index": "secure:api",
+        "show": "secure:api",
+        "store": "secure:api",
+        "update": "method_not_allowed",
+        "destroy": "secure:api"
+      }
+    }
+  ]
+}

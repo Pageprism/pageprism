@@ -1,0 +1,37 @@
+{
+  "title": "Pageshare",
+  "charset": "UTF-8",
+  "icon": {
+    "href": "/assets/ps/img/icons/icon.png",
+    "type": "image/png"
+  },
+  "meta": [
+    {
+      "name": "awr-app-group",
+      "content": "$2y$10$cksxMJWaSijmWdKsWGfqG.kR.RqhljtBZ88Cqv6i4u4MKLrXkXaAy"
+    },
+    {
+      "name": "dev-csrf-token",
+      "content": "abcdE6384KjMNNOP"
+    },
+    {
+      "name": "Description",
+      "content": "Create an account and join Pageshare."
+    },
+    {
+      "property": "og:title",
+      "content": "Pageshare"
+    },
+    {
+      "property": "og:description",
+      "content": "Create an account and join Pageshare."
+    }
+  ],
+  "link": [
+    {
+      "rel": "shortcut icon",
+      "type": "image/png",
+      "href": "/assets/ps/img/icons/icon.png?v=121"
+    }
+  ]
+}

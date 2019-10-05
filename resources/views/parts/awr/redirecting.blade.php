@@ -1,0 +1,3 @@
+<img class="brand" src="/assets/img/awr-logo.png" alt="">
+<h4 id="rootLoadingSpinner" style="background-image: none !important; margin:15px auto !important;" class="text-info">&nbsp;<span class="fa fa-circle-o-notch fa-spin"></span>&nbsp;Redirecting...
+</h4>

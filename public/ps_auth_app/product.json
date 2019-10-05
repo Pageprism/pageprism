@@ -1,0 +1,39 @@
+{
+  "ux-version": "v3.19.5-beta",
+  "name": "ps_auth_app",
+  "version": "v2.4.7",
+  "v-tag": "stable",
+  "license": "SEE LICENSE IN license.txt",
+  "server": [
+    {
+      "name": "ps_auth_app",
+      "type": "default",
+      "environment": "development"
+    },
+    {
+      "name": "pagesharecms",
+      "type": "php/laravel",
+      "environment": "local"
+    },
+    {
+      "name": "pageshareCMS",
+      "type": "php/laravel",
+      "environment": "development",
+      "remote": {
+        "host": "awiar.net",
+        "user": "kavan",
+        "path": "repo"
+      }
+    },
+    {
+      "name": "pageshareCMS",
+      "type": "php/laravel",
+      "environment": "production",
+      "remote": {
+        "host": "awiar.net",
+        "user": "kavan",
+        "path": "production"
+      }
+    }
+  ]
+}
